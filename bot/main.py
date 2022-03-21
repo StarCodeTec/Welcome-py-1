@@ -8,7 +8,7 @@ bot = commands.Bot(command_prefix='F^ ', intents=intents)
 
 @bot.command()
 async def test(ctx):
-  ctx.send("this is a test")
+  await ctx.send("this is a test")
 
 @bot.event
 async def on_raw_reaction_add(payload):
