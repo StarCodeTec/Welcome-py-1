@@ -4,7 +4,7 @@ from discord.ext import commands
 intents = discord.Intents.default()
 intents.typing = False
 intents.presences = False
-bot = commands.Bot(command_prefix='W^ ', intents=intents)
+bot = commands.Bot(command_prefix='F^ ', intents=intents)
 
 @bot.event
 async def on_raw_reaction_add(payload):
