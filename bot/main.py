@@ -8,7 +8,8 @@ bot = commands.Bot(command_prefix='F^ ', intents=intents)
 
 @bot.command()
 async def send(ctx, words):
-  await ctx.send(words)
+  if words == "general".*:
+    await ctx.send(words)
 
 @bot.event
 async def on_raw_reaction_add(payload):
