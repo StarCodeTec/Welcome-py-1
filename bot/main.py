@@ -10,6 +10,8 @@ bot = commands.Bot(command_prefix='W^ ', intents=intents)
 async def on_raw_reaction_add(payload):
   general = bot.get_channel(955195564721573910)
   entrance = 955071525256568892
+  member = discord.Member
+  print(member)
   user = bot.get_user(payload.user_id) 
   channel = bot.get_channel(payload.channel_id)
   msg = channel.get_partial_message(payload.message_id)
