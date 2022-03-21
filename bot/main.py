@@ -7,8 +7,7 @@ intents.presences = False
 bot = commands.Bot(command_prefix='F^ ', intents=intents)
 
 @bot.command()
-async def send(ctx, words):
-  if words == "general".*:
+async def send_General(ctx, words):
     await ctx.send(words)
 
 @bot.event
