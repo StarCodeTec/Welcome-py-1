@@ -8,7 +8,7 @@ bot = commands.Bot(command_prefix='W^ ', intents=intents)
 
 @bot.event
 async def on_raw_reaction_add(payload):
-  general = client.get_channel(955195564721573910)
+  general = bot.get_channel(955195564721573910)
   entrance = 955071525256568892
   user = bot.get_user(payload.user_id) 
   channel = bot.get_channel(payload.channel_id)
