@@ -10,7 +10,7 @@ bot = commands.Bot(command_prefix='W^ ', intents=intents)
 async def on_raw_reaction_add(payload):
   user = bot.get_user(payload.user_id) 
   channel = bot.get_channel(payload.channel_id)
-  user.send(channel)
+  print(channel)
   msg = channel.get_partial_message(payload.message_id)
   emoji = str(payload.emoji)
   
