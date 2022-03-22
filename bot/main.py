@@ -12,15 +12,17 @@ entrance = bot.get_channel(955071525256568892)
 async def send_general(ctx, words):
     await ctx.send(words)
 
+@bot.command()
+async def test(ctx):
+    await ctx.send("test"
+
 @bot.event
 async def on_raw_reaction_add(payload):
   user = bot.get_user(payload.user_id) 
   channel = bot.get_channel(payload.channel_id)
   msg = channel.get_partial_message(payload.message_id)
   emoji = str(payload.emoji)
-  print(user)
-  print(emoji)
-  print(channel)
-  print(msg)
+  if emoji == "✅":
+    test()
 
 bot.run("OTU1NDQwMjc5NDUwNzEwMDc2.YjhtGQ.kozZwra_R36aBqlq6PabGzgATVk")
