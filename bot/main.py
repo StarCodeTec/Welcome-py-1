@@ -20,7 +20,7 @@ async def test(ctx):
     member = ctx.author
     print(guild)
     print(guild.roles)
-    print(memeber)
+    print(member)
     print(member.roles)
     #if ctx.author.roles.name == "speak"
 @bot.command()
