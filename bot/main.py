@@ -16,7 +16,12 @@ welcome_text = "welcome to the server yata yata yata"
 #        return False
 @bot.command()
 async def test(ctx):
-    print(ctx.author.roles.name)
+    guild = ctx.guild
+    member = ctx.author
+    print(guild)
+    print(guild.roles)
+    print(memeber)
+    print(member.roles)
     #if ctx.author.roles.name == "speak"
 @bot.command()
 async def gen_send(ctx, words, userid):
