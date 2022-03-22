@@ -5,8 +5,8 @@ intents = discord.Intents.default()
 intents.typing = False
 intents.presences = False
 bot = commands.Bot(command_prefix='F^ ', intents=intents)
-general = bot.get_channel(923084022249320490)
-entrance = bot.get_channel(955071525256568892)
+general = bot.get_channel(923084022249320490) or bot.fetch_channel(923084022249320490)
+entrance = bot.get_channel(955071525256568892) or bot.fetch_channel(955071525256568892)
     
 @bot.command()
 async def gen_send(ctx, words):
