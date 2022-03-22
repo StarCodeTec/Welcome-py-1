@@ -10,7 +10,7 @@ welcome_text = "welcome to the server yata yata yata"
 @bot.check
 async def roles(ctx):
     member = ctx.author
-    if "speak" in member.roles:
+    if "955566126518136854" in member.roles:
         return
     
 @bot.command()
