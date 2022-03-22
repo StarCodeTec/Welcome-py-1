@@ -16,7 +16,7 @@ async def gen_send(ctx, words, userid):
     else:
         auth = ctx.has_role("speak")
     
-    if auth = True:
+    if auth == True:
         general = bot.get_channel(923084022249320490) or await bot.fetch_channel(923084022249320490)
         allwordg=f"<@!{userid}> {words}"
 
