@@ -9,7 +9,7 @@ entrance = bot.get_channel(955071525256568892) or bot.fetch_channel(955071525256
     
 @bot.command()
 async def gen_send(ctx, words):
-    general = bot.get_channel(923084022249320490) or bot.fetch_channel(923084022249320490)
+    general = bot.get_channel(923084022249320490) or await bot.fetch_channel(923084022249320490)
     await general.send(words)
 
 @bot.event
