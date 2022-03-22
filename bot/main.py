@@ -10,12 +10,16 @@ welcome_text = "welcome to the server yata yata yata"
 @bot.command()
 async def gen_send(ctx, words, userid):
     general = bot.get_channel(923084022249320490) or await bot.fetch_channel(923084022249320490)
+    if ctx == "ctx":
+        allwordg=f"@{userid} {words}"
+    else:
+        allwordg=f"<@!{userid}> {words}"
+
     if userid == "none":
         await general.send(words)
     else:
-        allwordg=f"<@!{userid}> {words}"
         await general.send(allwordg)
-    
+      
 
 @bot.command()
 async def ent_send(ctx, words, userid):
