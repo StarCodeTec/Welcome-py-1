@@ -7,9 +7,14 @@ intents.presences = False
 bot = commands.Bot(command_prefix='F^ ', intents=intents)
     
 @bot.command()
-async def gen_send(ctx, words, user):
+async def gen_send(ctx, words, userid):
     general = bot.get_channel(923084022249320490) or await bot.fetch_channel(923084022249320490)
-    await general.send(words,user)
+    if userid = none:
+        await general.send(words)
+    else:
+        allwords="<@!".userid.">".words
+        await general.send(allwords)
+    
 
 @bot.command()
 async def ent_send(ctx, words):
