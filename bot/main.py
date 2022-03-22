@@ -9,7 +9,7 @@ general = bot.get_channel(923084022249320490)
 entrance = bot.get_channel(955071525256568892)
     
 @bot.command()
-async def send_general(ctx, words):
+async def gen_send(ctx, words):
     await general.send(words)
 
 @bot.event
