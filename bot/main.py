@@ -12,7 +12,8 @@ async def gen_send(ctx, words, userid):
     if userid == none:
         await general.send(words)
     else:
-        allwords="<@!"+str(userid)+"> "+str(words)
+        allwords="<@!{}> {}".format(userid, words)
+        print(allwords)
         await general.send(allwords)
     
 
