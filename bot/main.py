@@ -14,7 +14,7 @@ async def send_general(ctx, words):
 
 @bot.command()
 async def test(ctx):
-    await ctx.send("test"
+    await ctx.send("test")
 
 @bot.event
 async def on_raw_reaction_add(payload):
