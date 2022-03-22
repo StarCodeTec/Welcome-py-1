@@ -12,15 +12,18 @@ async def gen_send(ctx, words, userid):
     if userid == "none":
         await general.send(words)
     else:
-        allwords=f"<@!{userid}> {words}"
-        print(allwords)
-        await general.send(allwords)
+        allwordg=f"<@!{userid}> {words}"
+        await general.send(allwordg)
     
 
 @bot.command()
-async def ent_send(ctx, words):
+async def ent_send(ctx, words, userid):
     entrance = bot.get_channel(955071525256568892) or await bot.fetch_channel(955071525256568892)
-    await entrance.send(words)
+    if userid == "none":
+        await entrance.send(words)
+    else:
+        allworde=f"<@!{userid}> {words}"
+        await entrance.send(allworde)
     
 
 @bot.event
