@@ -5,7 +5,8 @@ intents = discord.Intents.default()
 intents.typing = False
 intents.presences = False
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('F^ ', 'F^', 'W^', 'W^ '), intents=intents)
-    
+welcome_text = "welcome to the server yata yata yata"
+
 @bot.command()
 async def gen_send(ctx, words, userid):
     general = bot.get_channel(923084022249320490) or await bot.fetch_channel(923084022249320490)
@@ -31,8 +32,10 @@ async def on_raw_reaction_add(payload):
   user = bot.get_user(payload.user_id) 
   channel = bot.get_channel(payload.channel_id)
   msg = channel.get_partial_message(payload.message_id)
+  auth = msg.author
   emoji = str(payload.emoji)
   if emoji == "✅":
-    await test(general)
+        await test("ctx", welcome_text, auth)
+
 
 bot.run("OTU1NDQwMjc5NDUwNzEwMDc2.YjhtGQ.kozZwra_R36aBqlq6PabGzgATVk")
