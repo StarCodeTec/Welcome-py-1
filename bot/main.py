@@ -10,10 +10,7 @@ welcome_text = "welcome to the server yata yata yata"
 @bot.command()
 async def gen_send(ctx, words, userid):
     general = bot.get_channel(923084022249320490) or await bot.fetch_channel(923084022249320490)
-    if ctx == "ctx":
-        allwordg=f"@{userid} {words}"
-    else:
-        allwordg=f"<@!{userid}> {words}"
+    allwordg=f"<@!{userid}> {words}"
 
     if userid == "none":
         await general.send(words)
@@ -37,7 +34,7 @@ async def on_raw_reaction_add(payload):
   channel = bot.get_channel(payload.channel_id)
   msg = channel.get_partial_message(payload.message_id)
   mesg = await channel.fetch_message(payload.message_id)
-  auth = mesg.author
+  auth = mesg.author.id
   emoji = str(payload.emoji)
   if emoji == "✅":
         await gen_send("ctx", welcome_text, auth)
