@@ -10,11 +10,7 @@ entrance = bot.get_channel(955071525256568892)
     
 @bot.command()
 async def send_general(ctx, words):
-    await ctx.send(words)
-
-@bot.command()
-async def test(ctx):
-    await ctx.send("test")
+    await general.send(words)
 
 @bot.event
 async def on_raw_reaction_add(payload):
