@@ -4,7 +4,7 @@ from discord.ext import commands
 intents = discord.Intents.default()
 intents.typing = False
 intents.presences = False
-bot = commands.Bot(command_prefix=commands.when_mentioned_or('F^ ', 'F^', 'W^', 'W^ '), intents=intents)
+bot = commands.Bot(command_prefix=commands.when_mentioned_or('F^ ', 'F^'), intents=intents)
 welcome_text = "welcome to the server yata yata yata"
 
 @bot.check
@@ -44,10 +44,11 @@ async def on_raw_reaction_add(payload):
   channel = bot.get_channel(payload.channel_id)
   msg = channel.get_partial_message(payload.message_id)
   mesg = await channel.fetch_message(payload.message_id)
-  auth = mesg.author.id
+  auth = mesg.author
   emoji = str(payload.emoji)
-  if emoji == "✅":
-        await gen_send(user, welcome_text, auth)
+  if str(auth) == "equinox#7480":
+      if emoji == "✅":
+          await gen_send(user, welcome_text, auth)
 
 
 bot.run("OTU1NDQwMjc5NDUwNzEwMDc2.YjhtGQ.kozZwra_R36aBqlq6PabGzgATVk")
