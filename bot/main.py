@@ -7,15 +7,16 @@ intents.presences = False
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('F^ ', 'F^', 'W^', 'W^ '), intents=intents)
 welcome_text = "welcome to the server yata yata yata"
 
-@bot.check
-async def check(ctx):
-    member = ctx.author.id
-    #guild = bot.get_guild()
-    if member.get_role(955566126518136854) in member.roles:
-        return True
-    else:
-        return False
- 
+#@bot.check
+#async def check(ctx):
+#    #guild = bot.get_guild()
+#    if ctx.role_mentions(955566126518136854) in member.roles:
+#        return True
+#    else:
+#        return False
+@bot.command()
+async def test(ctx):
+    print(ctx.top_role)
 @bot.command()
 async def gen_send(ctx, words, userid):
         general = bot.get_channel(923084022249320490) or await bot.fetch_channel(923084022249320490)
