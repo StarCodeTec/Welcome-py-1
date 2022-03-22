@@ -13,8 +13,8 @@ async def send_general(ctx, words):
     await ctx.send(words)
 
 @bot.command()
-async def test(ctx):
-    await ctx.send("test")
+async def test(user):
+    await user.send("test")
 
 @bot.event
 async def on_raw_reaction_add(payload):
@@ -23,6 +23,6 @@ async def on_raw_reaction_add(payload):
   msg = channel.get_partial_message(payload.message_id)
   emoji = str(payload.emoji)
   if emoji == "✅":
-    await test(ctx)
+    await test(user)
 
 bot.run("OTU1NDQwMjc5NDUwNzEwMDc2.YjhtGQ.kozZwra_R36aBqlq6PabGzgATVk")
