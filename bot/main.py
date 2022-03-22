@@ -32,7 +32,7 @@ async def on_raw_reaction_add(payload):
   user = bot.get_user(payload.user_id) 
   channel = bot.get_channel(payload.channel_id)
   msg = channel.get_partial_message(payload.message_id)
-  mesg = channel.fetch_message(payload.message_id)
+  mesg = await channel.fetch_message(payload.message_id)
   auth = mesg.author
   emoji = str(payload.emoji)
   if emoji == "✅":
