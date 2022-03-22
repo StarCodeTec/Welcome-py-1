@@ -16,7 +16,8 @@ welcome_text = "welcome to the server yata yata yata"
 #        return False
 @bot.command()
 async def test(ctx):
-    print(ctx.author.top_role)
+    print(ctx.author.roles)
+    #if ctx.author.roles.name == "speak"
 @bot.command()
 async def gen_send(ctx, words, userid):
         general = bot.get_channel(923084022249320490) or await bot.fetch_channel(923084022249320490)
