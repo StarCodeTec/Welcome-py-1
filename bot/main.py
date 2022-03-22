@@ -7,14 +7,16 @@ intents.presences = False
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('F^ ', 'F^', 'W^', 'W^ '), intents=intents)
 welcome_text = "welcome to the server yata yata yata"
 
-@bot.command()
+@bot.check
 async def check(ctx):
     member = ctx.author
     print(member)
     if str(member) == "equinox#7480":
         print("true")
+        return(True)
     else:
         print("false")
+        return(False)
 @bot.command()
 async def gen_send(ctx, words, userid):
         general = bot.get_channel(923084022249320490) or await bot.fetch_channel(923084022249320490)
