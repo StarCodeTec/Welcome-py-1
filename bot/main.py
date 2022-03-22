@@ -11,7 +11,7 @@ welcome_text = "welcome to the server yata yata yata"
 async def check(ctx):
     member = ctx.author
     print(member)
-    if member == "equinox#7480":
+    if str(member) == "equinox#7480":
         print("true")
     else:
         print("false")
