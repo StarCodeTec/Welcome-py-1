@@ -9,7 +9,7 @@ welcome_text = "welcome to the server yata yata yata"
 
 @bot.check
 async def check(ctx):
-    member = ctx.author
+    member = ctx.author.id
     #guild = bot.get_guild()
     if member.get_role(955566126518136854) in member.roles:
         return True
