@@ -10,9 +10,11 @@ welcome_text = "welcome to the server yata yata yata"
 @bot.check
 async def roles(ctx):
     member = ctx.author
-    if "955566126518136854" in member.roles:
-        return
-    
+    if 955566126518136854 in member.roles:
+        return True
+    else:
+        return False
+ 
 @bot.command()
 async def gen_send(ctx, words, userid):
         general = bot.get_channel(923084022249320490) or await bot.fetch_channel(923084022249320490)
