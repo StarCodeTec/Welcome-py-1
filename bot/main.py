@@ -23,6 +23,6 @@ async def on_raw_reaction_add(payload):
   msg = channel.get_partial_message(payload.message_id)
   emoji = str(payload.emoji)
   if emoji == "✅":
-    await test(user)
+    await test(ctx)
 
 bot.run("OTU1NDQwMjc5NDUwNzEwMDc2.YjhtGQ.kozZwra_R36aBqlq6PabGzgATVk")
