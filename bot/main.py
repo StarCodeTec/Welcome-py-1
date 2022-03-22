@@ -5,7 +5,7 @@ intents = discord.Intents.default()
 intents.typing = False
 intents.presences = False
 bot = commands.Bot(command_prefix='F^ ', intents=intents)
-general = bot.get_channel(955195564721573910)
+general = bot.get_channel(923084022249320490)
 entrance = bot.get_channel(955071525256568892)
     
 @bot.command()
@@ -13,8 +13,8 @@ async def send_general(ctx, words):
     await ctx.send(words)
 
 @bot.command()
-async def test(user):
-    await user.send("test")
+async def test(ctx):
+    await ctx.send("test")
 
 @bot.event
 async def on_raw_reaction_add(payload):
