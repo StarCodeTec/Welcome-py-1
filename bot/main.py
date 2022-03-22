@@ -9,7 +9,7 @@ bot = commands.Bot(command_prefix='F^ ', intents=intents)
 @bot.command()
 async def gen_send(ctx, words, userid):
     general = bot.get_channel(923084022249320490) or await bot.fetch_channel(923084022249320490)
-    if userid = none:
+    if userid == none:
         await general.send(words)
     else:
         allwords="<@!".userid.">".words
