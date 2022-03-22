@@ -8,7 +8,7 @@ bot = commands.Bot(command_prefix=commands.when_mentioned_or('F^ ', 'F^', 'W^', 
 welcome_text = "welcome to the server yata yata yata"
 
 @bot.check
-async def roles(ctx):
+async def check(ctx):
     member = ctx.author
     if 955566126518136854 in member.roles:
         return True
