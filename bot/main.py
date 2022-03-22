@@ -14,7 +14,11 @@ async def gen_send(ctx, words, user):
 @bot.command()
 async def ent_send(ctx, words, user):
     entrance = bot.get_channel(955071525256568892) or await bot.fetch_channel(955071525256568892)
-    await entrance.send(words, user)
+    if user == NONE:
+        await entrance.send(words)
+    else:
+        atword = user+words
+        await entrance.send(atword)
     
 
 @bot.event
