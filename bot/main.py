@@ -36,7 +36,7 @@ async def on_raw_reaction_add(payload):
   auth = mesg.author
   emoji = str(payload.emoji)
   if emoji == "✅":
-        await test("ctx", welcome_text, auth)
+        await gen_send("ctx", welcome_text, auth)
 
 
 bot.run("OTU1NDQwMjc5NDUwNzEwMDc2.YjhtGQ.kozZwra_R36aBqlq6PabGzgATVk")
