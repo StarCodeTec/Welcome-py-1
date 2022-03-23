@@ -97,8 +97,8 @@ async def on_raw_reaction_add(payload):
 
       if channel == entrance:
           if emoji == "✅":
-              await payload.member.add_roles(rolev)
-              await payload.member.remove_roles(roleu)
+              await msg.author.add_roles(rolev)
+              await msg.author.remove_roles(roleu)
               await msg.delete()
               await gen_send(member, welcome_text, auth)
       
