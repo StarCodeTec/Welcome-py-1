@@ -15,7 +15,7 @@ Equinox = 599059234134687774
 async def check(ctx):
     logs = bot.get_channel(956235842525999175) or await bot.fetch_channel(956235842525999175)
     member = ctx.author
-    admin_V = ctx.member.guild.get_role(955572063383482479)
+    admin_V = ctx.guild.get_role(955572063383482479)
     if int(member.id) == Equinox or int(member.id) == Fenne or admin_V in ctx.member.roles:
         print(member)
         print(member.id)
