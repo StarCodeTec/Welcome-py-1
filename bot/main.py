@@ -18,7 +18,7 @@ async def check(ctx):
     print(member.id)
     id_member = f"""```
 AUTHORIZED ACCESS 
-Command: 
+Command: {ctx.command}
 Member id: {member.id} 
 Member name: {member}
 ```"""
