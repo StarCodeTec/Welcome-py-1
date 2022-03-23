@@ -39,9 +39,9 @@ Member name: {member}
         return(False)
 @bot.event()
 async def on_command_error(ctx, error):
-    isinstance(error, discord.CheckFailure):
-    return
-traceback.print_exception(error)
+    if isinstance(error, discord.CheckFailure):
+        return
+    traceback.print_exception(error)
 
 @bot.command()
 async def gen_send(ctx, words, userid):
