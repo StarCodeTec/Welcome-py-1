@@ -7,7 +7,7 @@ intents.presences = False
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('F^ ', 'F^'), intents=intents)
 welcome_text = " to the server, you can make a #✦📑┊bio if you want"
 Fenne = 474984052017987604 
-Equinox = 599059234134687774
+Equinox = 599059234134687775
 
 
 @bot.check
@@ -88,5 +88,6 @@ async def on_raw_reaction_add(payload):
               await member.remove_roles(roleu)
               await msg.delete()
               await gen_send(member, welcome_text, auth)
+      
 
 bot.run("OTU1NDQwMjc5NDUwNzEwMDc2.YjhtGQ.kozZwra_R36aBqlq6PabGzgATVk")
