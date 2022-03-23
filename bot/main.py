@@ -16,7 +16,12 @@ async def check(ctx):
     member = ctx.author
     print(member)
     print(member.id)
-    id_member = f"‘‘‘AUTHORIZED ACCESS /n /n Command: /n Member id: {member.id} /n Member name: {member}‘‘‘"
+    id_member = f"""```
+AUTHORIZED ACCESS 
+Command: 
+Member id: {member.id} 
+Member name: {member}
+```"""
     await logs.send(id_member)
     if int(member.id) == Equinox or int(member.id) == Fenne:
         print("true")
