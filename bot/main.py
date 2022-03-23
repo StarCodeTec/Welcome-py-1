@@ -42,8 +42,7 @@ async def ent_send(ctx, words, userid):
 async def on_raw_reaction_add(payload):
   user = bot.get_user(payload.user_id) 
   channel = bot.get_channel(payload.channel_id)
-  msg = channel.get_partial_message(payload.message_id)
-  mesg = await channel.fetch_message(payload.message_id)
+  msg = await channel.fetch_message(payload.message_id)
   auth = mesg.author.id
   emoji = str(payload.emoji)
   auth_role = payload.member.guild.get_role(955566126518136854)
@@ -53,6 +52,7 @@ async def on_raw_reaction_add(payload):
       if emoji == "✅":
           await payload.member.add_roles(rolev)
           await payload.member.remove_roles(roleu)
+          await msg.delete()
           await gen_send(user, welcome_text, auth)
 
 
