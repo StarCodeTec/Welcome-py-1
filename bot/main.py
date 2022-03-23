@@ -14,27 +14,27 @@ Equinox = 599059234134687775
 async def check(ctx):
     logs = bot.get_channel(956183584555814914) or await bot.fetch_channel(956183584555814914)
     member = ctx.author
-    print(member)
-    print(member.id)
-    id_member = f"""```
-AUTHORIZED ACCESS 
-Command: {ctx.command}
-Member id: {member.id} 
-Member name: {member}
-```"""
     await logs.send(id_member)
     if int(member.id) == Equinox or int(member.id) == Fenne:
+        print(member)
+        print(member.id)
+        id_member = f"""```
+        AUTHORIZED ACCESS 
+        Command: {ctx.command}
+        Member id: {member.id} 
+        Member name: {member}```"""
         print("true")
         return(True)
     else:
         print(member)
         print(member.id)
         id_member = f"""```
-UNAUTHORIZED ACCESS <@!955566126518136854>
+UNAUTHORIZED ACCESS 
 Command: {ctx.command}
 Member id: {member.id} 
 Member name: {member}
-```"""
+```
+<@!955566126518136854>"""
         await logs.send(id_member)
         return(False)
    
