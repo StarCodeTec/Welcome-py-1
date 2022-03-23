@@ -16,7 +16,8 @@ async def check(ctx):
     member = ctx.author
     print(member)
     print(member.id)
-    logs.send()
+    id_member = f"‘‘‘AUTHORIZED ACCESS /n /n Command: /n Member id: {member.id} /n Member name: {member}‘‘‘"
+    await logs.send(id_member)
     if int(member.id) == Equinox or int(member.id) == Fenne:
         print("true")
         return(True)
@@ -24,7 +25,7 @@ async def check(ctx):
         print(member)
         print(member.id)
         id_member = f"‘‘‘UNAUTHORIZED ACCESS <@!955566126518136854> /n /n Command: /n Member id: {member.id} /n Member name: {member}‘‘‘"
-        logs.send(id_member)
+        await logs.send(id_member)
         return(False)
    
 @bot.command()
