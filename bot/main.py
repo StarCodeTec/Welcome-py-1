@@ -44,7 +44,7 @@ async def on_raw_reaction_add(payload):
   channel = bot.get_channel(payload.channel_id)
   msg = channel.get_partial_message(payload.message_id)
   mesg = await channel.fetch_message(payload.message_id)
-  auth = mesg.author
+  auth = mesg.author.id
   emoji = str(payload.emoji)
   role = payload.member.guild.get_role(955566126518136854)
   if role in payload.member.roles:
