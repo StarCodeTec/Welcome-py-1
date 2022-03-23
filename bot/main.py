@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 
-intents = discord.Intents.default()
+intents = discord.Intents.all()
 intents.typing = False
 intents.presences = False
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('F^ ', 'F^'), intents=intents)
