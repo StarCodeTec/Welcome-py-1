@@ -14,7 +14,7 @@ Equinox = 599059234134687775
 async def check(ctx):
     logs = bot.get_channel(956183584555814914) or await bot.fetch_channel(956183584555814914)
     member = ctx.author
-    await logs.send(id_member)
+
     if int(member.id) == Equinox or int(member.id) == Fenne:
         print(member)
         print(member.id)
