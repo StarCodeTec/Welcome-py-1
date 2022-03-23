@@ -6,7 +6,7 @@ intents = discord.Intents.all()
 intents.typing = False
 intents.presences = False
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('F^ ', 'F^'), intents=intents)
-welcome_text = " to the server, you can make a #✦📑┊bio if you want"
+welcome_text = "to the server. Feel free to make a bio and enjoy your stay!"
 Fenne = 474984052017987604 
 Equinox = 599059234134687774
 
@@ -50,10 +50,10 @@ async def gen_send(ctx, words, userid):
             admin_role = ctx.guild.get_role(945086022142808075)
             member = ctx.id
             if member == Fenne:
-                allwordg=f"Welcome <@!{userid}> {words}"
+                allwordg=f"Everyone please welcome <@!{userid}> {words}"
             else:     
                 if admin_role in ctx.roles:
-                    allwordg=f"Welcome <@!{userid}> {words} sent by <@!{member}>"
+                    allwordg=f"Everyone please welcome <@!{userid}> {words} sent by <@!{member}>"
         else:
             allwrodg=f"<@!{userid}> {words}"
 
