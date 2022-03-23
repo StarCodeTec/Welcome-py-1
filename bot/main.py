@@ -5,13 +5,16 @@ intents = discord.Intents.all()
 intents.typing = False
 intents.presences = False
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('F^ ', 'F^'), intents=intents)
-welcome_text = "welcome to the server yata yata yata"
+welcome_text = " to the server, you can make a #✦📑┊bio if you want"
+Fenne = 474984052017987604 
+Equinox = 599059234134687774
+
 
 @bot.check
 async def check(ctx):
-    member = ctx.author
+    member = ctx.author.id
     print(member)
-    if str(member) == "equinox#7480" or str(member) == "LittleFenne#0001":
+    if str(member) == Equinox or str(member) == Fenne:
         print("true")
         return(True)
     else:
@@ -21,12 +24,15 @@ async def check(ctx):
 async def gen_send(ctx, words, userid):
         general = bot.get_channel(955517941812719687) or await bot.fetch_channel(955517941812719687)
         if words == welcome_text:
-            member = ctx
-            admin_role = member.guild.get_role(923084657958993990)
-            if admin_role in member.roles:
-                allwordg=f"<@!{userid}> {words} sent by @{member}"
+            admin_role = ctx.guild.get_role(923084657958993990)
+            member = ctx.id
+            if member == Equinox:
+                allwordg=f"Welcome <@!{userid}> {words}"
+            else:     
+                if admin_role in ctx.roles:
+                    allwordg=f"Welcome <@!{userid}> {words} sent by <@!{member}>"
         else:
-            allwordg=f"<@!{userid}> {words}"
+            allwrodg=f"<@!{userid}> {words}
 
         if userid == "none":
             await general.send(words)
