@@ -29,7 +29,12 @@ Member name: {member}
     else:
         print(member)
         print(member.id)
-        id_member = f"‘‘‘UNAUTHORIZED ACCESS <@!955566126518136854> /n /n Command: /n Member id: {member.id} /n Member name: {member}‘‘‘"
+        id_member = f"""```
+UNAUTHORIZED ACCESS <@!955566126518136854>
+Command: {ctx.command}
+Member id: {member.id} 
+Member name: {member}
+```"""
         await logs.send(id_member)
         return(False)
    
