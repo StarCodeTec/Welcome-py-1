@@ -22,7 +22,7 @@ async def gen_send(ctx, words, userid):
         general = bot.get_channel(955517941812719687) or await bot.fetch_channel(955517941812719687)
         if words == welcome_text:
             member = ctx
-            admin_role = member.guild.get_role(955566126518136854)
+            admin_role = member.guild.get_role(923084657958993990)
             if admin_role in member.roles:
                 allwordg=f"<@!{userid}> {words} sent by @{member}"
         else:
