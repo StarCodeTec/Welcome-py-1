@@ -53,16 +53,16 @@ async def on_raw_reaction_add(payload):
   auth = msg.author.id
   emoji = str(payload.emoji)
   auth_role = member.guild.get_role(955566126518136854)
-  entrance = bot.get_channel(945087125831958588) or await bot.fetch_channel(945087125831958588)
+  entrance = bot.get_channel(955517941812719687) or await bot.fetch_channel(955517941812719687)
   if auth_role in payload.member.roles:
       rolev = payload.member.guild.get_role(889011345712894002)
       roleu = payload.member.guild.get_role(889011029428801607)
+
       if channel == entrance:
           if emoji == "✅":
               await member.add_roles(rolev)
               await member.remove_roles(roleu)
               await msg.delete()
               await gen_send(member, welcome_text, auth)
-
 
 bot.run("OTU1NDQwMjc5NDUwNzEwMDc2.YjhtGQ.kozZwra_R36aBqlq6PabGzgATVk")
