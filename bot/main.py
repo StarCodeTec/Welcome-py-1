@@ -19,7 +19,7 @@ async def check(ctx):
         return(False)
 @bot.command()
 async def gen_send(ctx, words, userid):
-        general = bot.get_channel(923084022249320490) or await bot.fetch_channel(923084022249320490)
+        general = bot.get_channel(950085161872154694) or await bot.fetch_channel(950085161872154694)
         allwordg=f"<@!{userid}> {words}"
 
         if userid == "none":
@@ -30,7 +30,7 @@ async def gen_send(ctx, words, userid):
 
 @bot.command()
 async def ent_send(ctx, words, userid):
-    entrance = bot.get_channel(955071525256568892) or await bot.fetch_channel(955071525256568892)
+    entrance = bot.get_channel(945087125831958588) or await bot.fetch_channel(945087125831958588)
     if userid == "none":
         await entrance.send(words)
     else:
@@ -46,14 +46,16 @@ async def on_raw_reaction_add(payload):
   auth = msg.author.id
   emoji = str(payload.emoji)
   auth_role = payload.member.guild.get_role(955566126518136854)
+  entrance = bot.get_channel(945087125831958588) or await bot.fetch_channel(945087125831958588)
   if auth_role in payload.member.roles:
-      rolev = payload.member.guild.get_role(955569859956191314)
-      roleu = payload.member.guild.get_role(955969005234040842)
-      if emoji == "✅":
-          await payload.member.add_roles(rolev)
-          await payload.member.remove_roles(roleu)
-          await msg.delete()
-          await gen_send(user, welcome_text, auth)
+      rolev = payload.member.guild.get_role(889011345712894002)
+      roleu = payload.member.guild.get_role(889011029428801607)
+      if channel == entrance:
+          if emoji == "✅":
+              await payload.member.add_roles(rolev)
+              await payload.member.remove_roles(roleu)
+              await msg.delete()
+              await gen_send(user, welcome_text, auth)
 
 
 bot.run("OTU1NDQwMjc5NDUwNzEwMDc2.YjhtGQ.kozZwra_R36aBqlq6PabGzgATVk")
