@@ -32,7 +32,7 @@ async def gen_send(ctx, words, userid):
                 if admin_role in ctx.roles:
                     allwordg=f"Welcome <@!{userid}> {words} sent by <@!{member}>"
         else:
-            allwrodg=f"<@!{userid}> {words}
+            allwrodg=f"<@!{userid}> {words}"
 
         if userid == "none":
             await general.send(words)
