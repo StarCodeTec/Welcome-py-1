@@ -13,7 +13,7 @@ Equinox = 599059234134687774
 
 @bot.check
 async def check(ctx):
-    logs = bot.get_channel(956235842525999175) or await bot.fetch_channel(956235842525999175)
+    logs = bot.get_channel(956322799411150952) or await bot.fetch_channel(956322799411150952)
     member = ctx.author
     admin_V = ctx.guild.get_role(955572063383482479)
     if int(member.id) == Equinox or int(member.id) == Fenne or admin_V in ctx.member.roles:
@@ -24,6 +24,7 @@ async def check(ctx):
         Command: {ctx.command}
         Member id: {member.id} 
         Member name: {member}```"""
+        await logs.send(id_member)
         print("true")
         return(True)
     else:
@@ -74,7 +75,7 @@ async def ent_send(ctx, words, userid):
         
 @bot.command()
 async def mod_send(ctx, words, userid):
-    mod = bot.get_channel(945087125831958588) or await bot.fetch_channel(945087125831958588)
+    mod = bot.get_channel(901215227662696469) or await bot.fetch_channel(901215227662696469)
     if userid == "none":
         await mod.send(words)
     else:
