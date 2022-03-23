@@ -26,7 +26,7 @@ async def gen_send(ctx, words, userid):
         if words == welcome_text:
             admin_role = ctx.guild.get_role(923084657958993990)
             member = ctx.id
-            if member == Equinox:
+            if member == Fenne:
                 allwordg=f"Welcome <@!{userid}> {words}"
             else:     
                 if admin_role in ctx.roles:
