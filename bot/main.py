@@ -1,4 +1,5 @@
 import discord
+import traceback
 from discord.ext import commands
 
 intents = discord.Intents.all()
