@@ -12,14 +12,21 @@ Equinox = 599059234134687774
 
 @bot.check
 async def check(ctx):
-    member = ctx.author.id
+    logs = bot.get_channel(956183584555814914) or await bot.fetch_channel(956183584555814914)
+    member = ctx.author
     print(member)
-    if int(member) == Equinox or int(member) == Fenne:
+    print(member.id)
+    logs.send()
+    if int(member.id) == Equinox or int(member.id) == Fenne:
         print("true")
         return(True)
     else:
-        print("false")
+        print(member)
+        print(member.id)
+        id_member = f"‘‘‘UNAUTHORIZED ACCESS <@!955566126518136854> /n /n Command: /n Member id: {member.id} /n Member name: {member}‘‘‘"
+        logs.send(id_member)
         return(False)
+   
 @bot.command()
 async def gen_send(ctx, words, userid):
         general = bot.get_channel(955517941812719687) or await bot.fetch_channel(955517941812719687)
