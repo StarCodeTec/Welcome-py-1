@@ -46,9 +46,8 @@ async def on_raw_reaction_add(payload):
   mesg = await channel.fetch_message(payload.message_id)
   auth = mesg.author
   emoji = str(payload.emoji)
-  member = bot.fetch_member(payload.user_id)
-  role = str(guild.get_role(955566126518136854))
-  if role in member.roles:
+  role = payload.member.guild.get_role(955566126518136854)
+  if role in payload.member.roles:
       if emoji == "✅":
           await gen_send(user, welcome_text, auth)
 
