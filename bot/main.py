@@ -34,10 +34,15 @@ Command: {ctx.command}
 Member id: {member.id} 
 Member name: {member}
 ```
-<@!955566126518136854>"""
+@speak"""
         await logs.send(id_member)
         return(False)
-   
+@bot.event()
+async def on_command_error(ctx, error):
+    isinstance(error, discord.CheckFailure):
+    return
+traceback.print_exception(error)
+
 @bot.command()
 async def gen_send(ctx, words, userid):
         general = bot.get_channel(955517941812719687) or await bot.fetch_channel(955517941812719687)
