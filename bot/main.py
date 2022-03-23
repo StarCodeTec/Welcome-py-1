@@ -14,7 +14,7 @@ Equinox = 599059234134687774
 async def check(ctx):
     member = ctx.author.id
     print(member)
-    if str(member) == Equinox or str(member) == Fenne:
+    if int(member) == Equinox or int(member) == Fenne:
         print("true")
         return(True)
     else:
