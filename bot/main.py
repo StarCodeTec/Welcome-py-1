@@ -39,7 +39,7 @@ Member name: {member}
         return(False)
 @bot.event
 async def on_command_error(ctx, error):
-    if isinstance(error, discord.CheckFailure):
+    if isinstance(error, commands.CheckFailure):
         return
     traceback.print_exception(error)
 
