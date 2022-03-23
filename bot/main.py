@@ -34,8 +34,7 @@ UNAUTHORIZED ACCESS
 Command: {ctx.command}
 Member id: {member.id} 
 Member name: {member}
-```
-@speak"""
+```"""
         await logs.send(id_member)
         return(False)
 @bot.event
@@ -72,7 +71,15 @@ async def ent_send(ctx, words, userid):
     else:
         allworde=f"<@!{userid}> {words}"
         await entrance.send(allworde)
-    
+        
+@bot.command()
+async def mod_send(ctx, words, userid):
+    mod = bot.get_channel(945087125831958588) or await bot.fetch_channel(945087125831958588)
+    if userid == "none":
+        await mod.send(words)
+    else:
+        allwordm=f"<@!{userid}> {words}"
+        await mod.send(allwordm)
 
 @bot.event
 async def on_raw_reaction_add(payload):
@@ -83,7 +90,7 @@ async def on_raw_reaction_add(payload):
   auth = msg.author.id
   emoji = str(payload.emoji)
   auth_role = member.guild.get_role(945086022142808075)
-  entrance = bot.get_channel(955517941812719687) or await bot.fetch_channel(955517941812719687)
+  entrance = bot.get_channel(945087125831958588) or await bot.fetch_channel(945087125831958588)
   if auth_role in payload.member.roles:
       rolev = payload.member.guild.get_role(889011345712894002)
       roleu = payload.member.guild.get_role(889011029428801607)
