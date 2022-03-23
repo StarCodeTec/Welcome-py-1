@@ -37,7 +37,7 @@ Member name: {member}
 @speak"""
         await logs.send(id_member)
         return(False)
-@bot.event()
+@bot.event
 async def on_command_error(ctx, error):
     if isinstance(error, discord.CheckFailure):
         return
