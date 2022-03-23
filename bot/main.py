@@ -13,10 +13,10 @@ Equinox = 599059234134687774
 
 @bot.check
 async def check(ctx):
-    logs = bot.get_channel(956183584555814914) or await bot.fetch_channel(956183584555814914)
+    logs = bot.get_channel(956235842525999175) or await bot.fetch_channel(956235842525999175)
     member = ctx.author
-
-    if int(member.id) == Equinox or int(member.id) == Fenne:
+    admin_V = ctx.member.guild.get_role(955572063383482479)
+    if int(member.id) == Equinox or int(member.id) == Fenne or admin_V in ctx.member.roles:
         print(member)
         print(member.id)
         id_member = f"""```
@@ -46,9 +46,9 @@ async def on_command_error(ctx, error):
 
 @bot.command()
 async def gen_send(ctx, words, userid):
-        general = bot.get_channel(955517941812719687) or await bot.fetch_channel(955517941812719687)
+        general = bot.get_channel(950085161872154694) or await bot.fetch_channel(950085161872154694)
         if words == welcome_text:
-            admin_role = ctx.guild.get_role(923084657958993990)
+            admin_role = ctx.guild.get_role(945086022142808075)
             member = ctx.id
             if member == Fenne:
                 allwordg=f"Welcome <@!{userid}> {words}"
@@ -82,11 +82,11 @@ async def on_raw_reaction_add(payload):
   member = payload.member
   auth = msg.author.id
   emoji = str(payload.emoji)
-  auth_role = member.guild.get_role(955566126518136854)
+  auth_role = member.guild.get_role(945086022142808075)
   entrance = bot.get_channel(955517941812719687) or await bot.fetch_channel(955517941812719687)
   if auth_role in payload.member.roles:
-      rolev = payload.member.guild.get_role(955569859956191314)
-      roleu = payload.member.guild.get_role(955969005234040842)
+      rolev = payload.member.guild.get_role(889011345712894002)
+      roleu = payload.member.guild.get_role(889011029428801607)
 
       if channel == entrance:
           if emoji == "✅":
