@@ -54,7 +54,7 @@ async def gen_send(ctx, words, userid):
                 allwordg=f"Everyone please welcome <@!{userid}> {words}"
             else:     
                 if admin_role in ctx.roles:
-                    allwordg=f"Everyone please welcome <@!{userid}> {words} sent by <@!{member}>"
+                    allwordg=f"Everyone please welcome <@!{userid}> {words} Welcomed by <@!{member}>"
         else:
             allwrodg=f"<@!{userid}> {words}"
 
