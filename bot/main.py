@@ -100,31 +100,29 @@ async def on_raw_reaction_add(payload):
                   if admin_role in member.roles:
                       allwrodg=f"Everyone please welcome <@!{auth}> {welcome_text} Welcomed by <@!{memberz}>"
               generalmsg = await general.send(allwrodg)
-              await logs.send(f"""``` WELCOME LOG
-              Welcomed user: 
-              {msg.author}
+              await logs.send(f"""```
+         WELCOME LOG
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Welcomed user: 
+ {msg.author}
               
-              Welcomed userid: 
-              {auth}
+Welcomed userid: 
+ {auth}
               
-              Message content: 
-              {msg.content}
+Message content: 
+ {msg.content}
               
-              Welcomer user: 
-              {member}
+Welcomer user: 
+ {member}
               
-              Welcomer userid: 
-              {memberz}
-              
-              
-              Sent at: 
-              {generalmsg.created_at}
+Welcomer userid: 
+ {memberz}
               
               
-              
-              .
-              ```
-              """)
+Log time: {generalmsg.created_at}
+        
+         END LOG              
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯```""")
               
       
 
