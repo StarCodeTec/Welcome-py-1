@@ -96,7 +96,7 @@ async def on_raw_reaction_add(payload):
               if memberz == Fenne:
                   allwrodg=f"Everyone please welcome <@!{auth}> {welcome_text}"
               else:     
-                  if admin_role in memberz.roles:
+                  if admin_role in member.roles:
                       allwrodg=f"Everyone please welcome <@!{auth}> {welcome_text} Welcomed by <@!{memberz}>"
               
               await general.send(allwrodg)
