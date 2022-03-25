@@ -101,12 +101,28 @@ async def on_raw_reaction_add(payload):
                       allwrodg=f"Everyone please welcome <@!{auth}> {welcome_text} Welcomed by <@!{memberz}>"
               generalmsg = await general.send(allwrodg)
               await logs.send(f"""``` WELCOME LOG
-              Welcomed user: {msg.author}
-              Welcomed userid: {auth}
-              message: {msg.content}
-              Welcomer user: {member}
-              Welcomer userid: {memberz}
-              time: {generalmsg.created_at}
+              Welcomed user: 
+              {msg.author}
+              
+              Welcomed userid: 
+              {auth}
+              
+              Message content: 
+              {msg.content}
+              
+              Welcomer user: 
+              {member}
+              
+              Welcomer userid: 
+              {memberz}
+              
+              
+              Sent at: 
+              {generalmsg.created_at}
+              
+              
+              
+              .
               ```
               """)
               
