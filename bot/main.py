@@ -91,6 +91,7 @@ async def on_raw_reaction_add(payload):
               await msg.author.remove_roles(roleu)
               await msg.delete()
               general = bot.get_channel(950085161872154694) or await bot.fetch_channel(950085161872154694)
+              logs = bot.get_channel(956322799411150952) or await bot.fetch_channel(956322799411150952)
               admin_role = member.guild.get_role(945086022142808075)
               memberz = member.id
               if memberz == Fenne:
@@ -98,8 +99,16 @@ async def on_raw_reaction_add(payload):
               else:     
                   if admin_role in member.roles:
                       allwrodg=f"Everyone please welcome <@!{auth}> {welcome_text} Welcomed by <@!{memberz}>"
+              generalmsg = await general.send(allwrodg)
+              await logs.send(f"""``` WELCOME LOG
+              Welcomed user: {msg.author}
+              Welcomed userid: {auth}
+              message: {msg}
+              Welcomer user: {member}
+              Welcomer userid: {memberz}
+              time: {generalmsg.created_at}
+              """)
               
-              await general.send(allwrodg)
       
 
 bot.run("OTU1NDQwMjc5NDUwNzEwMDc2.YjhtGQ.kozZwra_R36aBqlq6PabGzgATVk")
