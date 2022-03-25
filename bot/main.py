@@ -103,10 +103,11 @@ async def on_raw_reaction_add(payload):
               await logs.send(f"""``` WELCOME LOG
               Welcomed user: {msg.author}
               Welcomed userid: {auth}
-              message: {msg}
+              message: {msg.content}
               Welcomer user: {member}
               Welcomer userid: {memberz}
               time: {generalmsg.created_at}
+              ```
               """)
               
       
