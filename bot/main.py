@@ -91,13 +91,13 @@ async def on_raw_reaction_add(payload):
               await msg.author.remove_roles(roleu)
               await msg.delete()
               general = bot.get_channel(950085161872154694) or await bot.fetch_channel(950085161872154694)
-              admin_role = ctx.guild.get_role(945086022142808075)
-              member = ctx.id
-              if member == Fenne:
+              admin_role = member.guild.get_role(945086022142808075)
+              memberz = member.id
+              if memberz == Fenne:
                   allwrodg=f"Everyone please welcome <@!{auth}> {welcome_text}"
               else:     
-                  if admin_role in member.roles:
-                      allwrodg=f"Everyone please welcome <@!{auth}> {welcome_text} Welcomed by <@!{member}>"
+                  if admin_role in memberz.roles:
+                      allwrodg=f"Everyone please welcome <@!{auth}> {welcome_text} Welcomed by <@!{memberz}>"
               
               await general.send(allwrodg)
       
