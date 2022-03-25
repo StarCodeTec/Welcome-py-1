@@ -47,17 +47,6 @@ async def on_command_error(ctx, error):
 @bot.command()
 async def gen_send(ctx, words, userid):
         general = bot.get_channel(950085161872154694) or await bot.fetch_channel(950085161872154694)
-        if words == welcome_text:
-            admin_role = ctx.guild.get_role(945086022142808075)
-            member = ctx.id
-            if member == Fenne:
-                allwordg=f"Everyone please welcome <@!{userid}> {words}"
-            else:     
-                if admin_role in ctx.roles:
-                    allwordg=f"Everyone please welcome <@!{userid}> {words} Welcomed by <@!{member}>"
-        else:
-            allwrodg=f"<@!{userid}> {words}"
-
         if userid == "none":
             await general.send(words)
         else:
@@ -101,7 +90,16 @@ async def on_raw_reaction_add(payload):
               await msg.author.add_roles(rolev)
               await msg.author.remove_roles(roleu)
               await msg.delete()
-              await gen_send(member, welcome_text, auth)
+              general = bot.get_channel(950085161872154694) or await bot.fetch_channel(950085161872154694)
+              admin_role = ctx.guild.get_role(945086022142808075)
+              member = ctx.id
+              if member == Fenne:
+                  allwrodg=f"Everyone please welcome <@!{auth}> {welcome_text}"
+              else:     
+                  if admin_role in member.roles:
+                      allwrodg=f"Everyone please welcome <@!{auth}> {welcome_text} Welcomed by <@!{member}>"
+              
+              await general.send(allwrodg)
       
 
 bot.run("OTU1NDQwMjc5NDUwNzEwMDc2.YjhtGQ.kozZwra_R36aBqlq6PabGzgATVk")
