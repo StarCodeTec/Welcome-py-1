@@ -10,7 +10,7 @@ welcome_text = "to the server. Feel free to make a bio and enjoy your stay!"
 Fenne = 474984052017987604 
 Equinox = 599059234134687774
 
-@tasks.loop(time=[datetime.time(hour=9, tzinfo=ZoneInfo("Etc/UTC")), datetime.time(hour=16, tzinfo=ZoneInfo("Etc/UTC")), date time.time(hour=21, tzinfo=ZoneInfo("Etc/UTC"))], count=NONE)
+@tasks.loop(time=[datetime.time(hour=9, tzinfo=ZoneInfo("Etc/UTC")), datetime.time(hour=16, tzinfo=ZoneInfo("Etc/UTC")), datetime.time(hour=21, tzinfo=ZoneInfo("Etc/UTC"))], count=NONE)
 async def gen():
     gen_send(NONE, "Remember everyone, please don't use profanity here!", "none")
 @bot.check
