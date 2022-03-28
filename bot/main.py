@@ -12,7 +12,7 @@ welcome_text = "to the server. Feel free to make a bio and enjoy your stay!"
 Fenne = 474984052017987604 
 Equinox = 599059234134687774
 
-@tasks.loop(time=[datetime.time(hour=9, minute=36, tzinfo=ZoneInfo("US/Eastern")), datetime.time(hour=16, tzinfo=ZoneInfo("US/Eastern")), datetime.time(hour=21, tzinfo=ZoneInfo("US/Eastern"))], count=None)
+@tasks.loop(time=[datetime.time(hour=9, minute=39, tzinfo=ZoneInfo("US/Eastern")), datetime.time(hour=16, tzinfo=ZoneInfo("US/Eastern")), datetime.time(hour=21, tzinfo=ZoneInfo("US/Eastern"))], count=None)
 async def gen():
         gen = bot.get_channel(950085161872154694) or await bot.fetch_channel(950085161872154694)
         await gen.send("Remember everyone, please don't use profanity here!")
@@ -130,5 +130,5 @@ Log time: {generalmsg.created_at}
 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯```""")
               
       
-gen.start()
+await gen.start()
 bot.run("OTU1NDQwMjc5NDUwNzEwMDc2.YjhtGQ.kozZwra_R36aBqlq6PabGzgATVk")
