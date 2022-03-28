@@ -2,6 +2,7 @@ import discord
 import datetime
 from zoneinfo import ZoneInfo
 import traceback
+import asyncio
 from discord.ext import tasks, commands
 
 intents = discord.Intents.all()
@@ -129,6 +130,10 @@ Log time: {generalmsg.created_at}
          END LOG              
 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯```""")
               
-      
-await gen.start()
-bot.run("OTU1NDQwMjc5NDUwNzEwMDc2.YjhtGQ.kozZwra_R36aBqlq6PabGzgATVk")
+async def main():
+    async with bot:
+        gen.start()
+        await bot.start('OTU1NDQwMjc5NDUwNzEwMDc2.YjhtGQ.gG5gjO2bupkp_xvZmwigQk3ayPM')
+
+asyncio.run(main())
+
