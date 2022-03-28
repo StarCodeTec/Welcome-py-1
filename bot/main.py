@@ -14,7 +14,8 @@ Equinox = 599059234134687774
 
 @tasks.loop(time=[datetime.time(hour=9, tzinfo=ZoneInfo("US/Eastern")), datetime.time(hour=16, tzinfo=ZoneInfo("US/Eastern")), datetime.time(hour=21, tzinfo=ZoneInfo("US/Eastern"))], count=None)
 async def gen():
-    gen_send(None, "Remember everyone, please don't use profanity here!", "none")
+        gen = bot.get_channel(950085161872154694) or await bot.fetch_channel(950085161872154694)
+        gen.send("Remember everyone, please don't use profanity here!")
 @bot.check
 async def check(ctx):
     logs = bot.get_channel(956322799411150952) or await bot.fetch_channel(956322799411150952)
