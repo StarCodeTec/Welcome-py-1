@@ -14,4 +14,4 @@ welcome_text_dm = """to the Femboy Cafe!
 ✧ₓ˚.✧ https://www.linktr.ee/littlefenne
 
 ⇀ Be sure to check in at the <#945087125831958588> to verify for full access.
-⇀ Share our server link discord.gg/femboycafe```
+⇀ Share our server link discord.gg/femboycafe```"""
