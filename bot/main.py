@@ -1,3 +1,4 @@
+from text_zone import welcome_text_dm as wtd
 import discord
 import datetime
 from zoneinfo import ZoneInfo
@@ -56,8 +57,7 @@ async def gen_send(ctx, words, userid):
         if userid == "none":
             await general.send(words)
         else:
-            await general.send(allwordg)
-      
+            await general.send(allwordg)      
 
 @bot.command()
 async def ent_send(ctx, words, userid):
@@ -76,6 +76,11 @@ async def mod_send(ctx, words, userid):
     else:
         allwordm=f"<@!{userid}> {words}"
         await mod.send(allwordm)
+@bot.event
+async def on_member_join(mem):
+  await mem.send(f"""
+  Welcome <@!{mem.id}>
+  {wtd}""")
 
 @bot.event
 async def on_guild_channel_create(cha):
