@@ -78,6 +78,11 @@ async def mod_send(ctx, words, userid):
         await mod.send(allwordm)
 
 @bot.event
+async def on_guild_channel_create(cha):
+  if "ticket" in str(cha.name):
+    print("Found")
+
+@bot.event
 async def on_raw_reaction_add(payload):
   user = bot.get_user(payload.user_id) 
   channel = bot.get_channel(payload.channel_id)
