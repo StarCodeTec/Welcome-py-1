@@ -83,7 +83,7 @@ async def on_guild_channel_create(cha):
     print("found category")
     if "ticket" in str(cha.name):
       print("Found channel ticket")
-      
+      await cha.send("Hey there, how can we help you?")
       
 
 @bot.event
