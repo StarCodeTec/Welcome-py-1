@@ -78,9 +78,7 @@ async def mod_send(ctx, words, userid):
         await mod.send(allwordm)
 @bot.event
 async def on_member_join(mem):
-  await mem.send(f"""
-  Welcome <@!{mem.id}>
-  {wtd}""")
+  await mem.send(f"""⇀ Welcome <@!{mem.id}> {wtd}""")
 
 @bot.event
 async def on_guild_channel_create(cha):
