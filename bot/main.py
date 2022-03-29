@@ -83,6 +83,8 @@ async def on_guild_channel_create(cha):
     print("found category")
     if "ticket" in str(cha.name):
       print("Found channel ticket")
+      await cha.send("test")
+      
 
 @bot.event
 async def on_raw_reaction_add(payload):
