@@ -48,8 +48,8 @@ Member name: {member}
         await logs.send(id_member)
         return(False)
 
-@tasks.loop(time=[datetime.time(hour=11, minute=31, tzinfo=ZoneInfo("US/Eastern")), datetime.time(hour=18, tzinfo=ZoneInfo("US/Eastern"))], count=None)
-async def bot():
+@tasks.loop(time=[datetime.time(hour=11, minute=45, tzinfo=ZoneInfo("US/Eastern")), datetime.time(hour=18, tzinfo=ZoneInfo("US/Eastern"))], count=None)
+async def botxc():
         botxc = bot.get_channel(940377877214548008) or await bot.fetch_channel(940377877214548008)
         await botxc.send("Check out the pinned message to bump the server so more people can join!")
 
@@ -161,7 +161,7 @@ Log time: {generalmsg.created_at}
 async def main():
     async with bot:
         gen.start()
-        bot.start()
+        botxc.start()
         await bot.start(key)
 
 asyncio.run(main())
