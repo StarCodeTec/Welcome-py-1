@@ -28,6 +28,7 @@ async def bot():
 async def gen():
         gen = bot.get_channel(950085161872154694) or await bot.fetch_channel(950085161872154694)
         await gen.send("Remember everyone, please don't use profanity here!")
+
 @bot.check
 async def check(ctx):
     logs = bot.get_channel(956322799411150952) or await bot.fetch_channel(956322799411150952)
