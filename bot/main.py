@@ -6,11 +6,11 @@ from zoneinfo import ZoneInfo
 import traceback
 import asyncio
 from discord.ext import tasks, commands
+import os
 from dotenv import load_dotenv
-from pathlib import Path
 
-dotenv_path = Path('../.env')
-load_dotenv(dotenv_path=dotenv_path)
+load_dotenv()
+
 intents = discord.Intents.all()
 key = os.getenv('MAIN_KEY')
 intents.typing = False
