@@ -21,8 +21,8 @@ Fenne = 474984052017987604
 Equinox = 599059234134687774
 @tasks.loop(time=[datetime.time(hour=11, minute=15, tzinfo=ZoneInfo("US/Eastern")), datetime.time(hour=18, tzinfo=ZoneInfo("US/Eastern"))], count=None)
 async def bot():
-        botc = bot.get_channel(889028781652705350) or await bot.fetch_channel(889028781652705350)
-        await botc.send("Check out the pinned message to bump the server so more people can join!")
+        botxc = bot.get_channel(940377877214548008) or await bot.fetch_channel(940377877214548008)
+        await botxc.send("Check out the pinned message to bump the server so more people can join!")
 
 @tasks.loop(time=[datetime.time(hour=9, tzinfo=ZoneInfo("US/Eastern")), datetime.time(hour=16, tzinfo=ZoneInfo("US/Eastern")), datetime.time(hour=21, tzinfo=ZoneInfo("US/Eastern"))], count=None)
 async def gen():
