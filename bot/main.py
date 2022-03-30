@@ -1,12 +1,18 @@
 from text_zone import welcome_text_dm as wtd
+import os
 import discord
 import datetime
 from zoneinfo import ZoneInfo
 import traceback
 import asyncio
 from discord.ext import tasks, commands
+from dotenv import load_dotenv
+from pathlib import Path
 
+dotenv_path = Path('../.env')
+load_dotenv(dotenv_path=dotenv_path)
 intents = discord.Intents.all()
+key = os.getenv('MAIN_KEY')
 intents.typing = False
 intents.presences = False
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('F^ ', 'F^'), intents=intents)
@@ -145,7 +151,7 @@ Log time: {generalmsg.created_at}
 async def main():
     async with bot:
         gen.start()
-        await bot.start('OTU1NDQwMjc5NDUwNzEwMDc2.YjhtGQ.gG5gjO2bupkp_xvZmwigQk3ayPM')
+        await bot.start(key)
 
 asyncio.run(main())
 
