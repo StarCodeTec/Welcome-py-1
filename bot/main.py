@@ -19,7 +19,7 @@ bot = commands.Bot(command_prefix=commands.when_mentioned_or('F^ ', 'F^'), inten
 welcome_text = "to the server. Feel free to make a bio and enjoy your stay!"
 Fenne = 474984052017987604 
 Equinox = 599059234134687774
-@tasks.loop(time=[datetime.time(hour=11, minute=11, tzinfo=ZoneInfo("US/Eastern")), datetime.time(hour=18, tzinfo=ZoneInfo("US/Eastern"))], count=None)
+@tasks.loop(time=[datetime.time(hour=11, minute=15, tzinfo=ZoneInfo("US/Eastern")), datetime.time(hour=18, tzinfo=ZoneInfo("US/Eastern"))], count=None)
 async def bot():
         botc = bot.get_channel(889028781652705350) or await bot.fetch_channel(889028781652705350)
         await botc.send("Check out the pinned message to bump the server so more people can join!")
@@ -155,6 +155,7 @@ Log time: {generalmsg.created_at}
 async def main():
     async with bot:
         gen.start()
+        bot.start()
         await bot.start(key)
 
 asyncio.run(main())
