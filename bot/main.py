@@ -57,10 +57,12 @@ async def botxc():
 @tasks.loop(time=[datetime.time(hour=9, tzinfo=ZoneInfo("US/Eastern")), datetime.time(hour=16, tzinfo=ZoneInfo("US/Eastern")), datetime.time(hour=21, tzinfo=ZoneInfo("US/Eastern"))], count=None)
 async def gen():
         gen = bot.get_channel(950085161872154694) or await bot.fetch_channel(950085161872154694)
-        await gen.send("Remember everyone, please don't use profanity here!")
+        await gen.send(content="Remember everyone, please don't use profanity here!", delete_after=5)
 
-
-
+@task.loop(hour=3)
+async def bystander():
+        xent = bot.get_channel(945087125831958588) or await bot.fetch_channel(945087125831958588)
+        await xent.send(content="If you are a <@&889011029428801607> please verify today to join our server!", delete_after=60)
 
 @bot.event
 async def on_command_error(ctx, error):
