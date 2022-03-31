@@ -51,7 +51,6 @@ Member name: {member}
 
 @tasks.loop(time=[datetime.time(hour=10, tzinfo=ZoneInfo("US/Eastern")), datetime.time(hour=18, tzinfo=ZoneInfo("US/Eastern"))], count=None)
 async def botxc():
-        time.sleep(1)
         botxc = bot.get_channel(940377877214548008) or await bot.fetch_channel(940377877214548008)
         await botxc.send("Check out the pinned message to bump the server so more people can join!")
 
@@ -96,6 +95,7 @@ async def mod_send(ctx, words, userid):
         await mod.send(allwordm)
 @bot.event
 async def on_member_join(mem):
+  time.sleep(1)
   await mem.send(f"""⇀ Welcome <@!{mem.id}> {wtd}""")
 
 @bot.event
