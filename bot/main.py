@@ -77,7 +77,7 @@ async def gen_send(ctx, words, userid):
             await general.send(words)
         else:
             allwordg=f"<@!{userid}> {words}"
-            await general.send(content=allwordg, delete_after=5)      
+            await general.send(content=allwordg)      
 
 @bot.command()
 async def ent_send(ctx, words, userid):
@@ -167,6 +167,7 @@ async def main():
     async with bot:
         gen.start()
         botxc.start()
+        bystander.start()
         await bot.start(key)
 
 asyncio.run(main())
