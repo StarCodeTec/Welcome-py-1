@@ -95,7 +95,7 @@ async def mod_send(ctx, words, userid):
         await mod.send(allwordm)
 @bot.event
 async def on_member_join(mem):
-  time.sleep(1)
+  time.sleep(3)
   await mem.send(f"""⇀ Welcome <@!{mem.id}> {wtd}""")
 
 @bot.event
