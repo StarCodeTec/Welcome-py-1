@@ -76,7 +76,7 @@ async def gen_send(ctx, words, userid):
         if userid == "none":
             await general.send(words)
         else:
-            await general.send(allwordg)      
+            await general.send(content=allwordg, delete_after=5)      
 
 @bot.command()
 async def ent_send(ctx, words, userid):
