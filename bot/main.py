@@ -49,10 +49,10 @@ Member name: {member}
         await logs.send(id_member)
         return(False)
 
-@tasks.loop(time=[datetime.time(hour=10, tzinfo=ZoneInfo("US/Eastern")), datetime.time(hour=18, tzinfo=ZoneInfo("US/Eastern"))], count=None)
-async def botxc():
-        botxc = bot.get_channel(940377877214548008) or await bot.fetch_channel(940377877214548008)
-        await botxc.send("Check out the pinned message to bump the server so more people can join!")
+@tasks.loop(time=[datetime.time(hour=9, tzinfo=ZoneInfo("US/Eastern")), datetime.time(hour=17, tzinfo=ZoneInfo("US/Eastern"))], count=None)
+async def bump():
+        bump = bot.get_channel(940377877214548008) or await bot.fetch_channel(940377877214548008)
+        await bump.send("Please see the pinned post or type /bump to see a list of commands.")
 
 @tasks.loop(time=[datetime.time(hour=9, tzinfo=ZoneInfo("US/Eastern")), datetime.time(hour=16, tzinfo=ZoneInfo("US/Eastern")), datetime.time(hour=21, tzinfo=ZoneInfo("US/Eastern"))], count=None)
 async def gen():
@@ -166,7 +166,7 @@ Log time: {generalmsg.created_at}
 async def main():
     async with bot:
         gen.start()
-        botxc.start()
+        bump.start()
         bystander.start()
         await bot.start(key)
 
