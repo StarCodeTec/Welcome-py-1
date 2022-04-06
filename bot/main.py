@@ -98,8 +98,11 @@ async def mod_send(ctx, words, userid):
         await mod.send(allwordm)
 @bot.event
 async def on_member_join(mem):
-  time.sleep(3)
-  await mem.send(f"""⇀ Welcome <@!{mem.id}> {wtd}""")
+  try:
+    await mem.send(f"""⇀ Welcome <@!{mem.id}> {wtd}""")
+  except:
+    print("not accepting dms")
+    
 
 @bot.event
 async def on_guild_channel_create(cha):
@@ -107,6 +110,7 @@ async def on_guild_channel_create(cha):
     print("found category")
     if "ticket" in str(cha.name):
       print("Found channel ticket")
+      Time.sleep(3)
       await cha.send("Hey there, how can we help you?")
       
 
