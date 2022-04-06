@@ -110,7 +110,7 @@ async def on_guild_channel_create(cha):
     print("found category")
     if "ticket" in str(cha.name):
       print("Found channel ticket")
-      Time.sleep(3)
+      time.sleep(3)
       await cha.send("Hey there, how can we help you?")
       
 
