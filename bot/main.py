@@ -129,7 +129,7 @@ async def on_raw_reaction_add(payload):
       roleu = payload.member.guild.get_role(889011029428801607)
 
       if channel == entrance:
-          if emoji == "✅":
+          if str(emoji) == "<:check:919007866940182589>":
               await msg.author.add_roles(rolev)
               await msg.author.remove_roles(roleu)
               await msg.delete()
