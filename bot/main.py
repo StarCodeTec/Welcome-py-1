@@ -59,7 +59,7 @@ async def gen():
         gen = bot.get_channel(950085161872154694) or await bot.fetch_channel(950085161872154694)
         await gen.send(content="Remember everyone, please don't use profanity here!", delete_after=5)
 
-@tasks.loop(time=[date.time(hour=6, minute=0, second=0, microsecond=0), datetime.time(hour=9, minute=0, second=0, microsecond=0), datetime.time(hour=12, minute=0, second=0, microsecond=0), datetime.time(hour=15, minute=0, second=0, microsecond=0), datetime.time(hour=18, minute=0, second=0, microsecond=0), datetime.time(hour=21, minute=0, second=0, microsecond=0), datetime.time(hour=0, minute=0, second=0, microsecond=0)], count=None)
+@tasks.loop(time=[date.time(hour=6, minute=0, second=0, microsecond=0), datetime.time(hour=9, minute=0, second=0, microsecond=0), datetime.time(hour=12, minute=0, second=0, microsecond=0), datetime.time(hour=15, minute=0, second=0, microsecond=0), datetime.time(hour=18, minute=0, second=0, microsecond=0), datetime.time(hour=21, minute=0, second=0, microsecond=0), datetime.time(minute=0, second=0, microsecond=0)], count=None)
 async def bystander():
         xent = bot.get_channel(945087125831958588) or await bot.fetch_channel(945087125831958588)
         await xent.send(content="If you are a <@&889011029428801607> please verify today to join our server!", delete_after=3600)
