@@ -169,7 +169,7 @@ Log time: {generalmsg.created_at}
          END LOG              
 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯```""")
           if str(emoji) == "<:x_:962053785566474290>":
-              msg.delete()
+              await msg.delete()
       
 async def main():
     async with bot:
