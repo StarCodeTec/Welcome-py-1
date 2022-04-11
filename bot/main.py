@@ -121,6 +121,7 @@ async def on_raw_reaction_add(payload):
   msg = await channel.fetch_message(payload.message_id)
   member = payload.member
   auth = msg.author.id
+  author = msg.author
   emoji = str(payload.emoji)
   auth_role = member.guild.get_role(945086022142808075)
   entrance = bot.get_channel(957737342028890112) or await bot.fetch_channel(957737342028890112)
@@ -166,7 +167,8 @@ Log time: {generalmsg.created_at}
         
          END LOG              
 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯```""")
-              
+        elif str(emoji) == "<:x_:962053785566474290>":
+            await msg.delete()
 async def main():
     async with bot:
         gen.start()
