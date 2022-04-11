@@ -144,6 +144,7 @@ async def on_raw_reaction_add(payload):
                   if admin_role in member.roles:
                       allwrodg=f"Everyone please welcome <@!{auth}> {welcome_text} Welcomed by <@!{memberz}>"
               generalmsg = await general.send(allwrodg)
+             
               await logs.send(f"""```
          WELCOME LOG
 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
@@ -167,8 +168,9 @@ Log time: {generalmsg.created_at}
         
          END LOG              
 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯```""")
-      elif str(emoji) == "<:x_:962053785566474290>":
-          await msg.delete()
+          if str(emoji) == "<:x_:962053785566474290>":
+              msg.delete()
+      
 async def main():
     async with bot:
         gen.start()
