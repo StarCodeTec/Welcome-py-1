@@ -118,7 +118,7 @@ async def on_message(msg):
     if msg.guild.id == 871938782092480513:
         if msg.channel.id == 940444730515415100:
             print("channel is news")
-        if msg.channel.cattegory_id == 889022488720330816:
+        if msg.channel.category_id == 889022488720330816:
             if msg.channel_id != 889219939192410222:
                 print("channel is selfie")
 
