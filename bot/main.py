@@ -122,7 +122,7 @@ async def on_guild_channel_create(cha):
 
 @bot.event
 async def on_message(msg):
-    if msg.guild.id == 871938782092480513 or msg.guild.id == 956322799411150949:
+    if msg.guild.id == 871938782092480513:
         if msg.channel.id == 940444730515415100:
             await msg.add_reaction(r1)
             await msg.add_reaction(check)
