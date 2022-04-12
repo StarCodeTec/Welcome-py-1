@@ -1,4 +1,10 @@
 from text_zone import welcome_text_dm as wtd
+from text_zone import e1_re as r1
+from text_zone import e2_re as r2
+from text_zone import e3_re as r3
+from text_zone import e4_re as r4
+from text_zone import e5_re as r5
+
 import os
 import discord
 import time
@@ -117,10 +123,20 @@ async def on_guild_channel_create(cha):
 async def on_message(msg):
     if msg.guild.id == 871938782092480513:
         if msg.channel.id == 940444730515415100:
-            print("channel is news")
+            await msg.add_reaction(r1)
+            await msg.add_reaction(r2)
+            await msg.add_reaction(r3)            
+            await msg.add_reaction(r4)            
+            await msg.add_reaction(r5)
+            
         if msg.channel.category_id == 889022488720330816:
             if msg.channel.id != 889219939192410222:
-                print("channel is selfie")
+                await msg.add_reaction(r1)
+                await msg.add_reaction(r2)
+                await msg.add_reaction(r3)            
+                await msg.add_reaction(r4)            
+                await msg.add_reaction(r5)
+            
 
 @bot.event
 async def on_raw_reaction_add(payload):
