@@ -133,9 +133,9 @@ async def on_message(msg):
             await msg.add_reaction(check)
         if msg.channel.id == 888482614351134720:
             try:
-                async for msg in msg.channel.history(limit=100):
-                    if msg.author == bot.user:      
-                        await msg.delete()
+                async for message in channel.history(limit=100):
+                    if message.author == bot.user:      
+                        await message.delete()
             finally:
                 await msg.send(bio_template)
         if msg.channel.category_id == 889022488720330816:
