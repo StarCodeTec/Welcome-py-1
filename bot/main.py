@@ -1,6 +1,6 @@
 from text_zone import welcome_text_dm as wtd
 from text_zone import e1_re as r1
-from text_zone import e2_re as r2
+from text_zone import e2_re as check
 from text_zone import e3_re as r3
 from text_zone import e4_re as r4
 from text_zone import e5_re as r5
@@ -122,17 +122,18 @@ async def on_guild_channel_create(cha):
 @bot.event
 async def on_message(msg):
     if msg.guild.id == 871938782092480513 or msg.guild.id == 956322799411150949:
-        if msg.channel.id == 940444730515415100 or msg.channel.id == 956915636582379560:
+        if msg.channel.id == 940444730515415100:
             await msg.add_reaction(r1)
-            await msg.add_reaction(r2)
+            await msg.add_reaction(check)
             await msg.add_reaction(r3)            
             await msg.add_reaction(r4)            
             await msg.add_reaction(r5)
-            
+        if msg.channel.id == 901207969922949161:
+            await msg.add_reaction(check)
         if msg.channel.category_id == 889022488720330816:
             if msg.channel.id != 889219939192410222:
                 await msg.add_reaction(r1)
-                await msg.add_reaction(r2)
+                await msg.add_reaction(check)
                 await msg.add_reaction(r3)            
                 await msg.add_reaction(r4)            
                 await msg.add_reaction(r5)
@@ -154,7 +155,7 @@ async def on_raw_reaction_add(payload):
       roleu = payload.member.guild.get_role(889011029428801607)
 
       if channel == entrance:
-          if str(emoji) == "<:check:919007866940182589>":
+          if str(emoji) == check:
               await msg.author.add_roles(rolev)
               await msg.author.remove_roles(roleu)
               await msg.delete()
