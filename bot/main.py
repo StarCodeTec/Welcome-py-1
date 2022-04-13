@@ -157,7 +157,7 @@ async def on_raw_reaction_add(payload):
   auth_role = member.guild.get_role(945086022142808075)
   entrance = bot.get_channel(957737342028890112) or await bot.fetch_channel(957737342028890112)
   if auth_role in payload.member.roles:
-      rolev = payload.member.guild.get_role(889011345712894002)
+      rolev = payload.member.guild.get_role(889011345712894002) 
       roleu = payload.member.guild.get_role(889011029428801607)
 
       if channel == entrance:
