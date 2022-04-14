@@ -6,6 +6,7 @@ r3 = "❤"
 r4 = "💜"
 r5 = "👍"
 null = None
+botuser = 955440279450710076
 
 import os
 import discord
@@ -108,10 +109,12 @@ async def on_message(msg):
         if msg.channel.id == 901207969922949161:
             await msg.add_reaction(rcheck)
         if msg.channel.id == 888482614351134720:
-            if message == null:
-                return
-            await bioxzt.delete()
-            bioxzt = await msg.channel.send(bio_template)
+            if msg.author.id != botuser:    
+                if bioxzt == null:
+                    return
+                else: 
+                    await bioxzt.delete()
+                    bioxzt = await msg.channel.send(bio_template)
         if msg.channel.category_id == 889022488720330816:
             if msg.channel.id != 889219939192410222:
                 await msg.add_reaction(r1)
