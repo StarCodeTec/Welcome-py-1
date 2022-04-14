@@ -50,8 +50,6 @@ async def gen_send(ctx, words, userid):
         general = bot.get_channel(950085161872154694) or await bot.fetch_channel(950085161872154694)
         if userid == "none":
             await general.send(words)
-        elif words == "bio" and userid == "bioz":
-            await start(ctx)
         else:
             allwordg=f"<@!{userid}> {words}"
             await general.send(content=allwordg)      
@@ -108,20 +106,22 @@ async def on_message(msg):
             await msg.add_reaction(r3)            
             await msg.add_reaction(r4)            
             await msg.add_reaction(r5)
-        if msg.channel.id == 901207969922949161:
+        elif msg.channel.id == 901207969922949161:
             await msg.add_reaction(rcheck)
-        if msg.channel.id == 888482614351134720:
+        elif msg.channel.id == 888482614351134720:
             if msg.author.id != botuser:    
                     await bioxzt.delete()
                     bioxzt = await msg.channel.send(bio_template)
-        if msg.channel.category_id == 889022488720330816:
+        elif msg.channel.category_id == 889022488720330816:
             if msg.channel.id != 889219939192410222:
                 await msg.add_reaction(r1)
                 await msg.add_reaction(rcheck)
                 await msg.add_reaction(r3)            
                 await msg.add_reaction(r4)            
                 await msg.add_reaction(r5)
-            
+        else:
+            await bot.process_commands(msg)
+
 
 @bot.event
 async def on_raw_reaction_add(payload):
