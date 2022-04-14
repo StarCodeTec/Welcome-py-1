@@ -68,10 +68,10 @@ async def ent_send(ctx, words, userid):
 async def start(ctx):
     biore =  bot.get_channel(888482614351134720) or await bot.fetch_channel(888482614351134720)
     if ctx != "fhdfugdfvuvdjgduywdguwrggfuyfrufrkhdeiyutfu":
-        
+        bioxzt = await biore.send(bio_template)
     if ctx == "fhdfugdfvuvdjgduywdguwrggfuyfrufrkhdeiyutfu":
         bioxzt.delete()
-    bioxzt = await biore.send(bio_template)
+        bioxzt = await biore.send(bio_template)
 
 
 @bot.command()
