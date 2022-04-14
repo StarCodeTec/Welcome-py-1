@@ -1,9 +1,9 @@
 from text_zone import welcome_text_dm as wtd
-from text_zone import e1_re as r1
-from text_zone import e2_re as check
-from text_zone import e3_re as r3
-from text_zone import e4_re as r4
-from text_zone import e5_re as r5
+from text_zone import e1_re as str(r1)
+from text_zone import e2_re as str(check)
+from text_zone import e3_re as str(r3)
+from text_zone import e4_re as str(r4)
+from text_zone import e5_re as str(r5)
 from text_zone import bt as bio_template
 
 import os
