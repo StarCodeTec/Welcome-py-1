@@ -72,7 +72,7 @@ async def start(ctx):
     if ctx != "fhdfugdfvuvdjgduywdguwrggfuyfrufrkhdeiyutfu":
         c['bio'] = await biore.send(bio_template)
     if ctx == "fhdfugdfvuvdjgduywdguwrggfuyfrufrkhdeiyutfu":
-        c['bio'].delete()
+        c.delete()
         c['bio'] = await biore.send(bio_template)
 
 
