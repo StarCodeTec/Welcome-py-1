@@ -1,7 +1,7 @@
 from text_zone import welcome_text_dm as wtd
 from text_zone import bt as bio_template
 r1 = "<:little_fenne:925500399656509489>"
-check = "<:check:919007866940182589>"
+rcheck = "<:check:919007866940182589>"
 r3 = "U0001F49C"
 r4 = "u2764"
 r5 = "U0001F44D"
@@ -125,12 +125,12 @@ async def on_message(msg):
     if msg.guild.id == 871938782092480513:
         if msg.channel.id == 940444730515415100:
             await msg.add_reaction(r1)
-            await msg.add_reaction(check)
+            await msg.add_reaction(rcheck)
             await msg.add_reaction(r3)            
             await msg.add_reaction(r4)            
             await msg.add_reaction(r5)
         if msg.channel.id == 901207969922949161:
-            await msg.add_reaction(check)
+            await msg.add_reaction(rcheck)
       #  if msg.channel.id == 888482614351134720:
       #      async for message in channel.history(limit=100):
       #          if message.author == bot.user:      
@@ -139,7 +139,7 @@ async def on_message(msg):
         if msg.channel.category_id == 889022488720330816:
             if msg.channel.id != 889219939192410222:
                 await msg.add_reaction(r1)
-                await msg.add_reaction(check)
+                await msg.add_reaction(rcheck)
                 await msg.add_reaction(r3)            
                 await msg.add_reaction(r4)            
                 await msg.add_reaction(r5)
@@ -161,7 +161,7 @@ async def on_raw_reaction_add(payload):
       roleu = payload.member.guild.get_role(889011029428801607)
 
       if channel == entrance:
-          if str(emoji) == "<:check:919007866940182589>":
+          if str(emoji) == rcheck:
               await msg.author.add_roles(rolev)
               await msg.author.remove_roles(roleu)
               await msg.delete()
