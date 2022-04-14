@@ -2,9 +2,9 @@ from text_zone import welcome_text_dm as wtd
 from text_zone import bt as bio_template
 r1 = "<:little_fenne:925500399656509489>"
 rcheck = "<:check:919007866940182589>"
-r3 = "U0001F49C"
-r4 = "u2764"
-r5 = "U0001F44D"
+r3 = "❤"
+r4 = "💜"
+r5 = "👍"
 
 import os
 import discord
