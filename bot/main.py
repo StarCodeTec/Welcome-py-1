@@ -29,34 +29,6 @@ welcome_text = "to the server. Feel free to make a bio and enjoy your stay!"
 Fenne = 474984052017987604 
 Equinox = 599059234134687774
 
-@bot.check
-async def check(ctx):
-    logs = bot.get_channel(956322799411150952) or await bot.fetch_channel(956322799411150952)
-    member = ctx.author
-    admin_V = ctx.guild.get_role(955572063383482479)
-    if int(member.id) == Equinox or int(member.id) == Fenne or admin_V in ctx.member.roles:
-        print(member)
-        print(member.id)
-        id_member = f"""```
-        AUTHORIZED ACCESS 
-        Command: {ctx.command}
-        Member id: {member.id} 
-        Member name: {member}```"""
-        await logs.send(id_member)
-        print("true")
-        return(True)
-    else:
-        print(member)
-        print(member.id)
-        id_member = f"""```
-UNAUTHORIZED ACCESS 
-Command: {ctx.command}
-Member id: {member.id} 
-Member name: {member}
-```"""
-        await logs.send(id_member)
-        return(False)
-
 @tasks.loop(time=[datetime.time(hour=9, tzinfo=ZoneInfo("US/Eastern")), datetime.time(hour=17, tzinfo=ZoneInfo("US/Eastern"))], count=None)
 async def bump():
         bump = bot.get_channel(940377877214548008) or await bot.fetch_channel(940377877214548008)
