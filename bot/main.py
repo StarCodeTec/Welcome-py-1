@@ -1,10 +1,15 @@
 from text_zone import welcome_text_dm as wtd
-from text_zone import e1_re as r1
-from text_zone import e2_re as check
-from text_zone import e3_re as r3
-from text_zone import e4_re as r4
-from text_zone import e5_re as r5
+from text_zone import e1_re
+from text_zone import e2_re
+from text_zone import e3_re
+from text_zone import e4_re
+from text_zone import e5_re
 from text_zone import bt as bio_template
+r1 = str(e1_re)
+check = str(e2_re)
+r3 = str(e3_re)
+r4 = str(e4_re)
+r5  = str(e5_re)
 
 import os
 import discord
