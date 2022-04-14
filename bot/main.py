@@ -110,9 +110,6 @@ async def on_message(msg):
             await msg.add_reaction(rcheck)
         if msg.channel.id == 888482614351134720:
             if msg.author.id != botuser:    
-                if bioxzt == null:
-                    return
-                else: 
                     await bioxzt.delete()
                     bioxzt = await msg.channel.send(bio_template)
         if msg.channel.category_id == 889022488720330816:
