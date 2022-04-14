@@ -72,12 +72,6 @@ async def bystander():
         xent = bot.get_channel(945087125831958588) or await bot.fetch_channel(945087125831958588)
         await xent.send(content="If you are a <@&889011029428801607> please verify today to join our server!", delete_after=3600)
 
-@bot.event
-async def on_command_error(ctx, error):
-    if isinstance(error, commands.CheckFailure):
-        return
-    traceback.print_exception(error)
-
 @bot.command()
 async def gen_send(ctx, words, userid):
         general = bot.get_channel(950085161872154694) or await bot.fetch_channel(950085161872154694)
