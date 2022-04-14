@@ -5,6 +5,7 @@ rcheck = "<:check:919007866940182589>"
 r3 = "❤"
 r4 = "💜"
 r5 = "👍"
+null = None
 
 import os
 import discord
