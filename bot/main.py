@@ -105,7 +105,7 @@ async def on_message(msg):
             await msg.add_reaction(rcheck)
         elif msg.channel.id == 888482614351134720:
             def is_me(msg):
-                return m.author.id == botuser
+                return msg.author.id == botuser
             bioxtt = bot.get_channel(888482614351134720) or await bot.fetch_channel(888482614351134720)
             await bioxtt.purge(limit=100, check=is_me)
             await bioxtt.send(bio_template)
