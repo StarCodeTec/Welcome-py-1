@@ -67,15 +67,6 @@ async def ent_send(ctx, words, userid):
         await entrance.send(allworde)
 
 @bot.command()
-async def start(ctx):
-    biore =  bot.get_channel(888482614351134720) or await bot.fetch_channel(888482614351134720)
-    if ctx != "fhdfugdfvuvdjgduywdguwrggfuyfrufrkhdeiyutfu":
-        c['bio'] = await biore.send(bio_template)
-    if ctx == "fhdfugdfvuvdjgduywdguwrggfuyfrufrkhdeiyutfu":
-        c['bio'] = await biore.send(bio_template)
-
-
-@bot.command()
 async def mod_send(ctx, words, userid):
     mod = bot.get_channel(901215227662696469) or await bot.fetch_channel(901215227662696469)
     if userid == "none":
@@ -114,8 +105,9 @@ async def on_message(msg):
         elif msg.channel.id == 901207969922949161:
             await msg.add_reaction(rcheck)
         elif msg.channel.id == 888482614351134720:
-            if msg.author.id != botuser:    
-                await start("fhdfugdfvuvdjgduywdguwrggfuyfrufrkhdeiyutfu")
+            def is_me(m):
+                return m.author.id == botuser
+            await channel.purge(limit=100, check=is_me(msg))
         elif msg.channel.category_id == 889022488720330816:
             if msg.channel.id != 889219939192410222:
                 await msg.add_reaction(r1)
