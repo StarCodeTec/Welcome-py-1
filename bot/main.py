@@ -95,7 +95,12 @@ async def ent_send(ctx, words, userid):
     else:
         allworde=f"<@!{userid}> {words}"
         await entrance.send(allworde)
-        
+
+@bot.command()
+async def start(ctx):
+    biore =  bot.get_channel(888482614351134720) or await bot.fetch_channel(888482614351134720)
+    grobal bioxzt = await biore.send(bio_template)
+
 @bot.command()
 async def mod_send(ctx, words, userid):
     mod = bot.get_channel(901215227662696469) or await bot.fetch_channel(901215227662696469)
@@ -133,7 +138,8 @@ async def on_message(msg):
         if msg.channel.id == 901207969922949161:
             await msg.add_reaction(rcheck)
         if msg.channel.id == 888482614351134720:
-            message = null
+            if message == null:
+                return
             await message.delete()
             message = await msg.channel.send(bio_template)
         if msg.channel.category_id == 889022488720330816:
