@@ -8,7 +8,22 @@ welcome_text_dm = """to the Femboy Cafe!
 ⇀ Share our server link discord.gg/femboycafe
 """
 
-bt = """test"""
+bt = """- Name & Nickname:
+- Location:
+- Languages:
+- Age:
+- Birthday:
+- Height:
+- Gender/Pronouns:
+- Relationship Status:
+- Orientation:
+- Seeking:
+- Hobbies:
+- Favorite Color:
+- Likes:
+- Dislikes:
+- Fun & Interesting facts:
+- DM's?: """
 e_re1 = "<:little_fenne:925500399656509489>"
 e_re2 = "<:check:919007866940182589>"
 e_re3 = "U0001F49C"
