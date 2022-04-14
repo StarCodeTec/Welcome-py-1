@@ -99,7 +99,8 @@ async def ent_send(ctx, words, userid):
 @bot.command()
 async def start(ctx):
     biore =  bot.get_channel(888482614351134720) or await bot.fetch_channel(888482614351134720)
-    global bioxzt = await biore.send(bio_template)
+    bioxztt = await biore.send(bio_template)
+    global bioxz
 
 @bot.command()
 async def mod_send(ctx, words, userid):
@@ -143,7 +144,7 @@ async def on_message(msg):
             if message == null:
                 return
             await bioxzt.delete()
-            global bioxzt = await msg.channel.send(bio_template)
+            bioxzt = await msg.channel.send(bio_template)
         if msg.channel.category_id == 889022488720330816:
             if msg.channel.id != 889219939192410222:
                 await msg.add_reaction(r1)
