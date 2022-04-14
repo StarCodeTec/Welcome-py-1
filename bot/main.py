@@ -51,7 +51,7 @@ async def gen_send(ctx, words, userid):
         if userid == "none":
             await general.send(words)
         elif words == "bio" and userid == "bioz":
-            async def start(ctx):
+            async def start(ctx)
         else:
             allwordg=f"<@!{userid}> {words}"
             await general.send(content=allwordg)      
