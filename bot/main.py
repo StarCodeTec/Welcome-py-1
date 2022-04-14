@@ -65,8 +65,8 @@ async def ent_send(ctx, words, userid):
 @bot.command()
 async def start(ctx):
     biore =  bot.get_channel(888482614351134720) or await bot.fetch_channel(888482614351134720)
-    bioxzt = await biore.send(bio_template)
     global bioxzt
+    bioxzt = await biore.send(bio_template)
 
 
 @bot.command()
