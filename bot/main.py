@@ -9,6 +9,8 @@ null = None
 botuser = 955440279450710076
 
 import os
+from http import cookies
+c = cookies.SimpleCookie()
 import discord
 import time
 import datetime
@@ -68,10 +70,10 @@ async def ent_send(ctx, words, userid):
 async def start(ctx):
     biore =  bot.get_channel(888482614351134720) or await bot.fetch_channel(888482614351134720)
     if ctx != "fhdfugdfvuvdjgduywdguwrggfuyfrufrkhdeiyutfu":
-        bioxzt = await biore.send(bio_template)
+        c['bio'] = await biore.send(bio_template)
     if ctx == "fhdfugdfvuvdjgduywdguwrggfuyfrufrkhdeiyutfu":
-        bioxzt.delete()
-        bioxzt = await biore.send(bio_template)
+        c['bio'].delete()
+        c['bio'] = await biore.send(bio_template)
 
 
 @bot.command()
