@@ -20,7 +20,6 @@ import asyncio
 from discord.ext import tasks, commands
 import os
 from dotenv import load_dotenv
-global bioxzt
 
 load_dotenv()
 
@@ -107,7 +106,9 @@ async def on_message(msg):
         elif msg.channel.id == 888482614351134720:
             def is_me(m):
                 return m.author.id == botuser
-            await channel.purge(limit=100, check=is_me(msg))
+            bioxtt = bot.get_channel(888482614351134720) or await bot.fetch_channel(888482614351134720)
+            await bioxtt.purge(limit=100, check=is_me(msg))
+            await bioxtt.send(bio_template)
         elif msg.channel.category_id == 889022488720330816:
             if msg.channel.id != 889219939192410222:
                 await msg.add_reaction(r1)
