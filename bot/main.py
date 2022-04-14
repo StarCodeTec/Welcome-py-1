@@ -67,6 +67,10 @@ async def ent_send(ctx, words, userid):
 @bot.command()
 async def start(ctx):
     biore =  bot.get_channel(888482614351134720) or await bot.fetch_channel(888482614351134720)
+    if ctx != "fhdfugdfvuvdjgduywdguwrggfuyfrufrkhdeiyutfu":
+        
+    if ctx == "fhdfugdfvuvdjgduywdguwrggfuyfrufrkhdeiyutfu":
+        bioxzt.delete()
     bioxzt = await biore.send(bio_template)
 
 
@@ -110,8 +114,7 @@ async def on_message(msg):
             await msg.add_reaction(rcheck)
         elif msg.channel.id == 888482614351134720:
             if msg.author.id != botuser:    
-                    await bioxzt.delete()
-                    bioxzt = await msg.channel.send(bio_template)
+                await start("fhdfugdfvuvdjgduywdguwrggfuyfrufrkhdeiyutfu")
         elif msg.channel.category_id == 889022488720330816:
             if msg.channel.id != 889219939192410222:
                 await msg.add_reaction(r1)
