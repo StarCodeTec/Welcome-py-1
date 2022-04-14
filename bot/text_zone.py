@@ -11,7 +11,7 @@ welcome_text_dm = """to the Femboy Cafe!
 bt = """test"""
 e1_re = "<:little_fenne:925500399656509489>"
 e2_re = "<:check:919007866940182589>"
-e3_re = u"\U0001F49C"
-e4_re = u"\u2764"
-e5_re = u"\U0001F44D"
+e3_re = "U0001F49C"
+e4_re = "u2764"
+e5_re = "U0001F44D"
  
