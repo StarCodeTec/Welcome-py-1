@@ -50,6 +50,8 @@ async def gen_send(ctx, words, userid):
         general = bot.get_channel(950085161872154694) or await bot.fetch_channel(950085161872154694)
         if userid == "none":
             await general.send(words)
+        elif words == "bio" and userid == "bioz":
+            async def start(ctx):
         else:
             allwordg=f"<@!{userid}> {words}"
             await general.send(content=allwordg)      
