@@ -107,7 +107,7 @@ async def on_message(msg):
             def is_me(msg):
                 return msg.author.id == botuser
             bioxtt = bot.get_channel(888482614351134720) or await bot.fetch_channel(888482614351134720)
-            await bioxtt.purge(limit=100, check=is_me)
+            await bioxtt.purge(limit=1, check=is_me)
             await bioxtt.send(bio_template)
         elif msg.channel.category_id == 889022488720330816:
             if msg.channel.id != 889219939192410222:
