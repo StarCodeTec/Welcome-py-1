@@ -28,7 +28,7 @@ key = os.getenv('MAIN_KEY')
 intents.typing = False
 intents.presences = False
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('F^ ', 'F^'), intents=intents)
-welcome_text = "to the server. Feel free to make a bio and enjoy your stay!"
+welcome_text = "to the server. Feel free to make a <#888482614351134720> and enjoy your stay!"
 Fenne = 474984052017987604 
 Equinox = 599059234134687774
 
@@ -111,7 +111,7 @@ async def on_message(msg):
                 await bioxtt.purge(limit=2, check=is_me)
                 await bioxtt.send(bio_template)
             if msg.channel.id == 904501391299608586:
-                self_xtt = bot.get_channel(888482614351134720) or await bot.fetch_channel(888482614351134720)
+                self_xtt = bot.get_channel(904501391299608586) or await bot.fetch_channel(904501391299608586)
                 await self_xtt.purge(limit=2, check=is_me)
                 await self_xtt.send("Server boosters can post <#904501391299608586> in every 30 minutes!") 
         elif msg.channel.category_id == 889022488720330816:
