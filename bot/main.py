@@ -35,12 +35,12 @@ Equinox = 599059234134687774
 @tasks.loop(time=[datetime.time(hour=9, tzinfo=ZoneInfo("MST")), datetime.time(hour=17, tzinfo=ZoneInfo("MST"))], count=None)
 async def bump():
         bump = bot.get_channel(940377877214548008) or await bot.fetch_channel(940377877214548008)
-        await bump.send("Please see the pinned post or type /bump to see a list of commands.")
+        await bump.send("Please see the pinned post or type /bump to see a list of commands.", delete_after=3600)
 
 @tasks.loop(time=[datetime.time(hour=9, tzinfo=ZoneInfo("MST")), datetime.time(hour=16, tzinfo=ZoneInfo("MST")), datetime.time(hour=21, tzinfo=ZoneInfo("MST"))], count=None)
 async def gen():
         gen = bot.get_channel(950085161872154694) or await bot.fetch_channel(950085161872154694)
-        await gen.send(content="Remember everyone, please don't use profanity here!", delete_after=5)
+        await gen.send(content="Remember everyone, please don't use profanity here!")
 
 @tasks.loop(time=[datetime.time(hour=9, minute=0, second=0, microsecond=0, tzinfo=ZoneInfo("MST")), datetime.time(hour=12, minute=0, second=0, microsecond=0, tzinfo=ZoneInfo("MST")), datetime.time(hour=15, minute=0, second=0, microsecond=0, tzinfo=ZoneInfo("MST")), datetime.time(hour=18, minute=0, second=0, microsecond=0, tzinfo=ZoneInfo("MST"))], count=None)
 async def bystander():
