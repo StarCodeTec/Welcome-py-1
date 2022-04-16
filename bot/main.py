@@ -102,6 +102,8 @@ async def on_guild_channel_create(cha):
 
 @bot.event
 async def on_message(msg):
+    def is_me(msg):
+        return msg.author.id == botuser
     if msg.channel.id == 940444730515415100:
         await msg.add_reaction(r1)
         await msg.add_reaction(rcheck)
@@ -110,8 +112,6 @@ async def on_message(msg):
         await msg.add_reaction(r5)
     elif msg.channel.id == 901207969922949161:
         await msg.add_reaction(rcheck)
-        def is_me(msg):
-            return msg.author.id == botuser
     elif msg.channel.id == 888482614351134720:
             bioxtt = bot.get_channel(888482614351134720) or await bot.fetch_channel(888482614351134720)
             await bioxtt.purge(limit=2, check=is_me)
