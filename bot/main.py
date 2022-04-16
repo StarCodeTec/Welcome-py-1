@@ -1,18 +1,6 @@
-from text_zone import text_test as t_t
-
-from text_zone import welcome_text_dm as wtd
-from text_zone import bt as bio_template
-r1 = "<:little_fenne:925500399656509489>"
-rcheck = "<:check:919007866940182589>"
-r3 = "❤"
-r4 = "💜"
-r5 = "👍"
-null = None
-botuser = 955440279450710076
+#import------------------------------------------------------------------------------------------ 
 
 import os
-from http import cookies
-c = cookies.SimpleCookie()
 import discord
 import time
 import datetime
@@ -22,17 +10,32 @@ import asyncio
 from discord.ext import tasks, commands
 import os
 from dotenv import load_dotenv
-
 load_dotenv()
+
+#EXTRA_TEXT--------------------------------------------------------------------------------------
+
+from text_zone import BIG as b
+from text_zone import all_id as id_0
+Fenne = 474984052017987604 
+Equinox = 599059234134687774
+welcome_text = BIG.wt
+r1 = id_0.fenne
+rcheck = id_0.check
+r3 = id_0.heart
+r4 = id_0.P_heart
+r5 = id_0.thumb_up
+null = None
+botuser = 955440279450710076
+
+#intents----------------------------------------------------------------------------------------
 
 intents = discord.Intents.all()
 key = os.getenv('MAIN_KEY')
 intents.typing = False
 intents.presences = False
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('F^ ', 'F^'), intents=intents)
-welcome_text = "to the server. Feel free to make a <#888482614351134720> and enjoy your stay!"
-Fenne = 474984052017987604 
-Equinox = 599059234134687774
+
+#-----------------------------------------------------------------------------------------------
 
 @tasks.loop(time=[datetime.time(hour=9, tzinfo=ZoneInfo("MST")), datetime.time(hour=17, tzinfo=ZoneInfo("MST"))], count=None)
 async def bump():
