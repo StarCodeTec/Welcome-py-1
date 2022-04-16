@@ -18,7 +18,7 @@ from text_zone import BIG as b
 from text_zone import all_id as id_0
 Fenne = 474984052017987604 
 Equinox = 599059234134687774
-welcome_text = BIG.wt
+welcome_text = b.wt
 r1 = id_0.fenne
 rcheck = id_0.check
 r3 = id_0.heart
@@ -86,7 +86,7 @@ async def mod_send(ctx, words, userid):
 @bot.event
 async def on_member_join(mem):
   try:
-    await mem.send(f"""⇀ Welcome <@!{mem.id}> {wtd}""")
+    await mem.send(f"""⇀ Welcome <@!{mem.id}> {b.welcome_text_dm}""")
   except:
     print("not accepting dms")
     
@@ -115,7 +115,7 @@ async def on_message(msg):
     elif msg.channel.id == 888482614351134720:
             bioxtt = bot.get_channel(888482614351134720) or await bot.fetch_channel(888482614351134720)
             await bioxtt.purge(limit=2, check=is_me)
-            await bioxtt.send(bio_template)
+            await bioxtt.send(b.bt)
     elif msg.channel.id == 904501391299608586:
             self_xtt = bot.get_channel(904501391299608586) or await bot.fetch_channel(904501391299608586)
             await self_xtt.purge(limit=2, check=is_me)
@@ -158,7 +158,7 @@ async def on_raw_reaction_add(payload):
                   allwrodg=f"Everyone please welcome <@!{auth}> {welcome_text}"
               else:     
                   if admin_role in member.roles:
-                      allwrodg=f"Everyone please welcome <@!{auth}> {welcome_text} Welcomed by <@!{memberz}>"
+                      allwrodg=f"Everyone please welcome <@!{auth}> {b.wt} Welcomed by <@!{memberz}>"
               generalmsg = await general.send(allwrodg)
              
               await logs.send(f"""```
