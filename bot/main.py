@@ -1,3 +1,5 @@
+from text_zone import text_test as t_t
+
 from text_zone import welcome_text_dm as wtd
 from text_zone import bt as bio_template
 r1 = "<:little_fenne:925500399656509489>"
@@ -54,8 +56,13 @@ async def gen_send(ctx, words, userid):
             await general.send(words)
         else:
             allwordg=f"<@!{userid}> {words}"
-            await general.send(content=allwordg)      
-
+            await general.send(content=allwordg)
+                
+@bot.command()
+async def test(ctx):
+    print(t_t.test)
+                
+                
 @bot.command()
 async def ent_send(ctx, words, userid):
     entrance = bot.get_channel(945087125831958588) or await bot.fetch_channel(945087125831958588)
