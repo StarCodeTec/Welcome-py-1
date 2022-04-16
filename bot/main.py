@@ -113,10 +113,12 @@ async def on_message(msg):
     elif msg.channel.id == 901207969922949161:
         await msg.add_reaction(rcheck)
     elif msg.channel.id == 888482614351134720:
+        if msg.author.id != botuser:
             bioxtt = bot.get_channel(888482614351134720) or await bot.fetch_channel(888482614351134720)
             await bioxtt.purge(limit=2, check=is_me)
             await bioxtt.send(b.bt)
     elif msg.channel.id == 904501391299608586:
+        if msg.author.id != botuser:
             self_xtt = bot.get_channel(904501391299608586) or await bot.fetch_channel(904501391299608586)
             await self_xtt.purge(limit=2, check=is_me)
             await self_xtt.send("Server boosters can post <#904501391299608586> in every 30 minutes!") 
