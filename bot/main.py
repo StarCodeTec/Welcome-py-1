@@ -139,6 +139,7 @@ async def on_raw_reaction_add(payload):
   if auth_role in payload.member.roles:
       rolev = payload.member.guild.get_role(889011345712894002) 
       roleu = payload.member.guild.get_role(889011029428801607)
+      logs = bot.get_channel(956322799411150952) or await bot.fetch_channel(956322799411150952)
 
       if channel == entrance:
           if str(emoji) == rcheck:
@@ -146,7 +147,6 @@ async def on_raw_reaction_add(payload):
               await msg.author.remove_roles(roleu)
               await msg.delete()
               general = bot.get_channel(950085161872154694) or await bot.fetch_channel(950085161872154694)
-              logs = bot.get_channel(956322799411150952) or await bot.fetch_channel(956322799411150952)
               admin_role = member.guild.get_role(945086022142808075)
               memberz = member.id
               if memberz == Fenne:
