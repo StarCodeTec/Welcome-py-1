@@ -180,7 +180,7 @@ Log time: {generalmsg.created_at}
 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯```""")
           if str(emoji) == "<:x_:962053785566474290>":
               await msg.delete()
-              await author.send("Your application to The Femboy Cafe was rejected. Please try again!")
+              generalmsgz = await author.send("Your application to The Femboy Cafe was rejected. Please try again!")
               await logs.send(f"""```
        UNWELCOMED LOG
 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
@@ -200,7 +200,7 @@ Welcomer userid:
  {memberz}
               
               
-Log time: {generalmsg.created_at}
+Log time: {generalmsgz.created_at}
         
          END LOG              
 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯```""")
