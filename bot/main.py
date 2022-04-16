@@ -1,3 +1,5 @@
+#cogs--------------------------------------------------------------------------------------------  
+from version2_0 import test
 #import------------------------------------------------------------------------------------------  
 
 import os
@@ -218,6 +220,7 @@ async def main():
         gen.start()
         bump.start()
         bystander.start()
+        bot.add_cog(test(bot))
         await bot.start(key)
 
 asyncio.run(main())
