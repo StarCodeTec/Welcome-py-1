@@ -64,11 +64,6 @@ async def gen_send(ctx, words, userid):
             await general.send(content=allwordg)
                 
 @bot.command()
-async def test(ctx):
-    print(t_t.test)
-                
-                
-@bot.command()
 async def ent_send(ctx, words, userid):
     entrance = bot.get_channel(945087125831958588) or await bot.fetch_channel(945087125831958588)
     if userid == "none":
