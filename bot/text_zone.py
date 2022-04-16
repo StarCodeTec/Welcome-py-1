@@ -1,3 +1,6 @@
+class text_test:
+    test = "test"
+  
 welcome_text_dm = """to the Femboy Cafe!
 
 ✧ₓ˚.✧ This server is owned and operated by Fenne Wolf
