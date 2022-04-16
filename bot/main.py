@@ -36,7 +36,6 @@ key = os.getenv('MAIN_KEY')
 intents.typing = False
 intents.presences = False
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('F^ ', 'F^'), intents=intents)
-bot.add_cog(test(bot))
 
 #-----------------------------------------------------------------------------------------------
 
@@ -221,6 +220,7 @@ async def main():
         gen.start()
         bump.start()
         bystander.start()
+        await bot.add_cog(test(bot))
         await bot.start(key)
 
 asyncio.run(main())
