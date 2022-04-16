@@ -8,6 +8,7 @@ class BIG:
 ⇀ Be sure to check in at the <#945087125831958588>  to verify for full access.
 ⇀ Share our server link discord.gg/femboycafe
 """
+    wt = "to the server. Feel free to make a <#888482614351134720> and enjoy your stay!"
 
     bt = """- Name & Nickname:
 - Location:
@@ -27,8 +28,8 @@ class BIG:
 - DM's?: """
 
 class all_id:
-    fenne_e = "<:little_fenne:925500399656509489>"
+    fenne = "<:little_fenne:925500399656509489>"
     check = "<:check:919007866940182589>"
-    heart = "U0001F49C"
-    P_heart = "u2764"
-    thumb_up = "U0001F44D"
+    heart = "❤"
+    P_heart = "💜"
+    thumb_up = "👍"
