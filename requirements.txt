@@ -1,2 +1,2 @@
 python-dotenv
-discord.py==2.0
+pip install https://github.com/Rapptz/discord.py@8993b7f
