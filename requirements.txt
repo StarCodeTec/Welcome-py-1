@@ -1,2 +1,2 @@
 python-dotenv
-discord.p==2.0
+discord.py==2.0
