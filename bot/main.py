@@ -99,7 +99,7 @@ async def on_guild_channel_create(cha):
 
 @bot.event
 async def on_message(msg):
-    if msg.author.id !=
+    if msg.author.id != botuser:
         def is_me(msg):
             return msg.author.id == botuser
         if msg.channel.id == 940444730515415100:
@@ -125,7 +125,7 @@ async def on_message(msg):
                 await msg.add_reaction(rcheck)
                 await msg.add_reaction(r3)            
                 await msg.add_reaction(r4)           
-               await msg.add_reaction(r5)
+                await msg.add_reaction(r5)
         else:
             await bot.process_commands(msg)
 
