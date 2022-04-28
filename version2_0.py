@@ -7,7 +7,7 @@ class test(cog):
   intents.typing = False
   intents.presences = False
   bot = commands.Bot(command_prefix=commands.when_mentioned_or('F^ ', 'F^'), intents=intents)
-  def __init__(self, bot):
+  def __init__(self):
     self.bot = bot
   
   @commands.command()
