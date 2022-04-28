@@ -201,5 +201,5 @@ async def main():
         await bot.add_cog(test(bot))
         await bot.start(key)
 
-asyncio.run(main())
+application = asyncio.run(main())
 
