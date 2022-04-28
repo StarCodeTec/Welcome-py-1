@@ -5,7 +5,6 @@ from version2_0 import test
 import os
 import discord
 import time
-import datetime
 import traceback
 import asyncio
 from discord.ext import tasks, commands
