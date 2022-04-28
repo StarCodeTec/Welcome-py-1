@@ -6,7 +6,7 @@ import os
 import discord
 import time
 import datetime
-from zoneinfo import ZoneInfo
+from backports.zoneinfo import ZoneInfo
 import traceback
 import asyncio
 from discord.ext import tasks, commands
