@@ -1,6 +1,6 @@
 from flask import Flask
 
-app = Flask(__name__)
+application = Flask(__name__)
 
 @app.route('/')
 def run_script():
@@ -8,4 +8,4 @@ def run_script():
     return exec(file)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    application.run(debug=True)
