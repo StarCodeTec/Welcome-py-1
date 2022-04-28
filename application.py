@@ -2,7 +2,7 @@ from flask import Flask
 
 application = Flask(__name__)
 
-@app.route('/')
+@application.route('/')
 def run_script():
     file = open(r'./main.py', 'r').read()
     return exec(file)
