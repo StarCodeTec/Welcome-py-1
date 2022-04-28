@@ -1,6 +1,6 @@
 #cogs--------------------------------------------------------------------------------------------  
-import version2_0 as twozz
-test=twozz.test()
+#import version2_0 as twozz
+#test=twozz.test()
 #import------------------------------------------------------------------------------------------  
 
 import os
@@ -198,7 +198,7 @@ async def main(bot):
         #gen.start()
         #bump.start()
         #bystander.start()
-    await bot.add_cog(test)
+    #await bot.add_cog(test)
     await bot.start(key) 
         
 asyncio.run(main(bot))
