@@ -1,6 +1,6 @@
 #cogs--------------------------------------------------------------------------------------------  
 import version2_0 as twozz
-test=twozz.test(bot)
+test=twozz.test()
 #import------------------------------------------------------------------------------------------  
 
 import os
@@ -27,11 +27,10 @@ r4 = id_0.P_heart
 r5 = id_0.thumb_up
 null = None
 botuser = 955440279450710076
-
+key = os.getenv('MAIN_KEY')
 #intents----------------------------------------------------------------------------------------
 
 intents = discord.Intents.all()
-key = os.getenv('MAIN_KEY')
 intents.typing = False
 intents.presences = False
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('F^ ', 'F^'), intents=intents)
