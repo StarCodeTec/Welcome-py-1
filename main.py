@@ -10,8 +10,7 @@ import traceback
 import asyncio
 from discord.ext import tasks, commands
 import os
-from dotenv import load_dotenv
-load_dotenv()
+
 
 #EXTRA_TEXT--------------------------------------------------------------------------------------
 
@@ -27,7 +26,7 @@ r4 = id_0.P_heart
 r5 = id_0.thumb_up
 null = None
 botuser = 955440279450710076
-key = os.getenv('MAIN_KEY')
+key = os.environ['API_ENDPOINT']
 #intents----------------------------------------------------------------------------------------
 
 intents = discord.Intents.all()
