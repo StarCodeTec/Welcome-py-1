@@ -6,7 +6,7 @@ import os
 import discord
 import time
 import datetime
-from backports.zoneinfo import ZoneInfo
+#from backports.zoneinfo import ZoneInfo
 import traceback
 import asyncio
 from discord.ext import tasks, commands
@@ -39,20 +39,20 @@ bot = commands.Bot(command_prefix=commands.when_mentioned_or('F^ ', 'F^'), inten
 
 #-----------------------------------------------------------------------------------------------
 
-@tasks.loop(time=[datetime.time(hour=9, tzinfo=ZoneInfo("MST")), datetime.time(hour=17, tzinfo=ZoneInfo("MST"))], count=None)
-async def bump():
-        bump = bot.get_channel(940377877214548008) or await bot.fetch_channel(940377877214548008)
-        await bump.send("Please see the pinned post or type /bump to see a list of commands.", delete_after=3600)
-
-@tasks.loop(time=[datetime.time(hour=9, tzinfo=ZoneInfo("MST")), datetime.time(hour=16, tzinfo=ZoneInfo("MST")), datetime.time(hour=21, tzinfo=ZoneInfo("MST"))], count=None)
-async def gen():
-        gen = bot.get_channel(950085161872154694) or await bot.fetch_channel(950085161872154694)
-        await gen.send(content="Remember everyone, please don't use profanity here!")
-
-@tasks.loop(time=[datetime.time(hour=9, minute=0, second=0, microsecond=0, tzinfo=ZoneInfo("MST")), datetime.time(hour=12, minute=0, second=0, microsecond=0, tzinfo=ZoneInfo("MST")), datetime.time(hour=15, minute=0, second=0, microsecond=0, tzinfo=ZoneInfo("MST")), datetime.time(hour=18, minute=0, second=0, microsecond=0, tzinfo=ZoneInfo("MST"))], count=None)
-async def bystander():
-        xent = bot.get_channel(945087125831958588) or await bot.fetch_channel(945087125831958588)
-        await xent.send(content="If you are a <@&889011029428801607> please verify today to join our server!", delete_after=3600)
+#@tasks.loop(time=[datetime.time(hour=9, tzinfo=ZoneInfo("MST")), datetime.time(hour=17, tzinfo=ZoneInfo("MST"))], count=None)
+#async def bump():
+#        bump = bot.get_channel(940377877214548008) or await bot.fetch_channel(940377877214548008)
+#        await bump.send("Please see the pinned post or type /bump to see a list of commands.", delete_after=3600)
+#
+#@tasks.loop(time=[datetime.time(hour=9, tzinfo=ZoneInfo("MST")), datetime.time(hour=16, tzinfo=ZoneInfo("MST")), datetime.time(hour=21, tzinfo=ZoneInfo("MST"))], count=None)
+#async def gen():
+#        gen = bot.get_channel(950085161872154694) or await bot.fetch_channel(950085161872154694)
+#        await gen.send(content="Remember everyone, please don't use profanity here!")
+#
+#@tasks.loop(time=[datetime.time(hour=9, minute=0, second=0, microsecond=0, tzinfo=ZoneInfo("MST")), datetime.time(hour=12, minute=0, second=0, microsecond=0, tzinfo=ZoneInfo("MST")), datetime.time(hour=15, minute=0, second=0, microsecond=0, tzinfo=ZoneInfo("MST")), datetime.time(hour=18, minute=0, second=0, microsecond=0, tzinfo=ZoneInfo("MST"))], count=None)
+#async def bystander():
+#        xent = bot.get_channel(945087125831958588) or await bot.fetch_channel(945087125831958588)
+#        await xent.send(content="If you are a <@&889011029428801607> please verify today to join our server!", delete_after=3600)
 
 @bot.command()
 async def gen_send(ctx, words, userid):
