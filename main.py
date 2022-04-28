@@ -26,7 +26,7 @@ r4 = id_0.P_heart
 r5 = id_0.thumb_up
 null = None
 botuser = 955440279450710076
-key = os.environ['API_ENDPOINT']
+key = os.environ['CUSTOM_ENV']
 #intents----------------------------------------------------------------------------------------
 
 intents = discord.Intents.all()
