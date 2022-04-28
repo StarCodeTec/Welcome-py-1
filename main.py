@@ -198,7 +198,7 @@ async def main(bot, key):
         #bump.start()
         #bystander.start()
         #await bot.add_cog(test)
-    await bot.start(key) 
+    await bot.start(str(key)) 
         
 asyncio.run(main(bot, key))
 
