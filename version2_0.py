@@ -2,7 +2,7 @@ import discord
 from discord.ext import tasks, commands
 
 cog = commands.Cog
-class test(cog):
+class test(bot):
   def __init__(self, bot):
     self.bot = bot
   
