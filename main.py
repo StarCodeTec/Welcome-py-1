@@ -199,7 +199,7 @@ async def main():
         bump.start()
         bystander.start()
         await bot.add_cog(test(bot))
-        await bot.start(key)
-def aws_start():
-        application = asyncio.run(main())
+        await bot.start(key) 
+        
+asyncio.run(main())
 
