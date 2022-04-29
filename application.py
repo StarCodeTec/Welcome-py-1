@@ -10,7 +10,7 @@ import traceback
 import asyncio
 from discord.ext import tasks, commands
 import os
-
+from flask import Flask
 
 #EXTRA_TEXT--------------------------------------------------------------------------------------
 
@@ -200,4 +200,11 @@ async def main_start():
         #bystander.start()
         #await bot.add_cog(test)
 
+application = Flask(__name__)
 
+@application.route('/')
+def run_script():
+    return asyncyio.run(main_start())
+
+if __name__ == "__main__":
+    application.run(debug=True) 
