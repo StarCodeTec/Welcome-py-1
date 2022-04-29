@@ -200,7 +200,7 @@ async def main_start():
         #bystander.start()
         #await bot.add_cog(test)
 
-application = run_script()
-
 def run_script():
     return asyncio.run(main_start())
+
+application = run_script()
