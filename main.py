@@ -199,6 +199,4 @@ async def main():
         #bystander.start()
         #await bot.add_cog(test)
     await bot.start(str(key)) 
-def start_bot_true():
-    asyncio.run(main())
 
