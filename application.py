@@ -200,11 +200,7 @@ async def main_start():
         #bystander.start()
         #await bot.add_cog(test)
 
-application = Flask(__name__)
+application = run_script()
 
-@application.route('/')
 def run_script():
     return asyncio.run(main_start())
-
-if __name__ == "__main__":
-    application.run(debug=True) 
