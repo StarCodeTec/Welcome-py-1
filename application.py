@@ -1,10 +1,11 @@
 from flask import Flask
-from main import start_bot_true
+from main import main
+import asyncio as a
 application = Flask(__name__)
 
 @application.route('/')
 def run_script():
-    return start_bot_true()
+    return a.run(main())
 
 if __name__ == "__main__":
     application.run(debug=True)
