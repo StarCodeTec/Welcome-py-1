@@ -204,7 +204,7 @@ application = Flask(__name__)
 
 @application.route('/')
 def run_script():
-    return asyncyio.run(main_start())
+    return asyncio.run(main_start())
 
 if __name__ == "__main__":
     application.run(debug=True) 
