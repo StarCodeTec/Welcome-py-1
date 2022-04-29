@@ -81,9 +81,9 @@ async def on_guild_channel_create(cha):
 
 @bot.event
 async def on_message(msg):
-    if msg.author.id != botuser:
+    if msg.author.id != 955440279450710076:
         def is_me(msg):
-            return msg.author.id == botuser
+            return msg.author.id == 955440279450710076
         if msg.channel.id == 940444730515415100:
             await msg.add_reaction(r1)
             await msg.add_reaction(rcheck)
@@ -97,7 +97,7 @@ async def on_message(msg):
             await bioxtt.purge(limit=2, check=is_me)
             await bioxtt.send(b.bt)
         elif msg.channel.id == 904501391299608586:
-            if msg.author.id != botuser:
+            if msg.author.id != 955440279450710076:
                 self_xtt = bot.get_channel(904501391299608586) or await bot.fetch_channel(904501391299608586)
                 await self_xtt.purge(limit=2, check=is_me)
                 await self_xtt.send("Server boosters can post <#904501391299608586> in every 30 minutes!") 
