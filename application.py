@@ -200,7 +200,6 @@ async def main_start():
         #bystander.start()
         #await bot.add_cog(test)
 
-def run_script():
-    return bot.start(str(key)) 
-
-application = run_script()
+application = "bbxd"
+if application == "bbxd":
+    bot.start(str(key)) 
