@@ -201,6 +201,6 @@ async def main_start():
         #await bot.add_cog(test)
 
 def run_script():
-    bot.start(str(key)) 
+    return bot.start(str(key)) 
 
 application = run_script()
