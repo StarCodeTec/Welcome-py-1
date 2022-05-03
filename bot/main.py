@@ -25,7 +25,7 @@ botuser = 955440279450710076
 @bot.event
 async def on_message(msg): 
     auth = msg.author.id
-    if auth != botuser && msg.context == "test":
+    if auth != botuser and msg.context == "test":
         msg.channel.send("bot?")
     
     
