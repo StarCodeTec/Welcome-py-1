@@ -60,8 +60,12 @@ async def on_raw_reaction_add(payload):
   member = payload.member #Reacter
   gen = bot.get_channel(GEN) or await bot.fetch_channel(GEN)
   admin_role = member.guild.get_role(928077514411233350)
-  if admin_role in member.roles:return GEN.send("test")
-  if channel != entrance or not in:
+  if admin_role in member.roles:
+      GEN.send("test")
+      return 
+  else:
+      return
+  #if channel != entrance or not in:
           if str(emoji) == rcheck:
               await msg.author.add_roles(rolev)
               await msg.author.remove_roles(roleu)
