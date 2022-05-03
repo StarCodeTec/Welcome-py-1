@@ -61,50 +61,27 @@ async def on_raw_reaction_add(payload):
   auth = msg.author.id
   author = msg.author
   emoji = str(payload.emoji)
-  auth_role = member.guild.get_role(945086022142808075)
   entrance = bot.get_channel(957737342028890112) or await bot.fetch_channel(957737342028890112)
-  if auth_role in payload.member.roles:
+  admin_role = member.guild.get_role(945086022142808075)
+  if admin_role in payload.member.roles:
       rolev = payload.member.guild.get_role(889011345712894002) 
       roleu = payload.member.guild.get_role(889011029428801607)
       logs = bot.get_channel(956322799411150952) or await bot.fetch_channel(956322799411150952)
       general = bot.get_channel(950085161872154694) or await bot.fetch_channel(950085161872154694)
-      admin_role = member.guild.get_role(945086022142808075)
       memberz = member.id
+      if admin_role not in member.roles:return
       if channel == entrance:
           if str(emoji) == rcheck:
               await msg.author.add_roles(rolev)
               await msg.author.remove_roles(roleu)
               await msg.delete()
-              if memberz == 474984052017987604:
-                  allwrodg=f"Everyone please welcome <@!{auth}> {welcome_text}"
-              else:     
-                  if admin_role in member.roles:
-                      allwrodg=f"Everyone please welcome <@!{auth}> {b.wt} Welcomed by <@!{memberz}>"
+
+              if members == 474984052017987604:
+                  allwrodg=f"Everyone please welcome <@!{auth}> {welcome_text}"     
+              else:
+                  allwrodg=f"Everyone please welcome <@!{auth}> {b.wt} Welcomed by <@!{memberz}>"
               generalmsg = await general.send(allwrodg)
-             
-              await logs.send(f"""```
-         WELCOMED LOG
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
-Welcomed user: 
- {msg.author}
-              
-Welcomed userid: 
- {auth}
-              
-Message content: 
- {msg.content}
-              
-Welcomer user: 
- {member}
-              
-Welcomer userid: 
- {memberz}
-              
-              
-Log time: {generalmsg.created_at}
-        
-         END LOG              
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯```""")
+              await logs.send(f"""```WELCOMED LOG\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯\nWelcomed user: {msg.author}\n\nWelcomed userid: {auth}\n\nMessage content: {msg.content}\n\nWelcomer user: {member}\n\nWelcomer userid: {memberz}\n\n\nLog time: {generalmsg.created_at}\n\nEND LOG\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯```""")
           if str(emoji) == "<:x_:962053785566474290>":
               await msg.delete()
               generalmsgz = await author.send("Your application to The Femboy Cafe was rejected. Please try again!")
