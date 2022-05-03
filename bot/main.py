@@ -66,43 +66,7 @@ async def on_raw_reaction_add(payload):
   else:
       return
   #if channel != entrance or not in:
-          if str(emoji) == rcheck:
-              await msg.author.add_roles(rolev)
-              await msg.author.remove_roles(roleu)
-              await msg.delete()
 
-              if members == 474984052017987604:
-                  allwrodg=f"Everyone please welcome <@!{auth}> {welcome_text}"     
-              else:
-                  allwrodg=f"Everyone please welcome <@!{auth}> {b.wt} Welcomed by <@!{memberz}>"
-              generalmsg = await general.send(allwrodg)
-              await logs.send(f"""```WELCOMED LOG\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯\nWelcomed user: {msg.author}\n\nWelcomed userid: {auth}\n\nMessage content: {msg.content}\n\nWelcomer user: {member}\n\nWelcomer userid: {memberz}\n\n\nLog time: {generalmsg.created_at}\n\nEND LOG\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯```""")
-          if str(emoji) == "<:x_:962053785566474290>":
-              await msg.delete()
-              generalmsgz = await author.send("Your application to The Femboy Cafe was rejected. Please try again!")
-              await logs.send(f"""```
-       UNWELCOMED LOG
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
-Unwelcomed user: 
- {msg.author}
-              
-Unwelcomed userid: 
- {auth}
-              
-Message content: 
- {msg.content}
-              
-Unwelcomer user: 
- {member}
-              
-Unwelcomer userid: 
- {memberz}
-              
-              
-Log time: {generalmsgz.created_at}
-        
-         END LOG              
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯```""")
     
 async def main_start():
     async with bot:
