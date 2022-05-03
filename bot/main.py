@@ -34,7 +34,7 @@ botuser = 955440279450710076
 @bot.event
 async def on_message(msg): 
     auth = msg.author.id
-    channel msg.channel.id
+    channel = msg.channel.id
     if auth == botuser:return
     def is_me(msg):
         return msg.author.id == 955440279450710076
