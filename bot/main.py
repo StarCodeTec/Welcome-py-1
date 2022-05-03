@@ -75,7 +75,7 @@ async def on_raw_reaction_add(payload):
               await msg.author.add_roles(rolev)
               await msg.author.remove_roles(roleu)
               await msg.delete()
-              if memberz == Fenne:
+              if memberz == 474984052017987604:
                   allwrodg=f"Everyone please welcome <@!{auth}> {welcome_text}"
               else:     
                   if admin_role in member.roles:
