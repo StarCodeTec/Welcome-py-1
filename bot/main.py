@@ -22,6 +22,7 @@ rcheck = id_0.check
 r3 = id_0.heart
 r4 = id_0.P_heart
 r5 = id_0.thumb_up
+GEN = SI.cafe.Chat.General
 
 #intents----------------------------------------------------------------------------------------
 intents = discord.Intents.all()
@@ -54,22 +55,13 @@ async def on_message(msg):
     
 @bot.event
 async def on_raw_reaction_add(payload):
-  user = bot.get_user(payload.user_id) 
-  channel = bot.get_channel(payload.channel_id)
   msg = await channel.fetch_message(payload.message_id)
-  member = payload.member
-  auth = msg.author.id
-  author = msg.author
-  emoji = str(payload.emoji)
-  entrance = bot.get_channel(957737342028890112) or await bot.fetch_channel(957737342028890112)
+  author = msg.author #Reacted
+  member = payload.member #Reacter
+  gen = bot.get_channel(GEN) or await bot.fetch_channel(GEN)
   admin_role = member.guild.get_role(928077514411233350)
-  if admin_role in member.roles:
-      rolev = payload.member.guild.get_role(889011345712894002) 
-      roleu = payload.member.guild.get_role(889011029428801607)
-      logs = bot.get_channel(956322799411150952) or await bot.fetch_channel(956322799411150952)
-      general = bot.get_channel(950085161872154694) or await bot.fetch_channel(950085161872154694)
-      memberz = member.id
-      if channel == entrance:
+  if admin_role in member.roles:return GEN.send("test")
+  if channel != entrance or not in:
           if str(emoji) == rcheck:
               await msg.author.add_roles(rolev)
               await msg.author.remove_roles(roleu)
