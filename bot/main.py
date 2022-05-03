@@ -52,7 +52,85 @@ async def on_message(msg):
     
     
     
-    
+@bot.event
+async def on_raw_reaction_add(payload):
+  user = bot.get_user(payload.user_id) 
+  channel = bot.get_channel(payload.channel_id)
+  msg = await channel.fetch_message(payload.message_id)
+  member = payload.member
+  auth = msg.author.id
+  author = msg.author
+  emoji = str(payload.emoji)
+  auth_role = member.guild.get_role(945086022142808075)
+  entrance = bot.get_channel(957737342028890112) or await bot.fetch_channel(957737342028890112)
+  if auth_role in payload.member.roles:
+      rolev = payload.member.guild.get_role(889011345712894002) 
+      roleu = payload.member.guild.get_role(889011029428801607)
+      logs = bot.get_channel(956322799411150952) or await bot.fetch_channel(956322799411150952)
+      general = bot.get_channel(950085161872154694) or await bot.fetch_channel(950085161872154694)
+      admin_role = member.guild.get_role(945086022142808075)
+      memberz = member.id
+      if channel == entrance:
+          if str(emoji) == rcheck:
+              await msg.author.add_roles(rolev)
+              await msg.author.remove_roles(roleu)
+              await msg.delete()
+              if memberz == Fenne:
+                  allwrodg=f"Everyone please welcome <@!{auth}> {welcome_text}"
+              else:     
+                  if admin_role in member.roles:
+                      allwrodg=f"Everyone please welcome <@!{auth}> {b.wt} Welcomed by <@!{memberz}>"
+              generalmsg = await general.send(allwrodg)
+             
+              await logs.send(f"""```
+         WELCOMED LOG
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Welcomed user: 
+ {msg.author}
+              
+Welcomed userid: 
+ {auth}
+              
+Message content: 
+ {msg.content}
+              
+Welcomer user: 
+ {member}
+              
+Welcomer userid: 
+ {memberz}
+              
+              
+Log time: {generalmsg.created_at}
+        
+         END LOG              
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯```""")
+          if str(emoji) == "<:x_:962053785566474290>":
+              await msg.delete()
+              generalmsgz = await author.send("Your application to The Femboy Cafe was rejected. Please try again!")
+              await logs.send(f"""```
+       UNWELCOMED LOG
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Unwelcomed user: 
+ {msg.author}
+              
+Unwelcomed userid: 
+ {auth}
+              
+Message content: 
+ {msg.content}
+              
+Unwelcomer user: 
+ {member}
+              
+Unwelcomer userid: 
+ {memberz}
+              
+              
+Log time: {generalmsgz.created_at}
+        
+         END LOG              
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯```""")
     
 async def main_start():
     async with bot:
