@@ -62,8 +62,8 @@ async def on_raw_reaction_add(payload):
   author = msg.author
   emoji = str(payload.emoji)
   entrance = bot.get_channel(957737342028890112) or await bot.fetch_channel(957737342028890112)
-  admin_role = member.guild.get_role(945086022142808075)
-  if admin_role in payload.member.roles:
+  admin_role = member.guild.get_role(928077514411233350)
+  if admin_role in member.roles:
       rolev = payload.member.guild.get_role(889011345712894002) 
       roleu = payload.member.guild.get_role(889011029428801607)
       logs = bot.get_channel(956322799411150952) or await bot.fetch_channel(956322799411150952)
