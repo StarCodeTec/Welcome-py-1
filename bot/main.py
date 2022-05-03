@@ -38,14 +38,14 @@ async def on_message(msg):
     if auth == botuser:return
     def is_me(msg):
         return msg.author.id == 955440279450710076
-    def react():
+    async def react():
         await msg.add_reaction(r1)
         await msg.add_reaction(rcheck)
         await msg.add_reaction(r3)            
         await msg.add_reaction(r4)            
         await msg.add_reaction(r5)
     if channel == SI.cafe.Chat.Bio:
-        react()
+        asyncio.run(react())
     
     
     
