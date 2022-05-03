@@ -25,3 +25,5 @@ jobs:
 
       - name: Execute Python script # Run the run.py to get the latest data
         run: python ./bot/main.py
+        env:
+            key: ${{ secrets.key }}
