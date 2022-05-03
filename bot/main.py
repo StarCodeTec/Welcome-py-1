@@ -45,7 +45,9 @@ async def on_message(msg):
         await msg.add_reaction(r4)            
         await msg.add_reaction(r5)
     if channel == SI.cafe.Chat.Bio:
-        asyncio.run(react())
+        bioxtt = bot.get_channel(888482614351134720) or await bot.fetch_channel(888482614351134720)
+        await bioxtt.purge(limit=2, check=is_me)
+        await bioxtt.send(b.bt)
     
     
     
