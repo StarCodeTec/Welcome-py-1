@@ -69,7 +69,6 @@ async def on_raw_reaction_add(payload):
       logs = bot.get_channel(956322799411150952) or await bot.fetch_channel(956322799411150952)
       general = bot.get_channel(950085161872154694) or await bot.fetch_channel(950085161872154694)
       memberz = member.id
-      if admin_role not in member.roles:return
       if channel == entrance:
           if str(emoji) == rcheck:
               await msg.author.add_roles(rolev)
