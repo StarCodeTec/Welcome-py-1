@@ -59,7 +59,7 @@ async def on_raw_reaction_add(payload):
   author = msg.author #Reacted
   member = payload.member #Reacter
   gen = bot.get_channel(GEN) or await bot.fetch_channel(GEN)
-  admin_role = member.guild.get_role(928077514411233350)
+  admin_role = member.guild.get_role(928077514411233350) or await member.guild.fetch_role(928077514411233350)
   if admin_role in member.roles:
       GEN.send("test")
       return 
