@@ -1,6 +1,9 @@
 #cogs--------------------------------------------------------------------------------------------  
    
 #personal_import---------------------------------------------------------------------------------
+from text_zone import BIG as b
+from text_zone import all_id as id_0
+import System_Id as SI
 
 #import------------------------------------------------------------------------------------------
 import os
@@ -13,6 +16,12 @@ from discord.ext import tasks, commands
 #EXTRA_VARS--------------------------------------------------------------------------------------
 key = os.environ['CUSTOM_ENV']
 null = None
+welcome_text = b.wt
+r1 = id_0.fenne
+rcheck = id_0.check
+r3 = id_0.heart
+r4 = id_0.P_heart
+r5 = id_0.thumb_up
 
 #intents----------------------------------------------------------------------------------------
 intents = discord.Intents.all()
@@ -25,9 +34,18 @@ botuser = 955440279450710076
 @bot.event
 async def on_message(msg): 
     auth = msg.author.id
-    if auth != botuser and msg.context == "test":
-        msg.channel.send("bot?")
-    
+    channel msg.channel.id
+    if auth == botuser:return
+    def is_me(msg):
+        return msg.author.id == 955440279450710076
+    def react():
+        await msg.add_reaction(r1)
+        await msg.add_reaction(rcheck)
+        await msg.add_reaction(r3)            
+        await msg.add_reaction(r4)            
+        await msg.add_reaction(r5)
+    if channel == SI.cafe.Chat.Bio:
+        react()
     
     
     
