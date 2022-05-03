@@ -1,22 +1,27 @@
-    name: py
+name: py
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
     
-    on:
-      schedule:
-        - cron: "0 0 * * *" #runs at 00:00 UTC everyday
-    
-    jobs:
-      build:
-        runs-on: ubuntu-latest
-    
-        steps:
-          - name: checkout repo content
-            uses: actions/checkout@v2 # checkout the repository content to github runner.
-          - name: setup python
-            uses: actions/setup-python@v2
-            with:
-              python-version: 3.10 #install the python needed
-          - name: execute py bot # run the run.py to get the latest data
-            run: |
-              python ./bot/main.py
-            env:
-              key: ${{ secrets.key }} # if run.py requires passwords..etc, set it as secrets
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository content
+        uses: actions/checkout@v2 # Checkout the repository content to github runner.
+
+      - name: Setup Python Version
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8 # Install the python version needed
+
+      - name: Install Python dependencies
+        run: |
+            python -m pip install --upgrade pip requests
+            if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Execute Python script # Run the run.py to get the latest data
+        run: python ./bot/main.py
