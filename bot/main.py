@@ -56,8 +56,8 @@ async def on_message(msg):
 @bot.event
 async def on_raw_reaction_add(pl):
     ch = bot.get_channel(pl.channel_id) or await bot.fetch_channel(pl.channel_id)
-    msg = ch.get_message(pl.message_id) or await ch.fetch_message(pl.message_id)
-    author = msg.author #Reactedauthor 
+    #msg = ch.get_message(pl.message_id) or await ch.fetch_message(pl.message_id)
+    #author = msg.author #Reactedauthor 
     member = pl.member #Reacter
     gen = bot.get_channel(GEN) or await bot.fetch_channel(GEN)
     await gen.send(member.roles.name)
