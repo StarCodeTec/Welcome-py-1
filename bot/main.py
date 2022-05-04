@@ -55,17 +55,17 @@ async def on_message(msg):
     
 @bot.event
 async def on_raw_reaction_add(payload):
-  cafez = bot.get_channel(payload.channel_id) or await self.bot.fetch_channel(payload.channel_id)
-  msgz = cafez.get_message(payload.message_id) or await cafez.fetch_message(payload.message_id)
-  authorz = msgz.author #Reacted
-  memberz = payload.member #Reacter
-  genz = bot.get_channel(GEN) or await bot.fetch_channel(GEN)
-  auth_rolez = memberz.guild.get_role(928077514411233350) or await memberz.guild.fetch_role(928077514411233350)
+  cafe = bot.get_channel(payload.channel_id) or await bot.fetch_channel(payload.channel_id)
+  msg = cafe.get_message(payload.message_id) or await cafe.fetch_message(payload.message_id)
+  authorz = msg.author #Reactedauthor
+  member = payload.member #Reacter
+  geb = bot.get_channel(GEN) or await bot.fetch_channel(GEN)
+  auth_role = member.guild.get_role(928077514411233350) or await member.guild.fetch_role(928077514411233350)
   #auth = member.get_role(928077514411233350) or await member.fetch_role(928077514411233350)
-  await genz.send("test1")
+  await gen.send("test1")
   #await gen.send(auth)
-  if auth_rolez in memberz.roles: 
-      await genz.send("test2")
+  if auth_role in memberz.roles: 
+      await gen.send("test2")
 
 
     
