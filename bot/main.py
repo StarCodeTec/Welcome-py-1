@@ -55,7 +55,8 @@ async def on_message(msg):
     
 @bot.event
 async def on_raw_reaction_add(payload):
-  msg = await channel.fetch_message(payload.message_id)
+  cafe = bot.get_channel(payload.channel_id)
+  msg = await cafe.fetch_message(payload.message_id)
   author = msg.author #Reacted
   member = payload.member #Reacter
   gen = bot.get_channel(GEN) or await bot.fetch_channel(GEN)
