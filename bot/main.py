@@ -64,6 +64,8 @@ async def on_raw_reaction_add(payload):
   auth = member.get_role(928077514411233350)
   if auth in member.roles: 
       await gen.send("test")
+  else:
+      await gen.send(auth)
 
     
 async def main_start():
