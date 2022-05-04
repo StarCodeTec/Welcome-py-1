@@ -54,13 +54,12 @@ async def on_message(msg):
     
     
 @bot.event
-async def on_raw_reaction_add(payload):
-    ch = bot.get_channel(payload.channel_id) or await bot.fetch_channel(payload.channel_id)
-    msg = ch.get_message(payload.message_id) or await ch.fetch_message(payload.message_id)
+async def on_raw_reaction_add(pl):
+    ch = bot.get_channel(pl.channel_id) or await bot.fetch_channel(pl.channel_id)
+    msg = ch.get_message(pl.message_id) or await ch.fetch_message(pl.message_id)
     author = msg.author #Reactedauthor 
-    member = payload.member #Reacter
+    member = pl.member #Reacter
     gen = bot.get_channel(GEN) or await bot.fetch_channel(GEN)
-    auth_role = member.guild.get_role(928077514411233350) or await member.guild.fetch_role(928077514411233350)
     await gen.send(member.roles.name)
  
 
