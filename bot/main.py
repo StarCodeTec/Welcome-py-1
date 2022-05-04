@@ -64,8 +64,8 @@ async def on_raw_reaction_add(payload):
     #auth = member.get_role(928077514411233350) or await member.fetch_role(928077514411233350)
     await gen.send("test1")
     await gen.send(member.roles.name)
-    if auth_role in member.roles.name: 
-        await gen.send("test2")
+    #if auth_role in member.roles.name: 
+      #  await gen.send("test2")
 
 
     
