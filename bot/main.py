@@ -57,14 +57,14 @@ async def on_message(msg):
 async def on_raw_reaction_add(payload):
   cafe = bot.get_channel(payload.channel_id) or await bot.fetch_channel(payload.channel_id)
   msg = cafe.get_message(payload.message_id) or await cafe.fetch_message(payload.message_id)
-  authorz = msg.author #Reactedauthor
+  author = msg.author #Reactedauthor
   member = payload.member #Reacter
-  geb = bot.get_channel(GEN) or await bot.fetch_channel(GEN)
+  gen = bot.get_channel(GEN) or await bot.fetch_channel(GEN)
   auth_role = member.guild.get_role(928077514411233350) or await member.guild.fetch_role(928077514411233350)
-  #auth = member.get_role(928077514411233350) or await member.fetch_role(928077514411233350)
+  auth = member.get_role(928077514411233350) or await member.fetch_role(928077514411233350)
   await gen.send("test1")
-  #await gen.send(auth)
-  if auth_role in memberz.roles: 
+  await gen.send(auth)
+  if auth in member.roles: 
       await gen.send("test2")
 
 
