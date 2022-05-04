@@ -62,9 +62,10 @@ async def on_raw_reaction_add(payload):
   gen = bot.get_channel(GEN) or await bot.fetch_channel(GEN)
   auth_role = member.guild.get_role(928077514411233350) or await member.guild.fetch_role(928077514411233350)
   auth = member.get_role(928077514411233350) or await member.fetch_role(928077514411233350)
+  await gen.send("test1")
   await gen.send(auth)
   if auth in member.roles: 
-      await gen.send("test")
+      await gen.send("test2")
 
 
     
