@@ -22,7 +22,7 @@ rcheck = id_0.check
 r3 = id_0.heart
 r4 = id_0.P_heart
 r5 = id_0.thumb_up
-GEN = SI.cafe.Chat.General
+GEN = int(SI.cafe.Chat.General)
 
 #intents----------------------------------------------------------------------------------------
 intents = discord.Intents.all()
@@ -60,8 +60,7 @@ async def on_raw_reaction_add(payload):
   member = payload.member #Reacter
   gen = bot.get_channel(GEN) or await bot.fetch_channel(GEN)
   admin_role = member.guild.get_role(928077514411233350) or await member.guild.fetch_role(928077514411233350)
-  if admin_role in member.roles:
-      gen.send("test")
+  gen.send("test")
 
     
 async def main_start():
