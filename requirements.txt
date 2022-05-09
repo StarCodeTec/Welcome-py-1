@@ -1,3 +1,1 @@
-python-dotenv==0.20.0
 discord.py @ git+https://github.com/Rapptz/discord.py@8993b7f
-flask
