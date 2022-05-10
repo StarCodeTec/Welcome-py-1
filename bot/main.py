@@ -87,10 +87,8 @@ async def on_message(msg):
   def is_me(msg):
     return msg.author.id == botuser
   if msg.channel.id == cafe.Little_fenne.News or msg.channel.category_id == cafe.cats.Selfies:
-    if msg.channel.id == cafe.Selfies.Comments:
-      print("fail")
-      return
-    else:
+    if msg.channel.id == cafe.Selfies.Comments:return
+    if msg.channel.category_id == cafe.cats.Selfies and msg.attachments == null:return
       await msg.add_reaction(r1)
       await msg.add_reaction(rcheck)
       await msg.add_reaction(r3)            
