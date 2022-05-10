@@ -115,8 +115,8 @@ async def on_raw_reaction_add(payload):
   entrance = bot.get_channel(cafe.Verify.Entrance) or await bot.fetch_channel(cafe.Verify.Entrance)
   auth_role = payload.member.guild.get_role(928077514411233350) or await payload.member.guild.fetch_role(928077514411233350)
   print(auth_role.members)
-  print(payload.member)
-  if payload.member in autho_role.members:
+  print(payload.member.id)
+  if payload.member.id in auth_role.members:
     if cha != entrance: return
     if str(payload.emoji) == rcheck:
       await msg.author.add_roles(rolev)
