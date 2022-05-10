@@ -151,7 +151,7 @@ Log time: {generalmsg.created_at}
         
          END LOG              
 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯```""")
-      if str(emoji) == "<:x_:962053785566474290>":
+      if str(payload.emoji) == "<:x_:962053785566474290>":
         await msg.delete()
         generalmsgz = await msg.author.send("Your application to The Femboy Cafe was rejected. Please try again!")
         await logs.send(f"""```
