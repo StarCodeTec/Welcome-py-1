@@ -80,7 +80,7 @@ async def on_guild_channel_create(cha):
   if cha.category.id == cafe.cats.Home and "ticket" in str(cha.name):
     print("2")
     time.sleep(3)
-    print("3"
+    print("3")
     await cha.send("Hey there, how can we help you?")
 
 @bot.event
