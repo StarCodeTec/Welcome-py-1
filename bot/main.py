@@ -116,13 +116,13 @@ async def on_raw_reaction_add(payload):
   auth_role = payload.member.guild.get_role(928077514411233350) or await payload.member.guild.fetch_role(928077514411233350)
   print(auth_role.tags)
   #print(payload.member.id)
-  if payload.tags in auth_role.members:
+  if payload.member.roles in auth_role.members:
     if cha != entrance: return
     if str(payload.emoji) == rcheck:
       await msg.author.add_roles(rolev)
       await msg.author.remove_roles(roleu)
       await msg.delete()
-      if memberz == Fenne:
+      if payload.member.id == Fenne:
         words=f"Everyone please welcome <@!{msg.author.id}> {b.wt}"
       else:     
         words=f"Everyone please welcome <@!{msg.author.id}> {b.wt} Welcomed by <@!{payload.member.id}>"
