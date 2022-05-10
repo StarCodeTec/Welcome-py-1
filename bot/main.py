@@ -112,13 +112,16 @@ async def on_raw_reaction_add(payload):
   cha = bot.get_channel(payload.channel_id)
   msg = await cha.fetch_message(payload.message_id)
   gen = bot.get_channel(cafe.Chat.General) or await bot.fetch_channel(cafe.Chat.General)
+  logs = bot.get_channel(id.Logs.logs) or await bot.fetch_channel(id.Logs.logs)
   entrance = bot.get_channel(cafe.Verify.Entrance) or await bot.fetch_channel(cafe.Verify.Entrance)
-  auth_role = payload.member.guild.get_role(928077514411233350) or await payload.member.guild.fetch_role(928077514411233350)
-  print(auth_role.tags)
-  #print(payload.member.id)
-  if payload.member.roles in auth_role.members:
+  role = payload.member.guild.get_role(928077514411233350) or await payload.member.guild.fetch_role(928077514411233350)
+  print("1"
+  if roles in payload.member.roles:
+    print("2")
     if cha != entrance: return
+    print("3")
     if str(payload.emoji) == rcheck:
+      print("5")
       await msg.author.add_roles(rolev)
       await msg.author.remove_roles(roleu)
       await msg.delete()
