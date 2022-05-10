@@ -127,7 +127,7 @@ async def on_raw_reaction_add(payload):
         words=f"Everyone please welcome <@!{msg.author.id}> {b.wt}"
       else:     
         words=f"Everyone please welcome <@!{msg.author.id}> {b.wt} Welcomed by <@!{payload.member.id}>"
-      generalmsg = await general.send(words)
+      generalmsg = await gen.send(words)
       await logs.send(f"""```
          WELCOMED LOG
 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
@@ -153,7 +153,7 @@ Log time: {generalmsg.created_at}
 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯```""")
       if str(emoji) == "<:x_:962053785566474290>":
         await msg.delete()
-        generalmsgz = await author.send("Your application to The Femboy Cafe was rejected. Please try again!")
+        generalmsgz = await msg.author.send("Your application to The Femboy Cafe was rejected. Please try again!")
         await logs.send(f"""```
        UNWELCOMED LOG
 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
