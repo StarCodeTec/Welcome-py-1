@@ -118,7 +118,8 @@ async def on_raw_reaction_add(payload):
   print("1")
   if roles in payload.member.roles:
     print("2")
-    if cha != entrance: return
+    if cha == entrance: tried = True
+    if tried != True:return
     print("3")
     if str(payload.emoji) == rcheck:
       print("5")
