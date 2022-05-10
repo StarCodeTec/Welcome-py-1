@@ -76,6 +76,7 @@ async def on_member_join(mem):
 
 @bot.event
 async def on_guild_channel_create(cha):
+  if cha == null: return
   if cha.category.id != cafe.cats.Home:return
   if "ticket" in str(cha.name):
     time.sleep(3)
