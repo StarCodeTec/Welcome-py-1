@@ -115,7 +115,7 @@ async def on_raw_reaction_add(payload):
   logs = bot.get_channel(id.Logs.logs) or await bot.fetch_channel(id.Logs.logs)
   entrance = bot.get_channel(cafe.Verify.Entrance) or await bot.fetch_channel(cafe.Verify.Entrance)
   role = payload.member.guild.get_role(928077514411233350) or await payload.member.guild.fetch_role(928077514411233350)
-  print("1"
+  print("1")
   if roles in payload.member.roles:
     print("2")
     if cha != entrance: return
