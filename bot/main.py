@@ -94,16 +94,16 @@ async def on_message(msg):
     await msg.add_reaction(r5)
   elif msg.channel.id == cafe.Mod.News:
     await msg.add_reaction(rcheck)
-  elif msg.channel.id == cafe.Chat.Bio or msg.channel.id == cafe.Chat.Promo:
+  elif msg.channel.id == cafe.Chat.Promo:
+    cha = bot.get_channel(cafe.Chat.Promo) or await bot.fetch_channel(cafe.Chat.Promo)
     await cha.purge(limit=2, check=is_me)
-    if msg.channel.id == cafe.Chat.Promo:
-      promo_cha = bot.get_channel(cafe.Chat.Promo) or await bot.fetch_channel(cafe.Chat.Promo)
-      await promo_cha.send("Server boosters can post <#904501391299608586> in every 30 minutes!")
-    if msg.channel.id == cafe.Chat.Bio:
-      bio_cha = bot.get_channel(cafe.Chat.Bio) or await bot.fetch_channel(cafe.Chat.Bio)
-      await bio_cha.send(b.bt)
-    else:
-      await bot.process_commands(msg)
+    await cha.send("Server boosters can post <#904501391299608586> in every 30 minutes!")
+  elif msg.channel.id == cafe.Chat.Bio:
+    cha = bot.get_channel(cafe.Chat.Bio) or await bot.fetch_channel(cafe.Chat.Bio)   
+    await cha.purge(limit=2, check=is_me)
+    await cha.send(b.bt)
+  else:
+    await bot.process_commands(msg)
 
 @bot.event
 async def on_raw_reaction_add(payload):
