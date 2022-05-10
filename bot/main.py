@@ -76,12 +76,10 @@ async def on_member_join(mem):
 
 @bot.event
 async def on_guild_channel_create(cha):
-  print("1")
   if cha.category.id == cafe.cats.Home and "ticket" in str(cha.name):
-    print("2")
     time.sleep(3)
-    print("3")
     await cha.send("Hey there, how can we help you?")
+  if cha.category.id == cafe.cats.Verify and "ticket" in str(cha.name):return
 
 @bot.event
 async def on_message(msg):
@@ -89,14 +87,18 @@ async def on_message(msg):
   def is_me(msg):
     return msg.author.id == botuser
   if msg.channel.id == cafe.Little_fenne.News or msg.channel.category_id == cafe.cats.Selfies:
+    print("detects")
     if msg.channel.id == cafe.Selfies.Comments:
+      print("fail")
       return
-    else: 
+    else:
+      print("success")
       await msg.add_reaction(r1)
       await msg.add_reaction(rcheck)
       await msg.add_reaction(r3)            
       await msg.add_reaction(r4)            
       await msg.add_reaction(r5)
+      print("full react")
   elif msg.channel.id == cafe.Mod.News:
     await msg.add_reaction(rcheck)
   elif msg.channel.id == cafe.Chat.Promo:
