@@ -29,7 +29,7 @@ r3 = id_0.heart
 r4 = id_0.P_heart
 r5 = id_0.thumb_up
 null = None
-botuser = 955440279450710076
+botuser = 966392608895152228
 #intents----------------------------------------------------------------------------------------
 
 intents = discord.Intents.all()
