@@ -83,9 +83,9 @@ async def on_guild_channel_create(cha):
 
 @bot.event
 async def on_message(msg):
+  if msg.author.id == botuser:return
   def is_me(msg):
     return msg.author.id == botuser
-  if msg.author.id == botuser:return
   if msg.channel.id == cafe.Little_fenne.News or msg.channel.category_id == cafe.cats.Selfies:
     if msg.channel.category_id == cafe.cats.Selfies and msg.channel.id == cafe.Selfies.Comments:return
     
@@ -112,7 +112,7 @@ async def on_raw_reaction_add(payload):
   cha = bot.get_channel(payload.channel_id)
   msg = await cha.fetch_message(payload.message_id)
   gen = bot.get_channel(cafe.Chat.General) or await bot.fetch_channel(cafe.Chat.General)
-  auth_role = member.guild.get_role(928077514411233350) or await member.guild.fetch_role(928077514411233350)
+  auth_role = payload.member.guild.get_role(928077514411233350) or await payload.member.guild.fetch_role(928077514411233350)
   if auth_role in payload.member.roles:
     if channel != entrance: return
     if str(payload.emoji) == rcheck:
