@@ -83,6 +83,8 @@ async def on_guild_channel_create(cha):
 
 @bot.event
 async def on_message(msg):
+  def is_me(msg):
+    return msg.author.id == botuser
   if msg.author.id == botuser:return
   if msg.channel.id == cafe.Little_fenne.News or msg.channel.category_id == cafe.cats.Selfies:
     if msg.channel.category_id == cafe.cats.Selfies and msg.channel.id == cafe.Selfies.Comments:return
