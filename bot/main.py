@@ -190,4 +190,4 @@ async def main_start():
         #bystander.start()
         #await bot.add_cog(test)
         
-run(main_start())
+asyncio.run(main_start())
