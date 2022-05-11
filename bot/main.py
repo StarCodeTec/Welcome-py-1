@@ -184,12 +184,11 @@ Log time: {generalmsgz.created_at}
       
 async def main_start():
     async with bot:
-        print("")
-        #await 
+        await bot.start(str(key)) 
         #gen.start()
         #bump.start()
         #bystander.start()
         #await bot.add_cog(test)
         
-#asyncio.run(main_start())
-bot.start(str(key)) 
+asyncio.run(main_start())
+
