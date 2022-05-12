@@ -38,41 +38,13 @@ intents.presences = False
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('F^ ', 'F^'), intents=intents)
 
 #-----------------------------------------------------------------------------------------------
-"""
-@bot.command()
-async def gen_send(ctx, words, userid):
-        general = bot.get_channel(950085161872154694) or await bot.fetch_channel(950085161872154694)
-        if userid == "none":
-            await general.send(words)
-        else:
-            allwordg=f"<@!{userid}> {words}"
-            await general.send(content=allwordg)
-                
-@bot.command()
-async def ent_send(ctx, words, userid):
-    entrance = bot.get_channel(945087125831958588) or await bot.fetch_channel(945087125831958588)
-    if userid == "none":
-        await entrance.send(words)
-    else:
-        allworde=f"<@!{userid}> {words}"
-        await entrance.send(allworde)
-
-@bot.command()
-async def mod_send(ctx, words, userid):
-    mod = bot.get_channel(901215227662696469) or await bot.fetch_channel(901215227662696469)
-    if userid == "none":
-        await mod.send(words)
-    else:
-        allwordm=f"<@!{userid}> {words}"
-        await mod.send(allwordm)"""
 
 @bot.event
 async def on_member_join(mem):
   try:
     await mem.send(f"""⇀ Welcome <@!{mem.id}> {b.welcome_text_dm}""")
   except:
-    print("not accepting dms")
-    
+    return
 
 @bot.event
 async def on_guild_channel_create(cha):
@@ -80,11 +52,7 @@ async def on_guild_channel_create(cha):
     time.sleep(3)
     await cha.send("Hey there, how can we help you?")
   if cha.category.id == cafe.cats.Verify and "ticket" in str(cha.name):
-    print("verify")
-    '''return
-    time.sleep(3)
-    await cha.send("Hey there, how can we help you?")
-'''
+    
 
 @bot.event
 async def on_message(msg):
@@ -109,76 +77,6 @@ async def on_message(msg):
     await cha.purge(limit=2, check=is_me)
     await cha.send(b.bt)
 
-@bot.event
-async def on_raw_reaction_add(payload):
-  cha = bot.get_channel(payload.channel_id)
-  msg = await cha.fetch_message(payload.message_id)
-  gen = bot.get_channel(cafe.Chat.General) or await bot.fetch_channel(cafe.Chat.General)
-  logs = bot.get_channel(id.Logs.logs) or await bot.fetch_channel(id.Logs.logs)
-  apps = bot.get_channel(cafe.Verify.Applications) or await bot.fetch_channel(cafe.Verify.Applications)
-  rolev = payload.member.guild.get_role(889011345712894002) or await payload.member.guild.fetch_role(889011345712894002)
-  roleu = payload.member.guild.get_role(889011029428801607) or await payload.member.guild.fetch_role(889011029428801607)
-  roles = payload.member.guild.get_role(928077514411233350) or await payload.member.guild.fetch_role(928077514411233350)
-  if roles in payload.member.roles:
-    if cha != apps: return
-    if str(payload.emoji) == rcheck:
-      await msg.author.add_roles(rolev)
-      await msg.author.remove_roles(roleu)
-      await msg.delete()
-      if payload.member.id == Fenne:
-        words=f"Everyone please welcome <@!{msg.author.id}> {b.wt}"
-      else:     
-        words=f"Everyone please welcome <@!{msg.author.id}> {b.wt} Welcomed by <@!{payload.member.id}>"
-      generalmsg = await gen.send(words)
-      await logs.send(f"""```
-         WELCOMED LOG
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
-Welcomed user: 
- {msg.author}
-              
-Welcomed userid: 
- {msg.author.id}
-              
-Message content: 
- {msg.content}
-              
-Welcomer user: 
- {payload.member}
-              
-Welcomer userid: 
- {payload.member.id}
-              
-              
-Log time: {generalmsg.created_at}
-        
-         END LOG              
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯```""")
-  if str(payload.emoji) == "<:x_:962053785566474290>":
-    await msg.delete()
-    generalmsgz = await msg.author.send("Your application to The Femboy Cafe was rejected. Please try again!")
-    await logs.send(f"""```
-       UNWELCOMED LOG
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
-Welcomed user: 
- {msg.author}
-              
-Welcomed userid: 
- {msg.author.id}
-              
-Message content: 
- {msg.content}
-              
-Welcomer user: 
- {payload.member}
-              
-Welcomer userid: 
- {payload.member.id}
-              
-              
-Log time: {generalmsgz.created_at}
-        
-         END LOG              
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯```""")
       
 async def main_start():
     async with bot:
