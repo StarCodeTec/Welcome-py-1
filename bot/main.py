@@ -52,7 +52,7 @@ async def on_guild_channel_create(cha):
     time.sleep(3)
     await cha.send("Hey there, how can we help you?")
   if cha.category.id == cafe.cats.Verify and "ticket" in str(cha.name):
-    print(cha.guild.roles)    
+    print()    
 
 @bot.event
 async def on_message(msg):
