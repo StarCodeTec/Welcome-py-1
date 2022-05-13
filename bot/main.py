@@ -76,7 +76,8 @@ async def on_message(msg):
     await cha.send(b.bt)
   elif "xxyz test" in msg.channel:
     if msg.channel.cattegory_id != cafe.cats.Verify:return
-      print("works")
+    """needed space"""
+    print("works")
   
 async def main_start():
     async with bot:
