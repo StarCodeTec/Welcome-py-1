@@ -74,9 +74,10 @@ async def on_message(msg):
     cha = bot.get_channel(cafe.Chat.Bio) or await bot.fetch_channel(cafe.Chat.Bio)   
     await cha.purge(limit=2, check=is_me)
     await cha.send(b.bt)
-  elif "xxyz test" in msg.content:
-    print(msg.channel)
-      
+  elif "xxyz test" in msg.channel:
+    if msg.channel.cattegory_id != cafe.cats.Verify:return
+      print("works")
+  
 async def main_start():
     async with bot:
         await bot.start(str(key)) 
