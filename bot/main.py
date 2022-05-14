@@ -80,8 +80,12 @@ async def on_message(msg):
     """needed space"""
     welcomed= discord.Object(id=889011345712894002)
     unwelcomed= discord.Object(id=889011029428801607)
+    admin= discord.Object(id=928077514411233350)
     reply = msg.reference.resolved
     member = reply.author
+    if admin not in msg.author.roles: 
+      print("not admin")
+      return
     if msg.content == ".verify":
       await member.add_roles(welcomed)
       await member.remove_roles(unwelcomed)
