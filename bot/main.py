@@ -85,7 +85,7 @@ async def on_message(msg):
     reply = msg.reference.resolved
     member = reply.author
     gen = bot.get_channel(cafe.Chat.General) or await bot.fetch_channel(cafe.Chat.General)
-    log = bot.get_channel(ID.Logs.logs) or await bot.fetch_channel(ID.Logs.logs)
+    logs = bot.get_channel(ID.Logs.logs) or await bot.fetch_channel(ID.Logs.logs)
     if admin not in msg.author.roles:return
     if msg.content == ".verify":
       await member.remove_roles(unwelcomed)
