@@ -78,9 +78,13 @@ async def on_message(msg):
     if msg.channel.category_id != cafe.cats.Verify:return
     if msg.reference == None:return
     """needed space"""
+    welcomed= discord.Object(id=889011345712894002)
+    unwelcomed= discord.Object(id=889011029428801607)
+    reply = msg.reference.resolved
+    member = reply.author
     if msg.content == ".verify":
-      reply = msg.reference.resolved
-      await msg.channel.send("$delete")
+      await member.add_roles(welcomed)
+      await member.remove_roles(unwelcomed)
       
 
   
