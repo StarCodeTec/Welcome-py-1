@@ -54,6 +54,7 @@ async def on_guild_channel_create(cha):
 
 @bot.event
 async def on_message(msg):
+  if msg.guild is None:return
   if msg.author.id == botuser:return
   def is_me(msg):
     return msg.author.id == botuser
