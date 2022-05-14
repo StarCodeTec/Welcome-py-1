@@ -94,8 +94,8 @@ async def on_message(msg):
         await gen.send(f"Welcome <@{member.id}> please make a <#888482614351134720> and enjoy your stay.")
       else:
         await gen.send(f"Welcome <@{member.id}> please make a <#888482614351134720> and enjoy your stay. Welcomed by <@{msg.author.id}>")
-      await msg.edit("reply sent")
-      await logs.send(f"\tWelcome <@{member.id}>\n{reply.context}\n\nWelcomed by: <@{msg.author.id}>\n\nWelcomed at: {msg.edited_at}")
+      time = await msg.channel.send("time holder(dont delete)")
+      await logs.send(f"\tWelcome <@{member.id}>\n{reply.context}\n\nWelcomed by: <@{msg.author.id}>\n\nWelcomed at: {time.created_at}")
 
       
 
