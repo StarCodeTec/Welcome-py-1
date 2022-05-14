@@ -89,7 +89,7 @@ async def on_message(msg):
       await member.remove_roles(unwelcomed)
       await member.add_roles(welcomed)
       if msg.author.id == Fenne:
-        await await gen.send(f"Welcome <@{member.id}> please make a <#888482614351134720> and enjoy your stay.")
+        await gen.send(f"Welcome <@{member.id}> please make a <#888482614351134720> and enjoy your stay.")
       else:
         await gen.send(f"Welcome <@{member.id}> please make a <#888482614351134720> and enjoy your stay. Welcomed by <@{msg.author.id}>")
 
