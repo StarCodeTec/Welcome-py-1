@@ -83,12 +83,13 @@ async def on_message(msg):
     admin= discord.utils.get(msg.author.guild.roles, name="Server Staff")
     reply = msg.reference.resolved
     member = reply.author
-    if admin not in msg.author.roles: 
-      print("not admin")
-      return
+    gen = bot.get_channel(cafe.Chat.General) or await bot.fetch_channel(cafe.Chat.General)   
+    if admin not in msg.author.roles:return
     if msg.content == ".verify":
-      await member.add_roles(welcomed)
       await member.remove_roles(unwelcomed)
+      await gen.send("test message")
+      await member.add_roles(welcomed)
+
       
 
   
