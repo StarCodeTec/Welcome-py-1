@@ -74,7 +74,7 @@ async def on_message(msg):
     cha = bot.get_channel(cafe.Chat.Bio) or await bot.fetch_channel(cafe.Chat.Bio)   
     await cha.purge(limit=2, check=is_me)
     await cha.send(b.bt)
-  elif "ticket" in msg.channel:
+  elif msg.channel.id != cafe.Verify.Entrance:
     if msg.channel.cattegory_id != cafe.cats.Verify:return
     if msg.reference == None:return
     """needed space"""
