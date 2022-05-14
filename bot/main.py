@@ -75,7 +75,7 @@ async def on_message(msg):
     await cha.purge(limit=2, check=is_me)
     await cha.send(b.bt)
   elif msg.channel.id != cafe.Verify.Entrance:
-    if msg.channel.cattegory_id != cafe.cats.Verify:return
+    if msg.channel.category_id != cafe.cats.Verify:return
     if msg.reference == None:return
     """needed space"""
     if msg.content == ".verify":
