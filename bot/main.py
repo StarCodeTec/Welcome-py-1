@@ -87,7 +87,7 @@ async def on_message(msg):
     gen = bot.get_channel(cafe.Chat.General) or await bot.fetch_channel(cafe.Chat.General)
     logs = bot.get_channel(ID.Logs.logs) or await bot.fetch_channel(ID.Logs.logs)
     if admin not in msg.author.roles:return
-    if msg.content == ".verify":
+    if msg.content == ".verify" or msg.content == "<:approved:973046001118101514>":
       await member.remove_roles(unwelcomed)
       await member.add_roles(welcomed)
       if msg.author.id == Fenne:
