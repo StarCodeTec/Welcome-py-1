@@ -18,9 +18,9 @@ from discord.ext import tasks, commands
 from password import Admin_key as key
 from text_zone import BIG as b
 from text_zone import all_id as id_0
-import System_Id as id
+import System_Id as ID
 #EXTRA_TEXT--------------------------------------------------------------------------------------
-cafe = id.cafe
+cafe = ID.cafe
 Fenne = 474984052017987604 
 Equinox = 599059234134687774
 r1 = id_0.fenne
@@ -83,7 +83,8 @@ async def on_message(msg):
     admin= discord.utils.get(msg.author.guild.roles, name="Server Staff")
     reply = msg.reference.resolved
     member = reply.author
-    gen = bot.get_channel(cafe.Chat.General) or await bot.fetch_channel(cafe.Chat.General)   
+    gen = bot.get_channel(cafe.Chat.General) or await bot.fetch_channel(cafe.Chat.General)
+    log = bot.get_channel(ID.Logs.logs) or await bot.fetch_channel(ID.Logs.logs)
     if admin not in msg.author.roles:return
     if msg.content == ".verify":
       await member.remove_roles(unwelcomed)
@@ -92,6 +93,8 @@ async def on_message(msg):
         await gen.send(f"Welcome <@{member.id}> please make a <#888482614351134720> and enjoy your stay.")
       else:
         await gen.send(f"Welcome <@{member.id}> please make a <#888482614351134720> and enjoy your stay. Welcomed by <@{msg.author.id}>")
+      await msg.edit("reply sent")
+      await logs.send(f"\tWelcome <@{member.id}>\n{reply.context}\n\nWelcomed by: <@{msg.author.id}>\n\nWelcomed at: {msg.edited_at}")
 
       
 
