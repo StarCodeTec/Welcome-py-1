@@ -53,6 +53,7 @@ async def on_guild_channel_create(cha):
     await cha.send("Hey there, how can we help you?")
   elif msg.channel.id != cafe.Verify.Entrance:
     if msg.channel.category_id != cafe.cats.Verify:return
+    time.sleep(2)
     cha.send("Please put your answers in one message!")
 
 @bot.event
