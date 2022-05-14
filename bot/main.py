@@ -80,7 +80,8 @@ async def on_message(msg):
     """needed space"""
     if msg.content == ".verify":
       reply = msg.reference.resolved
-      await msg.channel.send(reply.author)
+      await msg.channel.send("$delete")
+      
 
   
 async def main_start():
