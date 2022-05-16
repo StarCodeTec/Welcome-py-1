@@ -47,7 +47,7 @@ async def on_member_join(mem):
     return
   finally:
     welcomed= discord.Object(id=889011345712894002)
-    reg= discord.utils.get(mem.guild.roles, name="Server Staff")
+    reg= discord.utils.get(mem.guild.roles, name="Regular")
     if reg not in mem.roles:return
     await mem.remove_roles(welcomed)
 
@@ -69,13 +69,15 @@ async def on_message(msg):
     return msg.author.id == botuser
   if msg.channel.id == cafe.Little_fenne.News or msg.channel.category_id == cafe.cats.Selfies:
     if msg.channel.id == cafe.Selfies.Comments:return
-    await msg.add_reaction(r1)
-    await msg.add_reaction(rcheck)
+    rx1 = await msg.guild.fetch_emoji(r1)
+    await msg.add_reaction(rx1)
+    await msg.add_reaction(rxcheck)
     await msg.add_reaction(r3)            
     await msg.add_reaction(r4)            
     await msg.add_reaction(r5)
   elif msg.channel.id == cafe.Mod.News:
-    await msg.add_reaction(rcheck)
+    rxcheck = await msg.guild.fetch_emoji(rcheck)
+    await msg.add_reaction(rxcheck)
   elif msg.channel.id == cafe.Chat.Promo:
     cha = bot.get_channel(cafe.Chat.Promo) or await bot.fetch_channel(cafe.Chat.Promo)
     await cha.purge(limit=2, check=is_me)
