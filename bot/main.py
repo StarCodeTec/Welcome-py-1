@@ -45,6 +45,11 @@ async def on_member_join(mem):
     await mem.send(f"""⇀ Welcome <@!{mem.id}> {b.welcome_text_dm}""")
   except:
     return
+  finally:
+    welcomed= discord.Object(id=889011345712894002)
+    reg= discord.utils.get(mem.guild.roles, name="Server Staff")
+    if reg not in mem.roles:return
+    await mem.remove_roles(welcomed)
 
 @bot.event
 async def on_guild_channel_create(cha):
