@@ -92,16 +92,19 @@ async def on_message(msg):
     if msg.channel.id != 956295021676601386:return
     message = msg.content.removeprefix(".speak").lstrip()
     if message.endswith("GEN"):
-      gen = bot.get_channel(cafe.Chat.General) or await bot.fetch_channel(cafe.Chat.General)
+      cha = bot.get_channel(cafe.Chat.General) or await bot.fetch_channel(cafe.Chat.General)
       text=message.removesuffix("GEN")
-      await gen.send(text)
     elif message.endswith("MOD"):
-      mod = bot.get_channel(901215227662696469) or await bot.fetch_channel(901215227662696469)
+      cha = bot.get_channel(901215227662696469) or await bot.fetch_channel(901215227662696469)
       text=message.removesuffix("MOD")
-      await mod.send(text)
     else:
       print(message)
-    
+    if msg.content.split()[-3] == "@":
+      ping = msg.content.split[-2]
+      if isinstance(ping, int) == False:return
+      await cha.send(f"{text}<@{ping}>")
+    else:
+      await cha.send(text)      
   elif msg.channel.id != cafe.Verify.Entrance:
     if msg.channel.category_id != cafe.cats.Verify:return
     if msg.reference == None:return
