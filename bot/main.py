@@ -93,7 +93,6 @@ async def on_message(msg):
     message = msg.content.removeprefix(".speak").lstrip
     print(message)
     
-And that will return “tEst”?
   elif msg.channel.id != cafe.Verify.Entrance:
     if msg.channel.category_id != cafe.cats.Verify:return
     if msg.reference == None:return
