@@ -100,12 +100,13 @@ async def on_message(msg):
     elif message.endswith("NONE") or message.endswith("none"):
       cha=msg.channel
     if msg.content.split()[-3] == "@":
-      ping = message.content.split()[-2]
-      content = message.content.split()
+      ping = msg.content.split()[-2]
+      content = msg.content.split()
       del content[-3]
       del content[-2]
       text1 = ' '.join(content)
-      text = text1.removesuffix("NONE")
+      text2 = text1.removeprefix(".speak").lstrip()
+      text = text2.removesuffix("NONE")
       await cha.send(f"{text}<@{ping}>")
     else:
       text=message.removesuffix("NONE")
