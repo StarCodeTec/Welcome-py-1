@@ -107,7 +107,7 @@ async def on_message(msg):
       del content[-3]
       del content[-2]
       text = ''.join(content)
-      await cha.send(f"{text}<@{ping}>")
+      await cha.send(f"{content}<@{ping}>")
     else:
       await cha.send(text)      
   elif msg.channel.id != cafe.Verify.Entrance:
