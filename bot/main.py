@@ -98,7 +98,6 @@ async def on_message(msg):
       cha = bot.get_channel(901215227662696469) or await bot.fetch_channel(901215227662696469)
       text=message.removesuffix("MOD")
     elif message.endswith("NONE") or message.endswith("none"):
-      text=message
       cha=msg.channel
     if msg.content.split()[-3] == "@":
 
@@ -110,6 +109,7 @@ async def on_message(msg):
       text = text1.removesuffix("NONE")
       await cha.send(f"{text}<@{ping}>")
     else:
+      text=message.removesuffix("NONE")
       await cha.send(text)      
   elif msg.channel.id != cafe.Verify.Entrance:
     if msg.channel.category_id != cafe.cats.Verify:return
