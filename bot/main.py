@@ -102,9 +102,10 @@ async def on_message(msg):
       text = message.removesuffix("NONE")
     if msg.content.split()[-3] == "@":
       ping = msg.content.split()[-2]
-      del text.split()[-3]
-      del text.split()[-2]
-      tex = ''.join(text)
+      content = text.split()
+      del content[-3]
+      del content[-2]
+      tex = ''.join(content)
       await cha.send(f"{tex}<@{ping}>")
     else:
       cha.send(text)
