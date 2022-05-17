@@ -89,7 +89,11 @@ async def on_message(msg):
     await cha.purge(limit=2, check=is_me)
     await cha.send(b.bt)
   elif msg.content.startswith(".speak"):
-    if msg.channel.id != 956295021676601386:return
+    print(".speak passed")
+    if msg.channel.id != 956295021676601386:
+      print("0")
+      return
+    print("1")
     message = msg.content.removeprefix(".speak")
     print(message)
     
