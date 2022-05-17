@@ -106,7 +106,8 @@ async def on_message(msg):
       content = msg.content.split()
       del content[-3]
       del content[-2]
-      text = ' '.join(content)
+      text1 = ' '.join(content)
+      text = text1.removesuffix("NONE")
       await cha.send(f"{text}<@{ping}>")
     else:
       await cha.send(text)      
