@@ -11,6 +11,7 @@ cafe_channel = 871938782092480513
 class cafe:
   class extras:
     Fenne = 970394466915614810
+  
   class cats:
     Fenne = 968907537934090320
     Verify = 889011642212450314
