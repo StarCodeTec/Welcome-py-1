@@ -90,7 +90,7 @@ async def on_message(msg):
     await cha.send(b.bt)
   elif msg.content.startswith(".speak"):
     if msg.channel.id != 956295021676601386:return
-    message = msg.content.removeprefix(".speak").lstrip
+    message = msg.content.removeprefix(".speak").lstrip()
     print(message)
     
   elif msg.channel.id != cafe.Verify.Entrance:
