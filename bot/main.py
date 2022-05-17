@@ -104,7 +104,7 @@ async def on_message(msg):
       ping = msg.content.split()[-2]
       content = text.split()
       print(content)
-      del content[-3] 
+      del content[-1] 
       print(content)
       del content[-2]
       print(content)
