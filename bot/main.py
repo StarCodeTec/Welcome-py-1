@@ -96,7 +96,7 @@ async def on_message(msg):
       text=message.removesuffix("GEN")
       await gen.send(text)
     elif message.endswith("MOD"):
-      mod = bot.get_channel(cafe.Chat.Moderation) or await bot.fetch_channel(cafe.Chat.Moderation)
+      mod = bot.get_channel(cafe.Chat.Mod) or await bot.fetch_channel(cafe.Chat.Mod)
       text=message.removesuffix("MOD")
       await mod.send(text)
     else:
