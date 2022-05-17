@@ -92,11 +92,13 @@ async def on_message(msg):
     if msg.channel.id != 956295021676601386:return
     message = msg.content.removeprefix(".speak").lstrip()
     if message.endswith("GEN"):
+      gen = bot.get_channel(cafe.Chat.General) or await bot.fetch_channel(cafe.Chat.General)
       text=message.removesuffix("GEN")
-      print("test gen")
+      await gen.send(text)
     elif message.endswith("MOD"):
+      mod = bot.get_channel(cafe.Chat.Moderation) or await bot.fetch_channel(cafe.Chat.Moderation)
       text=message.removesuffix("MOD")
-      print("test mod")
+      await mod.send(text)
     else:
       print(message)
     
@@ -104,7 +106,6 @@ async def on_message(msg):
     if msg.channel.category_id != cafe.cats.Verify:return
     if msg.reference == None:return
     """needed space"""
-    welcomed= discord.Object(id=889011345712894002)
     unwelcomed= discord.Object(id=889011029428801607)
     admin= discord.utils.get(msg.author.guild.roles, name="Server Staff")
     reply = msg.reference.resolved
