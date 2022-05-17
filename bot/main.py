@@ -92,7 +92,7 @@ async def on_message(msg):
     if msg.channel.id != 956295021676601386:return
     message = msg.content.removeprefix(".speak").lstrip()
     if message.endswith("GEN"):
-      print(f"{message} in GEN")
+      print(f"{message.removesuffix("GEN")} in GEN")
     else:
       print(message)
     
