@@ -106,7 +106,7 @@ async def on_message(msg):
       print(content)
       del content[-1] 
       print(content)
-      del content[-2]
+      del content[-1]
       print(content)
       tex = ''.join(content)
       #await cha.send(f"{tex}<@{ping}>")
