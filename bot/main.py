@@ -93,7 +93,10 @@ async def on_message(msg):
     message = msg.content.removeprefix(".speak").lstrip()
     if message.endswith("GEN"):
       text=message.removesuffix("GEN")
-      print(f"{text} in GEN")
+      print("test gen")
+    elif message.endswith("MOD"):
+      text=message.removesuffix("MOD")
+      print("test mod")
     else:
       print(message)
     
