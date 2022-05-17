@@ -105,7 +105,7 @@ async def on_message(msg):
       content = text.split()
       del content[-1] 
       del content[-1]
-      tex = ''.join(content)
+      tex = ' '.join(content)
       await cha.send(f"{tex}<@{ping}>")
     else:
       cha.send(text)
