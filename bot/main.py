@@ -91,7 +91,10 @@ async def on_message(msg):
   elif msg.content.startswith(".speak"):
     if msg.channel.id != 956295021676601386:return
     message = msg.content.removeprefix(".speak").lstrip()
-    print(message)
+    if message.endswith("GEN"):
+      print(f"{message} in GEN")
+    else:
+      print(message)
     
   elif msg.channel.id != cafe.Verify.Entrance:
     if msg.channel.category_id != cafe.cats.Verify:return
