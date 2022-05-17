@@ -10,22 +10,22 @@ class BIG:
 """
     wt = "to the server. Feel free to make a <#888482614351134720> and enjoy your stay!"
 
-    bt = """- Name & Nickname:
-- Location:
-- Languages:
-- Age:
-- Birthday:
-- Height:
-- Gender/Pronouns:
-- Relationship Status:
-- Orientation:
-- Seeking:
-- Hobbies:
-- Favorite Color:
-- Likes:
-- Dislikes:
-- Fun & Interesting facts:
-- DM's?: """
+    bt = """✯¸.•´*¨`*•✿ ✿•*`¨*`•.¸✯
+✧ Name & Nickname: 
+✧ Location: 
+✧ Languages: 
+✧ Age & Birthday: 
+✧ Height: 
+✧ Gender/Pronouns: 
+✧ Orientation: 
+✧ Seeking: 
+✧ Hobbies: 
+✧ Favorite Color: 
+✧ Likes: 
+✧ Dislikes: 
+✧ DM's?: 
+✧ Extra info: 
+✿°•∘ɷ∘•°✿"""
 
 class all_id:
     fenne = "<:little_fenne:925500399656509489>"
