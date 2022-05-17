@@ -102,7 +102,6 @@ async def on_message(msg):
       cha=msg.channel
     if msg.content.split()[-3] == "@":
       ping = msg.content.split()[-2]
-      if isinstance(ping, int) == False:return
       await cha.send(f"{text}<@{ping}>")
     else:
       await cha.send(text)      
