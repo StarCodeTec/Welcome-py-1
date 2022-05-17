@@ -108,7 +108,7 @@ async def on_message(msg):
       tex = ' '.join(content)
       await cha.send(f"{tex}<@{ping}>")
     else:
-      cha.send(text)
+      await cha.send(text)
   elif msg.channel.id != cafe.Verify.Entrance:
     if msg.channel.category_id != cafe.cats.Verify:return
     if msg.reference == None:return
