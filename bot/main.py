@@ -113,6 +113,7 @@ async def on_message(msg):
     if msg.channel.category_id != cafe.cats.Verify:return
     if msg.reference == None:return
     """needed space"""
+    welcomed= discord.Object(id=889011345712894002)
     unwelcomed= discord.Object(id=889011029428801607)
     admin= discord.utils.get(msg.author.guild.roles, name="Server Staff")
     reply = msg.reference.resolved
