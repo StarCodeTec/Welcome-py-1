@@ -88,7 +88,7 @@ async def on_message(msg):
     cha = bot.get_channel(cafe.Chat.Bio) or await bot.fetch_channel(cafe.Chat.Bio)   
     await cha.purge(limit=2, check=is_me)
     await cha.send(b.bt)
-  elif msg.content.startswith(".speak "):
+  elif msg.content.startswith(".speak"):
     if msg.channel.id != 956295021676601386:return
     message = msg.content.removeprefix(".speak").lstrip
     print(message)
