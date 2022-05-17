@@ -104,11 +104,10 @@ async def on_message(msg):
       ping = msg.content.split()[-2]
       del text.split()[-3]
       del text.split()[-2]
-      tex = ' '.join(text)
+      tex = ''.join(text)
       await cha.send(f"{tex}<@{ping}>")
     else:
-      text=message.removesuffix("NONE")
-      await cha.send(text)      
+      cha.send(text)
   elif msg.channel.id != cafe.Verify.Entrance:
     if msg.channel.category_id != cafe.cats.Verify:return
     if msg.reference == None:return
