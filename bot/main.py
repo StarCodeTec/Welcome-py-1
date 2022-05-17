@@ -103,14 +103,10 @@ async def on_message(msg):
     if msg.content.split()[-3] == "@":
       ping = msg.content.split()[-2]
       content = text.split()
-      print(content)
       del content[-1] 
-      print(content)
       del content[-1]
-      print(content)
       tex = ''.join(content)
-      #await cha.send(f"{tex}<@{ping}>")
-      print(f"{text}<@{ping}>")
+      await cha.send(f"{content}<@{ping}>")
     else:
       cha.send(text)
   elif msg.channel.id != cafe.Verify.Entrance:
@@ -147,4 +143,3 @@ async def main_start():
         #await bot.add_cog(test)
         
 asyncio.run(main_start())
-
