@@ -98,7 +98,8 @@ async def on_message(msg):
       cha = bot.get_channel(901215227662696469) or await bot.fetch_channel(901215227662696469)
       text=message.removesuffix("MOD")
     else:
-      print(message)
+      text=message
+      cha=msg.channel
     if msg.content.split()[-3] == "@":
       ping = msg.content.split[-2]
       if isinstance(ping, int) == False:return
