@@ -103,10 +103,14 @@ async def on_message(msg):
     if msg.content.split()[-3] == "@":
       ping = msg.content.split()[-2]
       content = text.split()
+      print(content)
       del content[-3] 
+      print(content)
       del content[-2]
+      print(content)
       tex = ''.join(content)
-      await cha.send(f"{tex}<@{ping}>")
+      #await cha.send(f"{tex}<@{ping}>")
+      print(f"{text}<@{ping}>")
     else:
       cha.send(text)
   elif msg.channel.id != cafe.Verify.Entrance:
