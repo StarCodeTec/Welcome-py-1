@@ -97,7 +97,7 @@ async def on_message(msg):
     elif message.endswith("MOD"):
       cha = bot.get_channel(901215227662696469) or await bot.fetch_channel(901215227662696469)
       text=message.removesuffix("MOD")
-    elif message.endswith("NONE") or message.endswith("none"):
+    elif message.endswith("NONE"):
       cha=msg.channel
       text = message.removesuffix("NONE")
     if msg.content.split()[-3] == "@":
