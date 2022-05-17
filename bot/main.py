@@ -80,7 +80,7 @@ async def on_message(msg):
   elif msg.channel.id == cafe.Mod.News:
     rxcheck = await msg.guild.fetch_emoji(919007866940182589)
     await msg.add_reaction(rxcheck)
-  elif mag.chqnnel.id == 973436882799177768:
+  elif msg.channel.id == 973436882799177768:
     cha = bot.get_channel(973436882799177768) or await bot.fetch_channel(973436882799177768)
     await cha.purge(limit=2, check=is_me)
     await cha.send("This is only for asking members to DM. Any advertising of your own DM's or friend requests may be removed and warned!")
