@@ -100,9 +100,8 @@ async def on_message(msg):
     elif message.endswith("NONE") or message.endswith("none"):
       cha=msg.channel
     if msg.content.split()[-3] == "@":
-
-      ping = msg.content.split()[-2]
-      content = msg.content.split()
+      ping = message.content.split()[-2]
+      content = message.content.split()
       del content[-3]
       del content[-2]
       text1 = ' '.join(content)
