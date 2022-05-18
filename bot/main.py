@@ -1,5 +1,5 @@
 #cogs--------------------------------------------------------------------------------------------  
-import sticky
+import cogs.sticky
 
 #async_run---------------------------------------------------------------------------------------
 import asyncio
@@ -15,9 +15,9 @@ from discord.ext import tasks, commands
 
 #EXTRA_IMPORTS-----------------------------------------------------------------------------------
 from password import Admin_key as key
-from text_zone import BIG as b
-from text_zone import all_id as id_0
-import System_Id as ID
+from extras.text_zone import BIG as b
+from extras.text_zone import all_id as id_0
+import extras.System_Id as ID
 #EXTRA_TEXT--------------------------------------------------------------------------------------
 cafe = ID.cafe
 Fenne = 474984052017987604 
