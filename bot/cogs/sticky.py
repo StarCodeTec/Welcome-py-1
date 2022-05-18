@@ -1,5 +1,7 @@
 import discord
 from discord.ext import tasks, commands
+import sys
+sys.path.append('../')
 import System_Id as ID
 from text_zone import BIG as b
 from text_zone import all_id as id_0
