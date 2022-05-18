@@ -2,9 +2,9 @@ import discord
 from discord.ext import tasks, commands
 import sys
 sys.path.append('../')
-import System_Id as ID
-from text_zone import BIG as b
-from text_zone import all_id as id_0
+from ..extras.text_zone import BIG as b
+from ..extras.text_zone import all_id as id_0
+import ..extras.System_Id as ID
 
 cog = commands.Cog
 botuser = 966392608895152228
