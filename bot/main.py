@@ -127,7 +127,7 @@ async def main_start():
         #gen.start()
         #bump.start()
         #bystander.start()
-        await bot.add_cog(sticky.sticky())
+        await bot.add_cog(sticky.sticky(bot))
         await bot.start(str(key)) 
 
         
