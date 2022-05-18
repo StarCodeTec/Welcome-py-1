@@ -31,4 +31,5 @@ class sticky(commands.Cog):
       await cha.send("This is only for asking members to DM. Any advertising of your own DM's or friend requests may be removed and warned!")
     elif msg.channel.id == 976322762631172147:
       cha = self.bot.get_channel(976322762631172147) or await self.bot.fetch_channel(976322762631172147)
+      await cha.purge(limit=2, check=is_me)
       await cha.send("Connect Post Example:\n```Status:\nMood:\nTopics of interest right now:```\n\nMust be text only, you can delete your status at any time!")
