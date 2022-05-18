@@ -10,7 +10,7 @@ class sticky(commands.Cog):
     self.bot=bot
   
   @cog.listener()
-  async def on_message(msg):
+  async def on_message(self, msg):
     if msg.guild is None:return
     if msg.author.id == botuser:return
     def is_me(msg):
