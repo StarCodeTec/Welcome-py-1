@@ -34,7 +34,8 @@ botuser = 966392608895152228
 intents = discord.Intents.all()
 intents.typing = False
 intents.presences = False
-bot = commands.Bot(command_prefix=commands.when_mentioned_or('F^ ', 'F^'), intents=intents)
+ACTIVITY=discord.Activity(type=discord.ActivityType.watching, name="discord.gg/FemboyCafe")
+bot = commands.Bot(command_prefix=commands.when_mentioned_or('F^ ', 'F^'), intents=intents, activity=ACTIVITY)
 
 #-----------------------------------------------------------------------------------------------
 
