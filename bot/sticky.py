@@ -5,9 +5,8 @@ import System_Id as ID
 cog = commands.Cog
 botuser = 966392608895152228
 cafe = ID.cafe
-bot=commands.Bot
 class sticky(commands.Cog):
-  def __init__(self):
+  def __init__(self, bot):
     self.bot=bot
   
   @cog.listener()
