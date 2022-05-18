@@ -1,6 +1,6 @@
 #cogs--------------------------------------------------------------------------------------------  
 import cogs.sticky as sticky
-
+import cogs.react as react
 #async_run---------------------------------------------------------------------------------------
 import asyncio
 def run(run):
@@ -64,18 +64,6 @@ async def on_guild_channel_create(cha):
 async def on_message(msg):
   if msg.guild is None:return
   if msg.author.id == botuser:return
-  if msg.channel.id == cafe.Little_fenne.News or msg.channel.category_id == cafe.cats.Selfies:
-    if msg.channel.id == cafe.Selfies.Comments:return
-    rx1 = await msg.guild.fetch_emoji(925500399656509489)
-    rxcheck = await msg.guild.fetch_emoji(919007866940182589)
-    await msg.add_reaction(rx1)
-    await msg.add_reaction(rxcheck)
-    await msg.add_reaction(r3)            
-    await msg.add_reaction(r4)            
-    await msg.add_reaction(r5)
-  elif msg.channel.id == cafe.Mod.News:
-    rxcheck = await msg.guild.fetch_emoji(919007866940182589)
-    await msg.add_reaction(rxcheck)
   elif msg.content.startswith(".speak"):
     if msg.channel.id != 956295021676601386:return
     message = msg.content.removeprefix(".speak").lstrip()
@@ -128,6 +116,7 @@ async def main_start():
         #bump.start()
         #bystander.start()
         await bot.add_cog(sticky.sticky(bot))
+        await bot.add_cog(react.auto_react(bot))
         await bot.start(str(key)) 
 
         
