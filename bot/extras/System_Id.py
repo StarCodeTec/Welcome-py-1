@@ -1,3 +1,5 @@
+def __init__():
+  return
 log_channel = 956322799411150949
 class Logs:
   logs = 956322799411150952
