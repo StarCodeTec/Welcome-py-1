@@ -1,6 +1,5 @@
 #cogs--------------------------------------------------------------------------------------------  
-#import version2_0 as twozz
-#test=twozz.test()
+import sticky
 
 #async_run---------------------------------------------------------------------------------------
 import asyncio
@@ -65,13 +64,10 @@ async def on_guild_channel_create(cha):
 async def on_message(msg):
   if msg.guild is None:return
   if msg.author.id == botuser:return
-  def is_me(msg):
-    return msg.author.id == botuser
   if msg.channel.id == cafe.Little_fenne.News or msg.channel.category_id == cafe.cats.Selfies:
     if msg.channel.id == cafe.Selfies.Comments:return
     rx1 = await msg.guild.fetch_emoji(925500399656509489)
     rxcheck = await msg.guild.fetch_emoji(919007866940182589)
-
     await msg.add_reaction(rx1)
     await msg.add_reaction(rxcheck)
     await msg.add_reaction(r3)            
@@ -80,18 +76,6 @@ async def on_message(msg):
   elif msg.channel.id == cafe.Mod.News:
     rxcheck = await msg.guild.fetch_emoji(919007866940182589)
     await msg.add_reaction(rxcheck)
-  elif msg.channel.id == 973436882799177768:
-    cha = bot.get_channel(973436882799177768) or await bot.fetch_channel(973436882799177768)
-    await cha.purge(limit=2, check=is_me)
-    await cha.send("This is only for asking members to DM. Any advertising of your own DM's or friend requests may be removed and warned!")
-  elif msg.channel.id == cafe.Chat.Promo:
-    cha = bot.get_channel(cafe.Chat.Promo) or await bot.fetch_channel(cafe.Chat.Promo)
-    await cha.purge(limit=2, check=is_me)
-    await cha.send("Server boosters can post <#904501391299608586> in every 30 minutes!")
-  elif msg.channel.id == cafe.Chat.Bio:
-    cha = bot.get_channel(cafe.Chat.Bio) or await bot.fetch_channel(cafe.Chat.Bio)   
-    await cha.purge(limit=2, check=is_me)
-    await cha.send(b.bt)
   elif msg.content.startswith(".speak"):
     if msg.channel.id != 956295021676601386:return
     message = msg.content.removeprefix(".speak").lstrip()
@@ -140,10 +124,11 @@ async def on_message(msg):
   
 async def main_start():
     async with bot:
-        await bot.start(str(key)) 
         #gen.start()
         #bump.start()
         #bystander.start()
-        #await bot.add_cog(test)
+        await bot.add_cog(sticky.sticky(bot))
+        await bot.start(str(key)) 
+
         
 asyncio.run(main_start())
