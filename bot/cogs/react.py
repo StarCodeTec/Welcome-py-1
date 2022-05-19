@@ -50,7 +50,7 @@ class auto_react(commands.Cog):
     if guild.id != ID.cafe_channel:return
     if channel.id == 976322762631172147 and payload.emoji=="📥":
       send = bot.get_channel(976322463807971389) or await bot.fetch_channel(976322463807971389)
-      await send.send(f"<@{payload.member.id}> is interested <@{msg.author.id}>"
+      await send.send(f"<@{payload.member.id}> is interested <@{msg.author.id}>")
   
   
   
