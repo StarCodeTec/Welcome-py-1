@@ -4,7 +4,7 @@ import cogs.react as react
 import cogs.loops as loop
 #async_run---------------------------------------------------------------------------------------
 import asyncio
-def run(run):
+run=def run(run):
   asyncio.run(run)
 #import------------------------------------------------------------------------------------------  
 
@@ -112,7 +112,7 @@ async def on_message(msg):
       
 
   
-async def main_start(run()):
+async def main_start(run):
     async with bot:
         #gen.start()
         #bump.start()
@@ -124,4 +124,4 @@ async def main_start(run()):
         await bot.start(str(key)) 
 
         
-asyncio.run(main_start(run()))
+run(main_start(run))
