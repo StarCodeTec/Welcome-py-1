@@ -23,7 +23,7 @@ class loops(commands.Cog):
   def __init__(self, bot):
     self.bot=bot
   
-  @tasks.loop(time=datetime.time(0, 0, 0, tzinfo=ZoneInfo("Etc/UTC"),)
+  @tasks.loop(time=datetime.time(0, 0, 0, tzinfo=ZoneInfo("Etc/UTC"))
   async def purge(self):
     cha = await self.bot.fetch_channel(976322762631172147) or self.bot.get_channel(976322762631172147)
     await cha.purge(limit=500)
