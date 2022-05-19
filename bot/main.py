@@ -40,7 +40,7 @@ ACTIVITY=discord.Activity(type=discord.ActivityType.watching, name="discord.gg/F
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('F^ ', 'F^'), intents=intents, activity=ACTIVITY)
 
 #-----------------------------------------------------------------------------------------------
-@tasks.loop(time=[DT.time(hour=0, minute=0, second=0, tzinfo=ZoneInfo("EST")), DT.time(hour=9, minute=52, second=0, tzinfo=ZoneInfo("EST"))])
+@tasks.loop(time=[DT.time(hour=0, minute=0, second=0, tzinfo=ZoneInfo("EST")), DT.time(hour=10, minute=0, second=0, tzinfo=ZoneInfo("EST"))])
 async def purge():
   print("check")
   cha = bot.get_channel(976322762631172147) or await bot.fetch_channel(976322762631172147) 
