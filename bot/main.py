@@ -12,6 +12,8 @@ import discord
 import time
 import traceback
 from discord.ext import tasks, commands
+from pytz import timezone
+TZX = timezone('EST')
 from zoneinfo import ZoneInfo
 import datetime as DT
 
@@ -23,7 +25,7 @@ import extras.System_Id as ID
 #EXTRA_TEXT--------------------------------------------------------------------------------------
 cafe = ID.cafe
 Fenne = 474984052017987604 
-Equinox = 599059234134687774
+Luna = 599059234134687774
 r1 = id_0.fenne
 rcheck = id_0.check
 r3 = id_0.heart
@@ -40,13 +42,14 @@ ACTIVITY=discord.Activity(type=discord.ActivityType.watching, name="discord.gg/F
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('F^ ', 'F^'), intents=intents, activity=ACTIVITY)
 
 #-----------------------------------------------------------------------------------------------
-@tasks.loop(time=[DT.time(hour=0, minute=0, second=0, tzinfo=ZoneInfo("EST")), DT.time(hour=10, minute=0, second=0, tzinfo=ZoneInfo("EST"))])
+@tasks.loop(time=[DT.time(hour=0, minute=0, second=0, tzinfo=TZX), DT.time(hour=10, minute=10, second=8, tzinfo=TZX)])
 async def purge():
   print("check")
   cha = bot.get_channel(976322762631172147) or await bot.fetch_channel(976322762631172147) 
   print("check2")
   await cha.purge(limit=500)
   print("mhmmmmmmm")
+  await cha.send(f"<@{Luna}>")
 @purge.before_loop
 async def waiting():
   await bot.wait_until_ready()
