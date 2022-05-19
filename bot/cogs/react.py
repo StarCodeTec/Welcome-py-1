@@ -37,4 +37,20 @@ class auto_react(commands.Cog):
     elif msg.channel.id == cafe.Mod.News:
       rxcheck = await msg.guild.fetch_emoji(919007866940182589)
       await msg.add_reaction(rxcheck)
-    
+    elif msg.channel.id == 976322762631172147:
+      inbox = await msg.guild.fetch_emoji("📥")
+      await msg.add_reaction(inbox)
+  
+  @cog.listener()
+  async def on_raw_reaction_add(payload):
+    guild=bot.get_guild(payload.guild_id) or bot.fetch_guild(payload.guild_id)
+    channel=guild.get_channel(payload.channel_id) or guild.fetch_channel(payload.channel_id)
+    msg=channel.fetch_message(payload.message_id)
+    if msg.author.id == botuser:return
+    if guild.id != ID.cafe_channel:return
+    if channel.id == 976322762631172147 and payload.emoji=="📥":
+      send = bot.get_channel(976322463807971389) or await bot.fetch_channel(976322463807971389)
+      await send.send(f"<@{payload.member.id}> is interested <@{msg.author.id}>"
+  
+  
+  
