@@ -41,8 +41,8 @@ class auto_react(commands.Cog):
       await msg.add_reaction("📥")
   
   @cog.listener()
-  async def on_raw_reaction_add(payload):
-    guild=bot.get_guild(payload.guild_id) or bot.fetch_guild(payload.guild_id)
+  async def on_raw_reaction_add(self, payload):
+    guild=self.bot.get_guild(payload.guild_id) or self.bot.fetch_guild(payload.guild_id)
     channel=guild.get_channel(payload.channel_id) or guild.fetch_channel(payload.channel_id)
     msg=channel.fetch_message(payload.message_id)
     if msg.author.id == botuser:return
