@@ -44,13 +44,10 @@ bot = commands.Bot(command_prefix=commands.when_mentioned_or('F^ ', 'F^'), inten
 #-----------------------------------------------------------------------------------------------
 @tasks.loop(time=[DT.time(hour=0, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=2, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=4, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=6, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=8, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=10, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=12, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern"))])
 async def purge():
-  print("check")
   cha = bot.get_channel(976322762631172147) or await bot.fetch_channel(976322762631172147) 
-  print("check2")
   await cha.purge(limit=500)
-  print("mhmmmmmmm")
-  await cha.send(f"<@{Luna}>")
-
+  await cha.send("Connect Post Example:\n```Status:\nMood:\nTopics of interest right now:```\n\nMust be text only, you can delete your status at any time!")
+  
 @bot.event
 async def on_member_join(mem):
   try:
