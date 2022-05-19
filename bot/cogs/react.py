@@ -16,7 +16,7 @@ r3 = id_0.heart
 r4 = id_0.P_heart
 r5 = id_0.thumb_up
 null = None
-botuser = 966392608895152228
+botuser = 966392608895152228 
 class auto_react(commands.Cog):
   def __init__(self, bot):
     self.bot=bot
@@ -57,10 +57,12 @@ class auto_react(commands.Cog):
       print("3 F")
       return
     print("3 T")
-    if channel.id == 976322762631172147 and payload.emoji=="📥":
-      print("made it")
-      send = bot.get_channel(976322463807971389) or await bot.fetch_channel(976322463807971389)
-      await send.send(f"<@{payload.member.id}> is interested <@{msg.author.id}>")
+      if channel.id == 976322762631172147:
+        if payload.emoji!="📥":
+          print("4 F")
+        print("made it")
+        send = bot.get_channel(976322463807971389) or await bot.fetch_channel(976322463807971389) 
+        await send.send(f"<@{payload.member.id}> is interested <@{msg.author.id}>")
   
   
   
