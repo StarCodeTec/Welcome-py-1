@@ -45,23 +45,12 @@ class auto_react(commands.Cog):
     guild=self.bot.get_guild(payload.guild_id) or await self.bot.fetch_guild(payload.guild_id)
     channel=guild.get_channel(payload.channel_id) or await guild.fetch_channel(payload.channel_id)
     msg=await channel.fetch_message(payload.message_id)
-    if msg.author.id == botuser:
-      print("1 F")
-      return
-    print("1 T")
-    if guild is None:
-      print("2 F")
-      return
-    print("2 T")
-    if guild.id != ID.cafe_channel:
-      print("3 F")
-      return
-    print("3 T")
+    if msg.author.id == botuser:return
+    if payload.member.id == botuder:return
+    if guild is None:return
+    if guild.id != ID.cafe_channel:return
     if channel.id == 976322762631172147:
-      if str(payload.emoji) !="📥":
-        print("4 F")
-        return
-      print("made it")
+      if str(payload.emoji) !="📥":return
       send = self.bot.get_channel(976322463807971389) or await self.bot.fetch_channel(976322463807971389) 
       await send.send(f"<@{payload.member.id}> is interested <@{msg.author.id}>")
   
