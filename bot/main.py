@@ -114,7 +114,7 @@ async def on_message(msg):
   
 async def main_start(run):
     async with bot:
-        #gen.start()
+        loop.loops.purge.start()
         #bump.start()
         #bystander.start()
         await bot.add_cog(sticky.sticky(bot))
