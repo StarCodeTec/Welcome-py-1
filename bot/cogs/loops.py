@@ -33,4 +33,4 @@ class loops(commands.Cog):
   
   async def loop_start_main(self):
     async with self.bot:
-      await purge.start()
+      await purge.start(self)
