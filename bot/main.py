@@ -1,6 +1,7 @@
 #cogs--------------------------------------------------------------------------------------------  
 import cogs.sticky as sticky
 import cogs.react as react
+import cogs.loops as loop
 #async_run---------------------------------------------------------------------------------------
 import asyncio
 def run(run):
@@ -111,14 +112,16 @@ async def on_message(msg):
       
 
   
-async def main_start():
+async def main_start(run()):
     async with bot:
         #gen.start()
         #bump.start()
         #bystander.start()
+        run(loop.loops.loop_start_main())
         await bot.add_cog(sticky.sticky(bot))
         await bot.add_cog(react.auto_react(bot))
+        await bot.add_cog(loop.loops(bot))
         await bot.start(str(key)) 
 
         
-asyncio.run(main_start())
+asyncio.run(main_start(run()))
