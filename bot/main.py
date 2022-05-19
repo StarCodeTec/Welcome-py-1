@@ -117,7 +117,6 @@ async def main_start(run):
         #gen.start()
         #bump.start()
         #bystander.start()
-        await run(loop.loops.loop_start_main())
         await bot.add_cog(sticky.sticky(bot))
         await bot.add_cog(react.auto_react(bot))
         await bot.add_cog(loop.loops(bot))
