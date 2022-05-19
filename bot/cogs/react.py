@@ -61,7 +61,7 @@ class auto_react(commands.Cog):
       if payload.emoji!="📥":
         print("4 F")
       print("made it")
-      send = bot.get_channel(976322463807971389) or await bot.fetch_channel(976322463807971389) 
+      send = self.bot.get_channel(976322463807971389) or await self.bot.fetch_channel(976322463807971389) 
       await send.send(f"<@{payload.member.id}> is interested <@{msg.author.id}>")
   
   
