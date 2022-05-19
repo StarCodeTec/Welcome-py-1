@@ -12,6 +12,8 @@ import discord
 import time
 import traceback
 from discord.ext import tasks, commands
+from zoneinfo import ZoneInfo
+import datetime as DTJ
 
 #EXTRA_IMPORTS-----------------------------------------------------------------------------------
 from password import Admin_key as key
@@ -38,7 +40,7 @@ ACTIVITY=discord.Activity(type=discord.ActivityType.watching, name="discord.gg/F
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('F^ ', 'F^'), intents=intents, activity=ACTIVITY)
 
 #-----------------------------------------------------------------------------------------------
-@tasks.loop(time=[dt.time(hour=0, minute=0, second=0, tzinfo=ZoneInfo("EST")), dt.time(hour=9, minute=52, second=0, tzinfo=ZoneInfo("EST"))])
+@tasks.loop(time=[DT.time(hour=0, minute=0, second=0, tzinfo=ZoneInfo("EST")), DT.time(hour=9, minute=52, second=0, tzinfo=ZoneInfo("EST"))])
 async def purge():
   print("check")
   cha = bot.get_channel(976322762631172147) or await bot.fetch_channel(976322762631172147) 
@@ -46,7 +48,7 @@ async def purge():
   await cha.purge(limit=500)
   print("mhmmmmmmm")
 @purge.before_loop
-async def waiting(self):
+async def waiting():
   await bot.wait_until_ready()
 
 @bot.event
