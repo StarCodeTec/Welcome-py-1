@@ -58,7 +58,7 @@ class auto_react(commands.Cog):
       return
     print("3 T")
     if channel.id == 976322762631172147:
-      if payload.emoji !="📥":
+      if str(payload.emoji) !="📥":
         print("4 F")
         return
       print("made it")
