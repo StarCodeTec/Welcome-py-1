@@ -4,7 +4,7 @@ import cogs.react as react
 import cogs.loops as loop
 #async_run---------------------------------------------------------------------------------------
 import asyncio
-run=def run(run):
+def run(run):
   asyncio.run(run)
 #import------------------------------------------------------------------------------------------  
 
