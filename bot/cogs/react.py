@@ -42,9 +42,9 @@ class auto_react(commands.Cog):
   
   @cog.listener()
   async def on_raw_reaction_add(self, payload):
-    guild=self.bot.get_guild(payload.guild_id) or self.bot.fetch_guild(payload.guild_id)
-    channel=guild.get_channel(payload.channel_id) or guild.fetch_channel(payload.channel_id)
-    msg=channel.fetch_message(payload.message_id)
+    guild=self.bot.get_guild(payload.guild_id) or await self.bot.fetch_guild(payload.guild_id)
+    channel=guild.get_channel(payload.channel_id) or await guild.fetch_channel(payload.channel_id)
+    msg=await channel.fetch_message(payload.message_id)
     if msg.author.id == botuser:return
     if guild.id != ID.cafe_channel:return
     if channel.id == 976322762631172147 and payload.emoji=="📥":
