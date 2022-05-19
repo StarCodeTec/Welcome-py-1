@@ -13,7 +13,7 @@ import time
 import traceback
 from discord.ext import tasks, commands
 from zoneinfo import ZoneInfo
-import datetime as DTJ
+import datetime as DT
 
 #EXTRA_IMPORTS-----------------------------------------------------------------------------------
 from password import Admin_key as key
