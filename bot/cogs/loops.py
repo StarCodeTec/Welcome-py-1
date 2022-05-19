@@ -31,6 +31,6 @@ class loops(commands.Cog):
   async def waiting(self):
     await self.bot.wait_until_ready()
   
-  async def loop_start_main(self):
+  async def loop_start_main():
     async with self.bot:
-      await purge.start(self)
+      await purge.start()
