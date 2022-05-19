@@ -6,7 +6,7 @@ from extras.text_zone import BIG as b
 from extras.text_zone import all_id as id_0
 import extras.System_Id as ID
 from zoneinfo import ZoneInfo
-from datetime import datetime
+from datetime import datetime as dt
 
 cog = commands.Cog
 cafe = ID.cafe
@@ -23,7 +23,7 @@ class loops(commands.Cog):
   def __init__(self, bot):
     self.bot=bot
   
-  @tasks.loop(time=datetime.time(hour=0, minute=0, second=0, tzinfo=ZoneInfo("Etc/UTC")))
+  @tasks.loop(time=dt.datetime(hour=0, minute=0, second=0, tzinfo=ZoneInfo("Etc/UTC")))
   async def purge(self):
     cha = await self.bot.fetch_channel(976322762631172147) or self.bot.get_channel(976322762631172147)
     await cha.purge(limit=500)
