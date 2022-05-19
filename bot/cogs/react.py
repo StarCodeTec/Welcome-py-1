@@ -38,8 +38,7 @@ class auto_react(commands.Cog):
       rxcheck = await msg.guild.fetch_emoji(919007866940182589)
       await msg.add_reaction(rxcheck)
     elif msg.channel.id == 976322762631172147:
-      inbox = await msg.guild.fetch_emoji("📥")
-      await msg.add_reaction(inbox)
+      await msg.add_reaction("📥")
   
   @cog.listener()
   async def on_raw_reaction_add(payload):
