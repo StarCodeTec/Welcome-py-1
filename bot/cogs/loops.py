@@ -6,7 +6,7 @@ from extras.text_zone import BIG as b
 from extras.text_zone import all_id as id_0
 import extras.System_Id as ID
 from zoneinfo import ZoneInfo
-from datetime import datetime as dt
+import datetime as dt
 
 cog = commands.Cog
 cafe = ID.cafe
