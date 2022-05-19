@@ -50,9 +50,6 @@ async def purge():
   await cha.purge(limit=500)
   print("mhmmmmmmm")
   await cha.send(f"<@{Luna}>")
-@purge.before_loop
-async def waiting():
-  await bot.wait_until_ready()
 
 @bot.event
 async def on_member_join(mem):
