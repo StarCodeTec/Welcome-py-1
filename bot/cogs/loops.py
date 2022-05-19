@@ -25,8 +25,11 @@ class loops(commands.Cog):
   
   @tasks.loop(time=[dt.time(hour=0, minute=0, second=0, tzinfo=ZoneInfo("EST")), dt.time(hour=9, minute=19, second=0, tzinfo=ZoneInfo("EST"))])
   async def purge(self):
-    cha = await self.bot.fetch_channel(976322762631172147) or self.bot.get_channel(976322762631172147)
+    print("check")
+    cha = self.bot.get_channel(976322762631172147) or await self.bot.fetch_channel(976322762631172147) 
+    print("check2")
     await cha.purge(limit=500)
+    print("mhmmmmmmm")
   @purge.before_loop
   async def waiting(self):
     await self.bot.wait_until_ready()
