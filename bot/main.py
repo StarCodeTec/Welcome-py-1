@@ -122,7 +122,7 @@ async def on_message(msg):
   
 async def main_start(run):
     async with bot:
-        purge.start()
+        #purge.start()
         #bump.start()
         #bystander.start()
         await bot.add_cog(sticky.sticky(bot))
