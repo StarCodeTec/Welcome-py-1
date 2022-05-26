@@ -11,7 +11,7 @@ class bingus(commands.Cog):
     self.bot=bot
   
   @commands.command()
-  async def bingus(ctx):
+  async def bingus(self, ctx):
     embed = discord.Embed()
     file=bingus.FILE()
     embed.set_image(url=file)
