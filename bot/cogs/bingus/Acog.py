@@ -13,6 +13,7 @@ class bingus(commands.Cog):
   @commands.command()
   async def bingus(self, ctx):
     embed = discord.Embed()
-    file=str(bingus.bingus)
-    await ctx.channel.send(embed=embed, file=file)
+    Bingus=bingus.bingus
+    file=Bingus
+    await ctx.send(embed=embed, file=file)
   
