@@ -1,6 +1,8 @@
 #cogs--------------------------------------------------------------------------------------------  
 import cogs.sticky as sticky
 import cogs.react as react
+import cogs.bingus.A_cog as BINGUS_MEME
+
 #async_run---------------------------------------------------------------------------------------
 import asyncio
 def run(run):
@@ -74,6 +76,8 @@ async def on_guild_channel_create(cha):
 async def on_message(msg):
   if msg.guild is None:return
   if msg.author.id == botuser:return
+  if msg.content == "F^ bingus" or msg.content == "F^bingus":
+    await bot.process_commands(msg)
   elif msg.content.startswith(".speak"):
     if msg.channel.id != 956295021676601386:return
     message = msg.content.removeprefix(".speak").lstrip()
@@ -125,6 +129,7 @@ async def main_start(run):
         #purge.start()
         #bump.start()
         #bystander.start()
+        await bot.add_cog(BINGUS_MEME.bingus(bot))
         await bot.add_cog(sticky.sticky(bot))
         await bot.add_cog(react.auto_react(bot))
         await bot.start(str(key)) 
