@@ -1,6 +1,6 @@
 import discord
 from discord.ext import tasks, commands
-from bingus_vars import *
+from bingusVAR import *
 cog = commands.Cog
 cafe = ID.cafe
 Fenne = 474984052017987604 
