@@ -1,6 +1,6 @@
 import discord
 from discord.ext import tasks, commands
-from bingus_vars import FILE() as f()
+from bingus_vars import *
 cog = commands.Cog
 cafe = ID.cafe
 Fenne = 474984052017987604 
@@ -19,7 +19,7 @@ class bingus(commands.Cog):
   @cog.command()
   async def bingus(ctx):
     embed = discord.Embed()
-    file=f()
+    file=FILE()
     embed.set_image(url=file)
     await ctx.send(embed=embed)
   
