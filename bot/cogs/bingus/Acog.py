@@ -1,7 +1,5 @@
 import discord
 from discord.ext import tasks, commands
-import sys
-sys.path.append('.')
 import bingusVAR as bingus
 cog = commands.Cog
 cafe = ID.cafe
