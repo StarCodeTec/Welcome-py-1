@@ -1,26 +1,4 @@
-b1=
-b2=
-b3=
-b4=
-b5=
-b6=
-b7=
-b8=
-b9=
-b10=
-b11=
-b12=
-b13=
-b14=
-b15=
-b16=
-b17=
-b18=
-b19=
-b20=
-b21=
-b22=
-b23=
-b24=
-b25=
-b26=
+import random
+def FILE():
+  file=["attachment://bingus!.gif", "attachment://bingus-beloved.gif", "attachment://bingus-bongus.gif", "attachment://bingus-cat.gif", "attachment://bingus-cube.gif", "attachment://bingus-cult.gif", "attachment://bingus-cults.gif", "attachment://bingus-dance.gif", "attachment://bingus-dances.gif", "attachment://bingus-delilah.gif", "attachment://bingus-dimension.gif", "attachment://bingus-evolution.gif", "attachment://bingus-hater.gif", "attachment://bingus-haters.gif", "attachment://bingus-hi.gif", "attachment://bingus-love.gif", "attachment://bingus-loves.gif", "attachment://bingus-mar.gif", "attachment://bingus-meme.gif", "attachment://bingus-phone.gif", "attachment://bingus-tat.gif", "attachment://bingus.gif", "attachment://bingus_army.gif", "attachment://bingus_heart.gif", "attachment://bingus_smart.gif", "attachment://dead-chat.gif"]
+  return  random.choice(file)
