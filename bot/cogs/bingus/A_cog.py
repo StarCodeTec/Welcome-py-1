@@ -12,15 +12,14 @@ r4 = id_0.P_heart
 r5 = id_0.thumb_up
 null = None
 botuser = 966392608895152228 
-class loops(commands.Cog):
+class bingus(commands.Cog):
   def __init__(self, bot):
     self.bot=bot
   
   @cog.command()
   async def bingus(ctx):
-    embed = discord.Embed() # any kwargs you want here
+    embed = discord.Embed()
     file=f()
     embed.set_image(url=file)
-    # filename and extension have to match (ex. "thisname.jpg" has to be "attachment://thisname.jpg")
     await ctx.send(embed=embed)
   
