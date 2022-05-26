@@ -1,4 +1,6 @@
 import discord
+import random
+
 from discord.ext import tasks, commands
 cog = commands.Cog
 Fenne = 474984052017987604 
