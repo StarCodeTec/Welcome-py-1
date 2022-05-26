@@ -18,7 +18,7 @@ class bingus(commands.Cog):
     filess=random.choice(files)
     os.chdir("/home/container/bot/cogs/bingus/")
     print(os.getcwd())
-    file = discord.File(f"attachment://{filess}")
+    file = discord.File(f"https://github.com/jagg3127/Welcome-py-1/tree/main/bot/cogs/bingus/{filess}")
     embed = discord.Embed(title="Bingus")
     embed.set_image(url=file)
     await ctx.send(embed=embed)
