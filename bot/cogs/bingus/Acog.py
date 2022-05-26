@@ -10,7 +10,7 @@ class bingus(commands.Cog):
   def __init__(self, bot):
     self.bot=bot
   
-  @cog.command()
+  @commands.command()
   async def bingus(ctx):
     embed = discord.Embed()
     file=bingus.FILE()
