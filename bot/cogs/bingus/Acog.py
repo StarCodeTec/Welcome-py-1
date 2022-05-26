@@ -1,5 +1,6 @@
 import discord
 import random
+import os
 from pathlib import Path
 from discord.ext import tasks, commands
 cog = commands.Cog
@@ -16,7 +17,7 @@ class bingus(commands.Cog):
     files=["bingus.png", "bingus!.gif", "bingus-beloved.gif", "bingus-bongus.gif", "bingus-cat.gif", "bingus-cube.gif", "bingus-cult.gif", "bingus-cults.gif", "bingus-dance.gif", "bingus-dances.gif", "bingus-delilah.gif", "bingus-dimension.gif", "bingus-evolution.gif", "bingus-hater.gif", "bingus-haters.gif", "bingus-hi.gif", "bingus-love.gif", "bingus-loves.gif", "bingus-mar.gif", "bingus-meme.gif", "bingus-phone.gif", "bingus-tat.gif", "bingus.gif", "bingus_army.gif", "bingus_heart.gif", "bingus_smart.gif", "dead-chat.gif"]
     filess=random.choice(files)
     Path("/home/container/bot/cogs/bingus")
-    print(Path)
+    print(os.getcwd())
     file = discord.File(f"attachment://{filess}")
     embed = discord.Embed(title="Bingus")
     embed.set_image(url=file)
