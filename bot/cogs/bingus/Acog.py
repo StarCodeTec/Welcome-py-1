@@ -1,6 +1,7 @@
 import discord
 import random
-
+import os
+cwd = os.getcwd()
 from discord.ext import tasks, commands
 cog = commands.Cog
 Fenne = 474984052017987604 
@@ -19,4 +20,4 @@ class bingus(commands.Cog):
     embed = discord.Embed()
     embed.set_image(url=f"attachment://{filess}")
     await ctx.send(embed=embed, file=file)
-  
+    print(cwd)
