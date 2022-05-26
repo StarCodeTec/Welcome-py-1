@@ -18,4 +18,5 @@ class bingus(commands.Cog):
     filess=random.choice(files)
     file = discord.File(f"bot/cogs/bingus/{filess}")
     embed = discord.Embed()
+    embed.title("Bingus")
     await ctx.send(embed=embed, file=file)
