@@ -2,7 +2,7 @@ import discord
 from discord.ext import tasks, commands
 import sys
 sys.path.append('.')
-from bingusVAR as bingus
+import bingusVAR as bingus
 cog = commands.Cog
 cafe = ID.cafe
 Fenne = 474984052017987604 
