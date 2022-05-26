@@ -20,5 +20,5 @@ class bingus(commands.Cog):
     print(os.getcwd())
     #file = discord.File(f"{filess}")
     embed = discord.Embed(title="Bingus")
-    embed.set_image(url=f"https://discord.com/channels/956322799411150949/963131252037259316/968637849995980810")
+    embed.set_image(url="https://discord.com/channels/956322799411150949/963131252037259316/968635071085052005")
     await ctx.send(embed=embed)
