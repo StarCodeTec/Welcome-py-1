@@ -14,5 +14,5 @@ class bingus(commands.Cog):
   async def bingus(self, ctx):
     embed = discord.Embed()
     file=bingus.bingus
-    await ctx.send(embed=embed, file=file)
+    await ctx.channel.send(embed=embed, file=file)
   
