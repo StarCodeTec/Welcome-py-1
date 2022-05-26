@@ -13,7 +13,7 @@ class bingus(commands.Cog):
   @commands.command()
   async def bingus(self, ctx):
     embed = discord.Embed()
-    file=bingus.FILE()
+    file=bingus.bingus
     embed.set_image(url=file)
     await ctx.send(embed=embed)
   
