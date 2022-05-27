@@ -1,7 +1,7 @@
 #cogs--------------------------------------------------------------------------------------------  
 import cogs.sticky as sticky
 import cogs.react as react
-import cogs.bingus.Acog as BINGUS_MEME
+import cogs.bingus as BINGUS_MEME
 
 #async_run---------------------------------------------------------------------------------------
 import asyncio
