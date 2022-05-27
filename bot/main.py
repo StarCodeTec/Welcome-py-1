@@ -1,7 +1,7 @@
 #cogs--------------------------------------------------------------------------------------------  
 import cogs.sticky as sticky
 import cogs.react as react
-import cogs.bingus as BINGUS_MEME
+#import cogs.bingus as BINGUS_MEME
 
 #async_run---------------------------------------------------------------------------------------
 import asyncio
@@ -77,7 +77,11 @@ async def on_message(msg):
   if msg.guild is None:return
   if msg.author.id == botuser:return
   if msg.content == "F^ bingus" or msg.content == "F^bingus":
-    await bot.process_commands(msg)
+    file=["Z5EW9Ij", "apGRbbd", "bxSmibQ", "0pld30P", "ekv5sS", "cTQxzzz", "Qz0o2au", "0o0YOq9", "Cie89pF", "n4E8Eo7", "a52YHBu", "lYDqcIH", "TZ227yu", "T4RJ0mC", "UqnkEGP", "wAg3rsf", "wSWdCaT", "RqT1tFS", "3VJGRpY", "raerLvq", "LH8VqGH", "xtrV1fj", "GePK3z5", "qOKGQ9p", "dYt8wZk", "qvtC6Ix", "2vgNv4u"]
+    files=random.choice(file)
+    embed = discord.Embed()
+    embed.set_image(url=f"https://i.imgur.com/{files}.gif")
+    await msg.channel.send(embed=embed)
   elif msg.content.startswith(".speak"):
     if msg.channel.id != 956295021676601386:return
     message = msg.content.removeprefix(".speak").lstrip()
@@ -129,7 +133,7 @@ async def main_start(run):
         #purge.start()
         #bump.start()
         #bystander.start()
-        await bot.add_cog(BINGUS_MEME.bingus(bot))
+        #await bot.add_cog(BINGUS_MEME.bingus(bot))
         await bot.add_cog(sticky.sticky(bot))
         await bot.add_cog(react.auto_react(bot))
         await bot.start(str(key)) 
