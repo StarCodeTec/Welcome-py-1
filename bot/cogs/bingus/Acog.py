@@ -14,8 +14,8 @@ class bingus(commands.Cog):
   
   @commands.command()
   async def bingus(self, ctx):
-    files=["bingus!.gif", "bingus-beloved.gif", "bingus-bongus.gif", "bingus-cat.gif", "bingus-cube.gif", "bingus-cult.gif", "bingus-cults.gif", "bingus-dance.gif", "bingus-dances.gif", "bingus-delilah.gif", "bingus-dimension.gif", "bingus-evolution.gif", "bingus-hater.gif", "bingus-haters.gif", "bingus-hi.gif", "bingus-love.gif", "bingus-loves.gif", "bingus-mar.gif", "bingus-meme.gif", "bingus-phone.gif", "bingus-tat.gif", "bingus.gif", "bingus_army.gif", "bingus_heart.gif", "bingus_smart.gif", "dead-chat.gif"]
-    filess=random.choice(files)
+    file=["Z5EW9Ij", "apGRbbd", "bxSmibQ", "0pld30P", "ekv5sS", "cTQxzzz", "Qz0o2au", "0o0YOq9", "Cie89pF", "n4E8Eo7", "a52YHBu", "lYDqcIH", "TZ227yu", "T4RJ0mC", "UqnkEGP", "wAg3rsf", "wSWdCaT", "RqT1tFS", "3VJGRpY", "raerLvq", "LH8VqGH", "xtrV1fj", "GePK3z5", "qOKGQ9p", "dYt8wZk", "qvtC6Ix", "zvccvn8"]
+    files=random.choice(file)
     embed = discord.Embed()
-    embed.set_image(url=f"https://i.imgur.com/{filess}.gif")
+    embed.set_image(url=f"https://i.imgur.com/{files}.gif")
     await ctx.send(embed=embed)
