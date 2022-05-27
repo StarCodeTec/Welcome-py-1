@@ -77,7 +77,7 @@ async def on_message(msg):
   if msg.guild is None:return
   if msg.author.id == botuser:return
   if msg.content == "F^ bingus" or msg.content == "F^bingus":
-    await bot.process_commands(msg)
+    #await bot.process_commands(msg)
   elif msg.content.startswith(".speak"):
     if msg.channel.id != 956295021676601386:return
     message = msg.content.removeprefix(".speak").lstrip()
