@@ -18,9 +18,9 @@ from pytz import timezone
 TZX = timezone('EST')
 from zoneinfo import ZoneInfo
 import datetime as DT
-
-#EXTRA_IMPORTS-----------------------------------------------------------------------------------
-from password import Admin_key as key
+from pass_XXX import busboy as BUSBOY
+#EXTRA_IMPORTS----------------------------------------------------------------------------------
+key = BUSBOY.key
 from extras.text_zone import BIG as b
 from extras.text_zone import all_id as id_0
 import extras.System_Id as ID
