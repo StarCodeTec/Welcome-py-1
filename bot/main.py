@@ -18,7 +18,8 @@ from pytz import timezone
 TZX = timezone('EST')
 from zoneinfo import ZoneInfo
 import datetime as DT
-from passcodes import main.fenne.key as key
+from passcodes import main
+key=main.fenne.key
 
 #EXTRA_IMPORTS----------------------------------------------------------------------------------
 key = BUSBOY.key
