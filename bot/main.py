@@ -22,6 +22,7 @@ from passcodes import main
 key=main.fenne.key
 import motor.motor_asyncio
 from db.dbc import client as connection_url
+from db.mongo import Document
 #EXTRA_IMPORTS----------------------------------------------------------------------------------
 from extras.text_zone import BIG as b
 from extras.text_zone import all_id as id_0
