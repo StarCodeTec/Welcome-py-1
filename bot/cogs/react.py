@@ -46,6 +46,7 @@ class auto_react(commands.Cog):
     channel=guild.get_channel(payload.channel_id) or await guild.fetch_channel(payload.channel_id)
     msg=await channel.fetch_message(payload.message_id)
     if msg.author.id == botuser:return
+    if payload.member.id == botuser: return
     if guild is None:return
     if guild.id != ID.cafe_channel:return
     if channel.id == 976322762631172147:
@@ -62,7 +63,6 @@ class auto_react(commands.Cog):
 
     if channel.id != 976322762631172147:return
     if msg.author.id == botuser:return
-    if payload.member.id == botuser:return
     if guild is None:return
 
     data = await self.bot.inbox.find(msg.id)
