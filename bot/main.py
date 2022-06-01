@@ -45,8 +45,8 @@ intents.typing = False
 intents.presences = False
 ACTIVITY=discord.Activity(type=discord.ActivityType.watching, name="discord.gg/FemboyCafe")
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('F^ ', 'F^'), intents=intents, activity=ACTIVITY)
-bot.mongo = motor.motor_asyncio.AsyncIOMotorClient(str(bot.connection_url)) 
-bot.inbox = Document(bot.db, "inbox") 
+bot.mongo = motor.motor_asyncio.AsyncIOMotorClient(str(bot.connection_url))
+bot.inbox = Document(bot.db, "inbox")
 
 #-----------------------------------------------------------------------------------------------
 @tasks.loop(time=[DT.time(hour=0, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=2, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=4, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=6, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=8, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=10, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=12, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern"))])
