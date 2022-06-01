@@ -1,7 +1,18 @@
 import logging
 import collections
+import from pymongo.errors import PyMongoError
+class IdNotFound(PyMongoError):
+    """Raised when _id was not found in the database collection."""
 
-from utils.exceptions import IdNotFound
+    def __init__(self, *args):
+        if args:
+            self.message = args[0]
+        else:
+            self.message = self.__doc__
+
+    def __str__(self):
+        return self.message
+
 """
 A helper file for using mongo db
 Class document aims to make using mongo calls easy, saves
