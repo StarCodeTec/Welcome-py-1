@@ -1,6 +1,6 @@
 import logging
 import collections
-import from pymongo.errors import PyMongoError
+from pymongo.errors import PyMongoError
 class IdNotFound(PyMongoError):
     """Raised when _id was not found in the database collection."""
 
