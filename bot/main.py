@@ -23,7 +23,6 @@ key=main.fenne.key
 import motor.motor_asyncio
 from db.dbc import client as connection_url
 #EXTRA_IMPORTS----------------------------------------------------------------------------------
-key = BUSBOY.key
 from extras.text_zone import BIG as b
 from extras.text_zone import all_id as id_0
 import extras.System_Id as ID
