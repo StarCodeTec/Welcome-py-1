@@ -63,7 +63,6 @@ class auto_react(commands.Cog):
 
     if channel.id != 976322762631172147:return
     if msg.author.id == botuser:return
-    if payload.member.id == botuser:return
     if guild is None:return
 
     data = await self.bot.inbox.find(msg.id)
