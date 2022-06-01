@@ -52,7 +52,23 @@ class auto_react(commands.Cog):
     if channel.id == 976322762631172147:
       if str(payload.emoji) !="📥":return
       send = self.bot.get_channel(976322463807971389) or await self.bot.fetch_channel(976322463807971389) 
-      await send.send(f"<@{payload.member.id}> is interested <@{msg.author.id}>")
-  
-  
-  
+      inbox_msg = await send.send(f"<@{payload.member.id}> is interested <@{msg.author.id}>")
+      await self.bot.inbox.upsert({"_id": msg.id, "inbox_msg": inbox_msg.id})
+    
+  @cog.listener()
+  async def on_raw_reaction_remove(self, payload):
+    guild=self.bot.get_guild(payload.guild_id) or await self.bot.fetch_guild(payload.guild_id)
+    channel=guild.get_channel(payload.channel_id) or await guild.fetch_channel(payload.channel_id)
+    msg=await channel.fetch_message(payload.message_id)
+
+    if channel.id != 976322762631172147:return
+    if msg.author.id == botuser:return
+    if payload.member.id == botuser:return
+    if guild is None:return
+
+    data = await self.bot.inbox.find(msg.id)
+    if not data:return
+
+    msg_to_delete = await self.bot.fetch_message(data["inbox_msg"])
+    await msg_to_delete.delete()
+
