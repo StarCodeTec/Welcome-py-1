@@ -1,8 +1,6 @@
-import discord
-from discord.ext import tasks, commands
+from discord.ext import commands
 import sys
 sys.path.append('..')
-from extras.text_zone import BIG as b
 from extras.text_zone import all_id as id_0
 import extras.System_Id as ID
 
@@ -17,16 +15,23 @@ r4 = id_0.P_heart
 r5 = id_0.thumb_up
 null = None
 botuser = 966392608895152228 
+
 class auto_react(commands.Cog):
   def __init__(self, bot):
     self.bot=bot
     
   @cog.listener()
   async def on_message(self, msg):
-    if msg.guild is None:return
-    if msg.author.id == botuser:return
+    if msg.guild is None:
+      return
+
+    if msg.author.id == botuser:
+      return
+
     if msg.channel.id == cafe.Little_fenne.News or msg.channel.category_id == cafe.cats.Selfies:
-      if msg.channel.id == cafe.Selfies.Comments:return
+      if msg.channel.id == cafe.Selfies.Comments:
+        return
+
       rx1 = await msg.guild.fetch_emoji(925500399656509489)
       rxcheck = await msg.guild.fetch_emoji(919007866940182589)
       await msg.add_reaction(rx1)
@@ -34,9 +39,11 @@ class auto_react(commands.Cog):
       await msg.add_reaction(r3)          
       await msg.add_reaction(r4)          
       await msg.add_reaction(r5)
+    
     elif msg.channel.id == cafe.Mod.News:
       rxcheck = await msg.guild.fetch_emoji(919007866940182589)
       await msg.add_reaction(rxcheck)
+    
     elif msg.channel.id == 976322762631172147:
       await msg.add_reaction("📥")
   
@@ -45,20 +52,35 @@ class auto_react(commands.Cog):
     guild=self.bot.get_guild(payload.guild_id) or await self.bot.fetch_guild(payload.guild_id)
     channel=guild.get_channel(payload.channel_id) or await guild.fetch_channel(payload.channel_id)
     msg=await channel.fetch_message(payload.message_id)
-    if msg.author.id == botuser:return
-    if payload.member.id == botuser: return
-    if guild is None:return
-    if guild.id != ID.cafe_channel:return
-    if channel.id == 976322762631172147:
-      if str(payload.emoji) !="📥":return
     
-      filter = {"user": payload.user_id, "react": "1", "original": msg.id}
-      data = self.bot.inbox.filter_by_custom(filter)
-      if data:return
-        
-      send = self.bot.get_channel(976322463807971389) or await self.bot.fetch_channel(976322463807971389) 
-      inbox_msg = await send.send(f"<@{payload.member.id}> is interested <@{msg.author.id}>")
-      await self.bot.inbox.upsert({"_id": inbox_msg.id, "user": payload.user_id, "orignal": msg.id, "react": "0"})
+    if msg.author.id == botuser:
+      return
+    
+    if payload.member.id == botuser:
+      return
+    
+    if guild is None:
+      return
+    
+    if guild.id != ID.cafe_channel:
+      return
+    
+    if channel.id != 976322762631172147:
+      return
+
+    if str(payload.emoji) !="📥":
+      return
+          
+    send = self.bot.get_channel(976322463807971389) or await self.bot.fetch_channel(976322463807971389) 
+    inbox_msg = await send.send(f"<@{payload.member.id}> is interested <@{msg.author.id}>")
+    
+    await self.bot.inbox.upsert(
+      {
+        "_id": inbox_msg.id,
+        "user": payload.user_id,
+        "orignal": msg.id, 
+      }
+    )
     
   @cog.listener()
   async def on_raw_reaction_remove(self, payload):
@@ -66,20 +88,25 @@ class auto_react(commands.Cog):
     channel=guild.get_channel(payload.channel_id) or await guild.fetch_channel(payload.channel_id)
     msg=await channel.fetch_message(payload.message_id)
 
-    if channel.id != 976322762631172147:return
-    if msg.author.id == botuser:return
-    if guild is None:return
+    if channel.id != 976322762631172147:
+      return
+    
+    if msg.author.id == botuser:
+      return
+    
+    if guild is None:
+      return
     
     filter = {"user": payload.user_id, "orignal": msg.id}
 
     data = await self.bot.inbox.find_by_custom(filter)
-    if not data:return
+    
+    if not data:
+      return
     
     inbox = self.bot.get_channel(976322463807971389)
-    
-    msg_to_delete = await inbox.fetch_message(data["_id"])
 
+    msg_to_delete = await inbox.fetch_message(data["_id"])
     await msg_to_delete.delete()
 
     await self.bot.inbox.delete(data["_id"]) # We don't need to store it anymore
-    

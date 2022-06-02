@@ -1,13 +1,13 @@
 import discord
 import random
-import os
-from pathlib import Path
-from discord.ext import tasks, commands
+from discord.ext import commands
+
 cog = commands.Cog
 Fenne = 474984052017987604 
 Equinox = 599059234134687774
 null = None
 botuser = 966392608895152228 
+
 class bingus(commands.Cog):
   def __init__(self, bot):
     self.bot=bot
