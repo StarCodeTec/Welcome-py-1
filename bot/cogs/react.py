@@ -51,6 +51,11 @@ class auto_react(commands.Cog):
     if guild.id != ID.cafe_channel:return
     if channel.id == 976322762631172147:
       if str(payload.emoji) !="📥":return
+    
+      filter = {"_id": payload.user_id, "react": "1", "original": msg.id}
+      data = self.bot.inbox.filter_by_custom(filter)
+      if data:return
+        
       send = self.bot.get_channel(976322463807971389) or await self.bot.fetch_channel(976322463807971389) 
       inbox_msg = await send.send(f"<@{payload.member.id}> is interested <@{msg.author.id}>")
       await self.bot.inbox.upsert({"_id": inbox_msg.id, "user": payload.user_id, "orignal": msg.id})
@@ -77,4 +82,4 @@ class auto_react(commands.Cog):
     
   
     await msg_to_delete.delete()
-
+    await self.bot.inbox.upsert({"react": "1"})
