@@ -65,7 +65,9 @@ async def on_member_join(mem):
   finally:
     welcomed= discord.Object(id=889011345712894002)
     reg= discord.utils.get(mem.guild.roles, name="Regular")
-    if reg not in mem.roles:return
+    if reg not in mem.roles:
+      return
+
     await mem.remove_roles(welcomed)
 
 @bot.event
@@ -73,15 +75,21 @@ async def on_guild_channel_create(cha):
   if cha.category.id == cafe.cats.Home and "ticket" in str(cha.name):
     time.sleep(3)
     await cha.send("Hey there, how can we help you?")
+
   elif cha.id != cafe.Verify.Entrance:
-    if cha.category_id != cafe.cats.Verify:return
+    if cha.category_id != cafe.cats.Verify:
+      return
     time.sleep(2)
     await cha.send("Please put all answers in one message and do not close the ticket!")
 
 @bot.event
 async def on_message(msg):
-  if msg.guild is None:return
-  if msg.author.id == botuser:return
+  if msg.guild is None:
+    return
+
+  if msg.author.id == botuser:
+    return
+
   if msg.content == "F^ bingus" or msg.content == "F^bingus":
     file=["Z5EW9Ij", "apGRbbd", "bxSmibQ", "0pld30P", "ekv5sS", "cTQxzzz", "Qz0o2au", "0o0YOq9", "Cie89pF", "n4E8Eo7", "a52YHBu", "lYDqcIH", "TZ227yu", "T4RJ0mC", "UqnkEGP", "wAg3rsf", "wSWdCaT", "RqT1tFS", "3VJGRpY", "raerLvq", "LH8VqGH", "xtrV1fj", "GePK3z5", "qOKGQ9p", "dYt8wZk", "qvtC6Ix", "2vgNv4u"]
     files=RANDOM.choice(file)
@@ -110,8 +118,12 @@ async def on_message(msg):
     else:
       await cha.send(text)
   elif msg.channel.id != cafe.Verify.Entrance:
-    if msg.channel.category_id != cafe.cats.Verify:return
-    if msg.reference == None:return
+    if msg.channel.category_id != cafe.cats.Verify:
+      return
+
+    if msg.reference == None:
+      return
+
     """needed space"""
     welcomed= discord.Object(id=889011345712894002)
     unwelcomed= discord.Object(id=889011029428801607)
@@ -120,7 +132,9 @@ async def on_message(msg):
     member = reply.author
     gen = bot.get_channel(cafe.Chat.General) or await bot.fetch_channel(cafe.Chat.General)
     logs = bot.get_channel(ID.Logs.logs) or await bot.fetch_channel(ID.Logs.logs)
-    if admin not in msg.author.roles:return
+    if admin not in msg.author.roles:
+      return
+      
     if msg.content == ".verify" or msg.content == "<:approved:973046001118101514>":
       await member.remove_roles(unwelcomed)
       await member.add_roles(welcomed)
