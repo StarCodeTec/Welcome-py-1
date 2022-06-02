@@ -31,8 +31,8 @@ class auto_react(commands.Cog):
       rxcheck = await msg.guild.fetch_emoji(919007866940182589)
       await msg.add_reaction(rx1)
       await msg.add_reaction(rxcheck)
-      await msg.add_reaction(r3)            
-      await msg.add_reaction(r4)            
+      await msg.add_reaction(r3)          
+      await msg.add_reaction(r4)          
       await msg.add_reaction(r5)
     elif msg.channel.id == cafe.Mod.News:
       rxcheck = await msg.guild.fetch_emoji(919007866940182589)
