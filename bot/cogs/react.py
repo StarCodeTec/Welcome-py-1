@@ -52,13 +52,13 @@ class auto_react(commands.Cog):
     if channel.id == 976322762631172147:
       if str(payload.emoji) !="📥":return
     
-      filter = {"_id": payload.user_id, "react": "1", "original": msg.id}
+      filter = {"user": payload.user_id, "react": "1", "original": msg.id}
       data = self.bot.inbox.filter_by_custom(filter)
       if data:return
         
       send = self.bot.get_channel(976322463807971389) or await self.bot.fetch_channel(976322463807971389) 
       inbox_msg = await send.send(f"<@{payload.member.id}> is interested <@{msg.author.id}>")
-      await self.bot.inbox.upsert({"_id": inbox_msg.id, "user": payload.user_id, "orignal": msg.id})
+      await self.bot.inbox.upsert({"_id": inbox_msg.id, "user": payload.user_id, "orignal": msg.id, "react": "0"})
     
   @cog.listener()
   async def on_raw_reaction_remove(self, payload):
@@ -82,4 +82,4 @@ class auto_react(commands.Cog):
     
   
     await msg_to_delete.delete()
-    await self.bot.inbox.upsert({"react": "1"})
+    await self.bot.inbox.upsert({"_id": data["_id"], "user": data["user"], "orignal": data["orignal"], "react": "1"})
