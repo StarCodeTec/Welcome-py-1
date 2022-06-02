@@ -79,7 +79,7 @@ class auto_react(commands.Cog):
     
     msg_to_delete = await inbox.fetch_message(data["_id"])
 
-    
-  
     await msg_to_delete.delete()
-    await self.bot.inbox.upsert({"_id": data["_id"], "user": data["user"], "orignal": data["orignal"], "react": "1"})
+
+    await self.bot.inbox.delete(data["_id"]) # We don't need to store it anymore
+    
