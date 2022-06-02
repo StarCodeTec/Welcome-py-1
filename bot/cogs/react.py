@@ -70,7 +70,7 @@ class auto_react(commands.Cog):
     data = await self.bot.inbox.find_by_custom(filter)
     if not data:return
     
-    msg_to_delete = await inbox.fetch_message(data["_id"])
+    msg_to_delete = await bot.inbox.fetch_message(data["_id"])
 
     inbox = self.bot.get_channel(976322463807971389)
   
