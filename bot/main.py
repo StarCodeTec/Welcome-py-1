@@ -56,7 +56,7 @@ async def purge():
   for channel in array:
     cha = bot.get_channel(channel) or await bot.fetch_channel(channel)
     await cha.purge(limit=500)
-    if channel == cafe.friends.connect
+    if channel == cafe.friends.connect:
       await cha.send("Connect Post Example:\n```Status:\nMood:\nTopics of interest right now:```\n\nMust be text only, you can delete your status at any time!")
   
   bot.db.inbox.deleteMany({})
