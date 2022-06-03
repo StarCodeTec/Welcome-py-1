@@ -58,8 +58,7 @@ async def purge():
     cha = bot.get_channel(channel) or await bot.fetch_channel(channel)
     await cha.purge(limit=500)
     if channel == cafe.friends.connect:
-      await cha.send("Connect Post Example:\n```Status:\nMood:\nTopics of interest right now:```\n\nMust be text only, you can delete your status at any time!")
-  
+      await cha.send("Connect Post Example:\n```Status:\nMood:\nTopics of interest right now:```\n\nMust be text only, you can delete your status at any time!\n*if you post it close to an even numbered time (EST) it may get deleted*")
   bot.db.inbox.deleteMany({})
   
 @bot.event
