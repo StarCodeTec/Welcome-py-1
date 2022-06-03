@@ -2,7 +2,7 @@ from discord.ext import commands
 import sys
 sys.path.append('..')
 from extras.text_zone import BIG as b
-import extras.System_Id as ID
+import extras.IDS as ID
 
 cog = commands.Cog
 botuser = 966392608895152228
@@ -23,22 +23,22 @@ class sticky(commands.Cog):
     def is_me(msg):
       return msg.author.id == botuser
 
-    if msg.channel.id == cafe.Chat.Promo:
-      cha = self.bot.get_channel(cafe.Chat.Promo) or await self.bot.fetch_channel(cafe.Chat.Promo)
+    if msg.channel.id == cafe.home.promo:
+      cha = self.bot.get_channel(cafe.home.promo) or await self.bot.fetch_channel(cafe.home.promo)
       await cha.purge(limit=2, check=is_me)
-      await cha.send("Server boosters can post <#904501391299608586> in every 30 minutes!")
+      await cha.send(f"Server boosters can post <#{cafe.home.promo}> in every 30 minutes!")
 
-    elif msg.channel.id == cafe.Chat.Bio:
-      cha = self.bot.get_channel(cafe.Chat.Bio) or await self.bot.fetch_channel(cafe.Chat.Bio)   
+    elif msg.channel.id == cafe.friends.bio:
+      cha = self.bot.get_channel(cafe.friends.bio) or await self.bot.fetch_channel(cafe.friends.bio)   
       await cha.purge(limit=2, check=is_me)
       await cha.send(b.bt)
 
-    elif msg.channel.id == 973436882799177768:
-      cha = self.bot.get_channel(973436882799177768) or await self.bot.fetch_channel(973436882799177768)
+    elif msg.channel.id == cafe.chat.dm:
+      cha = self.bot.get_channel(cafe.chat.dm) or await self.bot.fetch_channel(cafe.chat.dm)
       await cha.purge(limit=2, check=is_me)
       await cha.send("This is only for asking members to DM. Any advertising of your own DM's or friend requests may be removed and warned!")
       
-    elif msg.channel.id == 976322762631172147:
-      cha = self.bot.get_channel(976322762631172147) or await self.bot.fetch_channel(976322762631172147)
+    elif msg.channel.id == cafe.friends.connect:
+      cha = self.bot.get_channel(cafe.friends.connect) or await self.bot.fetch_channel(cafe.friends.connect)
       await cha.purge(limit=2, check=is_me)
       await cha.send("Connect Post Example:\n```Status:\nMood:\nTopics of interest right now:```\n\nMust be text only, you can delete your status at any time!")
