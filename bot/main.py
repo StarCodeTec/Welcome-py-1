@@ -88,12 +88,6 @@ async def on_guild_channel_create(cha):
     time.sleep(2)
     await cha.send("Please put all answers in one message and do not close the ticket!")
 
-@bot.listener()
-async def on_message(msg):
-  
-      
-
-  
 async def main_start(run):
     async with bot:
         purge.start()
