@@ -29,7 +29,7 @@ class auto_react(commands.Cog):
     if msg.author.id == botuser:
       return
 
-    if msg.channel.id == cafe.fenne.news or msg.channel.category_id == cafe.cats.selfies:
+    if msg.channel.id == cafe.home.insta or msg.channel.category_id == cafe.cats.selfies:
       if msg.channel.id == cafe.selfies.comments:
         return
 
