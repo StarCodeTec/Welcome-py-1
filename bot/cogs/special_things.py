@@ -22,7 +22,7 @@ class special(commands.Cog):
   def __init__(self, bot):
     self.bot=bot
     
-  @cogs.listener()
+  @cog.listener()
   async def on_message(self, msg):
     if msg.guild is None:
       return
