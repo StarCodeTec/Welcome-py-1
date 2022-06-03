@@ -2,7 +2,7 @@ from discord.ext import tasks, commands
 import sys
 sys.path.append('..')
 from extras.text_zone import all_id as id_0
-import extras.System_Id as ID
+import extras.IDS as ID
 from zoneinfo import ZoneInfo
 import datetime as dt
 
