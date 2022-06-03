@@ -51,7 +51,7 @@ bot.db = bot.mongo["Pybot00"]
 bot.inbox = Document(bot.db, "inbox")
 
 #-----------------------------------------------------------------------------------------------
-@tasks.loop(time=[DT.time(hour=0, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=2, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=4, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=6, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=8, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=10, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=12, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=14, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=16, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=18, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=14, minute=10, second=0, tzinfo=ZoneInfo("US/Eastern"))])
+@tasks.loop(time=[DT.time(hour=0, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=2, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=4, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=6, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=8, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=10, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=12, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=14, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=16, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=18, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=14, minute=13, second=0, tzinfo=ZoneInfo("US/Eastern"))])
 async def purge():
   array=[cafe.friends.connect, cafe.friends.inbox]
   for channel in array:
@@ -59,7 +59,7 @@ async def purge():
     await cha.purge(limit=500)
     if channel == cafe.friends.connect:
       await cha.send("Connect Post Example:\n```Status:\nMood:\nTopics of interest right now:```\n\nMust be text only, you can delete your status at any time!\n*if you post it close to an even numbered time (EST) it may get deleted*")
-  bot.db.inbox.deleteMany({})
+  bot.db.inbox.delete_many({})
   
 @bot.event
 async def on_member_join(mem):
