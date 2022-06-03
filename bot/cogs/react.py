@@ -19,6 +19,7 @@ botuser = 966392608895152228
 class auto_react(commands.Cog):
   def __init__(self, bot):
     self.bot=bot
+    self.cooldown = commands.CooldownMapping.from_cooldown(1, 30, commands.BucketType.member) # 1 reaction ADD every 30 seconds.
     
   @cog.listener()
   async def on_message(self, msg):
@@ -49,9 +50,11 @@ class auto_react(commands.Cog):
   
   @cog.listener()
   async def on_raw_reaction_add(self, payload):
+
     guild=self.bot.get_guild(payload.guild_id) or await self.bot.fetch_guild(payload.guild_id)
     channel=guild.get_channel(payload.channel_id) or await guild.fetch_channel(payload.channel_id)
     msg=await channel.fetch_message(payload.message_id)
+    
     
     if msg.author.id == botuser:
       return
@@ -71,6 +74,14 @@ class auto_react(commands.Cog):
     if str(payload.emoji) !="📥":
       return
           
+    # ensures people can't spam reactions
+    # uses a rate limit bucket
+    bucket = self.cooldown.get_bucket(msg)
+    retry_after = bucket.update_rate_limit()
+
+    if retry_after: # rate limited. don't continue
+      return await payload.member.send("Please wait a little bit before reacting again.")
+    
     send = self.bot.get_channel(976322463807971389) or await self.bot.fetch_channel(976322463807971389) 
     inbox_msg = await send.send(f"<@{payload.member.id}> is interested <@{msg.author.id}>")
     
