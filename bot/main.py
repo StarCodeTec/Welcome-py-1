@@ -1,7 +1,8 @@
 #cogs--------------------------------------------------------------------------------------------  
 import cogs.sticky as sticky
 import cogs.react as react
-#import cogs.bingus as BINGUS_MEME
+import cogs.bingus as BINGUS_MEME
+import cogs.special_things as SPECIAL
 
 #async_run---------------------------------------------------------------------------------------
 import asyncio
@@ -89,69 +90,15 @@ async def on_guild_channel_create(cha):
 
 @bot.listener()
 async def on_message(msg):
-  if msg.guild is None:
-    return
-
-  if msg.author.id == botuser:
-    return
-
-  if msg.content.startswith(".speak") and msg.channel.id == 956295021676601386:
-    message = msg.content.removeprefix(".speak").lstrip()
-    if message.endswith("GEN"):
-      cha = bot.get_channel(cafe.Chat.General) or await bot.fetch_channel(cafe.Chat.General)
-      text=message.removesuffix("GEN")
-    elif message.endswith("MOD"):
-      cha = bot.get_channel(901215227662696469) or await bot.fetch_channel(901215227662696469)
-      text=message.removesuffix("MOD")
-    elif message.endswith("NONE"):
-      cha=msg.channel
-      text = message.removesuffix("NONE")
-    if msg.content.split()[-3] == "@":
-      ping = msg.content.split()[-2]
-      content = text.split()
-      del content[-1] 
-      del content[-1]
-      tex = ' '.join(content)
-      await cha.send(f"{tex}<@{ping}>")
-    else:
-      await cha.send(text)
-  elif msg.channel.id != cafe.Verify.Entrance:
-    if msg.channel.category_id != cafe.cats.Verify:
-      return
-
-    if msg.reference == None:
-      return
-
-    """needed space"""
-    welcomed= discord.Object(id=889011345712894002)
-    unwelcomed= discord.Object(id=889011029428801607)
-    admin= discord.utils.get(msg.author.guild.roles, name="Server Staff")
-    reply = msg.reference.resolved
-    member = reply.author
-    gen = bot.get_channel(cafe.Chat.General) or await bot.fetch_channel(cafe.Chat.General)
-    logs = bot.get_channel(ID.Logs.logs) or await bot.fetch_channel(ID.Logs.logs)
-    if admin not in msg.author.roles:
-      return
-      
-    if msg.content == ".verify" or msg.content == "<:approved:973046001118101514>":
-      await member.remove_roles(unwelcomed)
-      await member.add_roles(welcomed)
-      if msg.author.id == Fenne:
-        await gen.send(f"Welcome <@{member.id}> please make a <#888482614351134720> and enjoy your stay.")
-      else:
-        await gen.send(f"Welcome <@{member.id}> please make a <#888482614351134720> and enjoy your stay. Welcomed by <@{msg.author.id}>")
-      time = await msg.channel.send("time holder(dont delete)")
-      await logs.send(f"\tWelcome <@{member.id}>\nWelcome id: {member.id}\nWelcome:{member}\n{reply.content}\n\nWelcomed by: <@{msg.author.id}>\n\nWelcomed at: {time.created_at}")
-      await msg.channel.delete()
+  
       
 
   
 async def main_start(run):
     async with bot:
         purge.start()
-        #bump.start()
-        #bystander.start()
-        #await bot.add_cog(BINGUS_MEME.bingus(bot))
+        await bot.add_cog(SPECIAL.special(bot))
+        await bot.add_cog(BINGUS_MEME.bingus(bot))
         await bot.add_cog(sticky.sticky(bot))
         await bot.add_cog(react.auto_react(bot))
         await bot.start(str(key)) 
