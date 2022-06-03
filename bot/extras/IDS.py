@@ -17,8 +17,9 @@ class cafe:
     friends=909528076977848353
     voice=871938782650310667
     
-  #verify column 
-  verify=945087125831958588
+  #verify column
+  class v:
+    verify=945087125831958588
   
   class AP:
     cmds=956295021676601386
