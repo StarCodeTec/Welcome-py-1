@@ -52,9 +52,14 @@ bot.inbox = Document(bot.db, "inbox")
 #-----------------------------------------------------------------------------------------------
 @tasks.loop(time=[DT.time(hour=0, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=2, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=4, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=6, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=8, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=10, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=12, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern"))])
 async def purge():
-  cha = bot.get_channel(976322762631172147) or await bot.fetch_channel(976322762631172147) 
-  await cha.purge(limit=500)
-  await cha.send("Connect Post Example:\n```Status:\nMood:\nTopics of interest right now:```\n\nMust be text only, you can delete your status at any time!")
+  array=[cafe.friends.connect, cafe.friends.inbox]
+  for channel in array:
+    cha = bot.get_channel(channel) or await bot.fetch_channel(channel)
+    await cha.purge(limit=500)
+    if channel == cafe.friends.connect
+      await cha.send("Connect Post Example:\n```Status:\nMood:\nTopics of interest right now:```\n\nMust be text only, you can delete your status at any time!")
+  
+  bot.db.inbox.deleteMany({})
   
 @bot.event
 async def on_member_join(mem):
@@ -82,7 +87,7 @@ async def on_guild_channel_create(cha):
     time.sleep(2)
     await cha.send("Please put all answers in one message and do not close the ticket!")
 
-@bot.event
+@bot.listener()
 async def on_message(msg):
   if msg.guild is None:
     return
@@ -90,14 +95,7 @@ async def on_message(msg):
   if msg.author.id == botuser:
     return
 
-  if msg.content == "F^ bingus" or msg.content == "F^bingus":
-    file=["Z5EW9Ij", "apGRbbd", "bxSmibQ", "0pld30P", "ekv5sS", "cTQxzzz", "Qz0o2au", "0o0YOq9", "Cie89pF", "n4E8Eo7", "a52YHBu", "lYDqcIH", "TZ227yu", "T4RJ0mC", "UqnkEGP", "wAg3rsf", "wSWdCaT", "RqT1tFS", "3VJGRpY", "raerLvq", "LH8VqGH", "xtrV1fj", "GePK3z5", "qOKGQ9p", "dYt8wZk", "qvtC6Ix", "2vgNv4u"]
-    files=RANDOM.choice(file)
-    embed = discord.Embed()
-    embed.set_image(url=f"https://i.imgur.com/{files}.gif")
-    await msg.channel.send(embed=embed)
-  elif msg.content.startswith(".speak"):
-    if msg.channel.id != 956295021676601386:return
+  if msg.content.startswith(".speak") and msg.channel.id == 956295021676601386:
     message = msg.content.removeprefix(".speak").lstrip()
     if message.endswith("GEN"):
       cha = bot.get_channel(cafe.Chat.General) or await bot.fetch_channel(cafe.Chat.General)
@@ -150,7 +148,7 @@ async def on_message(msg):
   
 async def main_start(run):
     async with bot:
-        #purge.start()
+        purge.start()
         #bump.start()
         #bystander.start()
         #await bot.add_cog(BINGUS_MEME.bingus(bot))
