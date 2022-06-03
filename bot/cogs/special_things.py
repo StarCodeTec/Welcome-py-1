@@ -50,7 +50,7 @@ class special(commands.Cog):
         await cha.send(f"{tex}<@{ping}>")
       else:
         await cha.send(text)
-    elif msg.channel.id != ID.cafe.verify:
+    elif msg.channel.id != cafe.verify:
       if msg.channel.category_id != cafe.cats.verify:
         return
 

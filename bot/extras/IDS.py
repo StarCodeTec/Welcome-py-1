@@ -3,6 +3,8 @@ class server:
   logs=956322799411150949
   
 class cafe:
+  #verify column
+  verify=945087125831958588
   class cats:
     verify=889011642212450314
     """AP does not need to read by bot"""
@@ -16,9 +18,6 @@ class cafe:
     media=973449307007115324
     friends=909528076977848353
     voice=871938782650310667
-    
-  #verify column
-  verify=945087125831958588
   
   class AP:
     cmds=956295021676601386
@@ -45,7 +44,7 @@ class cafe:
     reminders=953124185427804160
     giveaways=909573218740895815
     promo=904501391299608586
-  support_ticket=888492088252047420
+    support_ticket=888492088252047420
   
   class lgbtq:
     announce=927002162192592946
@@ -54,14 +53,14 @@ class cafe:
     happy=972003863014019153 #vent
     sad=901209098828283944 #vent
     polls=909573770560282634
-  outfit_advice=889021765936902175
-  open_support=968669246706044948
+    outfit_advice=889021765936902175
+    open_support=968669246706044948
   
   class fenne:
     storys=950851215980396584
-  lgbtq_advice=889021820454449154
-  femboy_advice=889021964675608586
-  private_advice=899346710894100481
+    lgbtq_advice=889021820454449154
+    femboy_advice=889021964675608586
+    private_advice=899346710894100481
   
   class little:
     space=971585457307676682
