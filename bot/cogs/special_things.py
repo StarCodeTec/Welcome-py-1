@@ -73,7 +73,7 @@ class special(commands.Cog):
         if msg.author.id == Fenne:
           await gen.send(f"Welcome <@{member.id}> please make a <#{cafe.friends.bio}> and enjoy your stay.")
         else:
-        await gen.send(f"Welcome <@{member.id}> please make a <#{cafe.friends.bio}> and enjoy your stay. Welcomed by <@{msg.author.id}>")
+          await gen.send(f"Welcome <@{member.id}> please make a <#{cafe.friends.bio}> and enjoy your stay. Welcomed by <@{msg.author.id}>")
         time = await msg.channel.send("time holder(dont delete)")
         await logs.send(f"\tWelcome <@{member.id}>\nWelcome id: {member.id}\nWelcome:{member}\n{reply.content}\n\nWelcomed by: <@{msg.author.id}>\n\nWelcomed at: {time.created_at}")
         await msg.channel.delete()
