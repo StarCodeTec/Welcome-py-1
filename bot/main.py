@@ -27,7 +27,7 @@ from db.mongo import Document
 #EXTRA_IMPORTS----------------------------------------------------------------------------------
 from extras.text_zone import BIG as b
 from extras.text_zone import all_id as id_0
-import extras.System_Id as ID
+import extras.IDS as ID
 #EXTRA_TEXT--------------------------------------------------------------------------------------
 cafe = ID.cafe
 Fenne = 474984052017987604 
@@ -78,12 +78,12 @@ async def on_member_join(mem):
 
 @bot.event
 async def on_guild_channel_create(cha):
-  if cha.category.id == cafe.cats.Home and "ticket" in str(cha.name):
+  if cha.category.id == cafe.cats.home and "ticket" in str(cha.name):
     time.sleep(3)
     await cha.send("Hey there, how can we help you?")
 
-  elif cha.id != cafe.Verify.Entrance:
-    if cha.category_id != cafe.cats.Verify:
+  elif cha.id != cafe.verify:
+    if cha.category_id != cafe.cats.verify:
       return
     time.sleep(2)
     await cha.send("Please put all answers in one message and do not close the ticket!")
