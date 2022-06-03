@@ -2,7 +2,7 @@ from discord.ext import commands
 import sys
 sys.path.append('..')
 from extras.text_zone import all_id as id_0
-import extras.System_Id as ID
+import extras.IDS as ID
 
 cog = commands.Cog
 cafe = ID.cafe
@@ -29,8 +29,8 @@ class auto_react(commands.Cog):
     if msg.author.id == botuser:
       return
 
-    if msg.channel.id == cafe.Little_fenne.News or msg.channel.category_id == cafe.cats.Selfies:
-      if msg.channel.id == cafe.Selfies.Comments:
+    if msg.channel.id == cafe.fenne.news or msg.channel.category_id == cafe.cats.selfies:
+      if msg.channel.id == cafe.selfies.comments:
         return
 
       rx1 = await msg.guild.fetch_emoji(925500399656509489)
@@ -41,11 +41,11 @@ class auto_react(commands.Cog):
       await msg.add_reaction(r4)          
       await msg.add_reaction(r5)
     
-    elif msg.channel.id == cafe.Mod.News:
+    elif msg.channel.id == cafe.mod.news:
       rxcheck = await msg.guild.fetch_emoji(919007866940182589)
       await msg.add_reaction(rxcheck)
     
-    elif msg.channel.id == 976322762631172147:
+    elif msg.channel.id == cafe.friends.connect:
       await msg.add_reaction("📥")
   
   @cog.listener()
@@ -65,10 +65,10 @@ class auto_react(commands.Cog):
     if guild is None:
       return
     
-    if guild.id != ID.cafe_channel:
+    if guild.id != ID.server.cafe:
       return
     
-    if channel.id != 976322762631172147:
+    if channel.id != cafe.friends.connect:
       return
 
     if str(payload.emoji) !="📥":
@@ -82,7 +82,7 @@ class auto_react(commands.Cog):
     if retry_after: # rate limited. don't continue
       return await payload.member.send("Please wait a little bit before reacting again.")
     
-    send = self.bot.get_channel(976322463807971389) or await self.bot.fetch_channel(976322463807971389) 
+    send = self.bot.get_channel(cafe.friends.inbox) or await self.bot.fetch_channel(cafe.friends.inbox) 
     inbox_msg = await send.send(f"<@{payload.member.id}> is interested <@{msg.author.id}>")
     
     await self.bot.inbox.upsert(
@@ -99,7 +99,7 @@ class auto_react(commands.Cog):
     channel=guild.get_channel(payload.channel_id) or await guild.fetch_channel(payload.channel_id)
     msg=await channel.fetch_message(payload.message_id)
 
-    if channel.id != 976322762631172147:
+    if channel.id != cafe.friends.connect:
       return
     
     if msg.author.id == botuser:
@@ -115,7 +115,7 @@ class auto_react(commands.Cog):
     if not data:
       return
     
-    inbox = self.bot.get_channel(976322463807971389)
+    inbox = self.bot.get_channel(cafe.friends.inbox)
 
     msg_to_delete = await inbox.fetch_message(data["_id"])
     await msg_to_delete.delete()
