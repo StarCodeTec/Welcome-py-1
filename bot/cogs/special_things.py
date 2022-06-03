@@ -1,4 +1,5 @@
 from discord.ext import tasks, commands
+import discord
 import sys
 sys.path.append('..')
 from extras.text_zone import all_id as id_0
