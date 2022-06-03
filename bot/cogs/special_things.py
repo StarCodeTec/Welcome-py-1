@@ -34,10 +34,10 @@ class special(commands.Cog):
     if msg.content.startswith(".speak") and msg.channel.id == cafe.AP.cmds:
       message = msg.content.removeprefix(".speak").lstrip()
       if message.endswith("GEN"):
-        cha = bot.get_channel(cafe.chat.gen) or await bot.fetch_channel(cafe.chat.gen)
+        cha = self.bot.get_channel(cafe.chat.gen) or await self.bot.fetch_channel(cafe.chat.gen)
         text=message.removesuffix("GEN")
       elif message.endswith("MOD"):
-        cha = bot.get_channel(cafe.chat.mod) or await bot.fetch_channel(cafe.chat.mod)
+        cha = self.bot.get_channel(cafe.chat.mod) or await self.bot.fetch_channel(cafe.chat.mod)
         text=message.removesuffix("MOD")
       elif message.endswith("NONE"):
         cha=msg.channel
@@ -63,8 +63,8 @@ class special(commands.Cog):
       admin= discord.utils.get(msg.author.guild.roles, name="Server Staff")
       reply = msg.reference.resolved
       member = reply.author
-      gen = bot.get_channel(cafe.chat.gen) or await bot.fetch_channel(cafe.chat.gen)
-      logs = bot.get_channel(ID.logs.logs) or await bot.fetch_channel(ID.logs.logs)
+      gen = self.bot.get_channel(cafe.chat.gen) or await self.bot.fetch_channel(cafe.chat.gen)
+      logs = self.bot.get_channel(ID.logs.logs) or await self.bot.fetch_channel(ID.logs.logs)
       if admin not in msg.author.roles:
         return
       
