@@ -31,12 +31,12 @@ class sticky(commands.Cog):
     elif msg.channel.id == cafe.friends.bio:
       cha = self.bot.get_channel(cafe.friends.bio) or await self.bot.fetch_channel(cafe.friends.bio)   
       await cha.purge(limit=2, check=is_me)
-      await self.bot.bio.upsert(
+      """await self.bot.bio.upsert(
         {
-          "_id":msg.member.id,
+          "_id":msg.author.id,
           "bio":msg.content
         }
-      )
+      )"""
       await cha.send(b.bt)
     
     elif msg.channel.id == cafe.chat.dm:
