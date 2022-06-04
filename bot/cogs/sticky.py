@@ -33,7 +33,7 @@ class sticky(commands.Cog):
       await cha.purge(limit=2, check=is_me)
       await self.bot.bio.upsert(
         {
-          "_id":msg.member.id
+          "_id":msg.member.id,
           "bio":msg.content
         }
       )
