@@ -70,6 +70,9 @@ class auto_react(commands.Cog):
       return
     
     if payload.emoji.id == 973078040336797696 and channel.id == ID.cafe.friends.bio:
+      if payload.member.id != msg.author.id:
+        return # they haven't reacted to their own message.
+
       await self.bot.bio.upsert(
           {
             "_id": msg.author.id,
