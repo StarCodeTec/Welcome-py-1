@@ -36,7 +36,9 @@ class sticky(commands.Cog):
           "_id":msg.author.id,
           "bio":msg.content
         }
-      )"""
+      )
+      whyyyyy
+      """
       await cha.send(b.bt)
     
     elif msg.channel.id == cafe.chat.dm:
