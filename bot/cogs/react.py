@@ -69,10 +69,7 @@ class auto_react(commands.Cog):
     if guild.id != ID.server.cafe:
       return
     
-    if channel.id != cafe.friends.connect:
-      return
-    
-    if payload.emoji.id == 973078040336797696:
+    if payload.emoji.id == 973078040336797696 and channel.id == ID.cafe.friends.bio:
       await self.bot.bio.upsert(
           {
             "_id": msg.author.id,
@@ -85,6 +82,9 @@ class auto_react(commands.Cog):
       await msg.author.send("Your bio has been stored!", view=view)
         
       await msg.clear_reactions()
+    
+    if channel.id != cafe.friends.connect:
+      return
         
     if str(payload.emoji) !="📥":
       return
