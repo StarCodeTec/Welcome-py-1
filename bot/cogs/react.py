@@ -1,3 +1,4 @@
+import discord
 from discord.ext import commands
 import sys
 sys.path.append('..')
@@ -68,18 +69,26 @@ class auto_react(commands.Cog):
     if guild.id != ID.server.cafe:
       return
     
+    if payload.emoji.id == 973078040336797696 and channel.id == ID.cafe.friends.bio:
+      if payload.member.id != msg.author.id:
+        return # they haven't reacted to their own message.
+
+      await self.bot.bio.upsert(
+          {
+            "_id": msg.author.id,
+            "bio": str(msg.content),
+            "msg_id": msg.id
+          }
+        )
+      view = discord.ui.View()
+      view.add_item(discord.ui.Button(label="Go to bio", url=msg.jump_url)) # adds a button that jumps to their bio
+      
+      await msg.author.send("Your bio has been stored!", view=view)
+        
+      await msg.clear_reactions()
+    
     if channel.id != cafe.friends.connect:
       return
-    
-    if payload.emoji.id == 973078040336797696:
-      """await self.bot.bio.upsert(
-          {
-            "_id":msg.author.id,
-            "bio":msg.content
-          }
-        )"""
-        
-        await msg.clear_reactions()
         
     if str(payload.emoji) !="📥":
       return

@@ -3,7 +3,7 @@ import cogs.sticky as sticky
 import cogs.react as react
 import cogs.bingus as BINGUS_MEME
 import cogs.special_things as SPECIAL
-
+import cogs.bio as bio
 #async_run---------------------------------------------------------------------------------------
 import asyncio
 def run(run):
@@ -59,7 +59,10 @@ async def purge():
     await cha.purge(limit=500)
     if channel == cafe.friends.connect:
       await cha.send("Connect Post Example:\n```Status:\nMood:\nTopics of interest right now:```\n\nMust be text only, you can delete your status at any time!")
-  bot.db.inbox.drop()
+  
+  entries = await bot.inbox.get_all()
+  for entry in entries:
+    await bot.inbox.delete(entry["_id"])
   
 @bot.event
 async def on_member_join(mem):
@@ -102,6 +105,7 @@ async def main_start(run):
         await bot.add_cog(BINGUS_MEME.bingus(bot))
         await bot.add_cog(sticky.sticky(bot))
         await bot.add_cog(react.auto_react(bot))
+        await bot.add_cog(bio.bio(bot))
         await bot.start(str(key)) 
 
         
