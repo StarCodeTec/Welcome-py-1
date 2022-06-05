@@ -3,7 +3,7 @@ import cogs.sticky as sticky
 import cogs.react as react
 import cogs.bingus as BINGUS_MEME
 import cogs.special_things as SPECIAL
-
+import cogs.bio as bio
 #async_run---------------------------------------------------------------------------------------
 import asyncio
 def run(run):
@@ -105,6 +105,7 @@ async def main_start(run):
         await bot.add_cog(BINGUS_MEME.bingus(bot))
         await bot.add_cog(sticky.sticky(bot))
         await bot.add_cog(react.auto_react(bot))
+        await bot.add_cog(bio.bio(bot))
         await bot.start(str(key)) 
 
         

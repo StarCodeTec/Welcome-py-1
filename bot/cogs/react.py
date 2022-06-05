@@ -76,7 +76,8 @@ class auto_react(commands.Cog):
       await self.bot.bio.upsert(
           {
             "_id": msg.author.id,
-            "bio": str(msg.content)
+            "bio": str(msg.content),
+            "msg_id": msg.id
           }
         )
       view = discord.ui.View()
