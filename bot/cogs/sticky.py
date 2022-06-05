@@ -37,7 +37,6 @@ class sticky(commands.Cog):
           "bio":msg.content
         }
       )
-      whyyyyy
       """
       await cha.send(b.bt)
     
@@ -49,4 +48,4 @@ class sticky(commands.Cog):
     elif msg.channel.id == cafe.friends.connect:
       cha = self.bot.get_channel(cafe.friends.connect) or await self.bot.fetch_channel(cafe.friends.connect)
       await cha.purge(limit=2, check=is_me)
-      await cha.send("Connect Post Example:\n```Status:\nMood:\nTopics of interest right now:```\n\nMust be text only, you can delete your status at any time!\n*if you post it close to an even numbered time (EST) it may get deleted*")
+      await cha.send("Connect Post Example:\n```Status:\nMood:\nTopics of interest right now:```\n\nMust be text only, you can delete your status at any time!")

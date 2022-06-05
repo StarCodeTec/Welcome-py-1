@@ -51,14 +51,14 @@ bot.db = bot.mongo["Pybot00"]
 bot.inbox = Document(bot.db, "inbox")
 bot.bio = Document(bot.db, "bio")
 #-----------------------------------------------------------------------------------------------
-@tasks.loop(time=[DT.time(hour=0, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=2, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=4, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=6, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=8, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=10, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=12, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=14, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=16, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=18, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=14, minute=13, second=0, tzinfo=ZoneInfo("US/Eastern"))])
+@tasks.loop(time=[DT.time(hour=0, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=4, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=8, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=12, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=16, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=20, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern"))])
 async def purge():
   array=[cafe.friends.connect, cafe.friends.inbox]
   for channel in array:
     cha = bot.get_channel(channel) or await bot.fetch_channel(channel)
     await cha.purge(limit=500)
     if channel == cafe.friends.connect:
-      await cha.send("Connect Post Example:\n```Status:\nMood:\nTopics of interest right now:```\n\nMust be text only, you can delete your status at any time!\n*if you post it close to an even numbered time (EST) it may get deleted*")
+      await cha.send("Connect Post Example:\n```Status:\nMood:\nTopics of interest right now:```\n\nMust be text only, you can delete your status at any time!")
   bot.db.inbox.drop()
   
 @bot.event
