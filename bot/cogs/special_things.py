@@ -64,7 +64,7 @@ class special(commands.Cog):
       reply = msg.reference.resolved
       member = reply.author
       gen = self.bot.get_channel(cafe.chat.gen) or await self.bot.fetch_channel(cafe.chat.gen)
-      logs = self.bot.get_channel(ID.logs.logs) or await self.bot.fetch_channel(ID.logs.logs)
+      logs = self.bot.get_channel(ID.fbc.logs.verify) or await self.bot.fetch_channel(ID.fbc.logs.verify)
       if admin not in msg.author.roles:
         return
       
