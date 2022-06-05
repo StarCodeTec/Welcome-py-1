@@ -70,7 +70,17 @@ class auto_react(commands.Cog):
     
     if channel.id != cafe.friends.connect:
       return
-
+    
+    if payload.emoji.id == 973078040336797696:
+      """await self.bot.bio.upsert(
+          {
+            "_id":msg.author.id,
+            "bio":msg.content
+          }
+        )"""
+        
+        await msg.clear_reactions()
+        
     if str(payload.emoji) !="📥":
       return
           
