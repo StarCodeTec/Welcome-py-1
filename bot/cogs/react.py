@@ -1,3 +1,4 @@
+import discord
 from discord.ext import commands
 import sys
 sys.path.append('..')
@@ -72,14 +73,18 @@ class auto_react(commands.Cog):
       return
     
     if payload.emoji.id == 973078040336797696:
-      """await self.bot.bio.upsert(
+      await self.bot.bio.upsert(
           {
-            "_id":msg.author.id,
-            "bio":msg.content
+            "_id": msg.author.id,
+            "bio": str(msg.content)
           }
-        )"""
+        )
+      view = discord.ui.View()
+      view.add_item(discord.ui.Button(label="Go to bio", url=msg.jump_url)) # adds a button that jumps to their bio
+      
+      await msg.author.send("Your bio has been stored!", view=view)
         
-        await msg.clear_reactions()
+      await msg.clear_reactions()
         
     if str(payload.emoji) !="📥":
       return

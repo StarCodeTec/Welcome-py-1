@@ -59,7 +59,10 @@ async def purge():
     await cha.purge(limit=500)
     if channel == cafe.friends.connect:
       await cha.send("Connect Post Example:\n```Status:\nMood:\nTopics of interest right now:```\n\nMust be text only, you can delete your status at any time!")
-  bot.db.inbox.drop()
+  
+  entries = await bot.inbox.get_all()
+  for entry in entries:
+    await bot.inbox.delete(entry["_id"])
   
 @bot.event
 async def on_member_join(mem):
