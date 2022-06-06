@@ -87,31 +87,41 @@ class auto_react(commands.Cog):
       await msg.author.send("Your bio has been stored!", view=view)
         
       await msg.clear_reactions()
+      return
     
     if channel.id != cafe.friends.connect:
       return
         
-    if str(payload.emoji) !="📥":
-      return
-          
-    # ensures people can't spam reactions
-    # uses a rate limit bucket
-    bucket = self.cooldown.get_bucket(msg)
-    retry_after = bucket.update_rate_limit()
+    if str(payload.emoji) =="📥":            
+      # ensures people can't spam reactions
+      # uses a rate limit bucket
+      bucket = self.cooldown.get_bucket(msg)
+      retry_after = bucket.update_rate_limit()
 
-    if retry_after: # rate limited. don't continue
-      return await payload.member.send("Please wait a little bit before reacting again.")
+      if retry_after: # rate limited. don't continue
+        return await payload.member.send("Please wait a little bit before reacting again.")
+      
+      send = self.bot.get_channel(cafe.friends.inbox) or await self.bot.fetch_channel(cafe.friends.inbox) 
+      inbox_msg = await send.send(f"<@{payload.member.id}> is interested <@{msg.author.id}>")
+      
+      await self.bot.inbox.upsert(
+        {
+          "_id": inbox_msg.id,
+          "user": payload.user_id,
+          "orignal": msg.id, 
+        }
+      )
+      return
     
-    send = self.bot.get_channel(cafe.friends.inbox) or await self.bot.fetch_channel(cafe.friends.inbox) 
-    inbox_msg = await send.send(f"<@{payload.member.id}> is interested <@{msg.author.id}>")
-    
-    await self.bot.inbox.upsert(
-      {
-        "_id": inbox_msg.id,
-        "user": payload.user_id,
-        "orignal": msg.id, 
-      }
-    )
+    if str(payload.emoji) =="ℹ️":
+      data = await self.bot.bio.find(msg.author.id)
+      if not data:
+        return await payload.member.send(f"ℹ️ {msg.author.name} doesn't have a bio set!")
+       
+      await payload.member.send(f"ℹ️ **Here the bio for {msg.author.name}:**\n{data['bio']}")
+      
+      await msg.remove_reaction("ℹ️", payload.member)
+      return
     
   @cog.listener()
   async def on_raw_reaction_remove(self, payload):
@@ -128,16 +138,17 @@ class auto_react(commands.Cog):
     if guild is None:
       return
     
-    filter = {"user": payload.user_id, "orignal": msg.id}
+    if str(payload.emoji) =="📥":
+      filter = {"user": payload.user_id, "orignal": msg.id}
 
-    data = await self.bot.inbox.find_by_custom(filter)
-    
-    if not data:
-      return
-    
-    inbox = self.bot.get_channel(cafe.friends.inbox)
+      data = await self.bot.inbox.find_by_custom(filter)
+      
+      if not data:
+        return
+      
+      inbox = self.bot.get_channel(cafe.friends.inbox)
 
-    msg_to_delete = await inbox.fetch_message(data["_id"])
-    await msg_to_delete.delete()
+      msg_to_delete = await inbox.fetch_message(data["_id"])
+      await msg_to_delete.delete()
 
-    await self.bot.inbox.delete(data["_id"]) # We don't need to store it anymore
+      await self.bot.inbox.delete(data["_id"]) # We don't need to store it anymore
