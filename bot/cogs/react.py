@@ -48,6 +48,7 @@ class auto_react(commands.Cog):
     
     elif msg.channel.id == cafe.friends.connect:
       await msg.add_reaction("📥")
+      await msg.add_reaction("ℹ️")
   
   @cog.listener()
   async def on_raw_reaction_add(self, payload):
