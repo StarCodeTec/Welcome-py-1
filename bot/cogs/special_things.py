@@ -6,6 +6,7 @@ from extras.text_zone import all_id as id_0
 import extras.IDS as ID
 from zoneinfo import ZoneInfo
 import datetime as dt
+from typing import Optional
 
 cog = commands.Cog
 cafe = ID.cafe
@@ -22,7 +23,24 @@ botuser = 966392608895152228
 class special(commands.Cog):
   def __init__(self, bot):
     self.bot=bot
+  
+  @commands.command(hidden=True)
+  async def speak(self, ctx, channel: Optional[discord.TextChannel], member: Optional[discord.Member], *, message: str):
+    """Sends a message as the bot. Only works in the busboy-cmds channel.
     
+    Example usage:
+    F^speak Hello people (posts in current channel)
+    F^speak #general Hello people (posts in #general)
+    F^speak 474984052017987604 Hello people (posts in current channel and pings the person with that ID)
+    F^speak #general 474984052017987604 Hello people (posts in #general and pings the person with that ID)"""
+    if ctx.channel.id != cafe.AP.cmds:
+      return
+      
+    channel = channel if channel else ctx.channel
+
+    await channel.send(f"{message} {member.mention}" if member else message)
+
+
   @cog.listener()
   async def on_message(self, msg):
     if msg.guild is None:
@@ -31,27 +49,7 @@ class special(commands.Cog):
     if msg.author.id == botuser:
       return
 
-    if msg.content.startswith(".speak") and msg.channel.id == cafe.AP.cmds:
-      message = msg.content.removeprefix(".speak").lstrip()
-      if message.endswith("GEN"):
-        cha = self.bot.get_channel(cafe.chat.gen) or await self.bot.fetch_channel(cafe.chat.gen)
-        text=message.removesuffix("GEN")
-      elif message.endswith("MOD"):
-        cha = self.bot.get_channel(cafe.chat.mod) or await self.bot.fetch_channel(cafe.chat.mod)
-        text=message.removesuffix("MOD")
-      elif message.endswith("NONE"):
-        cha=msg.channel
-        text = message.removesuffix("NONE")
-      if msg.content.split()[-3] == "@":
-        ping = msg.content.split()[-2]
-        content = text.split()
-        del content[-1] 
-        del content[-1]
-        tex = ' '.join(content)
-        await cha.send(f"{tex}<@{ping}>")
-      else:
-        await cha.send(text)
-    elif msg.channel.id != cafe.verify:
+    if msg.channel.id != cafe.verify:
       if msg.channel.category_id != cafe.cats.verify:
         return
 
