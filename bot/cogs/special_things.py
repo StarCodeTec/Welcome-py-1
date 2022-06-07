@@ -70,7 +70,7 @@ class special(commands.Cog):
         return
       
       if msg.content == ".deny":
-        #await member.timeout(dt.timedelta(days=7), reason="denied application try again later") 
+        await member.timeout(dt.timedelta(days=7), reason="denied application try again later") 
         time = await msg.channel.send("time holder(dont delete)")
         await denied_logs.send(f"\tDenied <@{member.id}>\n Denied id: {member.id}\nDenied:{member}\nDenied by: <@{msg.author.id}>\nDenied by user: {msg.author}\n\nDenied at: {time.created_at}")
         await msg.channel.delete()
