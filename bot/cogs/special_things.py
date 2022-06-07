@@ -64,11 +64,18 @@ class special(commands.Cog):
       reply = msg.reference.resolved
       member = reply.author
       gen = self.bot.get_channel(cafe.chat.gen) or await self.bot.fetch_channel(cafe.chat.gen)
-      logs = self.bot.get_channel(ID.fbc.logs.verify) or await self.bot.fetch_channel(ID.fbc.logs.verify)
+      verify_logs = self.bot.get_channel(ID.fbc.logs.verify) or await self.bot.fetch_channel(ID.fbc.logs.verify)
+      denied_logs = self.bot.get_channel(ID.fbc.logs.verify) or await self.bot.fetch_channel(ID.fbc.logs.denied)
       if admin not in msg.author.roles:
         return
       
-      if msg.content == ".verify" or msg.content == "<:approved:973046001118101514>":
+      if msg.content == ".deny":
+        await member.timeout(datetime.timedelta(days=7 reason="denied application try again later")) 
+        time = await msg.channel.send("time holder(dont delete)")
+        await verify_logs.send(f"\tDenied <@{member.id}>\n Denied id: {member.id}\nDenied:{member}\n{reply.content}\n\nDenied by: <@{msg.author.id}>\nDenied by user: {msg.author}\n\nDenied at: {time.created_at}")
+        await msg.channel.delete()
+
+      if msg.content == ".verify":
         await member.remove_roles(unwelcomed)
         await member.add_roles(welcomed)
         if msg.author.id == Fenne:
@@ -76,5 +83,5 @@ class special(commands.Cog):
         else:
           await gen.send(f"Welcome <@{member.id}> please make a <#{cafe.friends.bio}> and enjoy your stay. Welcomed by <@{msg.author.id}>")
         time = await msg.channel.send("time holder(dont delete)")
-        await logs.send(f"\tWelcome <@{member.id}>\nWelcome id: {member.id}\nWelcome:{member}\n{reply.content}\n\nWelcomed by: <@{msg.author.id}>\n\nWelcomed at: {time.created_at}")
+        await verify_logs.send(f"\tWelcome <@{member.id}>\nWelcome id: {member.id}\nWelcome:{member}\n{reply.content}\n\nWelcomed by: <@{msg.author.id}>\nWelcomer: {msg.author}\n\nWelcomed at: {time.created_at}")
         await msg.channel.delete()
