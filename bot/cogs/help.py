@@ -4,8 +4,10 @@ from discord.ext import commands
 title = "Fenne's Busboy"
 embed_color = 0xf4c2c2
 description = """
-Put a description here!!!
-i left this blank so u can edit it
+Welcome to the Busboy bot Help menu.
+Below is a list of commands you can use.
+
+Type .help followed by the command for more details
 
 On commands, `< >` means the argument is required.
 Likewise, `[ ]` means the argument is optional.
