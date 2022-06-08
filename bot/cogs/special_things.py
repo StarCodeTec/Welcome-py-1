@@ -70,6 +70,7 @@ class special(commands.Cog):
   @commands.command(hidden=True)
   async def verify(self, ctx):
     msg=ctx.message
+    gen=self.bot.get_channel(cafe.chat.gen) or await self.bot.fetch_channel(cafe.chat.gen)
     admin=discord.utils.get(msg.author.guild.roles, name="Server Staff")
     welcomed=discord.Object(id=889011345712894002)
     unwelcomed=discord.Object(id=889011029428801607)
