@@ -45,7 +45,7 @@ intents = discord.Intents.all()
 intents.typing = False
 intents.presences = False
 ACTIVITY=discord.Activity(type=discord.ActivityType.watching, name="discord.gg/FemboyCafe")
-bot = commands.Bot(command_prefix=commands.when_mentioned_or('F^ ', 'F^'), intents=intents, activity=ACTIVITY)
+bot = commands.Bot(command_prefix=commands.when_mentioned_or('.'), intents=intents, activity=ACTIVITY)
 bot.mongo = motor.motor_asyncio.AsyncIOMotorClient(str(connection_url))
 bot.db = bot.mongo["Pybot00"]
 bot.inbox = Document(bot.db, "inbox")

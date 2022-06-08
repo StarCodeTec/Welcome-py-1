@@ -29,10 +29,10 @@ class special(commands.Cog):
     """Sends a message as the bot. Only works in the busboy-cmds channel.
     
     Example usage:
-    F^speak Hello people (posts in current channel)
-    F^speak #general Hello people (posts in #general)
-    F^speak 474984052017987604 Hello people (posts in current channel and pings the person with that ID)
-    F^speak #general 474984052017987604 Hello people (posts in #general and pings the person with that ID)"""
+    .speak Hello people (posts in current channel)
+    .speak #general Hello people (posts in #general)
+    .speak 474984052017987604 Hello people (posts in current channel and pings the person with that ID)
+    .speak #general 474984052017987604 Hello people (posts in #general and pings the person with that ID)"""
     if ctx.channel.id != cafe.AP.cmds:
       return
       
