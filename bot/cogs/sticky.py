@@ -45,7 +45,9 @@ class sticky(commands.Cog):
     elif msg.channel.id == cafe.chat.dm:
       cha = self.bot.get_channel(cafe.chat.dm) or await self.bot.fetch_channel(cafe.chat.dm)
       await cha.purge(limit=2, check=is_me)
-      await cha.send("This is only for asking members to DM. Any advertising of your own DM's or friend requests may be removed and warned!")
+      await cha.send(f"""
+      This is only for asking members to DM only. Any advertising of your own DM's or friend requests may be removed and warned! 
+      Please use the <#{cafe.friends.zone}> if you would like to find somebody to talk to.""")
       
     elif msg.channel.id == cafe.friends.connect:
       cha = self.bot.get_channel(cafe.friends.connect) or await self.bot.fetch_channel(cafe.friends.connect)
