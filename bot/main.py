@@ -105,7 +105,7 @@ async def main_start(run):
         await bot.add_cog(BINGUS_MEME.bingus(bot))
         await bot.add_cog(sticky.sticky(bot))
         await bot.add_cog(react.auto_react(bot))
-        await bot.add_cog(bio.bio(bot))
+        await bot.add_cog(bio.Bios(bot))
         await bot.start(str(key)) 
 
         
