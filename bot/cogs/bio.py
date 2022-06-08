@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 from extras.IDS import cafe
 
-class bio(commands.Cog):
+class Bios(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
