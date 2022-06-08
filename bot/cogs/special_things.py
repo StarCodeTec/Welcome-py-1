@@ -72,6 +72,7 @@ class special(commands.Cog):
     msg=ctx.message
     gen=self.bot.get_channel(cafe.chat.gen) or await self.bot.fetch_channel(cafe.chat.gen)
     admin=discord.utils.get(msg.author.guild.roles, name="Server Staff")
+    verify_logs=self.bot.get_channel(ID.fbc.logs.verify) or await self.bot.fetch_channel(ID.fbc.logs.verify)
     welcomed=discord.Object(id=889011345712894002)
     unwelcomed=discord.Object(id=889011029428801607)
     if msg.guild is None:
