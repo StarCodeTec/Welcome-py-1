@@ -4,7 +4,6 @@ import cogs.react as react
 import cogs.bingus as BINGUS_MEME
 import cogs.special_things as SPECIAL
 import cogs.bio as bio
-import cogs.help as help
 #async_run---------------------------------------------------------------------------------------
 import asyncio
 def run(run):
@@ -46,7 +45,7 @@ intents = discord.Intents.all()
 intents.typing = False
 intents.presences = False
 ACTIVITY=discord.Activity(type=discord.ActivityType.watching, name="discord.gg/FemboyCafe")
-bot = commands.Bot(command_prefix=commands.when_mentioned_or('.'), intents=intents, activity=ACTIVITY, help_command=help.BusboyHelp())
+bot = commands.Bot(command_prefix=commands.when_mentioned_or('.'), intents=intents, activity=ACTIVITY)
 bot.mongo = motor.motor_asyncio.AsyncIOMotorClient(str(connection_url))
 bot.db = bot.mongo["Pybot00"]
 bot.inbox = Document(bot.db, "inbox")
