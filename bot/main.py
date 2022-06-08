@@ -3,7 +3,7 @@ import cogs.sticky as sticky
 import cogs.react as react
 import cogs.bingus as BINGUS_MEME
 import cogs.special_things as SPECIAL
-import cogs.Bios as bio
+import cogs.bio as bio
 #async_run---------------------------------------------------------------------------------------
 import asyncio
 def run(run):
