@@ -62,6 +62,6 @@ class BusboyHelp(commands.HelpCommand):
 class Help(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        help_command = MyHelp()
+        help_command = BusboyHelp()
         help_command.cog = self
         bot.help_command = help_command

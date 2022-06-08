@@ -1,4 +1,5 @@
 #cogs--------------------------------------------------------------------------------------------  
+import cogs.help as HELP
 import cogs.sticky as sticky
 import cogs.react as react
 import cogs.bingus as BINGUS_MEME
@@ -106,6 +107,7 @@ async def main_start(run):
         await bot.add_cog(sticky.sticky(bot))
         await bot.add_cog(react.auto_react(bot))
         await bot.add_cog(bio.Bios(bot))
+        await bot.add_cog(HELP.Help(bot))
         await bot.start(str(key)) 
 
         
