@@ -95,11 +95,12 @@ class auto_react(commands.Cog):
     if str(payload.emoji) =="📥":            
       # ensures people can't spam reactions
       # uses a rate limit bucket
-      bucket = self.cooldown.get_bucket(msg)
-      retry_after = bucket.update_rate_limit()
+      if payload.member.id != Equinox:
+        bucket = self.cooldown.get_bucket(msg)
+        retry_after = bucket.update_rate_limit()
 
-      if retry_after: # rate limited. don't continue
-        return await payload.member.send("Please wait a little bit before reacting again.")
+        if retry_after: # rate limited. don't continue
+          return await payload.member.send("Please wait a little bit before reacting again.")
       
       send = self.bot.get_channel(cafe.friends.inbox) or await self.bot.fetch_channel(cafe.friends.inbox) 
       inbox_msg = await send.send(f"<@{payload.member.id}> is interested <@{msg.author.id}>")
