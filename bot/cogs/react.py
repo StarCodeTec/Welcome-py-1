@@ -111,7 +111,7 @@ class auto_react(commands.Cog):
           "orignal": msg.id, 
         }
       )
-      log = self.bot.get_channel(ID.fbc.logs)
+      log = self.bot.get_channel(ID.fbc.logs.friends)
       await log.send(f"📥 **{payload.member}** has shown interest in **{msg.author}**'s post.")
       return
     
@@ -124,7 +124,7 @@ class auto_react(commands.Cog):
       
       await msg.remove_reaction("ℹ️", payload.member)
 
-      log = self.bot.get_channel(ID.fbc.logs)
+      log = self.bot.get_channel(ID.fbc.logs.friends)
       await log.send(f"ℹ️ **{payload.member}** has reacted to see **{msg.author}**'s bio.")
       return
     
@@ -158,5 +158,5 @@ class auto_react(commands.Cog):
 
       await self.bot.inbox.delete(data["_id"]) # We don't need to store it anymore
 
-      log = self.bot.get_channel(ID.fbc.logs)
+      log = self.bot.get_channel(ID.fbc.logs.friends)
       await log.send(f"📥 **{payload.member}** has no longer shown interest in **{msg.author}**'s post.")
