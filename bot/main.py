@@ -3,7 +3,7 @@ import cogs.help as HELP
 import cogs.sticky as sticky
 import cogs.react as react
 import cogs.bingus as BINGUS_MEME
-import cogs.special_things as SPECIAL
+import cogs.mod as SPECIAL
 import cogs.bio as bio
 #async_run---------------------------------------------------------------------------------------
 import asyncio
@@ -102,7 +102,7 @@ async def on_guild_channel_create(cha):
 async def main_start(run):
     async with bot:
         purge.start()
-        await bot.add_cog(SPECIAL.special(bot))
+        await bot.add_cog(SPECIAL.MOD(bot))
         await bot.add_cog(BINGUS_MEME.bingus(bot))
         await bot.add_cog(sticky.sticky(bot))
         await bot.add_cog(react.auto_react(bot))

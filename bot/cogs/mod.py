@@ -20,11 +20,29 @@ r5 = id_0.thumb_up
 null = None
 botuser = 966392608895152228 
 
-class special(commands.Cog):
+class MOD(commands.Cog):
   def __init__(self, bot):
     self.bot=bot
   
-  @commands.command(hidden=True)
+  @commands.command()
+    async def bio(self, ctx, member: discord.Member=None):
+      """Posts someones bio."""
+      data = await self.bot.bio.find(member.id)
+      if not data:
+        if member == ctx.author:
+          return await ctx.send("You don't have a bio stored.")
+        else:
+          return await ctx.send("They don't have a bio stored.")
+          
+        bio_channel = self.bot.get_channel(cafe.friends.bio)
+        msg = await bio_channel.fetch_message(data["msg_id"])
+  
+        view = discord.ui.View()
+        view.add_item(discord.ui.Button(label="Go to bio post", url=msg.jump_url))
+  
+        await ctx.send(discord.utils.escape_mentions(f"**Bio for {member.name}**\n{data['bio']}"), view=view)
+      
+  @commands.command()
   async def speak(self, ctx, channel: Optional[discord.TextChannel], member: Optional[discord.Member], *, message: str):
     """Sends a message as the bot. Only works in the busboy-cmds channel.
     
@@ -40,7 +58,7 @@ class special(commands.Cog):
 
     await channel.send(f"{message} {member.mention}" if member else message)
 
-  @commands.command(hidden=True)
+  @commands.command()
   async def deny(self, ctx):
     msg=ctx.message
     admin=discord.utils.get(msg.author.guild.roles, name="Server Staff")
@@ -67,7 +85,7 @@ class special(commands.Cog):
       await denied_logs.send(f"\tDenied <@{member.id}>\n Denied id: {member.id}\nDenied:{member}\nDenied by: <@{msg.author.id}>\nDenied by user: {msg.author}\n\nDenied at: {time.created_at}")
       await msg.channel.delete()
       
-  @commands.command(hidden=True)
+  @commands.command()
   async def verify(self, ctx):
     msg=ctx.message
     gen=self.bot.get_channel(cafe.chat.gen) or await self.bot.fetch_channel(cafe.chat.gen)
