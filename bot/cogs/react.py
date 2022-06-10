@@ -159,4 +159,5 @@ class auto_react(commands.Cog):
       await self.bot.inbox.delete(data["_id"]) # We don't need to store it anymore
 
       log = self.bot.get_channel(ID.fbc.logs.friends)
-      await log.send(f"📥 **{payload.member}** has no longer shown interest in **{msg.author}**'s post.")
+      user = self.bot.get_user(payload.user_id)
+      await log.send(f"📥 **{user}** has no longer shown interest in **{msg.author}**'s post.")
