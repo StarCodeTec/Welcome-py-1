@@ -111,9 +111,11 @@ class auto_react(commands.Cog):
           "orignal": msg.id, 
         }
       )
+      log = self.bot.get_channel(ID.fbc.logs)
+      await log.send(f"📥 **{payload.member}** has shown interest in **{msg.author}**'s post.")
       return
     
-    if str(payload.emoji) =="ℹ️":
+    if str(payload.emoji) == "ℹ️":
       data = await self.bot.bio.find(msg.author.id)
       if not data:
         return await payload.member.send(f"ℹ️ {msg.author.name} doesn't have a bio set!")
@@ -121,6 +123,9 @@ class auto_react(commands.Cog):
       await payload.member.send(f"ℹ️ **Here the bio for {msg.author.name}:**\n{data['bio']}")
       
       await msg.remove_reaction("ℹ️", payload.member)
+
+      log = self.bot.get_channel(ID.fbc.logs)
+      await log.send(f"ℹ️ **{payload.member}** has reacted to see **{msg.author}**'s bio.")
       return
     
   @cog.listener()
@@ -152,3 +157,6 @@ class auto_react(commands.Cog):
       await msg_to_delete.delete()
 
       await self.bot.inbox.delete(data["_id"]) # We don't need to store it anymore
+
+      log = self.bot.get_channel(ID.fbc.logs)
+      await log.send(f"📥 **{payload.member}** has no longer shown interest in **{msg.author}**'s post.")
