@@ -97,7 +97,7 @@ class auto_react(commands.Cog):
       # uses a rate limit bucket
       if payload.member.id != Equinox: 
         bucket = self.cooldown.get_bucket(msg)
-      retry_after = bucket.update_rate_limit()
+        retry_after = bucket.update_rate_limit()
 
         if retry_after: # rate limited. don't continue
           return await payload.member.send("Please wait a little bit before reacting again.")
