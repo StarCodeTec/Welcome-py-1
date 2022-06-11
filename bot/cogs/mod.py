@@ -1,9 +1,11 @@
 from discord.ext import tasks, commands
 import discord
+import asyncio
+def run(run):
+  asyncio.run(run)
 import sys
 sys.path.append('..')
 from extras.text_zone import all_id as id_0
-from main import run
 import extras.IDS as ID
 from zoneinfo import ZoneInfo
 import datetime as dt
