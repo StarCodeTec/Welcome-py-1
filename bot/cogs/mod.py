@@ -29,8 +29,9 @@ botuser = 966392608895152228
 class MOD(commands.Cog):
   def __init__(self, bot):
     self.bot=bot
-  def cog_check(ctx):
-    logs = bot.get_channel(ID.fbc.logs.gen)
+    
+  def cog_check(self, ctx):
+    logs = self.bot.get_channel(ID.fbc.logs.gen)
     if ctx.guild.id == ID.server.cafe:
       mod = discord.utils.get(ctx.guild.roles, name="Server Staff")
       if mod not in ctx.member.roles:
