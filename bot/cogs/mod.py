@@ -20,7 +20,7 @@ r4 = id_0.P_heart
 r5 = id_0.thumb_up
 null = None
 botuser = 966392608895152228 
-async def CHECK(bot, ctx, str(command_name)):
+async def CHECK(bot, ctx, command_name):
   logs = await bot.fetch_channel(ID.fbc.logs.gen) or bot.get_channel(ID.fbc.logs.gen)
   if ctx.guild.id == ID.server.cafe:
     mod = discord.utils.get(ctx.guild.roles, name="Server Staff")
@@ -42,7 +42,7 @@ class MOD(commands.Cog):
   @commands.command()
   async def bio(self, ctx, member: discord.Member=None):
     """Posts someones bio."""
-    if run(CHECK(self.bot, ctx)) == True:return
+    if run(CHECK(self.bot, ctx, "bio")) == True:return
     data = await self.bot.bio.find(member.id)
     if not data:
       if member == ctx.author:
