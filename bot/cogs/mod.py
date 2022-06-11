@@ -22,18 +22,7 @@ r4 = id_0.P_heart
 r5 = id_0.thumb_up
 null = None
 botuser = 966392608895152228 
-async def CHECK(bot, ctx, command_name):
-  logs = await bot.fetch_channel(ID.fbc.logs.gen) or bot.get_channel(ID.fbc.logs.gen)
-  if ctx.guild.id == ID.server.cafe:
-    mod = discord.utils.get(ctx.guild.roles, name="Server Staff")
-    if mod not in ctx.member.roles:
-      ctx.channel.send("You are not allowed to use that command")
-      logs.send(f"<@{ctx.member.id}> just tried using .{command_name}")
-      return True
-    else:
-      return False
-  if ctx.guild.id == ID.server.fbc:
-    return False
+
       
     
   
@@ -41,6 +30,19 @@ class MOD(commands.Cog):
   def __init__(self, bot):
     self.bot=bot
   
+  async def CHECK(bot, ctx, command_name):
+    logs = await bot.fetch_channel(ID.fbc.logs.gen) or bot.get_channel(ID.fbc.logs.gen)
+    if ctx.guild.id == ID.server.cafe:
+      mod = discord.utils.get(ctx.guild.roles, name="Server Staff")
+      if mod not in ctx.member.roles:
+        ctx.channel.send("You are not allowed to use that command")
+        logs.send(f"<@{ctx.member.id}> just tried using .{command_name}")
+        return True
+      else:
+        return False
+    if ctx.guild.id == ID.server.fbc:
+      return False
+      
   @commands.command()
   async def bio(self, ctx, member: discord.Member=None):
     """Posts someones bio."""
