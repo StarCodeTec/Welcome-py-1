@@ -30,7 +30,7 @@ class MOD(commands.Cog):
   def __init__(self, bot):
     self.bot=bot
   def cog_check(ctx):
-    logs = await bot.fetch_channel(ID.fbc.logs.gen) or bot.get_channel(ID.fbc.logs.gen)
+    logs = bot.get_channel(ID.fbc.logs.gen)
     if ctx.guild.id == ID.server.cafe:
       mod = discord.utils.get(ctx.guild.roles, name="Server Staff")
       if mod not in ctx.member.roles:
