@@ -31,22 +31,21 @@ class MOD(commands.Cog):
     self.bot=bot
   def cog_check(ctx):
     logs = await bot.fetch_channel(ID.fbc.logs.gen) or bot.get_channel(ID.fbc.logs.gen)
-      if ctx.guild.id == ID.server.cafe:
-        mod = discord.utils.get(ctx.guild.roles, name="Server Staff")
-        if mod not in ctx.member.roles:
-          ctx.channel.send("You are not allowed to use that command")
-          logs.send(f"<@{ctx.member.id}> just tried using .{ctx.content}")
-          return False
-        else:
-          return True
-      elif ctx.guild.id == ID.server.fbc:
-        return True
+    if ctx.guild.id == ID.server.cafe:
+      mod = discord.utils.get(ctx.guild.roles, name="Server Staff")
+      if mod not in ctx.member.roles:
+        ctx.channel.send("You are not allowed to use that command")
+        logs.send(f"<@{ctx.member.id}> just tried using .{ctx.content}")
+        return False
       else:
-        logs.send(f"""
-        ALERT:
+        return True
+    elif ctx.guild.id == ID.server.fbc:
+      return True
+    else:
+      logs.send(f"""        ALERT:
 Someone used {ctx.content} outside of the cafe, the guild name is {ctx.guild.name}
           """)
-        return False
+      return False
     
       
   @commands.command()
