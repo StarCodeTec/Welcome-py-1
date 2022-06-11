@@ -29,24 +29,29 @@ botuser = 966392608895152228
 class MOD(commands.Cog):
   def __init__(self, bot):
     self.bot=bot
-  
-  async def CHECK(bot, ctx, command_name):
+  def cog_check(ctx):
     logs = await bot.fetch_channel(ID.fbc.logs.gen) or bot.get_channel(ID.fbc.logs.gen)
-    if ctx.guild.id == ID.server.cafe:
-      mod = discord.utils.get(ctx.guild.roles, name="Server Staff")
-      if mod not in ctx.member.roles:
-        ctx.channel.send("You are not allowed to use that command")
-        logs.send(f"<@{ctx.member.id}> just tried using .{command_name}")
-        return True
-      else:
-        return False
-    if ctx.guild.id == ID.server.fbc:
-      return False
+        if ctx.guild.id == ID.server.cafe:
+          mod = discord.utils.get(ctx.guild.roles, name="Server Staff")
+          if mod not in ctx.member.roles:
+            ctx.channel.send("You are not allowed to use that command")
+            logs.send(f"<@{ctx.member.id}> just tried using .{ctx.content}")
+            return False
+          else:
+            return True
+        elif ctx.guild.id == ID.server.fbc:
+          return True
+        else:
+          logs.send(f"""
+        ALERT:
+Someone used {ctx.content} outside of the cafe, the guild name is {ctx.guild.name}
+          """)
+          return False
+    
       
   @commands.command()
   async def bio(self, ctx, member: discord.Member=None):
     """Posts someones bio."""
-    if run(CHECK(self.bot, ctx, "bio")) == True:return
     data = await self.bot.bio.find(member.id)
     if not data:
       if member == ctx.author:
