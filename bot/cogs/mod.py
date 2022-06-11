@@ -26,7 +26,7 @@ async def CHECK(bot, ctx, str(command_name)):
     mod = discord.utils.get(ctx.guild.roles, name="Server Staff")
     if mod not in ctx.member.roles:
       ctx.channel.send("You are not allowed to use that command")
-      logs.send(f"<@{ctx.member.id}> just tried using .{command_name})
+      logs.send(f"<@{ctx.member.id}> just tried using .{command_name}")
       return True
     else:
       return False
