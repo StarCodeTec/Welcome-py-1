@@ -33,7 +33,7 @@ class MOD(commands.Cog):
   def cog_check(self, ctx):
     logs = self.bot.get_channel(ID.fbc.logs.gen)
     if ctx.guild.id == ID.server.cafe:
-      mod = discord.utils.get(ctx.guild.roles, name="Server Staff")
+      mod = discord.utils.get(ctx.guild.roles, name="-------- Staff Rank --------")
       if mod not in ctx.member.roles:
         ctx.channel.send("You are not allowed to use that command")
         logs.send(f"<@{ctx.member.id}> just tried using .{ctx.content}")
