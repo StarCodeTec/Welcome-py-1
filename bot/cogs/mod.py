@@ -1,8 +1,6 @@
 from discord.ext import tasks, commands
 import discord
 import asyncio
-def run(coro):
-  asyncio.new_event_loop().create_task(coro)
 import sys
 sys.path.append('..')
 from extras.text_zone import all_id as id_0
@@ -34,15 +32,15 @@ class MOD(commands.Cog):
   def __init__(self, bot):
     self.bot=bot
 
-  def cog_check(self, ctx):
+  async def cog_check(self, ctx):
     logs = self.bot.get_channel(ID.fbc.logs.gen)
     if ctx.guild.id == ID.server.cafe:
       mod = discord.utils.get(ctx.guild.roles, name="-------- Staff Rank --------")
       if mod not in ctx.message.author.roles:
         msg1 = "You are not allowed to use that command"
         msg2 = f"<@{ctx.message.author.id}> just tried using .{ctx.message.content}"
-        run(ctx.send(msg1))
-        run(logs.send(msg2))
+        await ctx.send(msg1)
+        await logs.send(msg2)
         return False
       else:
         return True
@@ -52,7 +50,7 @@ class MOD(commands.Cog):
       msg1 = f"""        ALERT:
 Someone used {ctx.message.content} outside of the cafe, the guild name is {ctx.guild.name} and the user is {ctx.message.author} plus their id is {ctx.message.id}
           """
-      run(logs.send(msg1))
+      await logs.send(msg1))
       return False
     
       
