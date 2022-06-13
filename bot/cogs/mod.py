@@ -93,6 +93,7 @@ Someone used {ctx.message.content} outside of the cafe, the guild name is {ctx.g
 
   @commands.command()
   async def deny(self, ctx):
+    "Denys a user if you reply to them in the verification proccess"
     msg=ctx.message
     admin=discord.utils.get(msg.author.guild.roles, name="Server Staff")
     denied_logs=self.bot.get_channel(ID.fbc.logs.denied) or await self.bot.fetch_channel(ID.fbc.logs.denied)
@@ -120,6 +121,7 @@ Someone used {ctx.message.content} outside of the cafe, the guild name is {ctx.g
       
   @commands.command()
   async def verify(self, ctx):
+    "Verifys a user if you reply to them in the verification proccess"
     msg=ctx.message
     gen=self.bot.get_channel(cafe.chat.gen) or await self.bot.fetch_channel(cafe.chat.gen)
     admin=discord.utils.get(msg.author.guild.roles, name="Server Staff")
