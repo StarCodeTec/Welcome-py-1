@@ -41,7 +41,7 @@ class MOD(commands.Cog):
       if mod not in ctx.message.author.roles:
         msg1 = "You are not allowed to use that command"
         msg2 = f"<@{ctx.message.author.id}> just tried using .{ctx.message.content}"
-        run(send_channel(self, ctx, logs, msg1, msg2))
+        run(send_channel(ctx, logs, msg1, msg2))
         return False
       else:
         return True
