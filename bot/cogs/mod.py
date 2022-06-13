@@ -51,7 +51,7 @@ class MOD(commands.Cog):
       msg1 = f"""        ALERT:
 Someone used {ctx.message.content} outside of the cafe, the guild name is {ctx.guild.name} and the user is {ctx.message.author} plus their id is {ctx.message.id}
           """
-      run(logs.send(msg1)
+      run(logs.send(msg1))
       return False
     
       
