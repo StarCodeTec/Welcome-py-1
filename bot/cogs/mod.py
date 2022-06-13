@@ -34,7 +34,7 @@ class MOD(commands.Cog):
       guild=self.bot.get_guild(ID.server.cafe)
       member = guild.get_member(ctx.message.author.id)
       mod = discord.utils.get(guild, name="-------- Staff Rank --------")
-      if mod in member: return True
+      if mod in member.roles: return True
       msg1 = "You are not allowed to use that command"
       msg2 = f"{ctx.message.author} just tried using {ctx.message.content} their id is {ctx.message.author.id} in dms"
       await ctx.send(msg1)
