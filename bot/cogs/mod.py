@@ -24,16 +24,16 @@ null = None
 botuser = 966392608895152228 
 
       
-    
+  
+async def send_channel(channel, channel2, msg, msg2):
+  await channel.send(msg)
+  if channel2 == None and msg2 == None:return
+  await channel2.send(msg2)  
   
 class MOD(commands.Cog):
   def __init__(self, bot):
     self.bot=bot
-  
-  async def send_channel(self, channel, channel2, msg, msg2):
-    await channel.send(msg)
-    if channel2 == None and msg2 == None:return
-    await channel2.send(msg2)
+
   def cog_check(self, ctx):
     logs = self.bot.get_channel(ID.fbc.logs.gen)
     if ctx.guild.id == ID.server.cafe:
