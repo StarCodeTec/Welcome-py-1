@@ -34,6 +34,16 @@ class MOD(commands.Cog):
 
   async def cog_check(self, ctx):
     logs = self.bot.get_channel(ID.fbc.logs.gen)
+    if ctx.guild is None:
+      guild=self.bot.get_guild(ID.servers.cafe)
+      mod = discord.utils.get(guild, name="-------- Staff Rank --------")
+      if mod in ctx.message.author.roles: return True
+      msg1 = "You are not allowed to use that command"
+      msg2 = f"{ctx.message.author} just tried using {ctx.message.content} their id is {ctx.message.author.id} in dms"
+      await ctx.send(msg1)
+      await logs.send(msg2)
+      return False
+      
     if ctx.guild.id == ID.server.cafe:
       mod = discord.utils.get(ctx.guild.roles, name="-------- Staff Rank --------")
       if mod not in ctx.message.author.roles:
