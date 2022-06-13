@@ -23,11 +23,7 @@ botuser = 966392608895152228
 
       
   
-async def send_channel(channel, channel2, msg, msg2):
-  await channel.send(msg)
-  if channel2 == None and msg2 == None:return
-  await channel2.send(msg2)  
-  
+
 class MOD(commands.Cog):
   def __init__(self, bot):
     self.bot=bot
@@ -35,7 +31,7 @@ class MOD(commands.Cog):
   async def cog_check(self, ctx):
     logs = self.bot.get_channel(ID.fbc.logs.gen)
     if ctx.guild is None:
-      guild=self.bot.get_guild(ID.servers.cafe)
+      guild=self.bot.get_guild(ID.server.cafe)
       mod = discord.utils.get(guild, name="-------- Staff Rank --------")
       if mod in ctx.message.author.roles: return True
       msg1 = "You are not allowed to use that command"
