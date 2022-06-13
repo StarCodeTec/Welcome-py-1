@@ -36,7 +36,7 @@ class MOD(commands.Cog):
       mod = discord.utils.get(ctx.guild.roles, name="-------- Staff Rank --------")
       if mod not in ctx.message.author.roles:
         ctx.channel.send("You are not allowed to use that command")
-        logs.send(f"<@{ctx.message.author.id}> just tried using .{ctx.content}")
+        logs.send(f"<@{ctx.message.author.id}> just tried using .{ctx.message.content}")
         return False
       else:
         return True
@@ -44,7 +44,7 @@ class MOD(commands.Cog):
       return True
     else:
       logs.send(f"""        ALERT:
-Someone used {ctx.content} outside of the cafe, the guild name is {ctx.guild.name}
+Someone used {ctx.message.content} outside of the cafe, the guild name is {ctx.guild.name} and the user is {ctx.message.author} plus their id is {ctx.message.id}
           """)
       return False
     
@@ -59,13 +59,14 @@ Someone used {ctx.content} outside of the cafe, the guild name is {ctx.guild.nam
       else:
         return await ctx.send("They don't have a bio stored.")
           
-      bio_channel = self.bot.get_channel(cafe.friends.bio)
-      msg = await bio_channel.fetch_message(data["msg_id"])
+    bio_channel = self.bot.get_channel(cafe.friends.bio)
+    msg = await bio_channel.fetch_message(data["msg_id"])
   
-      view = discord.ui.View()
-      view.add_item(discord.ui.Button(label="Go to bio post", url=msg.jump_url))
+    view = discord.ui.View()
+    view.add_item(discord.ui.Button(label="Go to bio post", url=msg.jump_url))
   
-      await ctx.send(discord.utils.escape_mentions(f"**Bio for {member.name}**\n{data['bio']}"), view=view)
+    await ctx.send(discord.utils.escape_mentions(f"**Bio for {member.name}**\n{data['bio']}"), view=view)
+
   @commands.command()
   async def MODtest(self, ctx):
     await ctx.send(ctx.message.id)
