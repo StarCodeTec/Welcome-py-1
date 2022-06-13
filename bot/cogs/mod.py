@@ -35,15 +35,15 @@ class MOD(commands.Cog):
     if ctx.guild.id == ID.server.cafe:
       mod = discord.utils.get(ctx.guild.roles, name="-------- Staff Rank --------")
       if mod not in ctx.message.author.roles:
-        ctx.channel.send("You are not allowed to use that command")
-        logs.send(f"<@{ctx.message.author.id}> just tried using .{ctx.message.content}")
+        await ctx.channel.send("You are not allowed to use that command")
+        await logs.send(f"<@{ctx.message.author.id}> just tried using .{ctx.message.content}")
         return False
       else:
         return True
     elif ctx.guild.id == ID.server.fbc:
       return True
     else:
-      logs.send(f"""        ALERT:
+      await logs.send(f"""        ALERT:
 Someone used {ctx.message.content} outside of the cafe, the guild name is {ctx.guild.name} and the user is {ctx.message.author} plus their id is {ctx.message.id}
           """)
       return False
