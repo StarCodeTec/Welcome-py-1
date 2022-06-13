@@ -31,8 +31,8 @@ class MOD(commands.Cog):
   async def cog_check(self, ctx):
     logs = self.bot.get_channel(ID.fbc.logs.gen)
     if ctx.guild is None:
-      guild = self.bot.get_guild(ID.server.cafe) or self.bot.fetch_guild(ID.server.cafe) 
-      member = guild.get_member(ctx.message.author.id) or guild.fetch_member(ctx.message.author.id)
+      guild = self.bot.get_guild(ID.server.cafe) or await self.bot.fetch_guild(ID.server.cafe) 
+      member = guild.get_member(ctx.message.author.id) or await guild.fetch_member(ctx.message.author.id)
       mod = member.get_role(928077514411233350)
       if mod in member.roles: return True
       msg1 = "You are not allowed to use that command"
