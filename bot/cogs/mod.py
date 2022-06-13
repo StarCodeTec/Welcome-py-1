@@ -29,23 +29,29 @@ botuser = 966392608895152228
 class MOD(commands.Cog):
   def __init__(self, bot):
     self.bot=bot
-    
+  
+  async def send_channel(self, channel, channel2, msg, msg2):
+    await channel.send(msg)
+    if channel2 == None and msg2 == None:return
+    await channel2.send(msg2)
   def cog_check(self, ctx):
     logs = self.bot.get_channel(ID.fbc.logs.gen)
     if ctx.guild.id == ID.server.cafe:
       mod = discord.utils.get(ctx.guild.roles, name="-------- Staff Rank --------")
       if mod not in ctx.message.author.roles:
-        await ctx.channel.send("You are not allowed to use that command")
-        await logs.send(f"<@{ctx.message.author.id}> just tried using .{ctx.message.content}")
+        msg1 = "You are not allowed to use that command")#ctx
+        msg2 = f"<@{ctx.message.author.id}> just tried using .{ctx.message.content}")
+        run(send_channel(self, ctx, logs, msg1, msg2))
         return False
       else:
         return True
     elif ctx.guild.id == ID.server.fbc:
       return True
     else:
-      await logs.send(f"""        ALERT:
+      msg1 = f"""        ALERT:
 Someone used {ctx.message.content} outside of the cafe, the guild name is {ctx.guild.name} and the user is {ctx.message.author} plus their id is {ctx.message.id}
-          """)
+          """
+      run(send_channel(logs, None, msg1, None))
       return False
     
       
