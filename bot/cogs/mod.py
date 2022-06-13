@@ -38,7 +38,7 @@ class MOD(commands.Cog):
       mod = discord.utils.get(ctx.guild.roles, name="-------- Staff Rank --------")
       if mod not in ctx.message.author.roles:
         msg1 = "You are not allowed to use that command"
-        msg2 = f"<@{ctx.message.author.id}> just tried using .{ctx.message.content}"
+        msg2 = f"{ctx.message.author} just tried using {ctx.message.content} their id is {ctx.message.author.id}"
         await ctx.send(msg1)
         await logs.send(msg2)
         return False
