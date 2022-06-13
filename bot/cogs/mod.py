@@ -1,7 +1,8 @@
 from discord.ext import tasks, commands
 import discord
 import asyncio
-run=asyncio.new_event_loop().create_task()
+def run(coro):
+  asyncio.new_event_loop().create_task(coro)
 import sys
 sys.path.append('..')
 from extras.text_zone import all_id as id_0
