@@ -52,6 +52,7 @@ Someone used {ctx.content} outside of the cafe, the guild name is {ctx.guild.nam
   @commands.command()
   async def bio(self, ctx, member: discord.Member=None):
     """Posts someones bio."""
+    print("test")
     data = await self.bot.bio.find(member.id)
     if not data:
       if member == ctx.author:
