@@ -29,7 +29,7 @@ class MOD(commands.Cog):
     self.bot=bot
 
   async def cog_check(self, ctx):
-    logs = self.bot.get_channel(ID.fbc.logs.gen)
+    logs = self.bot.get_channel(ID.fbc.logs.gen) or await self.bot.get_channel(ID.fbc.logs.gen)
     if ctx.guild is None:
       guild = self.bot.get_guild(ID.server.cafe) or await self.bot.fetch_guild(ID.server.cafe) 
       member = guild.get_member(ctx.message.author.id) or await guild.fetch_member(ctx.message.author.id)
