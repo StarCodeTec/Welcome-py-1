@@ -68,7 +68,7 @@ Someone used {ctx.content} outside of the cafe, the guild name is {ctx.guild.nam
       await ctx.send(discord.utils.escape_mentions(f"**Bio for {member.name}**\n{data['bio']}"), view=view)
   @commands.command()
   async def MODtest(self, ctx):
-    ctx.send(ctx.message.id)
+    await ctx.send(ctx.message.id)
   @commands.command()
   async def speak(self, ctx, channel: Optional[discord.TextChannel], member: Optional[discord.Member], *, message: str):
     """Sends a message as the bot. Only works in the busboy-cmds channel.
