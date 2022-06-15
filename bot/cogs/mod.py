@@ -64,14 +64,13 @@ Someone used {ctx.message.content} outside of the cafe, the guild name is {ctx.g
   @commands.command()
   async def bio(self, ctx, member: discord.Member=None):
     """Posts someones bio."""
+    member = ctx.author if not member else member
     data = await self.bot.bio.find(member.id)
     if not data:
       if member == ctx.author:
         return await ctx.send("You don't have a bio stored.")
       else:
         return await ctx.send("They don't have a bio stored.")
-      
-    member = ctx.author if not member else member
     
     bio_channel = self.bot.get_channel(cafe.friends.bio)
     msg = await bio_channel.fetch_message(data["msg_id"])
