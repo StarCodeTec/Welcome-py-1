@@ -100,7 +100,7 @@ Someone used {ctx.message.content} outside of the cafe, the guild name is {ctx.g
     await channel.send(f"{message} {member.mention}" if member else message)
 
   @commands.command()
-  async def deny(self, ctx):
+  async def deny(self, ctx, member: discord.Member=None):
     "Denys a user if you reply to them in the verification proccess"
     msg=ctx.message
     admin=discord.utils.get(msg.author.guild.roles, name="Server Staff")
@@ -115,20 +115,21 @@ Someone used {ctx.message.content} outside of the cafe, the guild name is {ctx.g
       if msg.channel.category_id != cafe.cats.verify:
         return
 
-      if msg.reference == None:
-        return
-
       if admin not in msg.author.roles:
         return
+
+      if not any([msg.reference, member]): # warns if no member is supplied or there's no message reference
+        return await ctx.send("Reply to a message or specify the member.", delete_after=10.0)
       
-      member = msg.reference.resolved.author
+      member = msg.reference.resolved.author if not member else member
+
       await member.timeout(dt.timedelta(days=7), reason="denied application try again later") 
       time = await msg.channel.send("time holder(dont delete)")
       await denied_logs.send(f"\tDenied <@{member.id}>\n Denied id: {member.id}\nDenied:{member}\nDenied by: <@{msg.author.id}>\nDenied by user: {msg.author}\n\nDenied at: {time.created_at}")
       await msg.channel.delete()
       
   @commands.command()
-  async def verify(self, ctx):
+  async def verify(self, ctx, member: discord.Member=None):
     "Verifys a user if you reply to them in the verification proccess"
     msg=ctx.message
     gen=self.bot.get_channel(cafe.chat.gen) or await self.bot.fetch_channel(cafe.chat.gen)
@@ -145,13 +146,14 @@ Someone used {ctx.message.content} outside of the cafe, the guild name is {ctx.g
     if msg.channel.id != cafe.verify:
       if msg.channel.category_id != cafe.cats.verify:
         return
-
-      if msg.reference == None:
-        return
-
-      member = msg.reference.resolved.author
+      
       if admin not in msg.author.roles:
         return
+      
+      if not any([msg.reference, member]): # warns if no member is supplied or there's no message reference
+        return await ctx.send("Reply to a message or specify the member.", delete_after=10.0)
+      
+      member = msg.reference.resolved.author if not member else member
      
       await member.remove_roles(unwelcomed)
       await member.add_roles(welcomed)
@@ -162,3 +164,38 @@ Someone used {ctx.message.content} outside of the cafe, the guild name is {ctx.g
       time = await msg.channel.send("time holder(dont delete)")
       await verify_logs.send(f"\tWelcome <@{member.id}>\nWelcome id: {member.id}\nWelcome:{member}\n{msg.reference.resolved.content}\n\nWelcomed by: <@{msg.author.id}>\nWelcomer: {msg.author}\n\nWelcomed at: {time.created_at}")
       await msg.channel.delete()
+    
+  @commands.command()
+  async def getroles(self, ctx, member: discord.Member=None):
+    """DMs someone telling them to get pronoun roles."""
+    msg=ctx.message
+    gen=self.bot.get_channel(cafe.chat.gen) or await self.bot.fetch_channel(cafe.chat.gen)
+    admin=discord.utils.get(msg.author.guild.roles, name="Server Staff")
+    verify_logs=self.bot.get_channel(ID.fbc.logs.verify) or await self.bot.fetch_channel(ID.fbc.logs.verify)
+    welcomed=discord.Object(id=889011345712894002)
+    unwelcomed=discord.Object(id=889011029428801607)
+    if msg.guild is None:
+      return
+
+    if msg.author.id == botuser:
+      return
+
+    if msg.channel.id != cafe.verify:
+      if msg.channel.category_id != cafe.cats.verify:
+        return
+
+      if admin not in msg.author.roles:
+            return
+        
+      if not any([msg.reference, member]): # warns if no member is supplied or there's no message reference
+        return await ctx.send("Reply to a message or specify the member.", delete_after=10.0)
+
+      member = msg.reference.resolved.author if not member else member
+
+      view = discord.ui.View()
+      view.add_item(label="Click me to get pronoun roles", url="https://discordapp.com/channels/871938782092480513/889009278088773632/889009427213066240")
+      await member.send("You need pronoun roles for your verification to get accepted! Click below to go to the <#889009278088773632> channel.")
+      await ctx.message.delete()
+
+      logs = ctx.guild.get_channel(ID.fbc.logs.gen)
+      await logs.send(f"{ctx.author.mention} told {member.mention} to get pronoun roles.")
