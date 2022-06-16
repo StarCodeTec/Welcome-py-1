@@ -198,4 +198,4 @@ Someone used {ctx.message.content} outside of the cafe, the guild name is {ctx.g
       await ctx.message.delete()
 
       logs = self.bot.get_channel(ID.fbc.logs.gen) or await self.bot.fetch_channel(ID.fbc.logs.gen)
-      await logs.send(f"{ctx.author.mention} told {member.mention} to get pronoun roles.")
+      await logs.send(f"{ctx.author.mention} told {member}(id: {member.id}) to get pronoun roles.")
