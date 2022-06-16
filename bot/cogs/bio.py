@@ -27,11 +27,15 @@ class Bios(commands.Cog):
     """Posts someones bio."""
     member = ctx.author if not member else member
     data = await self.bot.bio.find(member.id)
-    if ctx.channel.id != cafe.chat.bot or ctx.channel.id != cafe.friends.explore or ctx.channel.id == ID.fbc.commands: return
+    if ctx.channel.id != cafe.chat.bot or ctx.channel.id != cafe.friends.explore or ctx.channel.id == ID.fbc.commands:
+      print("--")
+      return
     guild = self.bot.get_guild(ID.server.cafe) or await self.bot.fetch_guild(ID.server.cafe) 
     member = guild.get_member(ctx.message.author.id) or await guild.fetch_member(ctx.message.author.id)
     reg = member.get_role(889011345712894002)
-    if reg not in ctx.author.roles: return
+    if reg not in ctx.author.roles: 
+      print("-")
+      return
     if not data:
       if member == ctx.author:
         return await ctx.send("You don't have a bio stored.")
