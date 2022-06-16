@@ -196,6 +196,5 @@ Someone used {ctx.message.content} outside of the cafe, the guild name is {ctx.g
       view.add_item(discord.ui.Button(label="Click me to get pronoun roles", url="https://discordapp.com/channels/871938782092480513/889009278088773632/889009427213066240"))
       await member.send("You need pronoun roles for your verification to get accepted! Click below to go to the <#889009278088773632> channel.")
       await ctx.message.delete()
-
-      logs = ctx.guild.get_channel(ID.fbc.logs.gen)
-      await logs.send(f"{ctx.author.mention} told {member.mention} to get pronoun roles.")
+      
+      await gen.send(f"{ctx.author.mention} told {member.mention} to get pronoun roles.")
