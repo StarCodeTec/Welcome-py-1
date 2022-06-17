@@ -59,26 +59,7 @@ Someone used {ctx.message.content} outside of the cafe, the guild name is {ctx.g
           """
       await logs.send(msg1)
       return False
-    
-      
-  @commands.command()
-  async def bio(self, ctx, member: discord.Member=None):
-    """Posts someones bio."""
-    member = ctx.author if not member else member
-    data = await self.bot.bio.find(member.id)
-    if not data:
-      if member == ctx.author:
-        return await ctx.send("You don't have a bio stored.")
-      else:
-        return await ctx.send("They don't have a bio stored.")
-    
-    bio_channel = self.bot.get_channel(cafe.friends.bio)
-    msg = await bio_channel.fetch_message(data["msg_id"])
-  
-    view = discord.ui.View()
-    view.add_item(discord.ui.Button(label="Go to bio post", url=msg.jump_url))
-  
-    await ctx.send(discord.utils.escape_mentions(f"**Bio for {member.name}**\n{data['bio']}"), view=view)
+
 
   @commands.command(hidden=True)
   async def MODtest(self, ctx):
@@ -192,9 +173,9 @@ Someone used {ctx.message.content} outside of the cafe, the guild name is {ctx.g
       member = msg.reference.resolved.author if not member else member
 
       view = discord.ui.View()
-      view.add_item(label="Click me to get pronoun roles", url="https://discordapp.com/channels/871938782092480513/889009278088773632/889009427213066240")
+      view.add_item(discord.ui.Button(label="Click me to get pronoun roles", url="https://discordapp.com/channels/871938782092480513/889009278088773632/889009427213066240"))
       await member.send("You need pronoun roles for your verification to get accepted! Click below to go to the <#889009278088773632> channel.")
       await ctx.message.delete()
 
-      logs = ctx.guild.get_channel(ID.fbc.logs.gen)
-      await logs.send(f"{ctx.author.mention} told {member.mention} to get pronoun roles.")
+      logs = self.bot.get_channel(ID.fbc.logs.gen) or await self.bot.fetch_channel(ID.fbc.logs.gen)
+      await logs.send(f"{ctx.author}(id: {ctx.author.id}) told {member}(id: {member.id}) to get pronoun roles.")
