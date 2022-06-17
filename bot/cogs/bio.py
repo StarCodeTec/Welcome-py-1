@@ -31,8 +31,8 @@ class Bios(commands.Cog):
       print("--")
       return
     guild = self.bot.get_guild(ID.server.cafe) or await self.bot.fetch_guild(ID.server.cafe) 
-    member = guild.get_member(ctx.message.author.id) or await guild.fetch_member(ctx.message.author.id)
-    reg = member.get_role(889011345712894002)
+    mem = guild.get_member(ctx.message.author.id) or await guild.fetch_member(ctx.message.author.id)
+    reg = mem.get_role(889011345712894002)
     if reg not in ctx.author.roles: 
       print("-")
       return
