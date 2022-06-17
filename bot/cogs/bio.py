@@ -50,7 +50,7 @@ class Bios(commands.Cog):
       else:
         return await ctx.send("They don't have a bio stored.")
     
-    bio_channel = self.bot.get_channel(cafe.friends.bio)
+    bio_channel = self.bot.get_channel(cafe.friends.bio) or await self.bot.fetch_channel(cafe.friends.bio)
     msg = await bio_channel.fetch_message(data["msg_id"])
   
     view = discord.ui.View()
