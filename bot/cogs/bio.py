@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from extras.IDS import cafe
+import extras.IDS as ID
 
 class Bios(commands.Cog):
   def __init__(self, bot):
@@ -27,7 +27,7 @@ class Bios(commands.Cog):
     """Posts someones bio."""
     member = ctx.author if not member else member
     data = await self.bot.bio.find(member.id)
-    if ctx.message.channel.id != cafe.chat.bot or ctx.channel.id != cafe.friends.explore or ctx.channel.id != ID.fbc.commands:
+    if ctx.message.channel.id != ID.cafe.chat.bot or ctx.channel.id != ID.cafe.friends.explore or ctx.channel.id != ID.fbc.commands:
       print("--")
       return
     guild = self.bot.get_guild(ID.server.cafe) or await self.bot.fetch_guild(ID.server.cafe) 
