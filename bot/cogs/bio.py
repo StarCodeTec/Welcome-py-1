@@ -30,9 +30,13 @@ class Bios(commands.Cog):
     """Posts someones bio."""
     member = ctx.author if not member else member
     data = await self.bot.bio.find(member.id)
-    if ctx.channel.id != ID.cafe.chat.bot or ctx.channel.id != ID.cafe.friends.explore or ctx.channel.id != ID.fbc.commands:
-      print("--")
-      return
+    if ctx.channel.id != ID.cafe.chat.bot:
+      print("----")
+      if ctx.channel.id != ID.cafe.friends.explore:
+        print("---")
+        if ctx.channel.id != ID.fbc.commands:
+          print("--")
+          return
     guild = self.bot.get_guild(ID.server.cafe) or await self.bot.fetch_guild(ID.server.cafe) 
     mem = guild.get_member(ctx.message.author.id) or await guild.fetch_member(ctx.message.author.id)
     reg = mem.get_role(889011345712894002)
