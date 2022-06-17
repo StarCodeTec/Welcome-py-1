@@ -4,6 +4,7 @@ import sys
 sys.path.append('..')
 from extras.text_zone import all_id as id_0
 import extras.IDS as ID
+cafe = ID.cafe
 
 class Bios(commands.Cog):
   def __init__(self, bot):
