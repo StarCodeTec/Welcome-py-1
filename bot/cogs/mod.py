@@ -179,3 +179,4 @@ Someone used {ctx.message.content} outside of the cafe, the guild name is {ctx.g
 
       logs = self.bot.get_channel(ID.fbc.logs.gen) or await self.bot.fetch_channel(ID.fbc.logs.gen)
       await logs.send(f"{ctx.author}(id: {ctx.author.id}) told {member}(id: {member.id}) to get roles.")
+      await ctx.send(f"{member.mention} has been told to get roles by a staff member")
