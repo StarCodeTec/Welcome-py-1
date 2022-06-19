@@ -20,7 +20,10 @@ from pytz import timezone
 TZX = timezone('EST')
 from zoneinfo import ZoneInfo
 import datetime as DT
+import sys
+sys.path.append('../..')
 from passcodes import main
+sys.path.append('busboy/bot')
 key=main.fenne.key
 import motor.motor_asyncio
 from db.dbc import client as connection_url

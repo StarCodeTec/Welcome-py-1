@@ -82,7 +82,7 @@ Someone used {ctx.message.content} outside of the cafe, the guild name is {ctx.g
 
   @commands.command()
   async def deny(self, ctx, member: discord.Member=None):
-    "Denys a user if you reply to them in the verification proccess"
+    """Reply this command to deny a member verification."""
     msg=ctx.message
     admin=discord.utils.get(msg.author.guild.roles, name="Server Staff")
     denied_logs=self.bot.get_channel(ID.fbc.logs.denied) or await self.bot.fetch_channel(ID.fbc.logs.denied)
@@ -111,7 +111,7 @@ Someone used {ctx.message.content} outside of the cafe, the guild name is {ctx.g
       
   @commands.command()
   async def verify(self, ctx):
-    "Verifys a user if you reply to them in the verification proccess"
+    """Reply this command to verify a member verification."""
     msg=ctx.message
     gen=self.bot.get_channel(cafe.chat.gen) or await self.bot.fetch_channel(cafe.chat.gen)
     admin=discord.utils.get(msg.author.guild.roles, name="Server Staff")
@@ -147,7 +147,7 @@ Someone used {ctx.message.content} outside of the cafe, the guild name is {ctx.g
     
   @commands.command()
   async def getroles(self, ctx, member: discord.Member=None):
-    """DMs someone telling them to get pronoun roles."""
+    """Reply this command to alert a new member to get roles."""
     msg=ctx.message
     gen=self.bot.get_channel(cafe.chat.gen) or await self.bot.fetch_channel(cafe.chat.gen)
     admin=discord.utils.get(msg.author.guild.roles, name="Server Staff")
@@ -174,7 +174,7 @@ Someone used {ctx.message.content} outside of the cafe, the guild name is {ctx.g
 
       view = discord.ui.View()
       view.add_item(discord.ui.Button(label="Click me to get pronoun roles", url="https://discordapp.com/channels/871938782092480513/889009278088773632/889009427213066240"))
-      await member.send("You need pronoun roles for your verification to get accepted! Click below to go to the <#889009278088773632> channel.")
+      await member.send("You need roles for your verification to get accepted! Click below to go to the <#889009278088773632> channel.")
       await ctx.message.delete()
 
       logs = self.bot.get_channel(ID.fbc.logs.gen) or await self.bot.fetch_channel(ID.fbc.logs.gen)
