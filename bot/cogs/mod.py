@@ -67,7 +67,7 @@ Someone used {ctx.message.content} outside of the cafe, the guild name is {ctx.g
 
   @commands.command(hidden=True)
   async def MODtest(self, ctx):
-    await ctx.send(ctx.message.id)
+    await ctx.send("works")
   @commands.command(hidden=True)
   async def restart(self, ctx):
     command = '../../start'
