@@ -38,12 +38,19 @@ class Bios(commands.Cog):
         if ctx.channel.id != ID.fbc.commands:
           print("--")
           return
-    guild = self.bot.get_guild(ID.server.cafe) or await self.bot.fetch_guild(ID.server.cafe) 
-    mem = guild.get_member(ctx.message.author.id) or await guild.fetch_member(ctx.message.author.id)
-    reg = mem.get_role(889011345712894002)
-    if reg not in ctx.author.roles: 
-      print("-")
+    roles = ctx.guild.roles
+    has_role = False
+    for i in roles:
+      if i in ctx.author.roles and i.id == 889011345712894002:
+        await ctx.send
+        has_role = True
+      else:
+        pass
+    if has_role:
+      pass
+    else:
       return
+    
     if not data:
       if member == ctx.author:
         return await ctx.send("You don't have a bio stored.")
