@@ -68,14 +68,26 @@ Someone used {ctx.message.content} outside of the cafe, the guild name is {ctx.g
   @commands.command(hidden=True)
   async def MODtest(self, ctx):
     await ctx.send("works")
+
   @commands.command(hidden=True)
   async def restart(self, ctx):
-    command = '../../start'
-    os.system('echo %s|sudo -S %s' % (sudoPassword, command))
+    guild = self.bot.get_guild(956322799411150949)
+    roles = guild.roles
+    for i in roles:
+      if i in ctx.author.roles and i.id == 983492505167339670:
+            pass
+      else:
+            return
+    if ctx.channel.id != 970411065638780988:
+      return
+    else:
+      command = '../../start'
+      os.system('echo %s|sudo -S %s' % (sudoPassword, command))
+      
   @commands.command(hidden=True)
   async def speak(self, ctx, channel: Optional[discord.TextChannel], member: Optional[discord.Member], *, message: str):
     """Sends a message as the bot. Only works in the busboy-cmds channel.
-    
+    :
     Example usage:
     .speak Hello people (posts in current channel)
     .speak #general Hello people (posts in #general)
