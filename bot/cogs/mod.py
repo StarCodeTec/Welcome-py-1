@@ -9,7 +9,8 @@ from zoneinfo import ZoneInfo
 import datetime as dt
 from typing import Optional
 sys.path.append('../..')
-from passcodes import main.dbc as sudoPassword
+from passcodes import main
+sudoPassword=main.dbc
 sys.path.append('busboy/bot')
 cog = commands.Cog
 cafe = ID.cafe
