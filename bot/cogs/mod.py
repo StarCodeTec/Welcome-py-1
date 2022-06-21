@@ -2,6 +2,7 @@ from discord.ext import tasks, commands
 import discord
 import asyncio
 import sys
+import os
 sys.path.append('..')
 from extras.text_zone import all_id as id_0
 import extras.IDS as ID
