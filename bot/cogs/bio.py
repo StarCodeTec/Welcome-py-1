@@ -40,10 +40,10 @@ class Bios(commands.Cog):
           return
     guild = self.bot.get_guild(ID.server.cafe) or await self.bot.fetch_guild(ID.server.cafe)
     roles = guild.roles
-    member = await guild.fetch_member(ctx.author.id)
+    mem = await guild.fetch_member(ctx.author.id)
     has_role = False
     for i in roles:
-      if i in member.roles and i.id == 889011345712894002:
+      if i in mem.roles and i.id == 889011345712894002:
         has_role = True
       else:
         pass
