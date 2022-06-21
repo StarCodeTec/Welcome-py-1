@@ -75,9 +75,9 @@ Someone used {ctx.message.content} outside of the cafe, the guild name is {ctx.g
     roles = guild.roles
     for i in roles:
       if i in ctx.author.roles and i.id == 983492505167339670:
-            pass
+        pass
       else:
-            return
+        return
     if ctx.channel.id != 970411065638780988:
       return
     else:
