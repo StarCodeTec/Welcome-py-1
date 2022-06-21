@@ -42,7 +42,7 @@ class Bios(commands.Cog):
     has_role = False
     for i in roles:
       if i in ctx.author.roles and i.id == 889011345712894002:
-        await ctx.send
+        print("-")
         has_role = True
       else:
         pass
