@@ -8,7 +8,9 @@ import extras.IDS as ID
 from zoneinfo import ZoneInfo
 import datetime as dt
 from typing import Optional
-
+sys.path.append('../..')
+from passcodes import main.dbc as sudoPassword
+sys.path.append('busboy/bot')
 cog = commands.Cog
 cafe = ID.cafe
 Fenne = 474984052017987604 
@@ -64,6 +66,10 @@ Someone used {ctx.message.content} outside of the cafe, the guild name is {ctx.g
   @commands.command(hidden=True)
   async def MODtest(self, ctx):
     await ctx.send(ctx.message.id)
+  @commands.command(hidden=True)
+  async def restart(self, ctx):
+    command = '../../start'
+    os.system('echo %s|sudo -S %s' % (sudoPassword, command))
   @commands.command(hidden=True)
   async def speak(self, ctx, channel: Optional[discord.TextChannel], member: Optional[discord.Member], *, message: str):
     """Sends a message as the bot. Only works in the busboy-cmds channel.
