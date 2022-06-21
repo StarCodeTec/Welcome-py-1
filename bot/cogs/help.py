@@ -38,7 +38,7 @@ class BusboyHelp(commands.HelpCommand):
         if cog.description:
             embed.description = cog.description
 
-        filtered = await self.filter_commands(cog.get_commands(), sort=True)
+        filtered = await self.filter_commands(cog.get_commands(), sort=False)
         for command in filtered:
             embed.add_field(name=f"{self.get_command_signature(command)}",
                             value=command.short_doc or f'No help given.',
