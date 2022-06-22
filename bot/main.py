@@ -1,5 +1,5 @@
 #cogs--------------------------------------------------------------------------------------------  
-import .help as HELP
+import cogs.help as HELP
 import cogs.sticky as sticky
 import cogs.react as react
 import cogs.bingus as BINGUS_MEME

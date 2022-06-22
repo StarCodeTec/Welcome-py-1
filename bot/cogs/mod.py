@@ -3,6 +3,7 @@ import discord
 import asyncio
 import sys
 import os
+import traceback
 sys.path.append('..')
 from extras.text_zone import all_id as id_0
 import extras.IDS as ID
@@ -80,7 +81,8 @@ Someone used {ctx.message.content} outside of the cafe, the guild name is {ctx.g
       return
 
     command = 'start'
-    pri = os.system('echo %s|sudo -S %s' % (sudoPassword, command))
+    os.system('echo %s|sudo -S %s' % (sudoPassword, command))
+    pri = traceback.format_exc()
     await ctx.send(pri)
   @commands.command(hidden=True)
   async def speak(self, ctx, channel: Optional[discord.TextChannel], member: Optional[discord.Member], *, message: str):
