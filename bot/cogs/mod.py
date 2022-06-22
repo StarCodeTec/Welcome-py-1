@@ -74,7 +74,7 @@ Someone used {ctx.message.content} outside of the cafe, the guild name is {ctx.g
     guild = self.bot.get_guild(956322799411150949)
     roles = guild.roles
     for i in roles:
-      if i in ctx.author.roles and i.id != 983492505167339670:
+      if i not in ctx.author.roles and i.id != 983492505167339670:
         return
     if ctx.channel.id != 970411065638780988:
       return
