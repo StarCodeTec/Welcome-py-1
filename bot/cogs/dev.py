@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 import textwrap
 import io
+import traceback
 import os
 import sys
 sys.path.append('../..')
