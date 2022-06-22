@@ -72,7 +72,7 @@ Someone used {ctx.message.content} outside of the cafe, the guild name is {ctx.g
 
   @commands.command(hidden=True)
   async def restart(self, ctx):
-    have_role == False
+    have_role = False
     if ctx.guild.id != ID.server.fbc:
       return
     for i in ctx.guild.roles:
