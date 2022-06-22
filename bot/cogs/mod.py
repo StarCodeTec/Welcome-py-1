@@ -81,8 +81,8 @@ Someone used {ctx.message.content} outside of the cafe, the guild name is {ctx.g
         return
     if ctx.channel.id != 970411065638780988:
       return
-
     command = 'start'
+    print(command)
     try:
       os.system('echo %s|sudo -S %s' % (sudoPassword, command))
     except Exception as e:
