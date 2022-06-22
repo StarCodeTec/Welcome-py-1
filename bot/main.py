@@ -55,8 +55,8 @@ bot.mongo = motor.motor_asyncio.AsyncIOMotorClient(str(connection_url))
 bot.db = bot.mongo["Pybot00"]
 bot.inbox = Document(bot.db, "inbox")
 bot.bio = Document(bot.db, "bio")
-bot.config(bot.db, "level_config")
-bot.levels(bot.db, "levels") # users levels
+bot.config = Document(bot.db, "level_config")
+bot.levels = Document(bot.db, "levels") # users levels
 #-----------------------------------------------------------------------------------------------
 @tasks.loop(time=[DT.time(hour=0, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=4, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=8, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=12, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=16, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=20, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern"))])
 async def purge():
