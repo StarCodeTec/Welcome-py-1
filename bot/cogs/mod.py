@@ -72,16 +72,18 @@ Someone used {ctx.message.content} outside of the cafe, the guild name is {ctx.g
 
   @commands.command(hidden=True)
   async def restart(self, ctx):
-    print("1")
+    have_role == False
     if ctx.guild.id != ID.server.fbc:
       return
-    print("2")
     for i in ctx.guild.roles:
       if i in ctx.author.roles and i.id == 983492505167339670:
-        print("3")
-        pass
-      else:
-        return
+        have_role = True
+    
+    if have_role:
+      pass
+    else:
+      return
+
     if ctx.channel.id != 970411065638780988:
       return
 
