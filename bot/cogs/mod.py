@@ -72,9 +72,9 @@ Someone used {ctx.message.content} outside of the cafe, the guild name is {ctx.g
 
   @commands.command(hidden=True)
   async def restart(self, ctx):
-    guild = self.bot.get_guild(956322799411150949)
-    roles = guild.roles
-    for i in roles:
+    if ctx.guild.id != ID.server.fbc:
+      return
+    for i in ctx.guild.roles:
       if i in ctx.author.roles and i.id == 983492505167339670:
         pass
       else:
