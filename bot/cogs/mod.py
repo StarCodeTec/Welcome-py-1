@@ -28,7 +28,7 @@ botuser = 966392608895152228
       
   
 
-class mod(commands.Cog):
+class MOD(commands.Cog):
   def __init__(self, bot):
     self.bot=bot
 
@@ -81,7 +81,7 @@ Someone used {ctx.message.content} outside of the cafe, the guild name is {ctx.g
 
     command = '../../start'
     pri = os.system('echo %s|sudo -S %s' % (sudoPassword, command))
-    ctx.send(pri)
+    await ctx.send(pri)
   @commands.command(hidden=True)
   async def speak(self, ctx, channel: Optional[discord.TextChannel], member: Optional[discord.Member], *, message: str):
     """Sends a message as the bot. Only works in the busboy-cmds channel.
