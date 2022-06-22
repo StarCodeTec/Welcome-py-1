@@ -72,17 +72,21 @@ Someone used {ctx.message.content} outside of the cafe, the guild name is {ctx.g
 
   @commands.command(hidden=True)
   async def restart(self, ctx):
+    print("1")
     if ctx.guild.id != ID.server.fbc:
       return
+    print("2")
     for i in ctx.guild.roles:
       if i in ctx.author.roles and i.id == 983492505167339670:
         pass
+        print("3")
       else:
         return
     if ctx.channel.id != 970411065638780988:
       return
+
     command = 'start'
-    print(command)
+    print(f"it {command}s")
     try:
       os.system('echo %s|sudo -S %s' % (sudoPassword, command))
     except Exception as e:
