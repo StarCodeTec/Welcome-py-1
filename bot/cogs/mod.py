@@ -78,8 +78,8 @@ Someone used {ctx.message.content} outside of the cafe, the guild name is {ctx.g
     print("2")
     for i in ctx.guild.roles:
       if i in ctx.author.roles and i.id == 983492505167339670:
-        pass
         print("3")
+        pass
       else:
         return
     if ctx.channel.id != 970411065638780988:
