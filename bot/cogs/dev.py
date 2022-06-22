@@ -19,9 +19,11 @@ class Dev(commands.Cog):
         self.bot = bot
 
     @commands.command(hidden=True, name='eval', aliases=['e'])
-    @commands.is_owner()
     async def _eval(self, ctx, *, body: str):
         """Runs Python code."""
+        if ctx.author.id != 599059234134687774:
+            return
+            
         env = {
             'bot': self.bot,
             'ctx': ctx,
