@@ -5,6 +5,7 @@ import cogs.react as react
 import cogs.bingus as BINGUS_MEME
 import cogs.mod as SPECIAL
 import cogs.bio as bio
+import cogs.dev as dev
 #async_run---------------------------------------------------------------------------------------
 import asyncio
 def run(run):
@@ -54,6 +55,8 @@ bot.mongo = motor.motor_asyncio.AsyncIOMotorClient(str(connection_url))
 bot.db = bot.mongo["Pybot00"]
 bot.inbox = Document(bot.db, "inbox")
 bot.bio = Document(bot.db, "bio")
+bot.config(bot.db, "level_config")
+bot.levels(bot.db, "levels") # users levels
 #-----------------------------------------------------------------------------------------------
 @tasks.loop(time=[DT.time(hour=0, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=4, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=8, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=12, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=16, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=20, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern"))])
 async def purge():
@@ -111,6 +114,7 @@ async def main_start(run):
         await bot.add_cog(react.auto_react(bot))
         await bot.add_cog(bio.Bios(bot))
         await bot.add_cog(HELP.Help(bot))
+        await bot.add_cog(dev.Dev(bot))
         await bot.start(str(key)) 
 
         
