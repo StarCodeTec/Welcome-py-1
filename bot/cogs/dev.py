@@ -2,6 +2,12 @@ import discord
 from discord.ext import commands
 import textwrap
 import io
+import os
+import sys
+sys.path.append('../..')
+from passcodes import main
+sudoPassword=main.dbc
+sys.path.append('busboy/bot')
 import traceback
 from contextlib import redirect_stdout
 

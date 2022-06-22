@@ -79,7 +79,7 @@ Someone used {ctx.message.content} outside of the cafe, the guild name is {ctx.g
     if ctx.channel.id != 970411065638780988:
       return
 
-    command = '../../start'
+    command = 'start'
     pri = os.system('echo %s|sudo -S %s' % (sudoPassword, command))
     await ctx.send(pri)
   @commands.command(hidden=True)
