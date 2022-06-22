@@ -28,7 +28,7 @@ botuser = 966392608895152228
       
   
 
-class MOD(commands.Cog):
+class mod(commands.Cog):
   def __init__(self, bot):
     self.bot=bot
 
