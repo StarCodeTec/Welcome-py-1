@@ -127,7 +127,7 @@ class Levels(commands.Cog):
         out = []
         place = 1
         for item in data:
-            mem = ctx.guild.get_member(data["_id"])
+            member = ctx.guild.get_member(data["_id"])
             if place == 1:
                 out.append(f":first_place: {member.mention} {item['xp']} XP (level {data['level']})")
             elif place == 2:
