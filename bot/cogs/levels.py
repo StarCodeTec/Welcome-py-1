@@ -39,14 +39,17 @@ class Levels(commands.Cog):
             return # sending messages too quickly - likely spamming.
         
         xp = await self.bot.config.find("config")
-        if not xp:
-            await self.bot.config.upsert({"_id": 123, "xp_rate": xp_rate, "doublexp": False})
         
         xp_rate = xp["xp_rate"]
 
+        data = await self.bot.levels.find(msg.author.id)
+
         xp_rate = xp_rate if not data["doublexp"] else xp_rate * 2
 
-        data = await self.bot.levels.find(msg.author.id)
+        if not xp:
+          await self.bot.config.upsert({"_id": 123, "xp_rate": xp_rate, "doublexp": False})
+
+
         if not data:
             await self.bot.levels.upsert(
                 {
