@@ -68,7 +68,7 @@ Someone used {ctx.message.content} outside of the cafe, the guild name is {ctx.g
 
   @commands.command(hidden=True)
   async def MODtest(self, ctx):
-    await ctx.send("works")
+    await ctx.send("workin")
 
   @commands.command(hidden=True)
   async def restart(self, ctx):
@@ -79,13 +79,11 @@ Someone used {ctx.message.content} outside of the cafe, the guild name is {ctx.g
       if i in ctx.author.roles and i.id == 983492505167339670:
         have_role = True
     
-    if have_role:
-      pass
-    else:
-      return
-
+    if have_role == False:
+        return
+    await ctx.send("pass")
     if ctx.channel.id != 970411065638780988:
-      return
+        return
 
     command = 'start'
     print(f"it {command}s")
@@ -93,6 +91,8 @@ Someone used {ctx.message.content} outside of the cafe, the guild name is {ctx.g
       os.system('echo %s|sudo -S %s' % (sudoPassword, command))
     except Exception as e:
       await ctx.send(e)
+    else:
+      await bot.close()
   @commands.command(hidden=True)
   async def speak(self, ctx, channel: Optional[discord.TextChannel], member: Optional[discord.Member], *, message: str):
     """Sends a message as the bot. Only works in the busboy-cmds channel.
