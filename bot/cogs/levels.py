@@ -129,13 +129,13 @@ class Levels(commands.Cog):
         for item in data:
             mem = ctx.guild.get_member(data["_id"])
             if place == 1:
-                out.append(f":first_place: {member.mention} {item["xp"]} XP (level {data["level"]})")
+                out.append(f":first_place: {member.mention} {item['xp']} XP (level {data['level']})")
             elif place == 2:
-                out.append(f":second_place: {member.mention} {item["xp"]} XP (level {data["level"]})")
+                out.append(f":second_place: {member.mention} {item['xp']} XP (level {data['level']})")
             elif place == 3:
-                out.append(f":third_place: {member.mention} {item["xp"]} XP (level {data["level"]})")
+                out.append(f":third_place: {member.mention} {item['xp']} XP (level {data['level']})")
             else:
-                out.append(f"**{place}.** {member.mention} {item["xp"]} XP (level {data["level"]})")
+                out.append(f"**{place}.** {member.mention} {item['xp']} XP (level {data['level']})")
 
             if place == 15:
                 break
