@@ -79,16 +79,11 @@ Someone used {ctx.message.content} outside of the cafe, the guild name is {ctx.g
       if i in ctx.author.roles and i.id == 983492505167339670:
         have_role = True
     
-    if have_role:
-      await ctx.send("pass")
-      pass
-    else:
-      await ctx.send("return")
-      return
-
+    if have_role == False:
+        return
+    await ctx.send("pass")
     if ctx.channel.id != 970411065638780988:
-      await ctx.send("return 2")
-      return
+        return
 
     command = 'start'
     print(f"it {command}s")
