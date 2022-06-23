@@ -6,6 +6,7 @@ import cogs.bingus as BINGUS_MEME
 import cogs.mod as SPECIAL
 import cogs.bio as bio
 import cogs.dev as dev
+import cogs.levels as LEVELS
 #async_run---------------------------------------------------------------------------------------
 import asyncio
 def run(run):
@@ -115,6 +116,7 @@ async def main_start(run):
         await bot.add_cog(bio.Bios(bot))
         await bot.add_cog(HELP.Help(bot))
         await bot.add_cog(dev.Dev(bot))
+        await bot.add_cog(LEVELS.Levels(bot))
         try:
           await bot.start(str(key))
         except KeyboardInterupt:
