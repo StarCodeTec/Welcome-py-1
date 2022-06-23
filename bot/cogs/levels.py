@@ -17,7 +17,7 @@ def levelup_msg(msg, lvl):
         f"{user} has levelled up to {lvl}! Keep on going! <a:yay:989342786014810215>{ending_note}"
     ]
     
-    return 
+    return msgs
 
 class Levels(commands.Cog):
     def __init__(self, bot):
