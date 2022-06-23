@@ -115,8 +115,11 @@ async def main_start(run):
         await bot.add_cog(bio.Bios(bot))
         await bot.add_cog(HELP.Help(bot))
         await bot.add_cog(dev.Dev(bot))
-        await bot.start(str(key)) 
-
+        try:
+          await bot.start(str(key))
+        except KeyboardInterupt:
+          await bot.close()
+          
         
 run(main_start(run))
 ####
