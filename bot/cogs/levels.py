@@ -47,7 +47,7 @@ class Levels(commands.Cog):
         xp_rate = xp_rate if not data["doublexp"] else xp_rate * 2
 
         if not xp:
-          await self.bot.config.upsert({"_id": 123, "xp_rate": xp_rate, "doublexp": False})
+            await self.bot.config.upsert({"_id": 123, "xp_rate": xp_rate, "doublexp": False})
 
 
         if not data:
