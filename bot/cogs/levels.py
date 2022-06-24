@@ -38,7 +38,7 @@ class Levels(commands.Cog):
         if retry_after:
             return # sending messages too quickly - likely spamming.
         
-        xp = await self.bot.config.find("config")
+        xp = await self.bot.config.find(123)
         
         xp_rate = xp["xp_rate"]
 
