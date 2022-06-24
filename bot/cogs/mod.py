@@ -41,9 +41,19 @@ class mod(commands.Cog):
       mod = member.get_role(928077514411233350)
       if mod in member.roles: return True
       msg1 = "You are not allowed to use that command"
-      msg2 = f"{ctx.message.author} just tried using {ctx.message.content} their id is {ctx.message.author.id} in dms"
       await ctx.send(msg1)
-      await logs.send(msg2)
+      
+      embed = discord.Embed(
+          color=0xff0000
+          title="COMMAND USAGE NOT PERMITED"
+        )
+      msg2 = f"{ctx.message.author} just tried using {ctx.message.content} their id is {ctx.message.author.id} in dms"
+      embed.add_field(name="User: ", value=ctx.author, inline=True)
+      embed.add_field(name="ID: ", value=ctx.author.id, inline=True)
+      embed.add_field(name="Command used: ", value=ctx.message.content)
+      embed.add_field(name="Date: ", value=ctx.message.created_at)
+      
+      await logs.send(embed=embed)
       return False
       
     if ctx.guild.id == ID.server.cafe:
