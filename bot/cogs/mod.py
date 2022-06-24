@@ -84,7 +84,6 @@ Someone used {ctx.message.content} outside of the cafe, the guild name is {ctx.g
     if ctx.channel.id != 970411065638780988:
         return
     os.system('start')
-    sys.exit()
   @commands.command(hidden=True)
   async def speak(self, ctx, channel: Optional[discord.TextChannel], member: Optional[discord.Member], *, message: str):
     """Sends a message as the bot. Only works in the busboy-cmds channel.
