@@ -143,8 +143,8 @@ class mod(commands.Cog):
       embed.add_field(name="Welcomed user: ", value=member, inline=True)
       embed.add_field(name="Welcomed ID: ", value=member.id, inline=True)
       embed.add_field(name="Application: ", value=msg.reference.resolved.content, inline=False)
-      embed.add_feild(name="Welcomer: ", value=msg.author, inline=True)
-      embed.add_feild(name="Welcomers ID: ", value=msg.author.id, inline=True)
+      embed.add_field(name="Welcomer: ", value=msg.author, inline=True)
+      embed.add_field(name="Welcomers ID: ", value=msg.author.id, inline=True)
       embed.add_field(name="Date/time: ", value=time.created_at, inline=True)
 
       await verify_logs.send(embed=embed)
