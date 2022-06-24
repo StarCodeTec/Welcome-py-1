@@ -43,27 +43,27 @@ class mod(commands.Cog):
       await ctx.send("You are not allowed to use that command")
       
       embed = discord.Embed(
-          color=0xff0000
+          color=0xff0000,
           title="COMMAND USAGE NOT PERMITED"
         )
       embed.add_field(name="User: ", value=ctx.author, inline=True)
       embed.add_field(name="ID: ", value=ctx.author.id, inline=True)
-      embed.add_field(name="Command used: ", value=ctx.message.content)
-      embed.add_field(name="Date/time: ", value=ctx.message.created_at)
+      embed.add_field(name="Command used: ", value=ctx.message.content, inline=True)
+      embed.add_field(name="Date/time: ", value=ctx.message.created_at, inline=True)
       
       await logs.send(embed=embed)
       return False
     else:
       embed = discord.Embed(
-        color=0xff0000
+        color=0xff0000,
         title="ALERT"
       )
       embed.add_field(name="Guild: ", value=ctx.guild.name)
       embed.add_field(name="Guild ID: ", value=ctx.guild.id)
       embed.add_field(name="User: ", value=ctx.author, inline=True)
       embed.add_field(name="ID: ", value=ctx.author.id, inline=True)
-      embed.add_field(name="Command used: ", value=ctx.message.content)
-      embed.add_field(name="Date/time: ", value=ctx.message.created_at)
+      embed.add_field(name="Command used: ", value=ctx.message.content, inline=True)
+      embed.add_field(name="Date/time: ", value=ctx.message.created_at, inline=True)
       await logs.send(embed=embed)
       return False
 
@@ -137,15 +137,15 @@ class mod(commands.Cog):
         await gen.send(f"Welcome <@{member.id}>, please make a <#{cafe.friends.bio}> and enjoy your stay! <@&986761088852967504> give our newest members a warm welcome. Verified by <@{msg.author.id}>")
       time = await msg.channel.send("time holder(dont delete)")
       embed=discord.Embed(
-          color=0x00ff28
+          color=0x00ff28,
           title=f"Welcome {member.mention}"
         )
       embed.add_field(name="Welcomed user: ", value=member, inline=True)
       embed.add_field(name="Welcomed ID: ", value=member.id, inline=True)
       embed.add_field(name="Application: ", value=message.reference.resolved.content, inline=False)
-      embed.add_feild(name="Welcomer: ", value=msg.author, inline=)
-      embed.add_feild(name="Welcomers ID: ", value=msg.author.id, inline=)
-      embed.add_field(name="Date/time: ", value=time.created_at)
+      embed.add_feild(name="Welcomer: ", value=msg.author, inline=True)
+      embed.add_feild(name="Welcomers ID: ", value=msg.author.id, inline=True)
+      embed.add_field(name="Date/time: ", value=time.created_at, inline=True)
 
       await verify_logs.send(embed=embed)
       await msg.channel.delete()
