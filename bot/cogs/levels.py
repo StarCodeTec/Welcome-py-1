@@ -40,7 +40,7 @@ class Levels(commands.Cog):
         
         xp = await self.bot.config.find(123)
         
-        if not xp or not data.get("xp_rate"):
+        if not xp or not xp.get("xp_rate"):
             await self.bot.config.upsert({"_id": 123, "xp_rate": xp_rate, "doublexp": False})
 
         xp_rate = xp["xp_rate"]
