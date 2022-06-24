@@ -119,7 +119,8 @@ async def main_start(run):
         #await bot.add_cog(LEVELS.Levels(bot))
         try:
           await bot.start(str(key))
-        except KeyboardInterupt:
+        except KeyboardInterrupt:
+          sys.exit()
           await bot.close()
           
         
