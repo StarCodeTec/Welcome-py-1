@@ -4,9 +4,6 @@ import extras.IDS as ID
 from extras.buttons import YesNo
 from discord.ext import commands
 
-xp_rate = 10
-msg_attachment_xp_rate = 20
-
 def levelup_msg(msg, lvl):
     user = msg.author.mention
 
@@ -23,6 +20,9 @@ class Levels(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.cooldown = commands.CooldownMapping.from_cooldown(1, 2, commands.BucketType.member)
+        
+        self.xp_rate = 10
+        self.msg_attachment_xp_rate = 20
 
     @commands.Cog.listener()
     async def on_message(self, msg):
@@ -41,7 +41,7 @@ class Levels(commands.Cog):
         xp = await self.bot.config.find(123)
         
         if not xp or not xp.get("xp_rate"):
-            await self.bot.config.upsert({"_id": 123, "xp_rate": xp_rate, "doublexp": False})
+            await self.bot.config.upsert({"_id": 123, "xp_rate": self.xp_rate, "doublexp": False})
 
         xp_rate = xp["xp_rate"]
 
