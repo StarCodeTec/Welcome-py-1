@@ -138,6 +138,8 @@ class Levels(commands.Cog):
         place = 1
         for item in data:
             member = ctx.guild.get_member(item["_id"])
+            if not member:
+                return await self.bot.levels.delete(item["_id"])
             if place == 1:
                 out.append(f":first_place: {member.mention} {item['xp']} XP (level {item['level']})")
             elif place == 2:
@@ -196,7 +198,7 @@ class Levels(commands.Cog):
     @commands.Cog.listener()
     async def on_member_remove(self, member):
         try:
-            await self.bot.levels.remove(member.id)
+            await self.bot.levels.delete(member.id)
         except:
             pass
         
