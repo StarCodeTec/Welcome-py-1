@@ -7,11 +7,10 @@ from discord.ext import commands
 def levelup_msg(msg, lvl):
     user = msg.author.mention
 
-    ending_note = f"\n*Do `.rank` in <#{ID.cafe.chat.bot}> to see your rank*"
     msgs = [
-        f"Yay, {user} has reached **level {lvl}**! Keep going! <a:woot:917617832655740969>{ending_note}",
-        f"Woah, {user} has reached **level {lvl}**! Amazing! <a:woohoo:989342765672456222>{ending_note}",
-        f"{user} has levelled up to {lvl}! Keep on going! <a:yay:989342786014810215>{ending_note}"
+        f"Yay, {user} has reached **level {lvl}**! Keep going! <a:woot:917617832655740969>",
+        f"Woah, {user} has reached **level {lvl}**! Amazing! <a:woohoo:989342765672456222>",
+        f"{user} has levelled up to {lvl}! Keep on going! <a:yay:989342786014810215>"
     ]
     
     return msgs
@@ -60,7 +59,7 @@ class Levels(commands.Cog):
         else:
             current_xp = data["xp"]
             level_to_get = data["level"] + 1
-            xp_required = level_to_get * 100
+            xp_required = level_to_get * 250
             
             if current_xp >= xp_required:
                 await self.bot.levels.upsert(
@@ -193,3 +192,11 @@ class Levels(commands.Cog):
                 await ctx.send("Double XP has been disabled.")
             else:
                 await msg.delete()
+    
+    @commands.Cog.listener()
+    async def on_member_remove(self, member):
+        try:
+            await self.bot.levels.remove(member.id)
+        except:
+            pass
+        
