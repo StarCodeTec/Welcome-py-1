@@ -35,19 +35,17 @@ class mod(commands.Cog):
 
   async def cog_check(self, ctx):
     logs = self.bot.get_channel(ID.fbc.logs.gen) or await self.bot.get_channel(ID.fbc.logs.gen)
-    if ctx.guild is None:
+    if ctx.guild is None or ctx.guild.id == ID.server.cafe:
       guild = self.bot.get_guild(ID.server.cafe) or await self.bot.fetch_guild(ID.server.cafe) 
       member = guild.get_member(ctx.message.author.id) or await guild.fetch_member(ctx.message.author.id)
       mod = member.get_role(928077514411233350)
       if mod in member.roles: return True
-      msg1 = "You are not allowed to use that command"
-      await ctx.send(msg1)
+      await ctx.send("You are not allowed to use that command")
       
       embed = discord.Embed(
           color=0xff0000
           title="COMMAND USAGE NOT PERMITED"
         )
-      msg2 = f"{ctx.message.author} just tried using {ctx.message.content} their id is {ctx.message.author.id} in dms"
       embed.add_field(name="User: ", value=ctx.author, inline=True)
       embed.add_field(name="ID: ", value=ctx.author.id, inline=True)
       embed.add_field(name="Command used: ", value=ctx.message.content)
@@ -55,24 +53,21 @@ class mod(commands.Cog):
       
       await logs.send(embed=embed)
       return False
-      
-    if ctx.guild.id == ID.server.cafe:
-      mod = discord.utils.get(ctx.guild.roles, name="-------- Staff Rank --------")
-      if mod not in ctx.message.author.roles:
-        msg1 = "You are not allowed to use that command"
-        msg2 = f"{ctx.message.author} just tried using {ctx.message.content} their id is {ctx.message.author.id}"
-        await ctx.send(msg1)
-        await logs.send(msg2)
-        return False
-      else:
-        return True
-    elif ctx.guild.id == ID.server.fbc:
-      return True
     else:
-      msg1 = f"""        ALERT:
+      embed = discord.Embed(
+        color=0xff0000
+        title="ALERT"
+      )
+      msg1 = f"""        
 Someone used {ctx.message.content} outside of the cafe, the guild name is {ctx.guild.name} and the user is {ctx.message.author} plus their id is {ctx.message.id}
           """
-      await logs.send(msg1)
+      embed.add_field(name="Guild: ", value=ctx.guild.name)
+      embed.add_field(name="Guild ID: ", value=ctx.guild.id)
+      embed.add_field(name="User: ", value=ctx.author, inline=True)
+      embed.add_field(name="ID: ", value=ctx.author.id, inline=True)
+      embed.add_field(name="Command used: ", value=ctx.message.content)
+      embed.add_field(name="Date: ", value=ctx.message.created_at)
+      await logs.send(embed=embed)
       return False
 
 
