@@ -66,7 +66,7 @@ class Levels(commands.Cog):
                 await self.bot.levels.upsert(
                     {
                         "_id": msg.author.id,
-                        "xp": data["xp"] + xp_rate if not msg.attachments else data["xp"] + msg_attachment_xp_rate,
+                        "xp": data["xp"] + xp_rate if not msg.attachments else data["xp"] + self.msg_attachment_xp_rate,
                         "level": level_to_get
                     }
                 )
