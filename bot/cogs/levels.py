@@ -73,6 +73,13 @@ class Levels(commands.Cog):
                 
                 bot = msg.guild.get_channel(ID.cafe.chat.bot)
                 await bot.send(random.choice(levelup_msg(msg, level_to_get)))
+            else:
+                await self.bot.levels.upsert(
+                    {
+                        "_id": msg.author.id,
+                        "xp": data["xp"] + xp_rate if not msg.attachments else data["xp"] + self.msg_attachment_xp_rate
+                    }
+                )
 
 
     @commands.command(aliases=["level"])
