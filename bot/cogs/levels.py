@@ -168,6 +168,7 @@ class Levels(commands.Cog):
     @commands.command(hidden=True, name="doublexp")
     @commands.is_owner()
     async def doublexp(self, ctx):
+        """(Fenne only) Enables double XP for everyone."""
         data = await self.bot.config.find(123)
         if not data["doublexp"]:
             confirm = YesNo()
