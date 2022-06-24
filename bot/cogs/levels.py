@@ -70,7 +70,9 @@ class Levels(commands.Cog):
                         "level": level_to_get
                     }
                 )
-                await msg.channel.send(random.choice(levelup_msg(msg, level_to_get)))
+                
+                bot = msg.guild.get_channel(ID.cafe.chat.bot)
+                await bot.send(random.choice(levelup_msg(msg, level_to_get)))
 
 
     @commands.command(aliases=["level"])
