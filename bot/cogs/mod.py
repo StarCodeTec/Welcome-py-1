@@ -109,7 +109,8 @@ class mod(commands.Cog):
     msg=ctx.message
     gen=self.bot.get_channel(cafe.chat.gen) or await self.bot.fetch_channel(cafe.chat.gen)
     admin=discord.utils.get(msg.author.guild.roles, name="Server Staff")
-    verify_logs=self.bot.get_channel(ID.fbc.logs.verify) or await self.bot.fetch_channel(ID.fbc.logs.verify)
+    logs=self.bot.get_channel(ID.fbc.logs.verify) or await self.bot.fetch_channel(ID.fbc.logs.verify)
+    logs2 = self.bot.get_channel(cafe.mod.logger) or await self.bot.get_channel(cafe.mod.logger)
     welcomed=discord.Object(id=889011345712894002)
     unwelcomed=discord.Object(id=889011029428801607)
     if msg.guild is None:
@@ -146,8 +147,8 @@ class mod(commands.Cog):
       embed.add_field(name="Welcomer: ", value=msg.author, inline=True)
       embed.add_field(name="Welcomers ID: ", value=msg.author.id, inline=True)
       embed.add_field(name="Date/time: ", value=time.created_at, inline=True)
-
-      await verify_logs.send(embed=embed)
+      await logs2.send(embed=embed)
+      await logs.send(embed=embed)
       await msg.channel.delete()
       
   @commands.command()
