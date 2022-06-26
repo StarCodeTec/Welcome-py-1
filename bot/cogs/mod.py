@@ -179,7 +179,7 @@ class mod(commands.Cog):
       await member.timeout(dt.timedelta(days=7), reason="denied application try again later") 
       time = await msg.channel.send("time holder(dont delete)")
       embed=discord.Embed(
-        color=0x00ff28,
+        color=0xff0000,
         title=f"Welcome {member.mention}"
       )
       embed.add_field(name="Denied user: ", value=member, inline=True)
