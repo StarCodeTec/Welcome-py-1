@@ -156,7 +156,8 @@ class mod(commands.Cog):
     """Reply this command to deny a member verification."""
     msg=ctx.message
     admin=discord.utils.get(msg.author.guild.roles, name="Server Staff")
-    denied_logs=self.bot.get_channel(ID.fbc.logs.denied) or await self.bot.fetch_channel(ID.fbc.logs.denied)
+    logs=self.bot.get_channel(ID.fbc.logs.denied) or await self.bot.fetch_channel(ID.fbc.logs.denied)
+    logs2=self.bot.get_channel(cafe.mod.logger) or await self.bot.get_channel(cafe.mod.logger)
     if msg.guild is None:
       return
 
@@ -177,7 +178,17 @@ class mod(commands.Cog):
 
       await member.timeout(dt.timedelta(days=7), reason="denied application try again later") 
       time = await msg.channel.send("time holder(dont delete)")
-      await denied_logs.send(f"\tDenied <@{member.id}>\n Denied id: {member.id}\nDenied:{member}\nDenied by: <@{msg.author.id}>\nDenied by user: {msg.author}\n\nDenied at: {time.created_at}")
+      embed=discord.Embed(
+        color=0x00ff28,
+        title=f"Welcome {member.mention}"
+      )
+      embed.add_field(name="Denied user: ", value=member, inline=True)
+      embed.add_field(name="Denied ID: ", value=member.id, inline=True)
+      embed.add_field(name="Denier: ", value=msg.author, inline=True)
+      embed.add_field(name="Deniers ID: ", value=msg.author.id, inline=True)
+      embed.add_field(name="Date/time: ", value=time.created_at, inline=True)
+      await logs.send(embed=embed)
+      await logs2.send(embed=embed)
       await msg.channel.delete()
       
 
