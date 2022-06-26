@@ -20,8 +20,8 @@ class Levels(commands.Cog):
         self.bot = bot
         self.cooldown = commands.CooldownMapping.from_cooldown(1, 2, commands.BucketType.member)
         
-        self.xp_rate = 10
-        self.msg_attachment_xp_rate = 20
+        self.xp_rate = random.choice([1, 2, 3, 4])
+        self.msg_attachment_xp_rate = 5
 
     @commands.Cog.listener()
     async def on_message(self, msg):
