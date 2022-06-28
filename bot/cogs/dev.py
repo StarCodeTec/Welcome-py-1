@@ -4,6 +4,8 @@ import textwrap
 import io
 import traceback
 import os
+import requests
+from bs4 import BeautifulSoup
 import sys
 sys.path.append('../..')
 from passcodes import main
