@@ -179,7 +179,7 @@ class mod(commands.Cog):
     embed.add_field(name="Unverified ID: ", value=member.id, inline=True)
     embed.add_field(name="Mod who unverified: ", value=msg.author, inline=True)
     embed.add_field(name="Mods ID: ", value=msg.author.id, inline=True)
-    embed.add_field(name="Date/time: ", value=time.created_at, inline=True)
+    embed.add_field(name="Date/time: ", value=msg.created_at, inline=True)
     await logs.send(embed=embed)
     await logs2.send(embed=embed)
 
