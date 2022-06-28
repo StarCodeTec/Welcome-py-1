@@ -154,46 +154,45 @@ class mod(commands.Cog):
   @commands.command()
   async def unverify(self, ctx, member: discord.Member=None):
     """Reply this command to unverify a member."""
-      msg=ctx.message
-      admin=discord.utils.get(msg.author.guild.roles, name="Server Staff")
-      logs=self.bot.get_channel(ID.fbc.logs.denied) or await self.bot.fetch_channel(ID.fbc.logs.denied)
-      logs2=self.bot.get_channel(cafe.mod.logger) or await self.bot.get_channel(cafe.mod.logger)
-      welcomed=discord.Object(id=889011345712894002)
-      unwelcomed=discord.Object(id=889011029428801607)
-      if msg.guild is None:
+    msg=ctx.message
+    admin=discord.utils.get(msg.author.guild.roles, name="Server Staff")
+    logs=self.bot.get_channel(ID.fbc.logs.denied) or await self.bot.fetch_channel(ID.fbc.logs.denied)
+    logs2=self.bot.get_channel(cafe.mod.logger) or await self.bot.get_channel(cafe.mod.logger)
+    welcomed=discord.Object(id=889011345712894002)
+    unwelcomed=discord.Object(id=889011029428801607)
+    if msg.guild is None:
+      return
+  
+    if msg.author.id == botuser:
+      return
+  
+    if msg.channel.id != cafe.verify:
+      if msg.channel.category_id != cafe.cats.verify:
         return
   
-      if msg.author.id == botuser:
-        return
-  
-      if msg.channel.id != cafe.verify:
-        if msg.channel.category_id != cafe.cats.verify:
-          return
-  
-        if admin not in msg.author.roles:
-          return
+    if admin not in msg.author.roles:
+      return
+
+    if not any([msg.reference, member]): # warns if no member is supplied or there's no message reference
+      return await ctx.send("Reply to a message or specify the member.", delete_after=10.0)
         
-        if not any([msg.reference, member]): # warns if no member is supplied or there's no message reference
-          return await ctx.send("Reply to a message or specify the member.", delete_after=10.0)
-        
-        member = msg.reference.resolved.author if not member else member
-        
-        await member.add_roles(unwelcomed)
-        await member.remove_roles(welcomed)
-        
-        embed=discord.Embed(
-          color=0xff0000,
-          title=f"Unverified {member.mention}"
-        )
-        embed.add_field(name="Unverified user: ", value=member, inline=True)
-        embed.add_field(name="Unverified ID: ", value=member.id, inline=True)
-        embed.add_field(name="Mod who unverified: ", value=msg.author, inline=True)
-        embed.add_field(name="Mods ID: ", value=msg.author.id, inline=True)
-        embed.add_field(name="Date/time: ", value=time.created_at, inline=True)
-        await logs.send(embed=embed)
-        await logs2.send(embed=embed)
-        
-  
+    member = msg.reference.resolved.author if not member else member
+
+    await member.add_roles(unwelcomed)
+    await member.remove_roles(welcomed)
+
+    embed=discord.Embed(
+      color=0xff0000,
+      title=f"Unverified {member.mention}"
+    )
+    embed.add_field(name="Unverified user: ", value=member, inline=True)
+    embed.add_field(name="Unverified ID: ", value=member.id, inline=True)
+    embed.add_field(name="Mod who unverified: ", value=msg.author, inline=True)
+    embed.add_field(name="Mods ID: ", value=msg.author.id, inline=True)
+    embed.add_field(name="Date/time: ", value=time.created_at, inline=True)
+    await logs.send(embed=embed)
+    await logs2.send(embed=embed)
+
   @commands.command()
   async def deny(self, ctx, member: discord.Member=None):
     """Reply this command to deny a member verification."""
