@@ -35,7 +35,7 @@ class mod(commands.Cog):
 
   async def cog_check(self, ctx):
     logs = self.bot.get_channel(ID.fbc.logs.gen) or await self.bot.get_channel(ID.fbc.logs.gen)
-    if ctx.guild is None or ctx.guild.id == ID.server.cafe:
+    if ctx.guild is None or ctx.guild.id in ID.server.servers:
       guild = self.bot.get_guild(ID.server.cafe) or await self.bot.fetch_guild(ID.server.cafe) 
       member = guild.get_member(ctx.message.author.id) or await guild.fetch_member(ctx.message.author.id)
       mod = member.get_role(928077514411233350)
