@@ -18,6 +18,7 @@ import discord
 import time
 import traceback
 from discord.ext import tasks, commands
+from discord import app_commands
 from pytz import timezone
 TZX = timezone('EST')
 from zoneinfo import ZoneInfo
@@ -51,7 +52,7 @@ intents = discord.Intents.all()
 intents.typing = False
 intents.presences = False
 ACTIVITY=discord.Activity(type=discord.ActivityType.watching, name="discord.gg/FemboyCafe")
-bot = commands.Bot(command_prefix=commands.when_mentioned_or('.'), intents=intents, activity=ACTIVITY, case_insensitive=True)
+bot = commands.Bot(command_prefix=commands.when_mentioned_or('.'), intents=intents, activity=ACTIVITY, case_insensitive=True, tree_cls=app_commands.CommandTree)
 bot.mongo = motor.motor_asyncio.AsyncIOMotorClient(str(connection_url))
 bot.db = bot.mongo["Pybot00"]
 bot.inbox = Document(bot.db, "inbox")
