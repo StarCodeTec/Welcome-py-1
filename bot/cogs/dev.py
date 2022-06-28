@@ -5,7 +5,9 @@ import io
 import traceback
 import os
 import requests
+from urllib.parse import urlparse, urljoin
 from bs4 import BeautifulSoup
+import colorama
 import sys
 sys.path.append('../..')
 from passcodes import main
