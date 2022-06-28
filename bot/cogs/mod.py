@@ -226,7 +226,7 @@ class mod(commands.Cog):
 
   @commands.command()
   async def getroles(self, ctx, member: discord.Member=None):
-    """Reply this command to alert a new member to get roles."""
+    """Reply this command to alert a new member to get roles or profile picture."""
     msg=ctx.message
     gen=self.bot.get_channel(cafe.chat.gen) or await self.bot.fetch_channel(cafe.chat.gen)
     admin=discord.utils.get(msg.author.guild.roles, name="Server Staff")
@@ -243,21 +243,53 @@ class mod(commands.Cog):
       if msg.channel.category_id != cafe.cats.verify:
         return
 
-      if admin not in msg.author.roles:
-            return
-        
-      if not any([msg.reference, member]): # warns if no member is supplied or there's no message reference
+    if not any([msg.reference, member]): # warns if no member is supplied or there's no message reference
         return await ctx.send("Reply to a message or specify the member.", delete_after=10.0)
 
-      member = msg.reference.resolved.author if not member else member
+    member = msg.reference.resolved.author if not member else member
 
-      view = discord.ui.View()
-      view.add_item(discord.ui.Button(label="Click me to get pronoun roles", url="https://discordapp.com/channels/871938782092480513/889009278088773632/889009427213066240"))
-      await member.send("You need roles for your verification to get accepted! Click below to go to the <#889009278088773632> channel.")
-      await ctx.message.delete()
+    view = discord.ui.View()
+    view.add_item(discord.ui.Button(label="Click me to get pronoun roles", url="https://discordapp.com/channels/871938782092480513/889009278088773632/889009427213066240"))
+    await member.send("You need roles(pronoun roles are required) and a profile picture for your verification to get accepted! Click below to go to the <#889009278088773632> channel.", veiw=veiw)
+    await ctx.message.delete()
 
-      logs = self.bot.get_channel(ID.fbc.logs.gen) or await self.bot.fetch_channel(ID.fbc.logs.gen)
-      logs2 = self.bot.get_channel(cafe.mod.logger) or await self.bot.get_channel(cafe.mod.logger)
-      await logs.send(f"{ctx.author}(id: {ctx.author.id}) told {member}(id: {member.id}) to get roles.")
-      await logs2.send(f"{ctx.author}(id: {ctx.author.id}) told {member}(id: {member.id}) to get roles.")
-      await ctx.send(f"{member.mention} has been told to get roles by a staff member")
+    logs = self.bot.get_channel(ID.fbc.logs.gen) or await self.bot.fetch_channel(ID.fbc.logs.gen)
+    logs2 = self.bot.get_channel(cafe.mod.logger) or await self.bot.get_channel(cafe.mod.logger)
+    await logs.send(f"{ctx.author}(id: {ctx.author.id}) told {member}(id: {member.id}) to get roles.")
+    await logs2.send(f"{ctx.author}(id: {ctx.author.id}) told {member}(id: {member.id}) to get roles.")
+    await ctx.send(f"{member.mention} has been told to get roles by a staff member")
+  
+  @commands.command()
+  async def welcome(self, ctx, member: discord.Member=None):
+    """Reply this command to alert a new member how to verify/dm them the welcome message."""
+    msg=ctx.message
+    gen=self.bot.get_channel(cafe.chat.gen) or await self.bot.fetch_channel(cafe.chat.gen)
+    admin=discord.utils.get(msg.author.guild.roles, name="Server Staff")
+    verify_logs=self.bot.get_channel(ID.fbc.logs.verify) or await self.bot.fetch_channel(ID.fbc.logs.verify)
+    welcomed=discord.Object(id=889011345712894002)
+    unwelcomed=discord.Object(id=889011029428801607)
+    if msg.guild is None:
+      return
+
+    if msg.author.id == botuser:
+      return
+
+    if msg.channel.id != cafe.verify:
+      if msg.channel.category_id != cafe.cats.verify:
+        return
+
+    if not any([msg.reference, member]): # warns if no member is supplied or there's no message reference
+      return await ctx.send("Reply to a message or specify the member.", delete_after=10.0)
+
+    member = msg.reference.resolved.author if not member else member
+
+    await member.send("You need roles(pronoun roles are required) and a profile picture for your verification to get accepted! Click below to go to the <#889009278088773632> channel.")
+    await ctx.message.delete()
+
+    logs = self.bot.get_channel(ID.fbc.logs.gen) or await self.bot.fetch_channel(ID.fbc.logs.gen)
+    logs2 = self.bot.get_channel(cafe.mod.logger) or await self.bot.get_channel(cafe.mod.logger)
+    text=f"{member.mention} have been dmed the welcome message."
+    text2=f"{ctx.author}(id: {ctx.author.id}) made the bot dm {member}(id: {member.id}) the welcome message."
+    await logs.send(text2)
+    await logs2.send(text2)
+    await ctx.send(text)
