@@ -156,17 +156,11 @@ class mod(commands.Cog):
     """Reply this command to unverify a member."""
     msg=ctx.message
     admin=discord.Object(id=928077514411233350)
-    logs=self.bot.get_channel(ID.fbc.logs.denied) or await self.bot.fetch_channel(ID.fbc.logs.denied)
+    logs=self.bot.get_channel(ID.fbc.logs.gen) or await self.bot.fetch_channel(ID.fbc.logs.gen)
     logs2=self.bot.get_channel(cafe.mod.logger) or await self.bot.get_channel(cafe.mod.logger)
     welcomed=discord.Object(id=889011345712894002)
     unwelcomed=discord.Object(id=889011029428801607)
     if msg.guild is None:
-      return
-  
-    if msg.author.id == botuser:
-      return
-
-    if admin not in msg.author.roles:
       return
 
     if not any([msg.reference, member]): # warns if no member is supplied or there's no message reference
