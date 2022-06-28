@@ -117,9 +117,7 @@ async def main_start(run):
         await bot.add_cog(HELP.Help(bot))
         await bot.add_cog(dev.Dev(bot))
         await bot.add_cog(LEVELS.Levels(bot))
-        
-        for Id in ID.server.servers:
-          await bot.tree.sync(guild=discord.Object(id=Id))
+
         try:
           await bot.start(str(key))
         except KeyboardInterrupt:

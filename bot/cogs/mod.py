@@ -68,9 +68,9 @@ class mod(commands.Cog):
       return False
 
   @commands.command(hidden=True)
-  async def sync_id(self, ctx, Id):
-    return
-    self.bot.tree.copy_global_to(guild=discord.Object(id=Id))
+  async def sync_all(self, ctx):
+    for Id in ID.server.servers:
+      await bot.tree.sync(guild=discord.Object(id=Id))
 
   @commands.command(hidden=True)
   async def MODtest(self, ctx):
