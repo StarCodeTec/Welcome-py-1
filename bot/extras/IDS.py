@@ -1,6 +1,7 @@
 class server:
   cafe=871938782092480513
   fbc=956322799411150949
+  servers=[956322799411150949, 871938782092480513]
   
 class cafe:
   #verify column

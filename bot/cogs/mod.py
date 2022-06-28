@@ -69,6 +69,7 @@ class mod(commands.Cog):
 
   @commands.command(hidden=True)
   async def sync_id(self, ctx, Id):
+    return
     self.bot.tree.copy_global_to(guild=discord.Object(id=Id))
 
   @commands.command(hidden=True)
