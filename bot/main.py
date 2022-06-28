@@ -98,13 +98,13 @@ async def on_member_remove(mem):
 @bot.event
 async def on_guild_channel_create(cha):
   if cha.category.id == cafe.cats.home and "ticket" in str(cha.name):
-    time.sleep(3)
+    await asyncio.sleep(3)
     await cha.send("Hey there, how can we help you?")
 
   elif cha.id != cafe.verify:
     if cha.category_id != cafe.cats.verify:
       return
-    time.sleep(2)
+    await asyncio.sleep(2)
     await cha.send("Please put all answers in one message and do not close the ticket!")
 
 async def main_start(run):
