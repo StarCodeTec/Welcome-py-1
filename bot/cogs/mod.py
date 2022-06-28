@@ -250,7 +250,7 @@ class mod(commands.Cog):
 
     view = discord.ui.View()
     view.add_item(discord.ui.Button(label="Click me to get pronoun roles", url="https://discordapp.com/channels/871938782092480513/889009278088773632/889009427213066240"))
-    await member.send("You need roles(pronoun roles are required) and a profile picture for your verification to get accepted! Click below to go to the <#889009278088773632> channel.", veiw=veiw)
+    await member.send("You need roles(pronoun roles are required) and a profile picture for your verification to get accepted! Click below to go to the <#889009278088773632> channel.", view=view)
     await ctx.message.delete()
 
     logs = self.bot.get_channel(ID.fbc.logs.gen) or await self.bot.fetch_channel(ID.fbc.logs.gen)
@@ -283,7 +283,15 @@ class mod(commands.Cog):
 
     member = msg.reference.resolved.author if not member else member
 
-    await member.send("You need roles(pronoun roles are required) and a profile picture for your verification to get accepted! Click below to go to the <#889009278088773632> channel.")
+    await member.send(f"""{member.mention} Welcome! 
+To verify for the server please answer the survey.
+```
+1. How did you find the server? 
+2. Why did you join?
+3. Do you identify as LGBTQ+?
+```
+**You must have <#889009278088773632> and a profile picture.**
+    """)
     await ctx.message.delete()
 
     logs = self.bot.get_channel(ID.fbc.logs.gen) or await self.bot.fetch_channel(ID.fbc.logs.gen)
