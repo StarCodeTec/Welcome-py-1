@@ -70,7 +70,8 @@ class mod(commands.Cog):
   @commands.command(hidden=True)
   async def sync_all(self, ctx):
     for Id in ID.server.servers:
-      await bot.tree.sync(guild=discord.Object(id=Id))
+      f = await bot.tree.sync(guild=discord.Object(id=Id))
+    await ctx.send(f"Synced{len(f)}")
 
   @commands.command(hidden=True)
   async def MODtest(self, ctx):
