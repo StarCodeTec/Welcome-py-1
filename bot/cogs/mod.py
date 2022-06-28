@@ -69,8 +69,8 @@ class mod(commands.Cog):
 
   @commands.command(hidden=True)
   async def sync_all(self, ctx):
-    f=await bot.tree.sync()
-    await ctx.send(f"Synced{len(f)}")
+    synced = await ctx.bot.tree.sync()
+    await ctx.send(f"Synced{len(synced)}")
 
   @commands.command(hidden=True)
   async def MODtest(self, ctx):
