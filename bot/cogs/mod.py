@@ -67,6 +67,9 @@ class mod(commands.Cog):
       await logs.send(embed=embed)
       return False
 
+  @commands.command(hidden=True)
+  async def sync_id(self, ctx, Id):
+    self.bot.tree.copy_global_to(guild=discord.Object(id=Id))
 
   @commands.command(hidden=True)
   async def MODtest(self, ctx):
