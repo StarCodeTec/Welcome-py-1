@@ -155,7 +155,7 @@ class mod(commands.Cog):
   async def unverify(self, ctx, member: discord.Member=None):
     """Reply this command to unverify a member."""
     msg=ctx.message
-    admin=discord.utils.get(msg.author.guild.roles, name="Server Staff")
+    admin=discord.Object(id=928077514411233350)
     logs=self.bot.get_channel(ID.fbc.logs.denied) or await self.bot.fetch_channel(ID.fbc.logs.denied)
     logs2=self.bot.get_channel(cafe.mod.logger) or await self.bot.get_channel(cafe.mod.logger)
     welcomed=discord.Object(id=889011345712894002)
@@ -165,11 +165,7 @@ class mod(commands.Cog):
   
     if msg.author.id == botuser:
       return
-  
-    if msg.channel.id != cafe.verify:
-      if msg.channel.category_id != cafe.cats.verify:
-        return
-  
+
     if admin not in msg.author.roles:
       return
 
