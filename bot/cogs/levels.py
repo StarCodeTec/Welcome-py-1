@@ -198,6 +198,9 @@ class Levels(commands.Cog):
     
     @commands.Cog.listener()
     async def on_member_remove(self, member):
+        ex=[760928339589726209]
+        if member.id in ex:
+            return
         try:
             await self.bot.levels.delete(member.id)
         except:
