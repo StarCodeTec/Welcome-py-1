@@ -172,9 +172,11 @@ class mod(commands.Cog):
       return await ctx.send("Reply to a message or specify the member.", delete_after=10.0)
         
     member = msg.reference.resolved.author if not member else member
-
+    
+    await ctx.message.delete()
     await member.add_roles(unwelcomed)
     await member.remove_roles(welcomed)
+    await ctx.send(f"Member has been unverified by staff")
 
     embed=discord.Embed(
       color=0xff0000,
@@ -255,8 +257,12 @@ class mod(commands.Cog):
 
     view = discord.ui.View()
     view.add_item(discord.ui.Button(label="Click me to get pronoun roles", url="https://discordapp.com/channels/871938782092480513/889009278088773632/889009427213066240"))
-    await member.send("You need roles(pronoun roles are required) and a profile picture for your verification to get accepted! Click below to go to the <#889009278088773632> channel.", view=view)
-    await ctx.message.delete()
+    try:
+      await member.send("You need roles(pronoun roles are required) and a profile picture for your verification to get accepted! Click below to go to the <#889009278088773632> channel.", view=view)
+    except:
+      await ctx.send(f"{member.mention} \n You need roles(pronoun roles are required) and a profile picture for your verification to get accepted! Click below to go to the <#889009278088773632> channel.", view=view)
+    finally:
+      await ctx.message.delete()
 
     logs = self.bot.get_channel(ID.fbc.logs.gen) or await self.bot.fetch_channel(ID.fbc.logs.gen)
     logs2 = self.bot.get_channel(cafe.mod.logger) or await self.bot.get_channel(cafe.mod.logger)
@@ -288,7 +294,8 @@ class mod(commands.Cog):
 
     member = msg.reference.resolved.author if not member else member
 
-    await member.send(f"""{member.mention} Welcome! 
+    try:
+      await member.send(f"""{member.mention} Welcome! 
 To verify for the server please answer the survey.
 ```
 1. How did you find the server? 
@@ -297,7 +304,18 @@ To verify for the server please answer the survey.
 ```
 **You must have <#889009278088773632> and a profile picture.**
     """)
-    await ctx.message.delete()
+    except:
+      await ctx.send(f"""{member.mention} Welcome! 
+      To verify for the server please answer the survey.
+      ```
+      1. How did you find the server? 
+      2. Why did you join?
+      3. Do you identify as LGBTQ+?
+      ```
+      **You must have <#889009278088773632> and a profile picture.**
+          """)
+    finally:
+      await ctx.message.delete()
 
     logs = self.bot.get_channel(ID.fbc.logs.gen) or await self.bot.fetch_channel(ID.fbc.logs.gen)
     logs2 = self.bot.get_channel(cafe.mod.logger) or await self.bot.get_channel(cafe.mod.logger)
