@@ -234,6 +234,7 @@ class mod(commands.Cog):
   @commands.command()
   async def getroles(self, ctx, member: discord.Member=None):
     """Reply this command to alert a new member to get roles or profile picture."""
+    zero = 0
     msg=ctx.message
     gen=self.bot.get_channel(cafe.chat.gen) or await self.bot.fetch_channel(cafe.chat.gen)
     admin=discord.utils.get(msg.author.guild.roles, name="Server Staff")
@@ -260,6 +261,7 @@ class mod(commands.Cog):
     try:
       await member.send("You need roles(pronoun roles are required) and a profile picture for your verification to get accepted! Click below to go to the <#889009278088773632> channel.", view=view)
     except:
+      zero = 1
       await ctx.send(f"{member.mention} \n You need roles(pronoun roles are required) and a profile picture for your verification to get accepted! Click below to go to the <#889009278088773632> channel.", view=view)
     finally:
       await ctx.message.delete()
@@ -268,11 +270,13 @@ class mod(commands.Cog):
     logs2 = self.bot.get_channel(cafe.mod.logger) or await self.bot.get_channel(cafe.mod.logger)
     await logs.send(f"{ctx.author}(id: {ctx.author.id}) told {member}(id: {member.id}) to get roles.")
     await logs2.send(f"{ctx.author}(id: {ctx.author.id}) told {member}(id: {member.id}) to get roles.")
-    await ctx.send(f"{member.mention} has been told to get roles by a staff member")
+    if zero == 0:
+      await ctx.send(f"{member.mention} has been told to get roles by a staff member")
   
   @commands.command()
   async def welcome(self, ctx, member: discord.Member=None):
     """Reply this command to alert a new member how to verify/dm them the welcome message."""
+    zero=0
     msg=ctx.message
     gen=self.bot.get_channel(cafe.chat.gen) or await self.bot.fetch_channel(cafe.chat.gen)
     admin=discord.utils.get(msg.author.guild.roles, name="Server Staff")
@@ -305,6 +309,7 @@ To verify for the server please answer the survey.
 **You must have <#889009278088773632> and a profile picture.**
     """)
     except:
+      zero=1
       await ctx.send(f"""{member.mention} Welcome! 
       To verify for the server please answer the survey.
       ```
@@ -323,4 +328,5 @@ To verify for the server please answer the survey.
     text2=f"{ctx.author}(id: {ctx.author.id}) made the bot dm {member}(id: {member.id}) the welcome message."
     await logs.send(text2)
     await logs2.send(text2)
-    await ctx.send(text)
+    if zero == 0:
+      await ctx.send(text)
