@@ -13,7 +13,7 @@ class gifs(commands.Cog):
     self.bot: commands.Bot = bot
   
   @commands.hybrid_command(name="hug")
-  async def hug(self, ctx: commands.Context, user: str()):
+  async def hug(self, ctx: commands.Context, user: str):
     """currently testing"""
     if ctx.message.content == f"/hug {user} True":
       await ctx.send("test 1")
