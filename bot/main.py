@@ -111,7 +111,7 @@ async def on_guild_channel_create(cha):
 async def main_start(run):
     async with bot:
         purge.start()
-        await boy.add_cog(EMOTES.gifs(bot))
+        await bot.add_cog(EMOTES.gifs(bot))
         await bot.add_cog(SPECIAL.mod(bot))
         await bot.add_cog(BINGUS_MEME.bingus(bot))
         await bot.add_cog(sticky.sticky(bot))
