@@ -20,12 +20,12 @@ class gifs(commands.Cog):
   @discord.app_commands.guilds(ID.server.fbc)
   async def hug(self, ctx: commands.Context, member: discord.Member=None, gender_specific: Optional[bool] = False):
     """currently testing"""
-    x_y=Gender_Specific
+    x_y=gender_specific
+    member = ctx.message.reference.resolved.author if not member else member
+          user=member.mention
     if x_y == True:
       await ctx.send("This feature is a work in progress comman")
     elif x_y == False:
-      member = ctx.message.reference.resolved.author if not member else member
-      user=member.mention
       aray=range(1, 93)
       ex=[29, 38, 47, 51, 56, 63, 64, 77, 78, 83, 87]
       main=[]
