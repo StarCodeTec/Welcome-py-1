@@ -22,7 +22,7 @@ class gifs(commands.Cog):
     """currently testing"""
     x_y=gender_specific
     member = ctx.message.reference.resolved.author if not member else member
-          user=member.mention
+    user=member.mention
     if x_y == True:
       await ctx.send("This feature is a work in progress comman")
     elif x_y == False:
