@@ -1,6 +1,9 @@
 import discord
 import random
 from discord.ext import commands
+import sys
+sys.path.append('..')
+import extras.IDS as ID
 
 cog = commands.Cog
 Fenne = 474984052017987604 
