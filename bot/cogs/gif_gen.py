@@ -17,7 +17,7 @@ class gifs(commands.Cog):
     self.bot: commands.Bot = bot
   
   @commands.hybrid_command(name="hug")
-  @discord.app_commands.guilds(ID.server.fb, ID.server.cafe)
+  @discord.app_commands.guilds(ID.server.fbc, ID.server.cafe)
   async def hug(self, ctx: commands.Context, member: discord.Member, gender_specific: Optional[bool] = False):
     """Beta hug command"""
     x_y=gender_specific
