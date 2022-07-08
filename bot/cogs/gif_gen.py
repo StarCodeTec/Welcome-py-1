@@ -17,9 +17,9 @@ class gifs(commands.Cog):
     self.bot: commands.Bot = bot
   
   @commands.hybrid_command(name="hug")
-  @discord.app_commands.guilds(ID.server.fbc)
+  @discord.app_commands.guilds(ID.server.fb, ID.server.cafe)
   async def hug(self, ctx: commands.Context, member: discord.Member=None, gender_specific: Optional[bool] = False):
-    """currently testing"""
+    """Beta hug command"""
     x_y=gender_specific
     member = ctx.message.reference.resolved.author if not member else member
     user=member.mention
