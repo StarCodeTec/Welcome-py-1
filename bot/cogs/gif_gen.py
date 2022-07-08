@@ -18,7 +18,7 @@ class gifs(commands.Cog):
   
   @commands.hybrid_command(name="hug")
   @discord.app_commands.guilds(ID.server.fbc)
-  async def hug(self, ctx: commands.Context, member: discord.Member=None, Gender_Specific: Optional[bool] = False):
+  async def hug(self, ctx: commands.Context, member: discord.Member=None, gender_specific: Optional[bool] = False):
     """currently testing"""
     x_y=Gender_Specific
     if x_y == True:
