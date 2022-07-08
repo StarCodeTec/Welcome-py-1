@@ -17,9 +17,9 @@ class gifs(commands.Cog):
   
   @commands.hybrid_command(name="hug")
   @discord.app_commands.guilds(ID.server.fbc)
-  async def hug(self, ctx: commands.Context, user: str):
+  async def hug(self, ctx: commands.Context, user: str, x_y: Optional[bool] = False):
     """currently testing"""
-    if ctx.message.content == f"/hug {user} True":
+    if x_y == True:
       await ctx.send("test 1")
       return
     await ctx.send("test 2")
