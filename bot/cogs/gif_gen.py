@@ -18,10 +18,25 @@ class gifs(commands.Cog):
   
   @commands.hybrid_command(name="hug")
   @discord.app_commands.guilds(ID.server.fbc)
-  async def hug(self, ctx: commands.Context, user: str, Gender_Specific: Optional[bool] = False):
+  async def hug(self, ctx: commands.Context, member: discord.Member=None, Gender_Specific: Optional[bool] = False):
     """currently testing"""
     x_y=Gender_Specific
     if x_y == True:
-      await ctx.send("test 1")
+      await ctx.send("This feature is a work in progress comman")
+    elif x_y == False:
+      member = ctx.message.reference.resolved.author if not member else member
+      user=member.mention
+      aray=range(1, 93)
+      ex=[29, 38, 47, 51, 56, 63, 64, 77, 78, 83, 87]
+      main=[]
+      for i in aray:
+        if i not in ex:
+          main.append(str(i).zfill(3))
+      url=(f"https://purrbot.site/img/sfw/hug/gif/hug_{random.choice(main)}.gif")
+      embed = discord.Embed()
+      embed.set_image(url=url)
+      await ctx.send(f"{ctx.author.mention} hugs {user}", embed=embed)
+    try:
+      await ctx.message.delete()
+    except:
       return
-    await ctx.send("test 2")
