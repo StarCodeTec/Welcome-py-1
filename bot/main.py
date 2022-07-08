@@ -1,4 +1,5 @@
 #cogs--------------------------------------------------------------------------------------------  
+import cogs.gif_gen as EMOTES
 import cogs.help as HELP
 import cogs.sticky as sticky
 import cogs.react as react
@@ -60,7 +61,7 @@ bot.bio = Document(bot.db, "bio")
 bot.config = Document(bot.db, "level_config")
 bot.levels = Document(bot.db, "levels") # users levels
 #-----------------------------------------------------------------------------------------------
-@tasks.loop(time=[DT.time(hour=0, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=4, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=8, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=12, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=16, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=20, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern"))])
+@tasks.loop(time=[DT.time(hour=0, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=12, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern"))])
 async def purge():
   array=[cafe.friends.connect, cafe.friends.inbox]
   for channel in array:
@@ -110,6 +111,7 @@ async def on_guild_channel_create(cha):
 async def main_start(run):
     async with bot:
         purge.start()
+        await boy.add_cog(EMOTES.gifs(bot))
         await bot.add_cog(SPECIAL.mod(bot))
         await bot.add_cog(BINGUS_MEME.bingus(bot))
         await bot.add_cog(sticky.sticky(bot))

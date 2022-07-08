@@ -68,7 +68,7 @@ class mod(commands.Cog):
       return False
 
   @commands.command(hidden=True)
-  async def sync_all(self, ctx):
+  async def sync(self, ctx):
     for sever in ID.server.servers:
       synced = await self.bot.tree.sync(guild=discord.Object(id=sever))
     await ctx.send(f"Synced {len(synced)}")
