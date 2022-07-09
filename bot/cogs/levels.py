@@ -55,7 +55,7 @@ class Levels(commands.Cog):
         
         rand_xp = random.randint(2, 8)
 
-        if not xp or not xp.get("xp_rate"):
+        if not xp:
             await self.bot.config.upsert({"_id": 123, "doublexp": False})
 
         data = await self.bot.levels.find(msg.author.id)
