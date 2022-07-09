@@ -5,6 +5,7 @@ import extras.IDS as ID
 from extras.buttons import YesNo
 from extras.card_generator import Generator
 from extras.pages import BaseButtonPaginator
+from passcodes import main
 from discord.ext import commands
 from wantstoparty._async import WantsToParty # made this myself :D
 from io import BytesIO
@@ -34,7 +35,7 @@ class Levels(commands.Cog):
     
         self.msg_attachment_xp_rate = 5
 
-        self.wtp = WantsToParty(api_key="wVtuvKAcijIgpkDRAryzSo8mpVOru7", subdomain="femboy")
+        self.wtp = WantsToParty(api_key=main.wtp_key, subdomain="femboy")
 
     @commands.Cog.listener()
     async def on_message(self, msg):
