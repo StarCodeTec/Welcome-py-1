@@ -290,9 +290,6 @@ class Levels(commands.Cog):
             else:
                 out.append(f"**{place}.** {member.mention} {item['xp']} XP (level {item['level']})")
 
-            if place == 15:
-                break
-
             place += 1
 
         class Pages(BaseButtonPaginator):
