@@ -234,7 +234,7 @@ class Levels(commands.Cog):
 
         print(3)
 
-        file = discord.File(fp=img.getvalue(), filename="rank.png")
+        file = discord.File(fp=img, filename="rank.png")
 
         await ctx.send(file=file)  
         print(4)      
