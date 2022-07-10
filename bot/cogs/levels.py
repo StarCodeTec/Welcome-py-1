@@ -243,7 +243,7 @@ class Levels(commands.Cog):
     async def card(self, ctx):
         await ctx.send("Do `.card bg` to change the background or `.card color` to change the color.")
     
-    @card.command(aliases=["bg"])
+    @card.command(aliases=["bg"], invoke_without_command=True)
     async def background(self, ctx):
         if not ctx.message.attachments:
             return await ctx.send("Please add (attach) an image when using this command!")
@@ -261,7 +261,7 @@ class Levels(commands.Cog):
         await ctx.send(f"All done!")
 
 
-    @card.command(aliases=["colour"])
+    @card.command(aliases=["colour"], invoke_without_command=True)
     async def color(self, ctx, hex=None):
         """Changes the colour of the text on the level card."""
         if not hex:
