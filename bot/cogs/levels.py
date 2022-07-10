@@ -199,8 +199,6 @@ class Levels(commands.Cog):
 
         
         all_data.sort(key=lambda item: item.get("xp"), reverse=True) # sort ranks in descending order
-        
-        print(1)
 
         index = 1
         for entry in all_data:
@@ -211,18 +209,18 @@ class Levels(commands.Cog):
         xp = data["xp"]
         level = data["level"]
         xp_needed = ((level + 1) * XP_PER_LEVEL) - xp # amount of xp needed to advance a level
+        next_xp = (level + 1) * XP_PER_LEVEL
         lvl_xp = xp - (level * XP_PER_LEVEL)
         rank = index
 
-        print(2)
-
         card_data = {
             "bg_image": data.get("bg") if data.get("bg") else "https://cdn.discordapp.com/attachments/763535909433376788/993972542249373826/unknown.png", # change to bg when fen gives it
-            "profile_image": member.avatar.url,
+            "profile_image": member.display_avatar.url,
             "level": level,
             "current_xp": level * XP_PER_LEVEL,
             "user_xp": lvl_xp,
-            "next_xp": xp_needed,
+            "next_xp": next_xp,
+            "xp_needed": xp_needed,
             "user_position": rank,
             "user_name": member.name,
             "user_status": member.raw_status,
@@ -232,12 +230,9 @@ class Levels(commands.Cog):
 
         img = Generator().generate_profile(**card_data)
 
-        print(3)
-
         file = discord.File(fp=img, filename="rank.png")
 
-        await ctx.send(file=file)  
-        print(4)      
+        await ctx.send(file=file)   
     
     @commands.group()
     async def card(self, ctx):
