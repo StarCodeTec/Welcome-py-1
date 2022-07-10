@@ -46,7 +46,7 @@ class BaseButtonPaginator(Generic[T], discord.ui.View):
         if self.ctx.author.id != interaction.user.id:
             return False
         return True
-
+        
     @property
     def max_page(self) -> int:
         """:class:`int`: The max page count for this paginator."""

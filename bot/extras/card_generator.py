@@ -15,7 +15,7 @@ class Generator:
         self.font1      = os.path.join(os.path.dirname(__file__), 'assets', 'font.ttf')
         self.font2      = os.path.join(os.path.dirname(__file__), 'assets', 'font2.ttf')
 
-    def generate_profile(self, bg_image:str=None, profile_image:str=None, level:int=1, current_xp:int=0, user_xp:int=20, next_xp:int=100, user_position:int=1, user_name:str='Shahriyar#9770', user_status:str='online', color: str="#000000", total: int=100):
+    def generate_profile(self, bg_image:str=None, profile_image:str=None, level:int=1, current_xp:int=0, user_xp:int=20, next_xp:int=100, xp_needed:int=100, user_position:int=1, user_name:str='Shahriyar#9770', user_status:str='online', color: str="#000000", total: int=100):
         if not bg_image:
             card = Image.open(self.default_bg).convert("RGBA")
         else:
@@ -84,13 +84,15 @@ class Generator:
             if xp > 1000000:
                 return str(round(xp / 1000000, 1)) + "M"
 
+        total = "{:,}".format(total)
+        
         draw = ImageDraw.Draw(card)
         draw.text((245, 22), user_name, TEXT_CLR, font=font_normal)
         draw.text((245, 98), f"Rank #{user_position}", TEXT_CLR, font=font_small)
         draw.text((245, 123), f"Level {level}", TEXT_CLR, font=font_small)
         draw.text(
             (245, 150),
-            f"XP {get_str(user_xp)}/{get_str(next_xp)} (Total {total})",
+            f"XP {get_str(user_xp)}/{get_str(next_xp)} (You need {get_str(xp_needed)} to advance) | Total XP: {total}",
             TEXT_CLR,
             font=font_small,
         )

@@ -50,8 +50,6 @@ botuser = 966392608895152228
 #intents----------------------------------------------------------------------------------------
 
 intents = discord.Intents.all()
-intents.typing = False
-intents.presences = False
 ACTIVITY=discord.Activity(type=discord.ActivityType.watching, name="discord.gg/FemboyCafe")
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('.', '. '), intents=intents, activity=ACTIVITY, case_insensitive=True, tree_cls=app_commands.CommandTree)
 bot.mongo = motor.motor_asyncio.AsyncIOMotorClient(str(connection_url))
