@@ -214,7 +214,7 @@ class Levels(commands.Cog):
         rank = index
 
         card_data = {
-            "bg_image": data.get("bg") if data.get("bg") else "https://cdn.discordapp.com/attachments/763535909433376788/993972542249373826/unknown.png", # change to bg when fen gives it
+            "bg_image": data.get("bg") if data.get("bg") else "https://media.discordapp.net/attachments/956915636582379560/995857644415889508/rank-card.png", # change to bg when fen gives it
             "profile_image": member.display_avatar.url,
             "level": level,
             "current_xp": level * XP_PER_LEVEL,
