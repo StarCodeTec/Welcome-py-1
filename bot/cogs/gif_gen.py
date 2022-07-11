@@ -35,7 +35,7 @@ class gifs(commands.Cog):
       url=(f"https://purrbot.site/img/sfw/hug/gif/hug_{random.choice(main)}.gif")
       embed = discord.Embed()
       embed.set_image(url=url)
-      await ctx.send(f"{ctx.author.mention} hugs {user}", embed=embed)
+      await ctx.send(f"***{ctx.author.mention} hugs {user}***", embed=embed)
     try:
       await ctx.message.delete()
     except:
