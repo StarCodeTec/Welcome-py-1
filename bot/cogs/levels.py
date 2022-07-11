@@ -224,7 +224,7 @@ class Levels(commands.Cog):
             "user_position": rank,
             "user_name": member.name,
             "user_status": member.raw_status,
-            "color": data.get("color") if data.get("color") else "#ffffff",
+            "color": data.get("color") if data.get("color") else "#1b1b1b",
             "total": xp
         }
 
