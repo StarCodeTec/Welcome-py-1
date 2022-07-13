@@ -60,7 +60,7 @@ class Levels(commands.Cog):
 
         data = await self.bot.levels.find(msg.author.id)
 
-        xp_rate = xp_rate if not xp["doublexp"] else xp_rate * 2        
+        xp_rate = rand_xp if not xp["doublexp"] else rand_xp * 2        
 
         if not data:
             await self.bot.levels.upsert(
@@ -219,8 +219,8 @@ class Levels(commands.Cog):
             "level": level,
             "current_xp": level * XP_PER_LEVEL,
             "user_xp": lvl_xp,
-            "next_xp": next_xp,
-            "xp_needed": xp_needed,
+            "next_xp": xp_needed,
+            "xp_needed": next_xp,
             "user_position": rank,
             "user_name": member.name,
             "user_status": member.raw_status,
