@@ -208,10 +208,10 @@ class Levels(commands.Cog):
 
         xp = data["xp"]
         level = data["level"]
-        xp_needed = ((level + 1) * XP_PER_LEVEL) - xp # amount of xp needed to advance a level
-        next_xp = (level + 1) * XP_PER_LEVEL
         lvl_xp = xp - (level * XP_PER_LEVEL)
         rank = index
+        next_xp = (level * XP_PER_LEVEL) - (level + 1 * XP_PER_LEVEL)
+        xp_needed = ((level + 1) * XP_PER_LEVEL) - xp
 
         card_data = {
             "bg_image": data.get("bg") if data.get("bg") else "https://media.discordapp.net/attachments/956915636582379560/995857644415889508/rank-card.png", # change to bg when fen gives it
@@ -219,8 +219,8 @@ class Levels(commands.Cog):
             "level": level,
             "current_xp": level * XP_PER_LEVEL,
             "user_xp": lvl_xp,
-            "next_xp": xp_needed,
-            "xp_needed": next_xp,
+            "next_xp": XP_PER_LEVEL,
+            "xp_needed": xp_needed,
             "user_position": rank,
             "user_name": member.name,
             "user_status": member.raw_status,
