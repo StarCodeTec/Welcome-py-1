@@ -109,7 +109,7 @@ class Generator:
         xphave = abs(current_xp - xp_needed)
 
         
-        length_of_bar = abs(((xphave/xpneed) *100000)/747)
+        length_of_bar = abs(((xphave/xpneed) *1000000)/747)-1000
         print(str(length_of_bar))
 
         blank_draw.rectangle((248, 188, length_of_bar, 202), fill=TEXT_CLR)
