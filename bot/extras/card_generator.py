@@ -108,7 +108,7 @@ class Generator:
         xpneed = next_xp - current_xp
         xphave = user_xp - current_xp
 
-        current_percentage = (xphave / xpneed) * 100 / 700
+        current_percentage = (xphave / xpneed) * 100 / 350
         length_of_bar = (current_percentage * 4.9) + 248
 
         blank_draw.rectangle((248, 188, length_of_bar, 202), fill=TEXT_CLR)
