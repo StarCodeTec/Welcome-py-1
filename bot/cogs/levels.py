@@ -219,7 +219,7 @@ class Levels(commands.Cog):
             "level": level,
             "current_xp": level * XP_PER_LEVEL,
             "user_xp": lvl_xp,
-            "next_xp": XP_PER_LEVEL,
+            "next_xp": next_xp,
             "xp_needed": xp_needed,
             "user_position": rank,
             "user_name": member.name,
