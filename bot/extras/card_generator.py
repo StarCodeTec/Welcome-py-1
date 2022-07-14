@@ -109,7 +109,7 @@ class Generator:
         xphave = user_xp - current_xp
 
         current_percentage = (xphave / xpneed) * 100 / 700
-        length_of_bar = (current_percentage * 4.9) + 48
+        length_of_bar = (current_percentage * 4.9) + 248
 
         blank_draw.rectangle((248, 188, length_of_bar, 202), fill=TEXT_CLR)
         blank_draw.ellipse((20, 20, 218, 218), fill=(255, 255, 255, 0), outline=TEXT_CLR)
