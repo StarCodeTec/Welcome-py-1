@@ -110,6 +110,7 @@ class Generator:
 
         
         length_of_bar = abs((xphave/xpneed) / 747)
+        print(str(length_of_bar))
 
         blank_draw.rectangle((248, 188, length_of_bar, 202), fill=TEXT_CLR)
         blank_draw.ellipse((20, 20, 218, 218), fill=(255, 255, 255, 0), outline=TEXT_CLR)
