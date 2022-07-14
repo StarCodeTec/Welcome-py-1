@@ -105,11 +105,11 @@ class Generator:
             (245, 185, 750, 205), fill=(255, 255, 255, 0), outline=TEXT_CLR
         )
 
-        xpneed = current_xp - next_xp
-        xphave = current_xp - xp_needed
+        xpneed = abs(current_xp - next_xp)
+        xphave = abs(current_xp - xp_needed)
 
         
-        length_of_bar = (xphave/xpneed) / 747
+        length_of_bar = abs((xphave/xpneed) / 747)
 
         blank_draw.rectangle((248, 188, length_of_bar, 202), fill=TEXT_CLR)
         blank_draw.ellipse((20, 20, 218, 218), fill=(255, 255, 255, 0), outline=TEXT_CLR)
