@@ -13,4 +13,4 @@ class CHANGED(commands.Cog):
     
   commands.command(hidden=True)
   async def CHANGE(self, ctx, command: str, *, text: str):
-    DEBUG_CHANGED(BIG.WT, BIG.bio, BIG.welcome_dm).MAIN_SCRIPT(command=command, y=[], x=x, z=0)
+    DEBUG_CHANGED(BIG.WT, BIG.bio, BIG.welcome_dm).MAIN_SCRIPT(command=command, y=[], x=text, z=0)
