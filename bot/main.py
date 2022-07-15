@@ -28,7 +28,7 @@ import sys
 sys.path.append('../..')
 from passcodes import main
 sys.path.append('busboy/bot')
-import LIBS.A_change.py as DEBUG_CHANGE
+import LIBS.A_change as DEBUG_CHANGE
 key=main.fenne.key
 import motor.motor_asyncio
 from db.dbc import client as connection_url
