@@ -2,7 +2,7 @@ from typing import Optional
 import os
 welcome=["welcome test"]
 bio=["bio test"]
-class CHANGE(wt, bio, welcome):    
+class CHANGE():    
   def init(self, wt, bio, welcome):
     self.wt=wt
     self.bio=bio
