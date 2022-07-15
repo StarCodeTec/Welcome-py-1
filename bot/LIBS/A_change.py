@@ -7,7 +7,7 @@ from extras.text_zone import BIG
 import extras.IDS as ID
 cafe = ID.cafe
 
-class CHANGE(commands.Cog):
+class CHANGED(commands.Cog):
   def __init__(self, bot):
     self.bot = bot
     
