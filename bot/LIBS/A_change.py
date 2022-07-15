@@ -12,5 +12,5 @@ class CHANGED(commands.Cog):
     self.bot = bot
     
   commands.command(hidden=True)
-  async def CHANGE(self, command: str, *, text: str):
+  async def CHANGE(self, ctx, command: str, *, text: str):
     DEBUG_CHANGED(BIG.WT, BIG.bio, BIG.welcome_dm).MAIN_SCRIPT(command=command, y=[], x=x, z=0)
