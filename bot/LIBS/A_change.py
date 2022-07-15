@@ -11,6 +11,6 @@ class CHANGE(commands.Cog):
   def __init__(self, bot):
     self.bot = bot
     
-  commands.commands(hidden=True)
+  commands.command(hidden=True)
   async def CHANGE(self, command: str, *, text: str):
     DEBUG_CHANGED(BIG.WT, BIG.bio, BIG.welcome_dm).MAIN_SCRIPT(command=command, y=[], x=x, z=0)
