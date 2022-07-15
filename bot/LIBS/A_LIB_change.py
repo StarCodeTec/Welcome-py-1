@@ -29,6 +29,7 @@ class CHANGE():
     self.git()
   
   def MAIN_SCRIPT(self, z: Optional[int], command, y, x: str): 
+    print(z, command, y, x)
     if z==0:
       self.FIND_COMMAND(command, y, x)
       return
