@@ -1,5 +1,5 @@
 class BIG:
-    welcome_text_dm = """to the Femboy Cafe!
+    welcome_dm = ["""to the Femboy Cafe!
     
     ✧ This server is owned and operated by Fenne Wolf
     ✧ Support the server on Patreon
@@ -9,10 +9,10 @@ class BIG:
     
     ⇀ Be sure to verify here <#945087125831958588> for full access.
     ⇀ Share our server link discord.gg/femboycafe 
-"""
-    wt = "to the server. Feel free to make a <#888482614351134720> and enjoy your stay!"
+"""]
+    WT = ["to the server. Feel free to make a <#888482614351134720> and enjoy your stay!"]
 
-    bt = """✯¸.•´*¨`*•✿ ✿•*`¨*`•.¸✯
+    bio = ["""✯¸.•´*¨`*•✿ ✿•*`¨*`•.¸✯
 ✧ Name & Nickname: 
 ✧ Location: 
 ✧ Languages: 
@@ -27,8 +27,11 @@ class BIG:
 ✧ Dislikes: 
 ✧ DM's?: 
 ✧ Extra info: 
-✿°•∘ɷ∘•°✿"""
-
+✿°•∘ɷ∘•°✿"""]
+  welcome_text_dm=welcome_dm[-1]
+  wt=WT[-1]
+  bt=bio[-1]
+  
 class all_id:
     fenne = "<:little_fenne:925500399656509489>"
     check = "<:check:919007866940182589>"
