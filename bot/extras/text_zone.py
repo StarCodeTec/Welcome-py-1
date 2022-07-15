@@ -28,9 +28,9 @@ class BIG:
 ✧ DM's?: 
 ✧ Extra info: 
 ✿°•∘ɷ∘•°✿"""]
-  welcome_text_dm=welcome_dm[-1]
-  wt=WT[-1]
-  bt=bio[-1]
+    welcome_text_dm=welcome_dm[-1]
+    wt=WT[-1]
+    bt=bio[-1]
   
 class all_id:
     fenne = "<:little_fenne:925500399656509489>"
