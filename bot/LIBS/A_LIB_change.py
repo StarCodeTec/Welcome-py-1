@@ -1,12 +1,13 @@
 from typing import Optional
 import os
-welcome=["welcome test"]
-bio=["bio test"]
+import sys
+sys.path.append("..")
+from extras.text_zone import BIG
 class CHANGE():    
-  def init(self, wt, bio, welcome):
-    self.wt=wt
-    self.bio=bio
-    self.welcome=welcome
+  def init(self):
+    self.wt=BIG.WT
+    self.bio=BIG.bio
+    self.welcome=BIG.welcome_dm
   
   def FIND_COMMAND(self, commands, y, x):
     command=str(commands).lower()
