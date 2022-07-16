@@ -15,6 +15,6 @@ class CHANGED(commands.Cog):
   async def CHANGE(self, ctx, command: str, *, text: str):
     print("1")
     try:
-      DEBUG_CHANGED.MAIN_SCRIPT(command=command, y=[], x=text, z=0)
+      DEBUG_CHANGED.MAIN_SCRIPT(DEBUG_CHANGED, 0, command, y=[], x=text)
     except Exception as e:
       print(e)
