@@ -25,7 +25,7 @@ class CHANGE():
       return
   
   def git(self):
-    os.system('./git_clone.sh')
+    os.system('/home/dev/busboy/bot/LIBS/git_clone.sh')
   
   def CHANGE_ARRAY(self, y, x):
     y.remove(y[-1])
