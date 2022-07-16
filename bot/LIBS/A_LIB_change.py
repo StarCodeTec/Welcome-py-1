@@ -12,9 +12,9 @@ class CHANGE():
   def FIND_COMMAND(self, commands, y, x):
     command=str(commands).lower()
     if command == "welcome":
-      self.MAIN_SCRIPT(1, command, self.welcome, x)
+      self.MAIN_SCRIPT(self, 1, command, self.welcome, x)
     elif command == "bio":
-      self.MAIN_SCRIPT(1, command, self.bio, x)
+      self.MAIN_SCRIPT(self, 1, command, self.bio, x)
     elif command == "wt":
       return
     else:
@@ -27,16 +27,16 @@ class CHANGE():
     y.remove(y[-1])
     y.append(x)
     print(y[-1])
-    self.git()
+    self.git(self)
   
   def MAIN_SCRIPT(self, z: Optional[int], command, y, x: str): 
     print(f"{z}\n{command}\n{y}\n{x}")
     if z==0:
-      self.FIND_COMMAND(command, y, x)
+      self.FIND_COMMAND(self, command, y, x)
       return
     elif z==1:
       print(y[-1])
     elif z==2:
       print(y[-1])
     if z != 0 or z != None:
-      return self.CHANGE_ARRAY(y, x)
+      return self.CHANGE_ARRAY(self, y, x)
