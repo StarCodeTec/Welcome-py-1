@@ -3,6 +3,7 @@ import os
 import sys
 sys.path.append("..")
 from extras.text_zone import BIG
+sys.path.append("./LIBS")
 class CHANGE():
   bio=BIG.bio
   wt=BIG.WT
