@@ -3,7 +3,10 @@ import os
 import sys
 sys.path.append("..")
 from extras.text_zone import BIG
-class CHANGE():    
+class CHANGE():
+  bio=BIG.bio
+  wt=BIG.WT
+  welcome=BIG.welcome_dm
   def init(self):
     self.wt=BIG.WT
     self.bio=BIG.bio
