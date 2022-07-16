@@ -11,7 +11,7 @@ class CHANGED(commands.Cog):
   def __init__(self, bot):
     self.bot = bot
     
-  commands.command(hidden=True)
+  @commands.command(hidden=True)
   async def CHANGE(self, ctx, command: str, *, text: str):
     await ctx.message.delete
     print("1")
