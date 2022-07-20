@@ -29,7 +29,7 @@ def WRITE_SYSTEM(z, b):
   for x in range(len(datax)):
     z=datax[x]
     if z==key:
-      num=x+1
+      LOCAL['num']=x+1
   datax[num]=b
   print(datax)
   return
