@@ -25,7 +25,6 @@ def WRITE_SYSTEM(z, b):
   key=ids[z-1]
   text=[]
   limit=len(ids)
-  print(limit)
   for x in range(len(ids)):
     if (x % 2) == 0:
       if ids[x] != key:
@@ -36,10 +35,9 @@ def WRITE_SYSTEM(z, b):
   text = ", ".join(text)
   MAIN = f"""{{"data": [{text}]}}"""
   
-  f=open('PY_JSON/test.json', 'w')
+  f=open('JSON/file.json', 'w')
   f.write(MAIN)
   f.close()
-  print(main("TEST2", "r", None))
 
 def main(start_core, MAIN_CORE, TEXT):
   if MAIN_CORE == "w": 
