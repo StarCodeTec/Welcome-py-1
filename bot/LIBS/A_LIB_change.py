@@ -28,14 +28,16 @@ def WRITE_SYSTEM(z, b):
   for x in range(len(ids)):
     if (x % 2) == 0:
       if ids[x] != key:
-        text.append(f"""{{"name": "{ids[x]}", "id": "{ids[x+1]}"}}""")
+        text.append({"name": "{ids[x]}", "id": f"{ids[x+1]}"})
     if ids[x] == key:
-      text.append(f"""{{"name": "{ids[x]}", "id": "{b}"}}""")
+      text.append({"name": f"{ids[x]}", "id": f"{b}"})
   
-  text = ", ".join(text)
-  print(text)
-  text=json.loads(text)
-  MAIN = {'data': [text]}
+  text=iter(text)
+  text2 = dict(zip(text, text))
+  print(text2)
+  text=json.loads(text2)
+  print(text))
+  MAIN = {'data': [text2]}
   
   f=open('JSON/file.json', 'w')
   json.dump(MAIN, f)
