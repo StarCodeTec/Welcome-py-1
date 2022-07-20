@@ -33,6 +33,7 @@ def WRITE_SYSTEM(z, b):
       text.append(f"""{{"name": "{ids[x]}", "id": "{b}"}}""")
   
   text = ", ".join(text)
+  print(text)
   text=json.loads(text)
   MAIN = {'data': [text]}
   
