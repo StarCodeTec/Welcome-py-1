@@ -10,7 +10,7 @@ import extras.IDS as ID
 from zoneinfo import ZoneInfo
 import datetime as dt
 from typing import Optional
-sys.path.append('../..')
+sys.path.append('/home/dev/')
 from passcodes import main
 sudoPassword=main.dbc
 sys.path.append('busboy/bot')
