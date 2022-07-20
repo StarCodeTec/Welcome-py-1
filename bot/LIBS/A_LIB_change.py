@@ -1,6 +1,8 @@
 import os
 import sys
 import json 
+sys.path.append('busboy/bot/LIBS')
+os.chdir('busboy/bot/LIBS')
 array=[]
 LOCAL=globals()
 def FIND_DATA(FIND):
