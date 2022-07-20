@@ -15,7 +15,7 @@ class Generator:
         self.font1      = os.path.join(os.path.dirname(__file__), 'assets', 'font.ttf')
         self.font2      = os.path.join(os.path.dirname(__file__), 'assets', 'font2.ttf')
 
-    def generate_profile(self, bg_image:str=None, profile_image:str=None, level:int=1, current_xp:int=0, user_xp:int=20, next_xp:int=100, xp_needed:int=100, user_position:int=1, user_name:str='Shahriyar#9770', user_status:str='online', color: str="#000000", total: int=100):
+    def generate_profile(self, bg_image:str=None, profile_image:str=None, level:int=1, user_xp:int=20, next_xp:int=100, xp_needed:int=100, user_position:int=1, user_name:str='Shahriyar#9770', user_status:str='online', color: str="#000000", total: int=100):
         if not bg_image:
             card = Image.open(self.default_bg).convert("RGBA")
         else:
@@ -105,12 +105,8 @@ class Generator:
             (245, 185, 750, 205), fill=(255, 255, 255, 0), outline=TEXT_CLR
         )
 
-        xpneed = abs(current_xp - next_xp)
-        xphave = abs(current_xp - xp_needed)
-
-        
-        length_of_bar = abs(((xphave/xpneed) *1000000)/747)-1000
-        print(str(length_of_bar))
+        current_percentage = (user_xp / next_xp) * 100
+        length_of_bar = (current_percentage * 4.9) + 248
 
         blank_draw.rectangle((248, 188, length_of_bar, 202), fill=TEXT_CLR)
         blank_draw.ellipse((20, 20, 218, 218), fill=(255, 255, 255, 0), outline=TEXT_CLR)

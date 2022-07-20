@@ -217,7 +217,6 @@ class Levels(commands.Cog):
             "bg_image": data.get("bg") if data.get("bg") else "https://media.discordapp.net/attachments/956915636582379560/995857644415889508/rank-card.png", # change to bg when fen gives it
             "profile_image": member.display_avatar.url,
             "level": level,
-            "current_xp": level * XP_PER_LEVEL,
             "user_xp": lvl_xp,
             "next_xp": XP_PER_LEVEL,
             "xp_needed": xp_needed,
@@ -234,11 +233,11 @@ class Levels(commands.Cog):
 
         await ctx.send(file=file)   
     
-    @commands.group()
+    @commands.group(invoke_without_command=True)
     async def card(self, ctx):
         await ctx.send("Do `.card bg` to change the background or `.card color` to change the color.")
     
-    @card.command(aliases=["bg"], invoke_without_command=True)
+    @card.command(aliases=["bg"])
     async def background(self, ctx):
         if not ctx.message.attachments:
             return await ctx.send("Please add (attach) an image when using this command!")
@@ -256,7 +255,7 @@ class Levels(commands.Cog):
         await ctx.send(f"All done!")
 
 
-    @card.command(aliases=["colour"], invoke_without_command=True)
+    @card.command(aliases=["colour"])
     async def color(self, ctx, hex=None):
         """Changes the colour of the text on the level card."""
         if not hex:
@@ -347,4 +346,3 @@ class Levels(commands.Cog):
             await self.bot.levels.delete(member.id)
         except:
             pass
-
