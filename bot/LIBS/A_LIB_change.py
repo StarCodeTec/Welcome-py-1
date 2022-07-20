@@ -34,8 +34,6 @@ def WRITE_SYSTEM(z, b):
   it=iter(text)
   text2 = dict(zip(it, it))
   print(text2)
-  text=json.loads(text2)
-  print(text)
   MAIN = {'data': [text2]}
   
   f=open('JSON/file.json', 'w')
