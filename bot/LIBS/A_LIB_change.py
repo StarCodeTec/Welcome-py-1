@@ -23,19 +23,26 @@ def FIND_DATA(FIND):
 
 def WRITE_SYSTEM(z, b):
   key=ids[z-1]
-  text=[]
+  text={}
   limit=len(ids)
-  for x in ids:
-    if x != key:
-      text.append(x)
-    if x == key:
-      text.append(b)
-  
-  it=iter(text)
-  text2 = dict(zip(it, it))
-  print(text2)
-  MAIN = {'data': [text2]}
-  
+  for x in range(len(ids)):
+    z = ids[x]
+    z2 = ids[x+1]
+    if (x % 2)==0:
+      if x+1 == limit:
+        text.append({'name': z, 'id': z2})
+      else:
+        text.append({'name': z, 'id': z2},)
+    if z == key:
+      if x+1 == limit:
+        text.append({'name': z, 'id': b})
+      else:
+        text.append({'name': z, 'id': b},)
+    
+    
+    
+  MAIN = {'data': [text]}
+  print(MAIN)
   f=open('JSON/file.json', 'w')
   json.dump(MAIN, f)
   f.close() 
