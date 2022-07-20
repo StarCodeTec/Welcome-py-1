@@ -36,8 +36,8 @@ def WRITE_SYSTEM(z, b):
   MAIN = f"""{{"data": [{text}]}}"""
   
   f=open('JSON/file.json', 'w')
-  f.write(MAIN)
-  f.close()
+  json.dump(MAIN, f)
+  f.close() 
 
 def main(start_core, MAIN_CORE, TEXT):
   if MAIN_CORE == "w": 
