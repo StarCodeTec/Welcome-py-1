@@ -6,9 +6,6 @@ import A_LIB_change as CHANGE
 def read(c):
     CHANGE.main(c, "r", None)
 class BIG:
-    welcome_text_dm=welcome_dm[-1]
-    wt=WT[-1]
-    bt=bio[-1]
     wd=read("wd")
     wt=read("wt")
     bt=read("bio")
