@@ -9,6 +9,7 @@ def FIND_DATA(FIND):
   with open('JSON/file.json', 'r') as f: 
     data = json.load(f)
     data=data["data"]
+    LOCAL["datax"]=data
     f.close()
   LOCAL["ids"] = [] 
   for piece in data:
@@ -25,21 +26,9 @@ def WRITE_SYSTEM(z, b):
   key=ids[z-1]
   text={}
   limit=len(ids)
-  for x in range(len(ids)):
-    z = ids[x]
-    z2 = ids[x+1]
-    if (x % 2)==0:
-      if x+1 == limit:
-        text.append({'name': z, 'id': z2})
-      else:
-        text.append({'name': z, 'id': z2},)
-    if z == key:
-      if x+1 == limit:
-        text.append({'name': z, 'id': b})
-      else:
-        text.append({'name': z, 'id': b},)
-    
-    
+  datax[key]=b
+  print(datax)
+  return
     
   MAIN = {'data': [text]}
   print(MAIN)
