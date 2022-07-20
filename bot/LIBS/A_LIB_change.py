@@ -28,7 +28,7 @@ def WRITE_SYSTEM(z, b):
   for x in ids:
     text.append(x)
     if x == key:
-      text.append(TEXT)
+      text.append(b)
   
   it=iter(text)
   text2 = dict(zip(it, it))
