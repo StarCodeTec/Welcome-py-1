@@ -24,13 +24,7 @@ def FIND_DATA(FIND):
 
 def WRITE_SYSTEM(z, b):
   key=ids[z-1]
-  text={}
-  limit=len(ids)
-  for x in range(len(datax)):
-    z=datax[x]
-    if z==key:
-      LOCAL['num']=x+1
-  datax[LOCAL['num']]=b
+  datax.get(key)=b
   print(datax)
   return
     
