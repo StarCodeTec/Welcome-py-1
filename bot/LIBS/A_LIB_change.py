@@ -32,8 +32,9 @@ def WRITE_SYSTEM(z, b):
     if ids[x] == key:
       text.append(f"""{{"name": "{ids[x]}", "id": "{b}"}}""")
   
-  text = dict(", ".join(text))
-  MAIN = {"data": [text]}
+  text = ", ".join(text)
+  text=json.loads(text)
+  MAIN = {'data': [text]}
   
   f=open('JSON/file.json', 'w')
   json.dump(MAIN, f)
