@@ -1,7 +1,7 @@
 import os
 import sys
 import json 
-sys.path.append('busboy/bot/LIBS')
+sys.path.append('/home/dev/busboy/bot/LIBS')
 os.chdir('/home/dev/busboy/bot/LIBS')
 array=[]
 LOCAL=globals()
