@@ -26,7 +26,8 @@ def WRITE_SYSTEM(z, b):
   text=[]
   limit=len(ids)
   for x in ids:
-    text.append(x)
+    if x != key:
+      text.append(x)
     if x == key:
       text.append(b)
   
