@@ -24,8 +24,8 @@ def FIND_DATA(FIND):
 
 def WRITE_SYSTEM(z, b):
   key=ids[z-1]
-  datax.get(key)=b
-  print(datax)
+  data=datax.get(key)
+  print(data)
   return
     
   MAIN = {'data': [text]}
