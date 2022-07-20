@@ -46,8 +46,6 @@ def main(start_core, MAIN_CORE, TEXT):
     MAIN_CORE=False
   elif MAIN_CORE == "r":
     MAIN_CORE=True
-  else:
-    return
   if MAIN_CORE:
     x=FIND_DATA(start_core)
     return ids[x]
