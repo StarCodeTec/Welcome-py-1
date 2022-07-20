@@ -26,7 +26,11 @@ def WRITE_SYSTEM(z, b):
   key=ids[z-1]
   text={}
   limit=len(ids)
-  datax[key]=b
+  for x in range(len(datax)):
+    z=datax[x]
+    if z==key:
+      num=x+1
+  datax[num]=b
   print(datax)
   return
     
