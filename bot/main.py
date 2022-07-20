@@ -60,7 +60,7 @@ bot.bio = Document(bot.db, "bio")
 bot.config = Document(bot.db, "level_config")
 bot.levels = Document(bot.db, "levels") # users levels
 #-----------------------------------------------------------------------------------------------
-@tasks.loop(time=[DT.time(hour=0, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern")), DT.time(hour=12, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern"))])
+@tasks.loop(time=[DT.time(hour=0, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern"))])
 async def purge():
   array=[cafe.friends.connect, cafe.friends.inbox]
   for channel in array:
