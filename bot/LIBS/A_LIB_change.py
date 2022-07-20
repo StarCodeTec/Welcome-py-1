@@ -25,15 +25,13 @@ def WRITE_SYSTEM(z, b):
   key=ids[z-1]
   text=[]
   limit=len(ids)
-  for x in range(len(ids)):
-    if (x % 2) == 0:
-      if ids[x] != key:
-        text.append({"name": "{ids[x]}", "id": f"{ids[x+1]}"})
-    if ids[x] == key:
-      text.append({"name": f"{ids[x]}", "id": f"{b}"})
+  for x in ids:
+    text.append(x)
+    if x == key:
+      text.append(TEXT)
   
-  text=iter(text)
-  text2 = dict(zip(text, text))
+  it=iter(text)
+  text2 = dict(zip(it, it))
   print(text2)
   text=json.loads(text2)
   print(text)
