@@ -134,9 +134,25 @@ class mod(commands.Cog):
       member = msg.reference.resolved.author
       if admin not in msg.author.roles:
         return
-     
+        
       await member.remove_roles(unwelcomed)
       await member.add_roles(welcomed)
+      check = self.bot.verifies.find(msg.author.id)
+      if check is None:
+        count = {
+            "_id" : msg.author.id,
+            "name": msg.author.name,
+            "verify_count" : 1
+        }
+        self.bot.verifies.insert(count)
+      else:
+        new_num = check["verify_count"] + 1
+        count = {
+            "_id" : msg.author.id,
+            "Name": msg.author.name,
+            "Verify_Count" : new_num
+        }
+        self.bot.verifies.update(count)
       if msg.author.id == Fenne:
         await gen.send(f"Welcome <@{member.id}>, please make a <#{cafe.friends.bio}> and enjoy your stay! <@&986761088852967504> give our newest members a warm welcome.")
       else:
@@ -155,6 +171,34 @@ class mod(commands.Cog):
       await logs2.send(embed=embed)
       await logs.send(embed=embed)
       await msg.channel.delete()
+      
+  @commands.command()
+  async def modstats(self, ctx):
+    if ctx.guild.id not in ID.server.servers:
+      return
+    
+    has_role = False
+    for i in ctx.author.roles:
+      if i.id == 983492505167339670 or i.id == 961726803288928266:
+        has_role = True
+      
+    if has_role:
+      pass
+    else:
+      return
+
+    embed = discord.embed(title="Mod Stats",
+                          description="",
+                          color=0x00ff28
+                         )
+    check = self.bot.verifies.get_all()
+    if check is None:
+      return await ctx.send("There are no stats yet!")
+    else:
+     for i in check:
+       embed.description += f"{check["name"]} | {check["verify_count"]} members verifed\n"
+    
+    await ctx.send(embed=embed)
 
   @commands.command()
   async def unverify(self, ctx, member: discord.Member=None):
