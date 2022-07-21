@@ -35,7 +35,7 @@ class mod(commands.Cog):
 
   async def cog_check(self, ctx):
     logs = self.bot.get_channel(ID.fbc.logs.gen) or await self.bot.get_channel(ID.fbc.logs.gen)
-    ADMIN_COMMANDS["verify", "deny", "getroles", "unverify", "modstats", "welcome", "modtest", "sync", "restart", "speak"]
+    ADMIN_COMMANDS=["verify", "deny", "getroles", "unverify", "modstats", "welcome", "modtest", "sync", "restart", "speak"]
     print(command.name.lower())
     if command.name.lower() not in ADMIN_COMMANDS:
       return True
