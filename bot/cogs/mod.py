@@ -36,19 +36,19 @@ class mod(commands.Cog):
   async def cog_check(self, ctx):
     try:
       command_name=ctx.message.content.split(' ')
+      print(command_name)
+      try:
+        command_name2=command_name[1]
+      except:
+        command_name2=None
+      command_name=command_name[0]
+      if command_name.lower() == ".help":
+        if command_name2.lower() == "mod":
+          pass
+        else:
+          return True
     except Exception as e:
-      print(e)
-    print(command_name)
-    try:
-      command_name2=command_name[1]
-    except:
-      command_name2=None
-    command_name=command_name[0]
-    if command_name == ".help":
-      if command_name2.lower() == "mod":
-        pass
-      else:
-        return True
+          print(e)
     logs = self.bot.get_channel(ID.fbc.logs.gen) or await self.bot.fetch_channel(ID.fbc.logs.gen)
     print(ctx.command.name.lower())
     print(ctx.command.qualified_name)
