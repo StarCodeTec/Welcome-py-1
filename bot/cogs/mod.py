@@ -34,7 +34,7 @@ class mod(commands.Cog):
     self.bot=bot
 
   async def cog_check(self, ctx):
-    logs = self.bot.get_channel(ID.fbc.logs.gen) or await self.bot.get_channel(ID.fbc.logs.gen)
+    logs = self.bot.get_channel(ID.fbc.logs.gen) or await self.bot.fetch_channel(ID.fbc.logs.gen)
     print(ctx.command.name.lower())
     ADMIN_COMMANDS=["verify", "deny", "getroles", "unverify", "modstats", "welcome", "modtest", "sync", "restart", "speak"]
     
