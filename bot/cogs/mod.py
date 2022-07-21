@@ -35,6 +35,7 @@ class mod(commands.Cog):
 
   async def cog_check(self, ctx):
     command_name=ctx.content.split(' ')
+    print(command_name)
     command_name2=command_name[1]
     command_name=command_name[0]
     if command_name == ".help":
