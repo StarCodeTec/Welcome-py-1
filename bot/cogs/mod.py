@@ -196,7 +196,7 @@ class mod(commands.Cog):
       return await ctx.send("There are no stats yet!")
     else:
      for i in check:
-       embed.description += f"{check["name"]} | {check["verify_count"]} members verifed\n"
+       embed.description += f"{check['name']} | {check['verify_count']} members verifed\n"
     
     await ctx.send(embed=embed)
 
