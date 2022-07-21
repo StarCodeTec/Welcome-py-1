@@ -179,7 +179,7 @@ class mod(commands.Cog):
       return
     print("2")
     embed = discord.Embed(title="Mod Stats", description="", color=0x00ff28)
-    check = self.bot.verifies.get_all()
+    check = await self.bot.verifies.get_all()
     if check is None:
       await ctx.send("There are no stats yet!")
     else:
