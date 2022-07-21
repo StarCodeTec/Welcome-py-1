@@ -174,21 +174,21 @@ class mod(commands.Cog):
       
   @commands.command()
   async def modstats(self, ctx):
+    print("1")
     if ctx.guild.id not in ID.server.servers:
       return
-    
-    embed = discord.embed(title="Mod Stats",
-                          description="",
-                          color=0x00ff28
-                         )
+    print("2")
+    embed = discord.embed(title="Mod Stats", description="", color=0x00ff28)
     check = self.bot.verifies.get_all()
     if check is None:
-      return await ctx.send("There are no stats yet!")
+      await ctx.send("There are no stats yet!")
     else:
-     for i in check:
-       embed.description += f"{check['name']} | {check['verify_count']} members verifed\n"
-    
-    await ctx.send(embed=embed)
+      for i in check:
+        print("+")
+        embed.description += f"{check['name']} | {check['verify_count']} members verifed\n"
+      
+      print("1")
+      await ctx.send(embed=embed)
 
   @commands.command()
   async def unverify(self, ctx, member: discord.Member=None):
