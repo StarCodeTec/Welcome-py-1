@@ -137,14 +137,14 @@ class mod(commands.Cog):
         
       await member.remove_roles(unwelcomed)
       await member.add_roles(welcomed)
-      check = self.bot.verifies.find(msg.author.id)
+      check = await self.bot.verifies.find(msg.author.id)
       if check is None:
         count = {
             "_id" : msg.author.id,
             "name": msg.author.name,
             "verify_count" : 1
         }
-        self.bot.verifies.insert(count)
+        await self.bot.verifies.insert(count)
       else:
         new_num = check["verify_count"] + 1
         count = {
@@ -152,7 +152,7 @@ class mod(commands.Cog):
             "Name": msg.author.name,
             "Verify_Count" : new_num
         }
-        self.bot.verifies.update(count)
+        await self.bot.verifies.update(count)
       if msg.author.id == Fenne:
         await gen.send(f"Welcome <@{member.id}>, please make a <#{cafe.friends.bio}> and enjoy your stay! <@&986761088852967504> give our newest members a warm welcome.")
       else:
