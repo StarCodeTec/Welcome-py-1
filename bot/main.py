@@ -59,6 +59,7 @@ bot.inbox = Document(bot.db, "inbox")
 bot.bio = Document(bot.db, "bio")
 bot.config = Document(bot.db, "level_config")
 bot.levels = Document(bot.db, "levels") # users levels
+bot.verifies = Document(bot.db, "verifications")
 #-----------------------------------------------------------------------------------------------
 @tasks.loop(time=[DT.time(hour=0, minute=0, second=0, tzinfo=ZoneInfo("US/Eastern"))])
 async def purge():
