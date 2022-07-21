@@ -181,7 +181,7 @@ class mod(commands.Cog):
     embed = discord.Embed(title="Mod Stats", description="", color=0x00ff28)
     check = await self.bot.verifies.get_all()
     print(check)
-    if check is None:
+    if check == []:
       return await ctx.send("There are no stats yet!")
     else:
       for i in check:
