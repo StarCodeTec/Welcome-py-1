@@ -34,6 +34,14 @@ class mod(commands.Cog):
     self.bot=bot
 
   async def cog_check(self, ctx):
+    command_name=ctx.content.split(' ')
+    command_name2=command_name[1]
+    command_name=command_name[0]
+    if command_name == ".help":
+      if command_name2.lower() == "mod":
+        pass
+      else:
+        return True
     logs = self.bot.get_channel(ID.fbc.logs.gen) or await self.bot.fetch_channel(ID.fbc.logs.gen)
     print(ctx.command.name.lower())
     print(ctx.command.qualified_name)
