@@ -155,15 +155,15 @@ class mod(commands.Cog):
             "name": msg.author.name,
             "verify_count" : 1
         }
-        #await self.bot.verifies.insert(count)
+        await self.bot.verifies.insert(count)
       else:
         new_num = check["verify_count"] + 1
         count = {
             "_id" : msg.author.id,
-            "Name": msg.author.name,
-            "Verify_Count" : new_num
+            "name": msg.author.name,
+            "verify_count" : new_num
         }
-        #await self.bot.verifies.update(count)
+        await self.bot.verifies.update(count)
       if msg.author.id == Fenne:
         await gen.send(f"Welcome <@{member.id}>, please make a <#{cafe.friends.bio}> and enjoy your stay! <@&986761088852967504> give our newest members a warm welcome.")
       else:
@@ -195,9 +195,11 @@ class mod(commands.Cog):
     if check == []:
       return await ctx.send("There are no stats yet!")
     else:
-      for x in check:
+      num = 0
+      for x in range(len(check)):
         print("+")
-        embed.add_field(name=check['name'], value=check['verify_count'])
+        embed.description += f"{check[num]["name"]} | {check[num]["verify_count"]} members verified\n"
+        num += 1
       
     print("1")
     await ctx.send(embed=embed)
