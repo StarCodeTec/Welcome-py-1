@@ -35,7 +35,7 @@ class mod(commands.Cog):
 
   async def cog_check(self, ctx):
     try:
-      command_name=ctx.content.split(' ')
+      command_name=ctx.message.content.split(' ')
     except Exception as e:
       print(e)
     print(command_name)
