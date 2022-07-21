@@ -170,7 +170,7 @@ class mod(commands.Cog):
             "name": msg.author.name,
             "verify_count" : new_num
         }
-        await self.bot.verifies.update(count)
+        await self.bot.verifies.upsert(count)
       if msg.author.id == Fenne:
         await gen.send(f"Welcome <@{member.id}>, please make a <#{cafe.friends.bio}> and enjoy your stay! <@&986761088852967504> give our newest members a warm welcome.")
       else:
@@ -205,7 +205,7 @@ class mod(commands.Cog):
       num = 0
       for x in range(len(check)):
         print("+")
-        embed.description += f"{check[num]["name"]} | {check[num]["verify_count"]} members verified\n"
+        embed.description += f"{check[num]['name']} | {check[num]['verify_count']} members verified\n"
         num += 1
       
     print("1")
