@@ -34,7 +34,10 @@ class mod(commands.Cog):
     self.bot=bot
 
   async def cog_check(self, ctx):
-    command_name=ctx.content.split(' ')
+    try:
+      command_name=ctx.content.split(' ')
+    except Exception as e:
+      print(e)
     print(command_name)
     command_name2=command_name[1]
     command_name=command_name[0]
