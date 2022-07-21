@@ -65,7 +65,9 @@ class BusboyHelp(commands.HelpCommand):
 class Help(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        help_command = BusboyHelp()
-        help_command.cog = self
-        help_command.verify_checks = False
-        bot.help_command = help_command
+        self._original_help_command = bot.help_command
+        bot.help_command = BusboyHelp()
+        bot.help_command.cog = self
+    
+    def cog_unload(self):
+        self.bot.help_command = self._original_help_command
