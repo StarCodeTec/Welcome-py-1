@@ -163,7 +163,7 @@ class mod(commands.Cog):
             "name": msg.author.name,
             "verify_count" : new_num
         }
-        await self.bot.verifies.update(count)
+        await self.bot.verifies.upsert(count)
       if msg.author.id == Fenne:
         await gen.send(f"Welcome <@{member.id}>, please make a <#{cafe.friends.bio}> and enjoy your stay! <@&986761088852967504> give our newest members a warm welcome.")
       else:
