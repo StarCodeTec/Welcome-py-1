@@ -186,7 +186,7 @@ class mod(commands.Cog):
     else:
       for i in check:
         print("+")
-        embed.description += f"{check['name']} | {check['verify_count']} members verifed\n"
+        embed.add_field(name=check['name'] value=check['verify_count'])
       
     print("1")
     await ctx.send(embed=embed)
