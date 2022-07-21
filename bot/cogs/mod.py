@@ -180,15 +180,16 @@ class mod(commands.Cog):
     print("2")
     embed = discord.Embed(title="Mod Stats", description="", color=0x00ff28)
     check = await self.bot.verifies.get_all()
+    print(check)
     if check is None:
-      await ctx.send("There are no stats yet!")
+      return await ctx.send("There are no stats yet!")
     else:
       for i in check:
         print("+")
         embed.description += f"{check['name']} | {check['verify_count']} members verifed\n"
       
-      print("1")
-      await ctx.send(embed=embed)
+    print("1")
+    await ctx.send(embed=embed)
 
   @commands.command()
   async def unverify(self, ctx, member: discord.Member=None):
