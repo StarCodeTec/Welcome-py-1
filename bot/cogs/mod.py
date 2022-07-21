@@ -33,7 +33,7 @@ class mod(commands.Cog):
   def __init__(self, bot):
     self.bot=bot
 
-  async def cog_check(self, ctx):
+  async def cog_check_once(self, ctx):
     logs = self.bot.get_channel(ID.fbc.logs.gen) or await self.bot.fetch_channel(ID.fbc.logs.gen)
     print(ctx.command.name.lower())
     print(ctx.command.qualified_name)
