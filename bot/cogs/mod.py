@@ -38,12 +38,12 @@ class mod(commands.Cog):
       command_name=ctx.message.content.split(' ')
       print(command_name)
       try:
-        command_name2=command_name[1]
+        command_name2=command_name[1].lower()
       except:
         command_name2=None
-      command_name=command_name[0]
-      if command_name.lower() == ".help":
-        if command_name2.lower() == "mod":
+      command_name=command_name[0].lower()
+      if command_name == ".help":
+        if command_name2 == "mod":
           pass
         else:
           return True
