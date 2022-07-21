@@ -178,7 +178,7 @@ class mod(commands.Cog):
     if ctx.guild.id not in ID.server.servers:
       return
     print("2")
-    embed = discord.embed(title="Mod Stats", description="", color=0x00ff28)
+    embed = discord.Embed(title="Mod Stats", description="", color=0x00ff28)
     check = self.bot.verifies.get_all()
     if check is None:
       await ctx.send("There are no stats yet!")
