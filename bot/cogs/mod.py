@@ -35,11 +35,15 @@ class mod(commands.Cog):
 
   async def cog_check(self, ctx):
     logs = self.bot.get_channel(ID.fbc.logs.gen) or await self.bot.get_channel(ID.fbc.logs.gen)
+    ADMIN_COMMANDS["verify", "deny", "getroles", "unverify", "modstats", "welcome", "modtest", "sync", "restart", "speak"]
+    if command.name.lower() not in ADMIN_COMMANDS:
+      return True
     if ctx.guild is None or ctx.guild.id in ID.server.servers:
       guild = self.bot.get_guild(ID.server.cafe) or await self.bot.fetch_guild(ID.server.cafe) 
       member = guild.get_member(ctx.message.author.id) or await guild.fetch_member(ctx.message.author.id)
       mod = member.get_role(928077514411233350)
-      if mod in member.roles: return True
+      dev = member.get_role(961726803288928266)
+      if mod in member.roles or dev in member.roles: return True
       await ctx.send("You are not allowed to use that command")
       
       embed = discord.Embed(
