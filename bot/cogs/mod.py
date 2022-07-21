@@ -177,16 +177,6 @@ class mod(commands.Cog):
     if ctx.guild.id not in ID.server.servers:
       return
     
-    has_role = False
-    for i in ctx.author.roles:
-      if i.id == 983492505167339670 or i.id == 961726803288928266:
-        has_role = True
-      
-    if has_role:
-      pass
-    else:
-      return
-
     embed = discord.embed(title="Mod Stats",
                           description="",
                           color=0x00ff28
