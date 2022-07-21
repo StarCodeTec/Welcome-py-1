@@ -37,10 +37,6 @@ class mod(commands.Cog):
     logs = self.bot.get_channel(ID.fbc.logs.gen) or await self.bot.fetch_channel(ID.fbc.logs.gen)
     print(ctx.command.name.lower())
     print(ctx.command.qualified_name)
-    ADMIN_COMMANDS=["verify", "deny", "getroles", "unverify", "modstats", "welcome", "modtest", "sync", "restart", "speak"]
-    
-    if ctx.command.name.lower() not in ADMIN_COMMANDS:
-      return True
     if ctx.guild is None or ctx.guild.id in ID.server.servers:
       guild = self.bot.get_guild(ID.server.cafe) or await self.bot.fetch_guild(ID.server.cafe) 
       member = guild.get_member(ctx.message.author.id) or await guild.fetch_member(ctx.message.author.id)

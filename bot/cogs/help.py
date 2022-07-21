@@ -67,4 +67,5 @@ class Help(commands.Cog):
         self.bot = bot
         help_command = BusboyHelp()
         help_command.cog = self
+        help_command.verify_checks = False
         bot.help_command = help_command
