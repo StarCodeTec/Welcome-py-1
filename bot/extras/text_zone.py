@@ -4,7 +4,7 @@ FILE_PATH='/home/dev/busboy/bot/LIBS'
 sys.path.append(FILE_PATH)
 os.chdir(FILE_PATH)
 import A_LIB_change as CHANGE
-def read(read): CHANGE.read(read)
+def read(read): return CHANGE.read(read)
 class BIG:
     wd=read("wd")
     wt=read("wt")
