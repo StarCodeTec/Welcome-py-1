@@ -6,9 +6,12 @@ os.chdir(FILE_PATH)
 import A_LIB_change as CHANGE
 def read(read): return CHANGE.read(read)
 class BIG:
-    wd=read("wd")
-    wt=read("wt")
-    bt=read("bio")
+    def wd():
+      return read("wd")
+    def wt():
+      return read("wt")
+    def bt:
+      return read("bio")
 class all_id:
     fenne = "<:little_fenne:925500399656509489>"
     check = "<:check:919007866940182589>"

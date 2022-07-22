@@ -77,7 +77,7 @@ async def purge():
 @bot.event
 async def on_member_join(mem):
   try:
-    await mem.send(f"""⇀ Welcome <@!{mem.id}> {b.wd}""")
+    await mem.send(f"""⇀ Welcome <@!{mem.id}> {b.wd()}""")
   except:
     return
   finally:
