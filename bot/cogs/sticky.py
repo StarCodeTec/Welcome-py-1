@@ -40,7 +40,7 @@ class sticky(commands.Cog):
           }
         )
       
-      await cha.send(b.bt)
+      await cha.send(b.bt())
     
     elif msg.channel.id == cafe.chat.dm:
       cha = self.bot.get_channel(cafe.chat.dm) or await self.bot.fetch_channel(cafe.chat.dm)
