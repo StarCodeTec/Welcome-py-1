@@ -10,7 +10,7 @@ class BIG:
       return read("wd")
     def wt():
       return read("wt")
-    def bt:
+    def bt():
       return read("bio")
 class all_id:
     fenne = "<:little_fenne:925500399656509489>"
