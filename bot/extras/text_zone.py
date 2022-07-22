@@ -1,7 +1,6 @@
 import os
 import sys
-#FILE_PATH='/home/dev/busboy/bot/LIBS'
-FILE_PATH='/storage/emulated/0/qpython/projects3/JSON/LIBS'
+FILE_PATH='/home/dev/busboy/bot/LIBS'
 sys.path.append(FILE_PATH)
 os.chdir(FILE_PATH)
 import A_LIB_change as CHANGE
