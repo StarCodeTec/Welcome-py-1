@@ -36,7 +36,7 @@ def write(command_name, TEXT):
     
     
 def read(FIND):
-  with open(f'{FILE_PATH}LIBS/JSON/file.json', 'r') as f: 
+  with open(f'{FILE_PATH}JSON/file.json', 'r') as f: 
     data = json.load(f)
     data=data["data"]
     f.close()
