@@ -198,6 +198,7 @@ class mod(commands.Cog):
     print("2")
     embed = discord.Embed(title="Mod Stats", description="", color=0x00ff28)
     check = await self.bot.verifies.get_all()
+    check.sort(key=lambda item: item.get("verify_count"), reverse=True)
     print(check)
     if check == []:
       return await ctx.send("There are no stats yet!")
