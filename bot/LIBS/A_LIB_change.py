@@ -1,9 +1,20 @@
 import json
 import os
 import sys
+from git import Repo
 FILE_PATH='/home/dev/busboy/bot/LIBS/'
 sys.path.append(FILE_PATH)
 os.chdir(FILE_PATH)
+
+def push():
+  repo = Repo("../../")
+  username = "jagg3127"
+  password = "CHANGE THIS"
+  remote = f"https://{username}:{password}@github.com/{username}/Welcome-py-1.git"
+  repo.git.add("./JSON")
+  repo.index.commit("[auto] cement json values")
+  origin = repo.remote(name="origin")
+  origin.push()
 
 def WRITE_SYSTEM(placement, array, TEXT, data, cn):
   add=[]
