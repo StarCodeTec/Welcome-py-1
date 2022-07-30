@@ -28,7 +28,7 @@ class BusboyHelp(commands.HelpCommand):
                 if cog and cog.description:
                     value = '{}'.format(value)
             
-                if name != "MOD":
+                if name != "mod":
                     embed.add_field(name=f"__{name}__", value=f'{value}', inline=False)
         
         await self.get_destination().send(embed=embed)
