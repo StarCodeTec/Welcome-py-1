@@ -108,7 +108,8 @@ async def on_guild_channel_create(cha):
     await asyncio.sleep(2.5)
     await cha.send(f"""Welcome! 
 To verify for the server please answer the survey.
-  ```1. How did you find the server? 
+  ```
+  1. How did you find the server? 
   2. Why did you join?
   3. Do you identify as LGBTQ+?```
 You must have <#889009278088773632> and a profile picture.
