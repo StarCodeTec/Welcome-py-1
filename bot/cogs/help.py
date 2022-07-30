@@ -28,8 +28,10 @@ class BusboyHelp(commands.HelpCommand):
                 if cog and cog.description:
                     value = '{}'.format(value)
             
-                if name != "mod":
+                if name.lower() != "mod":
                     embed.add_field(name=f"__{name}__", value=f'{value}', inline=False)
+                else:
+                    embed.add_field(name=f"__{name}__", value='this command is for moderators only', inline=False)
         
         await self.get_destination().send(embed=embed)
 
