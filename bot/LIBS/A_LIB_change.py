@@ -2,6 +2,9 @@ import json
 import os
 import sys
 from git import Repo
+sys.path.append("/home/dev/")
+from passcodes import main
+token=main.TOKEN
 FILE_PATH='/home/dev/busboy/bot/LIBS/'
 sys.path.append(FILE_PATH)
 os.chdir(FILE_PATH)
@@ -9,7 +12,7 @@ os.chdir(FILE_PATH)
 def push():
   repo = Repo("../../")
   username = "jagg3127"
-  password = "CHANGE THIS"
+  password = token
   remote = f"https://{username}:{password}@github.com/{username}/Welcome-py-1.git"
   repo.git.add("./JSON")
   repo.index.commit("[auto] cement json values")
