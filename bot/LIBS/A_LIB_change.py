@@ -14,7 +14,7 @@ def push():
   username = "jagg3127"
   password = token
   remote = f"https://{username}:{password}@github.com/{username}/Welcome-py-1.git"
-  repo.git.add("./JSON/*")
+  repo.git.add(f"{FILE_PATH}/JSON/")
   repo.index.commit("[auto] cement json values")
   origin = repo.remote(name="origin")
   origin.push()
