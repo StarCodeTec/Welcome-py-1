@@ -36,22 +36,16 @@ class mod(commands.Cog):
   async def cog_check(self, ctx):
     try:
       command_name=ctx.message.content.split(' ')
-      print(command_name)
       try:
         command_name2=command_name[1].lower()
       except:
         command_name2=None
       command_name=command_name[0].lower()
       if command_name == ".help":
-        if command_name2 == "mod":
-          pass
-        else:
-          return True
+        return True
     except Exception as e:
-          print(e)
+      print(e)
     logs = self.bot.get_channel(ID.fbc.logs.gen) or await self.bot.fetch_channel(ID.fbc.logs.gen)
-    print(ctx.command.name.lower())
-    print(ctx.command.qualified_name)
     if ctx.guild is None or ctx.guild.id in ID.server.servers:
       guild = self.bot.get_guild(ID.server.cafe) or await self.bot.fetch_guild(ID.server.cafe) 
       member = guild.get_member(ctx.message.author.id) or await guild.fetch_member(ctx.message.author.id)
@@ -191,11 +185,10 @@ class mod(commands.Cog):
       await msg.channel.delete()
       
   @commands.command()
+  @commands.is_owner()
   async def modstats(self, ctx):
-    print("1")
     if ctx.guild.id not in ID.server.servers:
       return
-    print("2")
     embed = discord.Embed(title="Mod Stats", description="", color=0x00ff28)
     check = await self.bot.verifies.get_all()
     check.sort(key=lambda item: item.get("verify_count"), reverse=True)
@@ -209,7 +202,6 @@ class mod(commands.Cog):
         embed.description += f"{check[num]['name']} | {check[num]['verify_count']} members verified\n"
         num += 1
       
-    print("1")
     await ctx.send(embed=embed)
 
   @commands.command()
