@@ -105,8 +105,14 @@ async def on_guild_channel_create(cha):
   elif cha.id != cafe.verify:
     if cha.category_id != cafe.cats.verify:
       return
-    await asyncio.sleep(2)
-    await cha.send("Please put all answers in one message and do not close the ticket!")
+    await asyncio.sleep(2.5)
+    await cha.send(f"""Welcome! 
+To verify for the server please answer the survey.
+  1. How did you find the server? 
+  2. Why did you join?
+  3. Do you identify as LGBTQ+?
+    You must have <#889009278088773632> and a profile picture.
+Please put all answers in one message and do not close the ticket!""")
 
 async def main_start(run):
     async with bot:
