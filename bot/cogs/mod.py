@@ -198,7 +198,6 @@ class mod(commands.Cog):
     else:
       num = 0
       for x in range(len(check)):
-        print("+")
         embed.description += f"{check[num]['name']} | {check[num]['verify_count']} members verified\n"
         num += 1
       
