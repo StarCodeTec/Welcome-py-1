@@ -63,6 +63,7 @@ class Levels(commands.Cog):
         if msg.channel.category_id == ID.cafe.cats.selfies:
             if msg.channel.id != ID.cafe.selfies.comments:
                 if not data or data.get("level", 0) < 3:
+                    await msg.delete()
                     return await msg.author.send("You must reach level 3 by chatting before you can post media or selfies here. Thanks for understanding!")
 
         xp_rate = rand_xp if not xp["doublexp"] else rand_xp * 2
