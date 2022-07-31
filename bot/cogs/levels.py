@@ -60,7 +60,12 @@ class Levels(commands.Cog):
 
         data = await self.bot.levels.find(msg.author.id)
 
-        xp_rate = rand_xp if not xp["doublexp"] else rand_xp * 2        
+        if msg.channel.category_id == ID.cafe.cats.selfies:
+            if msg.channel.id == ID.cafe.selfies.comments:
+                if not data or data.get("level", 0) < 3:
+                    return await msg.author.send("You must reach level 3 by chatting before you can post media or selfies here. Thanks for understanding!")
+
+        xp_rate = rand_xp if not xp["doublexp"] else rand_xp * 2
 
         if not data:
             await self.bot.levels.upsert(
