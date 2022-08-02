@@ -306,6 +306,7 @@ class Levels(commands.Cog):
                 )
                 embed.description = "\n".join(entries)
                 embed.set_author(name=f"Page {self.current_page}/{self.total_pages}")
+                embed.set_footer(text=f"{len(out)} members on the leaderboard.")
 
                 return embed
 

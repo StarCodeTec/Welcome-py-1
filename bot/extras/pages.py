@@ -109,15 +109,6 @@ class BaseButtonPaginator(Generic[T], discord.ui.View):
         embed = await self.format_page(entries)
         return await interaction.response.edit_message(embed=embed)
     
-    @discord.ui.button(emoji='\U000023f9', style=discord.ButtonStyle.blurple)
-    async def on_stop(self, interaction: discord.Interaction, button: discord.ui.Button) -> None:
-        for child in self.children:
-            child.disabled = True # type: ignore
-            
-        self.stop()
-        
-        return await interaction.response.edit_message(view=self)
-    
     @classmethod
     async def start(
         cls: Type[BaseButtonPaginator],
