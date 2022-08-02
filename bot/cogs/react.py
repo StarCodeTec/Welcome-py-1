@@ -30,10 +30,9 @@ class auto_react(commands.Cog):
     if msg.author.id == botuser:
       return
 
-    if msg.channel.id == cafe.home.insta or msg.channel.category_id == cafe.cats.selfies:
-      if msg.channel.id == cafe.selfies.comments:
-        return
+    c_id = msg.channel.id
 
+    if c_id == cafe.home.insta or c_id == cafe.media.selfie:
       rx1 = await msg.guild.fetch_emoji(925500399656509489)
       rxcheck = await msg.guild.fetch_emoji(919007866940182589)
       await msg.add_reaction(rx1)
@@ -41,6 +40,10 @@ class auto_react(commands.Cog):
       await msg.add_reaction(r3)          
       await msg.add_reaction(r4)          
       await msg.add_reaction(r5)
+    
+    elif c_id == cafe.home.announce or c_id == cafe.home.reminders or c_id == cafe.mod.news:
+      rxcheck = await msg.guild.fetch_emoji(919007866940182589)
+      await msg.add_reaction(rxcheck)
     
     elif msg.channel.id == cafe.mod.news:
       rxcheck = await msg.guild.fetch_emoji(919007866940182589)
