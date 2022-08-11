@@ -285,16 +285,17 @@ class Levels(commands.Cog):
         place = 1
         for item in data:
             member = ctx.guild.get_member(item["_id"])
+            xp = "{:,}".format(item['xp'])
             if not member:
                 return await self.bot.levels.delete(item["_id"])
             if place == 1:
-                out.append(f":first_place: {member.mention} {item['xp']} XP (level {item['level']})")
+                out.append(f":first_place: {member.mention} {xp} XP (level {item['level']})")
             elif place == 2:
-                out.append(f":second_place: {member.mention} {item['xp']} XP (level {item['level']})")
+                out.append(f":second_place: {member.mention} {xp} XP (level {item['level']})")
             elif place == 3:
-                out.append(f":third_place: {member.mention} {item['xp']} XP (level {item['level']})")
+                out.append(f":third_place: {member.mention} {xp} XP (level {item['level']})")
             else:
-                out.append(f"**{place}.** {member.mention} {item['xp']} XP (level {item['level']})")
+                out.append(f"**{place}.** {member.mention} {xp} XP (level {item['level']})")
 
             place += 1
 
@@ -326,8 +327,6 @@ class Levels(commands.Cog):
             if confirm.value:
                 await self.bot.config.upsert({"_id": 123, "doublexp": True})
                 await msg.delete()
-                await ctx.send("Double XP is now enabled! <a:yay:989342786014810215>")
-            else:
                 await msg.delete()
         
         else:
