@@ -218,6 +218,14 @@ class Levels(commands.Cog):
         next_xp = (level * XP_PER_LEVEL) - (level + 1 * XP_PER_LEVEL)
         xp_needed = ((level + 1) * XP_PER_LEVEL) - xp
 
+        if not data.get("bg"):
+            if random.randint(0, 3) == 1:
+                msg = ":bulb: **Tip:** you can customize your card by changing the background or text color! Use `.card color` or `.card bg`."
+            else:
+                msg = None
+        else:
+            msg = None
+
         card_data = {
             "bg_image": data.get("bg") if data.get("bg") else "https://media.discordapp.net/attachments/956915636582379560/995857644415889508/rank-card.png", # change to bg when fen gives it
             "profile_image": member.display_avatar.url,
@@ -236,7 +244,7 @@ class Levels(commands.Cog):
 
         file = discord.File(fp=img, filename="rank.png")
 
-        await ctx.send(file=file)   
+        await ctx.send(content=msg, file=file)   
     
     @commands.group(invoke_without_command=True)
     async def card(self, ctx):
@@ -285,16 +293,17 @@ class Levels(commands.Cog):
         place = 1
         for item in data:
             member = ctx.guild.get_member(item["_id"])
+            xp = "{:,}".format(item['xp'])
             if not member:
                 return await self.bot.levels.delete(item["_id"])
             if place == 1:
-                out.append(f":first_place: {member.mention} {item['xp']} XP (level {item['level']})")
+                out.append(f":first_place: {member.mention} {xp} XP (level {item['level']})")
             elif place == 2:
-                out.append(f":second_place: {member.mention} {item['xp']} XP (level {item['level']})")
+                out.append(f":second_place: {member.mention} {xp} XP (level {item['level']})")
             elif place == 3:
-                out.append(f":third_place: {member.mention} {item['xp']} XP (level {item['level']})")
+                out.append(f":third_place: {member.mention} {xp} XP (level {item['level']})")
             else:
-                out.append(f"**{place}.** {member.mention} {item['xp']} XP (level {item['level']})")
+                out.append(f"**{place}.** {member.mention} {xp} XP (level {item['level']})")
 
             place += 1
 
@@ -306,6 +315,7 @@ class Levels(commands.Cog):
                 )
                 embed.description = "\n".join(entries)
                 embed.set_author(name=f"Page {self.current_page}/{self.total_pages}")
+                embed.set_footer(text=f"{len(out)} members on the leaderboard.")
 
                 return embed
 
@@ -325,8 +335,6 @@ class Levels(commands.Cog):
             if confirm.value:
                 await self.bot.config.upsert({"_id": 123, "doublexp": True})
                 await msg.delete()
-                await ctx.send("Double XP is now enabled! <a:yay:989342786014810215>")
-            else:
                 await msg.delete()
         
         else:

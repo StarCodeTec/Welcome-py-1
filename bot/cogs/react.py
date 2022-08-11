@@ -73,7 +73,7 @@ class auto_react(commands.Cog):
     if guild.id != ID.server.cafe:
       return
     
-    if payload.emoji.id == 973078040336797696 and channel.id == ID.cafe.friends.bio:
+    if payload.emoji.id == 973078040336797696 and channel.id == ID.cafe.friends.explore:
       if payload.member.id != msg.author.id:
         return # they haven't reacted to their own message.
 

@@ -28,8 +28,8 @@ class sticky(commands.Cog):
       await cha.purge(limit=2, check=is_me)
       await cha.send(f"Server boosters can post <#{cafe.home.promo}> in every 30 minutes!")
 
-    elif msg.channel.id == cafe.friends.bio:
-      cha = self.bot.get_channel(cafe.friends.bio) or await self.bot.fetch_channel(cafe.friends.bio)   
+    elif msg.channel.id == cafe.friends.explore:
+      cha = self.bot.get_channel(cafe.friends.explore) or await self.bot.fetch_channel(cafe.friends.explore)   
       await cha.purge(limit=2, check=is_me)
       
       await self.bot.bio.upsert(
