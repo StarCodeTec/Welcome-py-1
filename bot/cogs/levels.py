@@ -218,6 +218,14 @@ class Levels(commands.Cog):
         next_xp = (level * XP_PER_LEVEL) - (level + 1 * XP_PER_LEVEL)
         xp_needed = ((level + 1) * XP_PER_LEVEL) - xp
 
+        if not data.get("bg"):
+            if random.randint(0, 3) == 1:
+                msg = ":bulb: **Tip:** you can customize your card by changing the background or text color! Use `.card color` or `.card bg`."
+            else:
+                msg = None
+        else:
+            msg = None
+
         card_data = {
             "bg_image": data.get("bg") if data.get("bg") else "https://media.discordapp.net/attachments/956915636582379560/995857644415889508/rank-card.png", # change to bg when fen gives it
             "profile_image": member.display_avatar.url,
@@ -236,7 +244,7 @@ class Levels(commands.Cog):
 
         file = discord.File(fp=img, filename="rank.png")
 
-        await ctx.send(file=file)   
+        await ctx.send(content=msg, file=file)   
     
     @commands.group(invoke_without_command=True)
     async def card(self, ctx):
