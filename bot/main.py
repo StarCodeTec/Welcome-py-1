@@ -91,7 +91,7 @@ async def on_member_join(mem):
 @bot.event
 async def on_member_remove(mem): 
   bot.db.bio.delete_many({"_id": mem.id})
-  cha= await bot.fetch_channel(cafe.friends.bio) or bot.get_channel(cafe.friends.bio)
+  cha= await bot.fetch_channel(cafe.friends.explore) or bot.get_channel(cafe.friends.explore)
   def check(msg):
     return msg.author.id == mem.id 
   await cha.purge(check=check)

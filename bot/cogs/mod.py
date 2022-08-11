@@ -166,9 +166,9 @@ class mod(commands.Cog):
         }
         await self.bot.verifies.upsert(count)
       if msg.author.id == Fenne:
-        await gen.send(f"Welcome <@{member.id}>, please make a <#{cafe.friends.bio}> and enjoy your stay! <@&986761088852967504> give our newest members a warm welcome.")
+        await gen.send(f"Welcome <@{member.id}>, please make a <#{cafe.friends.explore}> and enjoy your stay! <@&986761088852967504> give our newest members a warm welcome.")
       else:
-        await gen.send(f"Welcome <@{member.id}>, please make a <#{cafe.friends.bio}> and enjoy your stay! <@&986761088852967504> give our newest members a warm welcome. Verified by <@{msg.author.id}>")
+        await gen.send(f"Welcome <@{member.id}>, please make a <#{cafe.friends.explore}> and enjoy your stay! <@&986761088852967504> give our newest members a warm welcome. Verified by <@{msg.author.id}>")
       time = await msg.channel.send("time holder(dont delete)")
       embed=discord.Embed(
           color=0x00ff28,

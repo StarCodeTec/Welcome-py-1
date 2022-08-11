@@ -12,7 +12,7 @@ class Bios(commands.Cog):
     
   @commands.Cog.listener()
   async def on_raw_message_edit(self, payload):
-    if payload.channel_id != cafe.friends.bio:
+    if payload.channel_id != cafe.friends.explore:
       return
 
     channel = self.bot.get_channel(payload.channel_id)
@@ -58,7 +58,7 @@ class Bios(commands.Cog):
       else:
         return await ctx.send("They don't have a bio stored.")
     
-    bio_channel = self.bot.get_channel(cafe.friends.bio) or await self.bot.fetch_channel(cafe.friends.bio)
+    bio_channel = self.bot.get_channel(cafe.friends.explore) or await self.bot.fetch_channel(cafe.friends.explore)
     msg = await bio_channel.fetch_message(data["msg_id"])
   
     view = discord.ui.View()
