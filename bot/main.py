@@ -111,7 +111,7 @@ To verify for the server please answer the survey.
   ```
   1. How did you find the server? 
   2. Why did you join?
-  3. Do you identify as LGBTQ+?```
+  3. Do you identify as LGBTQ? Yes or No answers only.```
 You must have <#889009278088773632> and a profile picture.
 Please put all answers in one message and do not close the ticket!""")
 
