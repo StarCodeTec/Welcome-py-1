@@ -194,7 +194,7 @@ class Levels(commands.Cog):
         await ctx.send(f"Removed {xp} XP from {member.display_name}.")
 
 
-    @commands.command(aliases=["level"])
+    @commands.hybrid_command()
     async def rank(self, ctx, member: discord.Member=None):
         """Shows a members XP and level from talking."""
         member = member if member else ctx.author
@@ -280,7 +280,7 @@ class Levels(commands.Cog):
         await self.bot.levels.upsert({"_id": ctx.author.id, "color": hex})
         await ctx.send(f"All done! Card **text** color set to {hex}")
 
-    @commands.command(aliases=["lb"])
+    @commands.hybrid_command()
     async def leaderboard(self, ctx):
         """Shows the top 15 people on the leaderboard."""
         if ctx.guild.id != ID.server.cafe:
@@ -349,6 +349,23 @@ class Levels(commands.Cog):
                 await ctx.send("Double XP has been disabled.")
             else:
                 await msg.delete()
+    
+    @commands.hybrid_command()
+    async def howxpworks(self, ctx):
+        """Sends a message on how XP works."""
+        content = """It works by adding between 2 and 8 XP (at random) every time you send a message (unless double XP is turned on, in which it's... you guessed it, double). Messages containing attachments (images, videos, etc) also get 5 extra XP on top of what you're already getting.
+
+You gain levels when you reach a number of XP which is a multiple of 350 (350, 700, 1050, etc...)
+
+You can use `.rank` to check your statistics and `.leaderboard` to see who has the most XP in the entire server.
+
+Spamming does not benefit you when it comes to gaining XP as there's a short cooldown period after sending a message. 
+
+**Leaving the server resets your XP!**"""
+        e = discord.Embed(title="How levels work", color=0xf4c2c2)
+        e.description = content
+
+        await ctx.send(embed=e)
     
     @commands.Cog.listener()
     async def on_member_remove(self, member):
