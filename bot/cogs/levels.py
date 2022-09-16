@@ -385,6 +385,8 @@ class Levels(commands.Cog):
         """Sends a message on how XP works."""
         content = """It works by adding between 2 and 8 XP (at random) every time you send a message (unless double XP is turned on, in which it's... you guessed it, double). Messages containing attachments (images, videos, etc) also get 5 extra XP on top of what you're already getting.
 
+If you're level 100+, you'll need 600XP to advance a level.
+
 You gain levels when you reach a number of XP which is a multiple of 350 (350, 700, 1050, etc...)
 
 You can use `.rank` to check your statistics and `.leaderboard` to see who has the most XP in the entire server.
