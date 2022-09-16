@@ -399,7 +399,7 @@ Spamming does not benefit you when it comes to gaining XP as there's a short coo
 
         await ctx.send(embed=e)
 
-    @commands.hybrid_command(aliases["levelstatus"])
+    @commands.hybrid_command(aliases=["levelstatus"])
     @discord.app_commands.guilds(ID.server.fbc, ID.server.cafe)
     async def xpstatus(self, ctx):
         """Shows the current status on the levelling system."""
