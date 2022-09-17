@@ -11,31 +11,22 @@ from wantstoparty._async import WantsToParty # made this myself :D
 from io import BytesIO
 
 XP_PER_LEVEL = 350
-XP_PER_LEVEL_100 = 600
 MSG_ATTACHMENT_XP_RATE = 5
-EMBED_COLOR = 0xea69a5
 
 def levelup_msg(msg, lvl):
     user = msg.author.mention
 
-    if lvl == 100:
-        warn = f"\n*Because you've reached level 100, XP per level is now {XP_PER_LEVEL_100}, not {XP_PER_LEVEL}!*"
-    else:
-        warn = ""
-
     msgs = [
-        f"Yay, {user} has reached **level {lvl}**! Keep going! <a:woot:917617832655740969>{warn}",
-        f"Woah, {user} has reached **level {lvl}**! Amazing! <a:woohoo:989342765672456222>{warn}",
-        f"{user} has levelled up to **{lvl}**! Keep on going! <a:yay:989342786014810215>{warn}",
-        f"{user}, Look at you go! You've reached **level {lvl}**! <:smug:961701793971175484>{warn}"
+        f"Yay, {user} has reached **level {lvl}**! Keep going! <a:woot:917617832655740969>",
+        f"Woah, {user} has reached **level {lvl}**! Amazing! <a:woohoo:989342765672456222>",
+        f"{user} has levelled up to {lvl}! Keep on going! <a:yay:989342786014810215>"
     ]
     
     return msgs
 
-def calculate_level(xp, difficult=False):
+def calculate_level(xp):
     """Calculates a level based on the XP given."""
-    xp_per = XP_PER_LEVEL if not difficult else XP_PER_LEVEL_100
-    return math.trunc(xp / xp_per)
+    return math.trunc(xp / XP_PER_LEVEL)
 
 class Levels(commands.Cog):
     def __init__(self, bot):
@@ -68,13 +59,11 @@ class Levels(commands.Cog):
             await self.bot.config.upsert({"_id": 123, "doublexp": False})
 
         data = await self.bot.levels.find(msg.author.id)
-        
-        xp_per_level = XP_PER_LEVEL if data["level"] < 100 else XP_PER_LEVEL_100
 
         if msg.channel.id == ID.cafe.media.selfie:
             if not data or data.get("level", 0) < 3:
                 await msg.delete()
-                return await msg.author.send("Sorry, you must reach level 3 by chatting before you can post selfies. Thanks for understanding!")
+                return await msg.author.send("You must reach level 3 by chatting before you can post selfies. Thanks for understanding!")
 
         xp_rate = rand_xp if not xp["doublexp"] else rand_xp * 2
 
@@ -89,7 +78,7 @@ class Levels(commands.Cog):
         else:
             current_xp = data["xp"]
             level_to_get = data["level"] + 1
-            xp_required = level_to_get * xp_per_level
+            xp_required = level_to_get * XP_PER_LEVEL
             
             if current_xp >= xp_required:
                 await self.bot.levels.upsert(
@@ -122,14 +111,9 @@ class Levels(commands.Cog):
         data = await self.bot.levels.get_all()
 
         msg = await ctx.send("Working on it...")
-        changed = 0
         for item in data:
-            if item["level"] < 100:
-                dif = False
-            else:
-                dif = True
-            
-            actual_level = calculate_level(item["xp"], dif)
+            changed = 0
+            actual_level = calculate_level(item["xp"])
             if item["level"] != actual_level:
                 await self.bot.levels.upsert(
                     {
@@ -152,12 +136,7 @@ class Levels(commands.Cog):
             return await ctx.send("I can't do that because they need some XP first.") 
 
         new_xp = cur_xp["xp"] + xp
-        if cur_xp["level"] < 100:
-            dif = False
-        else:
-            dif = True
-
-        new_level = calculate_level(new_xp, dif)
+        new_level = calculate_level(new_xp)
 
         confirm = YesNo()
         confirm.ctx = ctx
@@ -189,12 +168,7 @@ class Levels(commands.Cog):
             return await ctx.send("I can't do that because they need some XP first.") 
 
         new_xp = cur_xp["xp"] - xp
-        if cur_xp["level"] < 100:
-            dif = False
-        else:
-            dif = True
-        
-        new_level = calculate_level(new_xp, dif)
+        new_level = calculate_level(new_xp)
 
         if new_xp < 0:
             return await ctx.send("That will make their XP negative and blow the bot up! >:o")
@@ -220,7 +194,7 @@ class Levels(commands.Cog):
         await ctx.send(f"Removed {xp} XP from {member.display_name}.")
 
 
-    @commands.hybrid_command()
+    @commands.hybrid_command(aliases=["level"])
     @discord.app_commands.guilds(ID.server.fbc, ID.server.cafe)
     async def rank(self, ctx, member: discord.Member=None):
         """Shows a members XP and level from talking."""
@@ -238,13 +212,12 @@ class Levels(commands.Cog):
                 break
             index += 1
 
-        xp_per_level = XP_PER_LEVEL if data["level"] < 100 else XP_PER_LEVEL_100
         xp = data["xp"]
         level = data["level"]
-        lvl_xp = xp - (level * xp_per_level)
+        lvl_xp = xp - (level * XP_PER_LEVEL)
         rank = index
-        next_xp = (level * xp_per_level) - (level + 1 * xp_per_level)
-        xp_needed = ((level + 1) * xp_per_level) - xp
+        next_xp = (level * XP_PER_LEVEL) - (level + 1 * XP_PER_LEVEL)
+        xp_needed = ((level + 1) * XP_PER_LEVEL) - xp
 
         if not data.get("bg"):
             if random.randint(0, 3) == 1:
@@ -259,7 +232,7 @@ class Levels(commands.Cog):
             "profile_image": member.display_avatar.url,
             "level": level,
             "user_xp": lvl_xp,
-            "next_xp": xp_per_level,
+            "next_xp": XP_PER_LEVEL,
             "xp_needed": xp_needed,
             "user_position": rank,
             "user_name": member.name,
@@ -340,7 +313,7 @@ class Levels(commands.Cog):
             async def format_page(self, entries):
                 embed = discord.Embed(
                     title="Leaderboard",
-                    color=EMBED_COLOR
+                    color=0xf4c2c2
                 )
                 embed.description = "\n".join(entries)
                 embed.set_author(name=f"Page {self.current_page}/{self.total_pages}")
@@ -379,13 +352,11 @@ class Levels(commands.Cog):
             else:
                 await msg.delete()
     
-    @commands.hybrid_command(aliases=["howlevelsworks"])
+    @commands.hybrid_command(aliases=["howlevelswork"])
     @discord.app_commands.guilds(ID.server.fbc, ID.server.cafe)
     async def howxpworks(self, ctx):
         """Sends a message on how XP works."""
         content = """It works by adding between 2 and 8 XP (at random) every time you send a message (unless double XP is turned on, in which it's... you guessed it, double). Messages containing attachments (images, videos, etc) also get 5 extra XP on top of what you're already getting.
-
-If you're level 100+, you'll need 600XP to advance a level.
 
 You gain levels when you reach a number of XP which is a multiple of 350 (350, 700, 1050, etc...)
 
@@ -394,24 +365,7 @@ You can use `.rank` to check your statistics and `.leaderboard` to see who has t
 Spamming does not benefit you when it comes to gaining XP as there's a short cooldown period after sending a message. 
 
 **Leaving the server resets your XP!**"""
-        e = discord.Embed(title="How the levelling system works", color=EMBED_COLOR)
-        e.description = content
-
-        await ctx.send(embed=e)
-
-    @commands.hybrid_command(aliases=["levelstatus"])
-    @discord.app_commands.guilds(ID.server.fbc, ID.server.cafe)
-    async def xpstatus(self, ctx):
-        """Shows the current status on the levelling system."""
-        data = await self.bot.config.find(123)
-        if data["doublexp"] == True:
-            doublexp = "Enabled - chatting will give you double XP"
-        else:
-            dobulexp = "Disabled - XP is not doubled."
-        
-        content = f"XP is random per-message. You get between 2 and 8 XP.\nSending media is a 5 XP bonus!\n\nDouble XP: {doublexp}"
-
-        e = discord.Embed(color=EMBED_COLOR, title="XP Status")
+        e = discord.Embed(title="How levels work", color=0xf4c2c2)
         e.description = content
 
         await ctx.send(embed=e)
