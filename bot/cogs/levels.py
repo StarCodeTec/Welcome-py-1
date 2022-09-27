@@ -12,6 +12,7 @@ from io import BytesIO
 
 XP_PER_LEVEL = 350
 MSG_ATTACHMENT_XP_RATE = 5
+EMBED_COLOR = 0xea69a5
 
 def levelup_msg(msg, lvl):
     user = msg.author.mention
@@ -28,12 +29,31 @@ def calculate_level(xp):
     """Calculates a level based on the XP given."""
     return math.trunc(xp / XP_PER_LEVEL)
 
+# def get_xp_rate(msg, data, double=False):
+#     double = 2 if double else 1 # double XP
+#     final = 0
+
+#     if msg.channel.id == ID.cafe.media.selfie:
+#             if not data or data.get("level", 0) < 3:
+#                 await msg.delete()
+#                 return await msg.author.send("Sorry, you must reach level 3 by chatting before you can post selfies. Thanks for understanding! (Do `/rank` to see your rank)")
+
+#     if msg.channel.id in ID.roleplaying.channels or data.get("level", 0) >= 100:
+#         final += random.randint(1,3) * double # reduced for roleplay channels
+#     else:
+#         final += random.randint(2, 8)
+
+#     if msg.attachments:
+#         final += MSG_ATTACHMENT_XP_RATE
+    
+#     return final
+    
+
+
 class Levels(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.cooldown = commands.CooldownMapping.from_cooldown(1, 2, commands.BucketType.member)
-    
-        self.msg_attachment_xp_rate = 5
 
         self.wtp = WantsToParty(api_key=main.wtp_key, subdomain="femboy")
 
@@ -235,7 +255,7 @@ class Levels(commands.Cog):
             "next_xp": XP_PER_LEVEL,
             "xp_needed": xp_needed,
             "user_position": rank,
-            "user_name": member.name,
+            "user_name": member.display_name,
             "user_status": member.raw_status,
             "color": data.get("color") if data.get("color") else "#1b1b1b",
             "total": xp
@@ -313,7 +333,7 @@ class Levels(commands.Cog):
             async def format_page(self, entries):
                 embed = discord.Embed(
                     title="Leaderboard",
-                    color=0xf4c2c2
+                    color=EMBED_COLOR
                 )
                 embed.description = "\n".join(entries)
                 embed.set_author(name=f"Page {self.current_page}/{self.total_pages}")
@@ -365,7 +385,46 @@ You can use `.rank` to check your statistics and `.leaderboard` to see who has t
 Spamming does not benefit you when it comes to gaining XP as there's a short cooldown period after sending a message. 
 
 **Leaving the server resets your XP!**"""
-        e = discord.Embed(title="How levels work", color=0xf4c2c2)
+        e = discord.Embed(title="How levels work", color=EMBED_COLOR)
+        e.description = content
+
+        await ctx.send(embed=e)
+
+    @commands.hybrid_command()
+    @discord.app_commands.guilds(ID.server.fbc, ID.server.cafe)
+    async def toggleping(self, ctx):
+        """Enables/disables pings when you level up. This will still send the level up message."""
+        data = await self.bot.levels.find(ctx.author.id)
+
+        if not data or not data.get("ping"):
+            to_send = "Click \"Yes\" if you **don't** want to be pinged. Otherwise, click \"No\" or ignore."
+        else:
+            to_send = "Click \"Yes\" if you **do** want to be pinged. Otherwise, click \"No\" or ignore."
+        
+        confirm = YesNo()
+        confirm.ctx = ctx
+
+        msg = await ctx.send(to_send, view=confirm)
+
+        await confirm.wait()
+        if not confirm.value:
+            return await msg.edit("Cancelled.")
+        
+        await msg.edit("Your settings have been changed!")
+    
+    @commands.hybrid_command(aliases["levelstatus"])
+    @discord.app_commands.guilds(ID.server.fbc, ID.server.cafe)
+    async def xpstatus(self, ctx):
+        """Shows the current status on the levelling system."""
+        data = await self.bot.config.find(123)
+        if data["doublexp"] == True:
+            doublexp = "Enabled - chatting will give you double XP"
+        else:
+            dobulexp = "Disabled - XP is not doubled."
+        
+        content = f"XP is random per-message. You get between 2 and 8 XP.\nSending media is a 5 XP bonus!\n\nDouble XP: {doublexp}"
+
+        e = discord.Embed(color=EMBED_COLOR, title="XP Status")
         e.description = content
 
         await ctx.send(embed=e)
