@@ -14,8 +14,8 @@ XP_PER_LEVEL = 350
 MSG_ATTACHMENT_XP_RATE = 5
 EMBED_COLOR = 0xea69a5
 
-def levelup_msg(msg, lvl):
-    user = msg.author.mention
+def levelup_msg(msg, lvl, ping=True):
+    user = msg.author.mention if ping else msg.author.display_name
 
     msgs = [
         f"Yay, {user} has reached **level {lvl}**! Keep going! <a:woot:917617832655740969>",
@@ -29,24 +29,24 @@ def calculate_level(xp):
     """Calculates a level based on the XP given."""
     return math.trunc(xp / XP_PER_LEVEL)
 
-# def get_xp_rate(msg, data, double=False):
-#     double = 2 if double else 1 # double XP
-#     final = 0
+async def get_xp_rate(msg, data, double=False):
+    double = 2 if double else 1 # double XP
+    final = 0
 
-#     if msg.channel.id == ID.cafe.media.selfie:
-#             if not data or data.get("level", 0) < 3:
-#                 await msg.delete()
-#                 return await msg.author.send("Sorry, you must reach level 3 by chatting before you can post selfies. Thanks for understanding! (Do `/rank` to see your rank)")
+    if msg.channel.id == ID.cafe.media.selfie:
+            if not data or data.get("level", 0) < 3:
+                await msg.delete()
+                return await msg.author.send("Sorry, you must reach level 3 by chatting before you can post selfies. Thanks for understanding! (Do `/rank` to see your rank)")
 
-#     if msg.channel.id in ID.roleplaying.channels or data.get("level", 0) >= 100:
-#         final += random.randint(1,3) * double # reduced for roleplay channels
-#     else:
-#         final += random.randint(2, 8)
+    if msg.channel.id in ID.roleplaying.channels or data.get("level", 0) >= 100:
+        final += random.randint(1,3) * double # reduced for roleplay channels
+    else:
+        final += random.randint(2, 8) * double
 
-#     if msg.attachments:
-#         final += MSG_ATTACHMENT_XP_RATE
+    if msg.attachments:
+        final += MSG_ATTACHMENT_XP_RATE
     
-#     return final
+    return final
     
 
 
@@ -72,8 +72,6 @@ class Levels(commands.Cog):
             return # sending messages too quickly - likely spamming.
         
         xp = await self.bot.config.find(123)
-        
-        rand_xp = random.randint(2, 8)
 
         if not xp:
             await self.bot.config.upsert({"_id": 123, "doublexp": False})
@@ -85,7 +83,7 @@ class Levels(commands.Cog):
                 await msg.delete()
                 return await msg.author.send("You must reach level 3 by chatting before you can post selfies. Thanks for understanding!")
 
-        xp_rate = rand_xp if not xp["doublexp"] else rand_xp * 2
+        xp_rate = await get_xp_rate(msg, data, xp["double"])
 
         if not data:
             await self.bot.levels.upsert(
@@ -110,7 +108,7 @@ class Levels(commands.Cog):
                 )
                 
                 bot = msg.guild.get_channel(ID.cafe.chat.bot)
-                await bot.send(random.choice(levelup_msg(msg, level_to_get)))
+                await bot.send(random.choice(levelup_msg(msg, level_to_get, data["ping"])))
             else:
                 await self.bot.levels.upsert(
                     {
@@ -376,7 +374,7 @@ class Levels(commands.Cog):
     @discord.app_commands.guilds(ID.server.fbc, ID.server.cafe)
     async def howxpworks(self, ctx):
         """Sends a message on how XP works."""
-        content = """It works by adding between 2 and 8 XP (at random) every time you send a message (unless double XP is turned on, in which it's... you guessed it, double). Messages containing attachments (images, videos, etc) also get 5 extra XP on top of what you're already getting.
+        content = """It works by adding between 2 and 8 XP (at random) every time you send a message (unless double XP is turned on, in which it's... you guessed it, double). Messages containing attachments (images, videos, etc) also get 5 extra XP on top of what you're already getting. XP is reduced to 1-3 in roleplay channels. (double XP still effects it though!)
 
 You gain levels when you reach a number of XP which is a multiple of 350 (350, 700, 1050, etc...)
 
@@ -410,6 +408,12 @@ Spamming does not benefit you when it comes to gaining XP as there's a short coo
         if not confirm.value:
             return await msg.edit("Cancelled.")
         
+        if confirm.value:
+            if data.get("ping") == False:
+                await self.bot.levels.upsert({"_id": ctx.author.id, "ping": False})
+            else:
+                await self.bot.levels.upsert({"_id": ctx.author.id, "ping": True})
+
         await msg.edit("Your settings have been changed!")
     
     @commands.hybrid_command(aliases["levelstatus"])
