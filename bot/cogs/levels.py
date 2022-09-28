@@ -14,8 +14,8 @@ XP_PER_LEVEL = 350
 MSG_ATTACHMENT_XP_RATE = 5
 EMBED_COLOR = 0xea69a5
 
-def levelup_msg(msg, lvl):
-    user = msg.author.mention
+def levelup_msg(msg, lvl, ping=True):
+    user = msg.author.mention if ping else msg.author.display_name
 
     msgs = [
         f"Yay, {user} has reached **level {lvl}**! Keep going! <a:woot:917617832655740969>",
@@ -29,7 +29,7 @@ def calculate_level(xp):
     """Calculates a level based on the XP given."""
     return math.trunc(xp / XP_PER_LEVEL)
 
-def get_xp_rate(msg, data, double=False):
+async def get_xp_rate(msg, data, double=False):
     double = 2 if double else 1 # double XP
     final = 0
 
@@ -83,7 +83,7 @@ class Levels(commands.Cog):
                 await msg.delete()
                 return await msg.author.send("You must reach level 3 by chatting before you can post selfies. Thanks for understanding!")
 
-        xp_rate = get_xp_rate(msg, data, xp["double"])
+        xp_rate = await get_xp_rate(msg, data, xp["double"])
 
         if not data:
             await self.bot.levels.upsert(
@@ -108,7 +108,7 @@ class Levels(commands.Cog):
                 )
                 
                 bot = msg.guild.get_channel(ID.cafe.chat.bot)
-                await bot.send(random.choice(levelup_msg(msg, level_to_get)))
+                await bot.send(random.choice(levelup_msg(msg, level_to_get, data["ping"])))
             else:
                 await self.bot.levels.upsert(
                     {
@@ -374,7 +374,7 @@ class Levels(commands.Cog):
     @discord.app_commands.guilds(ID.server.fbc, ID.server.cafe)
     async def howxpworks(self, ctx):
         """Sends a message on how XP works."""
-        content = """It works by adding between 2 and 8 XP (at random) every time you send a message (unless double XP is turned on, in which it's... you guessed it, double). Messages containing attachments (images, videos, etc) also get 5 extra XP on top of what you're already getting.
+        content = """It works by adding between 2 and 8 XP (at random) every time you send a message (unless double XP is turned on, in which it's... you guessed it, double). Messages containing attachments (images, videos, etc) also get 5 extra XP on top of what you're already getting. XP is reduced to 1-3 in roleplay channels. (double XP still effects it though!)
 
 You gain levels when you reach a number of XP which is a multiple of 350 (350, 700, 1050, etc...)
 
