@@ -77,11 +77,6 @@ class Levels(commands.Cog):
 
         data = await self.bot.levels.find(msg.author.id)
 
-        if msg.channel.id == ID.cafe.media.selfie:
-            if not data or data.get("level", 0) < 3:
-                await msg.delete()
-                return await msg.author.send("You must reach level 3 by chatting before you can post selfies. Thanks for understanding!")
-
         xp_rate = await get_xp_rate(msg, data, xp["double"])
 
         if not data:
@@ -101,18 +96,19 @@ class Levels(commands.Cog):
                 await self.bot.levels.upsert(
                     {
                         "_id": msg.author.id,
-                        "xp": data["xp"] + xp_rate if not msg.attachments else data["xp"] + self.msg_attachment_xp_rate,
+                        "xp": data["xp"] + xp_rate,
                         "level": level_to_get
                     }
                 )
                 
                 bot = msg.guild.get_channel(ID.cafe.chat.bot)
-                await bot.send(random.choice(levelup_msg(msg, level_to_get, data.get("ping"))))
+                await bot.send(random.choice(levelup_msg(msg, level_to_get, data.get("ping", True))))
+
             else:
                 await self.bot.levels.upsert(
                     {
                         "_id": msg.author.id,
-                        "xp": data["xp"] + xp_rate if not msg.attachments else data["xp"] + self.msg_attachment_xp_rate
+                        "xp": data["xp"] + xp_rate
                     }
                 )
 
@@ -384,6 +380,7 @@ Spamming does not benefit you when it comes to gaining XP as there's a short coo
 **Leaving the server resets your XP!**"""
         e = discord.Embed(title="How levels work", color=EMBED_COLOR)
         e.description = content
+        e.set_footer(text="Levels by acatia#5378 :)")
 
         await ctx.send(embed=e)
 
