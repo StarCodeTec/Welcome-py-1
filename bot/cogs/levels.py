@@ -393,10 +393,10 @@ Spamming does not benefit you when it comes to gaining XP as there's a short coo
         """Enables/disables pings when you level up. This will still send the level up message."""
         data = await self.bot.levels.find(ctx.author.id)
 
-        if data.get("ping") == True:
-            to_send = "You currently aren't being pinged for level up messages.\n\n**Do you want to be pinged again?**"
-        else:
+        if data.get("ping", True) == True:
             to_send = "You are currently being pinged for level up messages.\n\n**Do you want to disable level-up pings?**"
+        else:
+            to_send = "You currently aren't being pinged for level up messages.\n\n**Do you want to be pinged again?**"
         
         confirm = YesNo()
         confirm.ctx = ctx
