@@ -18,9 +18,9 @@ def levelup_msg(msg, lvl, ping=True):
     user = msg.author.mention if ping else msg.author.display_name
 
     msgs = [
-        f"Yay, {user} has reached **level {lvl}**! Keep going! <a:woot:917617832655740969>",
-        f"Woah, {user} has reached **level {lvl}**! Amazing! <a:woohoo:989342765672456222>",
-        f"{user} has levelled up to {lvl}! Keep on going! <a:yay:989342786014810215>"
+        f"Yay, **{user}** has reached **level {lvl}**! Keep going! <a:woot:917617832655740969>",
+        f"Woah, **{user}** has reached **level {lvl}**! Amazing! <a:woohoo:989342765672456222>",
+        f"**{user}** has levelled up to **{lvl}**! Keep going! <a:yay:989342786014810215>"
     ]
     
     return msgs
@@ -29,8 +29,8 @@ def calculate_level(xp):
     """Calculates a level based on the XP given."""
     return math.trunc(xp / XP_PER_LEVEL)
 
-async def get_xp_rate(msg, data, double=False):
-    double = 2 if double else 1 # double XP
+async def get_xp_rate(msg, data, doublexp=False):
+    doublexp = 2 if doublexp else 1 # double XP
     final = 0
 
     if msg.channel.id == ID.cafe.media.selfie:
@@ -39,16 +39,15 @@ async def get_xp_rate(msg, data, double=False):
                 return await msg.author.send("Sorry, you must reach level 3 by chatting before you can post selfies. Thanks for understanding! (Do `/rank` to see your rank)")
 
     if msg.channel.id in ID.roleplaying.channels or data.get("level", 0) >= 100:
-        final += random.randint(1,3) * double # reduced for roleplay channels
+        final += random.randint(1,3) * doublexp # reduced for roleplay channels
     else:
-        final += random.randint(2, 8) * double
+        final += random.randint(2, 8) * doublexp
 
     if msg.attachments:
         final += MSG_ATTACHMENT_XP_RATE
     
     return final
     
-
 
 class Levels(commands.Cog):
     def __init__(self, bot):
@@ -108,7 +107,7 @@ class Levels(commands.Cog):
                 )
                 
                 bot = msg.guild.get_channel(ID.cafe.chat.bot)
-                await bot.send(random.choice(levelup_msg(msg, level_to_get, data["ping"])))
+                await bot.send(random.choice(levelup_msg(msg, level_to_get, data.get("ping"))))
             else:
                 await self.bot.levels.upsert(
                     {
@@ -394,10 +393,10 @@ Spamming does not benefit you when it comes to gaining XP as there's a short coo
         """Enables/disables pings when you level up. This will still send the level up message."""
         data = await self.bot.levels.find(ctx.author.id)
 
-        if not data or not data.get("ping"):
-            to_send = "Click \"Yes\" if you **don't** want to be pinged. Otherwise, click \"No\" or ignore."
+        if data.get("ping") == True:
+            to_send = "You currently aren't being pinged for level up messages.\n\n**Do you want to be pinged again?**"
         else:
-            to_send = "Click \"Yes\" if you **do** want to be pinged. Otherwise, click \"No\" or ignore."
+            to_send = "You are currently being pinged for level up messages.\n\n**Do you want to disable level-up pings?**"
         
         confirm = YesNo()
         confirm.ctx = ctx
@@ -406,15 +405,15 @@ Spamming does not benefit you when it comes to gaining XP as there's a short coo
 
         await confirm.wait()
         if not confirm.value:
-            return await msg.edit("Cancelled.")
+            return await msg.edit(content="Cancelled.")
         
         if confirm.value:
-            if data.get("ping") == False:
+            if data.get("ping") == True:
                 await self.bot.levels.upsert({"_id": ctx.author.id, "ping": False})
             else:
                 await self.bot.levels.upsert({"_id": ctx.author.id, "ping": True})
 
-        await msg.edit("Your settings have been changed!")
+        await msg.edit(content="Your settings have been changed!", view=confirm)
     
     @commands.hybrid_command(aliases["levelstatus"])
     @discord.app_commands.guilds(ID.server.fbc, ID.server.cafe)

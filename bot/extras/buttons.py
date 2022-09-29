@@ -18,9 +18,17 @@ class YesNo(discord.ui.View):
     async def _yes(self, button: discord.ui.Button, interaction: discord.Interaction):
         
         self.value = True
+
+        for child in self.children:
+            child.disabled = True
+        
         self.stop()
 
     @discord.ui.button(label='No', style=discord.ButtonStyle.grey)
     async def _no(self, button: discord.ui.Button, interaction: discord.Interaction):
         self.value = False
+        
+        for child in self.children:
+            child.disabled = True
+
         self.stop()
