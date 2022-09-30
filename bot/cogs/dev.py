@@ -1,21 +1,11 @@
-import discord
-from discord.ext import commands
-import textwrap
-import io
-import traceback
-import os
-import requests
-from urllib.parse import urlparse, urljoin
-from bs4 import BeautifulSoup
-import colorama
 import sys
-sys.path.append('../..')
-from passcodes import main
+sys.path.append('..')
+from imports.dev import *
+from imports.discord import *
+from imports.passcodes import *
 sudoPassword=main.dbc
-sys.path.append('busboy/bot')
-import LIBS.A_LIB_change as DEV_CHANGE
-import traceback
-from contextlib import redirect_stdout
+
+
 
 def cleanup_code(content):
     """Automatically removes code blocks from the code in the eval command."""
@@ -33,8 +23,7 @@ class Dev(commands.Cog):
     @commands.command(hidden=True, name='eval', aliases=['e'])
     async def _eval(self, ctx, *, body: str):
         """Runs Python code."""
-        if ctx.author.id != 599059234134687774:
-            return
+        if ctx.author.id != 599059234134687774:return
             
         env = {
             'bot': self.bot,
@@ -48,33 +37,24 @@ class Dev(commands.Cog):
 
         env.update(globals())
 
-        body = cleanup_code(body)
-        
-        stdout = io.StringIO()
-
+        body       = cleanup_code(body)
+        stdout     = io.StringIO()
         to_compile = f'async def func():\n{textwrap.indent(body, "  ")}'
 
-        try:
-            exec(to_compile, env)
-        except Exception as e:
-            return await ctx.send(f'```py\n{e.__class__.__name__}: {e}\n```')
-
+        try:                   exec(to_compile, env)
+        except Exception as e: return await ctx.send(f'```py\n{e.__class__.__name__}: {e}\n```')
         func = env['func']
+
         try:
-            with redirect_stdout(stdout):
-                ret = await func()
+            with redirect_stdout(stdout):ret = await func()
         except Exception as e:
             value = stdout.getvalue()
             await ctx.send(f'```py\n{value}{traceback.format_exc()}\n```')
         else:
             value = stdout.getvalue()
-            try:
-                await ctx.message.add_reaction('\u2705')
-            except:
-                pass
+            try:    await ctx.message.add_reaction('\u2705')
+            except: pass
 
             if ret is None:
-                if value:
-                    await ctx.send(f'```py\n{value}\n```')
-            else:
-                await ctx.send(f'```py\n{value}{ret}\n```')
+                if value: await ctx.send(f'```py\n{value}\n```')
+            else:         await ctx.send(f'```py\n{value}{ret}\n```')

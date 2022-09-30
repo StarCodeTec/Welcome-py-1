@@ -1,27 +1,16 @@
-from discord.ext import commands
-import sys
-sys.path.append('..')
-from extras.text_zone import BIG as b
-import extras.IDS as ID
-
-cog = commands.Cog
-botuser = 966392608895152228
+from   imports.discord  import *
+from   extras.text_zone import BIG    as b
+from   extras           import IDS    as ID
 cafe = ID.cafe
 
 class sticky(commands.Cog):
-  def __init__(self, bot):
-    self.bot=bot
+  def __init__(self, bot):self.bot=bot
   
   @cog.listener()
   async def on_message(self, msg):
-    if msg.guild is None:
-      return
+    if msg.guild is None or msg.author.id == botuser: return
 
-    if msg.author.id == botuser:
-      return
-
-    def is_me(msg):
-      return msg.author.id == botuser
+    def is_me(msg): return msg.author.id == botuser
 
     if msg.channel.id == cafe.home.promo:
       cha = self.bot.get_channel(cafe.home.promo) or await self.bot.fetch_channel(cafe.home.promo)
@@ -33,12 +22,12 @@ class sticky(commands.Cog):
       await cha.purge(limit=2, check=is_me)
       
       await self.bot.bio.upsert(
-          {
-            "_id": msg.author.id,
-            "bio": str(msg.content),
-            "msg_id": msg.id
-          }
-        )
+        {
+          "_id": msg.author.id,
+          "bio": str(msg.content),
+          "msg_id": msg.id
+        }
+      )
       
       await cha.send(b.bt())
     

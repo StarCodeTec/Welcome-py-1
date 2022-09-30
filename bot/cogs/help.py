@@ -1,5 +1,4 @@
-import discord
-from discord.ext import commands
+from imports.discord import *
 
 title = "Fenne's Busboy"
 embed_color = 0xf4c2c2
