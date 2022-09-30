@@ -11,11 +11,6 @@ from   extras.text_zone import all_id   as id_0
 from   extras           import IDS      as ID
 
 cafe    =  ID.cafe
-rcheck  =  id_0.check
-r1      =  id_0.fenne
-r3      =  id_0.heart
-r4      =  id_0.P_heart
-r5      =  id_0.thumb_up
 key     =  main.fenne.key
 
 #loops------------------------------------------------------------------------------------------
