@@ -78,7 +78,7 @@ class Levels(commands.Cog):
         data = await self.bot.levels.find(msg.author.id)
 
         xp_rate = await get_xp_rate(msg, data, xp["double"])
-        if xp_rate==None:
+        if xp_rate is None:
           print("none")
         print(xp_rate)
 
