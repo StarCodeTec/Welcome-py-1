@@ -29,15 +29,14 @@ def calculate_level(xp):
     """Calculates a level based on the XP given."""
     return math.trunc(xp / XP_PER_LEVEL)
 
-async def get_xp_rate(msg, data, doublexp=False):
+def get_xp_rate(msg, data, doublexp=False):
     doublexp = 2 if doublexp else 1 # double XP
     print(data, "\n", doublexp)
     final = 0
 
     if msg.channel.id == ID.cafe.media.selfie:
             if not data or data.get("level", 0) < 3:
-                await msg.delete()
-                return await msg.author.send("Sorry, you must reach level 3 by chatting before you can post selfies. Thanks for understanding! (Do `/rank` to see your rank)")
+                return "selfies -3"
 
     if msg.channel.id in ID.roleplaying.channels or data.get("level", 0) >= 100:
         final += random.randint(1,3) * doublexp # reduced for roleplay channels
@@ -77,9 +76,10 @@ class Levels(commands.Cog):
             await self.bot.config.upsert({"_id": 123, "doublexp": False})
 
         data = await self.bot.levels.find(msg.author.id)
-        get_xp_rate(msg, data, xp["double"])
-        xp_rate = await get_xp_rate(msg, data, xp["double"])
-
+        xp_rate = get_xp_rate(msg, data, xp["double"])
+        if xp_rate == "selfies -3":
+            await msg.delete()
+            return await msg.author.send("Sorry, you must reach level 3 by chatting before you can post selfies. Thanks for understanding! (Do `/rank` to see your rank)")
         print(xp_rate)
 
         if not data:
