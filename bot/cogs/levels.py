@@ -58,7 +58,7 @@ class Levels(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, msg):
-        if msg.author.bot:
+        if msg.author.id == 966392608895152228:
             return print("offf")
 
         if msg.guild.id != ID.server.cafe or msg.guild is None:
@@ -78,7 +78,8 @@ class Levels(commands.Cog):
         data = await self.bot.levels.find(msg.author.id)
 
         xp_rate = await get_xp_rate(msg, data, xp["double"])
-
+        if xp_rate==None:
+          print("none")
         print(xp_rate)
 
         if not data:
