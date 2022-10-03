@@ -59,10 +59,10 @@ class Levels(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, msg):
         if msg.author.id == 966392608895152228:
-            return print("offf")
+            return
 
         if msg.guild.id != ID.server.cafe or msg.guild is None:
-              return print("off")
+              return
         
         bucket = self.cooldown.get_bucket(msg)
         retry_after = bucket.update_rate_limit()
@@ -71,7 +71,7 @@ class Levels(commands.Cog):
             return # sending messages too quickly - likely spamming.
         
         xp = await self.bot.config.find(123)
-
+        print(xp)
         if not xp:
             await self.bot.config.upsert({"_id": 123, "doublexp": False})
 
