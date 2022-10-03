@@ -59,11 +59,9 @@ class Levels(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, msg):
         if msg.author.bot:
-            return print("offff")
-        
-        
-        
-        if msg.guild.id != ID.server.cafe or not msg.guild:
+            return 
+
+        if msg.guild.id != ID.server.cafe or msg.guild is None:
             return print("off")
         
         bucket = self.cooldown.get_bucket(msg)
