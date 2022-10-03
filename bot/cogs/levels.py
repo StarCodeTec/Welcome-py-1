@@ -1,6 +1,7 @@
 import discord
 import random
 import math
+import asyncio
 import extras.IDS as ID
 from extras.buttons import YesNo
 from extras.card_generator import Generator
@@ -29,7 +30,7 @@ def calculate_level(xp):
     """Calculates a level based on the XP given."""
     return math.trunc(xp / XP_PER_LEVEL)
 
-def get_xp_rate(msg, data, doublexp=False):
+async def get_xp_rate(msg, data, doublexp=False):
     doublexp = 2 if doublexp else 1 # double XP
     print(data, "\n", doublexp)
     final = 0
@@ -77,7 +78,7 @@ class Levels(commands.Cog):
             await self.bot.config.upsert({"_id": 123, "doublexp": False})
 
         data = await self.bot.levels.find(msg.author.id)
-        xp_rate = get_xp_rate(msg, data, xp["double"])
+        xp_rate = asyncio.run(get_xp_rate(msg, data, xp["double"]))
 
         print(xp_rate)
 
