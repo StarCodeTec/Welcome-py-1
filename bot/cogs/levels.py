@@ -30,7 +30,6 @@ def calculate_level(xp):
     return math.trunc(xp / XP_PER_LEVEL)
 
 async def get_xp_rate(msg, data, doublexp=False):
-    print("does it run?")
     doublexp = 2 if doublexp else 1 # double XP
     print(data, "\n", doublexp)
     final = 0
@@ -78,6 +77,7 @@ class Levels(commands.Cog):
             await self.bot.config.upsert({"_id": 123, "doublexp": False})
 
         data = await self.bot.levels.find(msg.author.id)
+        get_xp_rate(msg, data, xp["double"])
         xp_rate = await get_xp_rate(msg, data, xp["double"])
 
         print(xp_rate)
