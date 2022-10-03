@@ -28,26 +28,6 @@ def levelup_msg(msg, lvl, ping=True):
 def calculate_level(xp):
     """Calculates a level based on the XP given."""
     return math.trunc(xp / XP_PER_LEVEL)
-
-def get_xp_rate(msg, data, doublexp=False):
-    doublexp = 2 if doublexp else 1 # double XP
-    print(data, "\n", doublexp)
-    final = 0
-
-    if msg.channel.id == ID.cafe.media.selfie:
-            if not data or data.get("level", 0) < 3:
-                return "selfies -3"
-
-    if msg.channel.id in ID.roleplaying.channels or data.get("level", 0) >= 100:
-        final += random.randint(1,3) * doublexp # reduced for roleplay channels
-    else:
-        final += random.randint(2, 8) * doublexp
-
-    if msg.attachments:
-        final += MSG_ATTACHMENT_XP_RATE
-    
-    print(final)
-    return final
     
 
 class Levels(commands.Cog):
@@ -59,6 +39,23 @@ class Levels(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, msg):
+        def get_xp_rate(msg, data, doublexp=False):
+            doublexp = 2 if doublexp else 1 # double XP
+            print(data, "\n", doublexp)
+            final = 0
+            if msg.channel.id == ID.cafe.media.selfie:
+                if not data or data.get("level", 0) < 3:
+                    return "selfies -3"
+            if msg.channel.id in ID.roleplaying.channels or data.get("level", 0) >= 100:
+                final += random.randint(1,3) * doublexp # reduced for roleplay channels
+            else:
+                final += random.randint(2, 8) * doublexp
+            if msg.attachments:
+                final += MSG_ATTACHMENT_XP_RATE
+    
+            print(final)
+            return final
+        
         if msg.author.id == 966392608895152228:
             return
 
