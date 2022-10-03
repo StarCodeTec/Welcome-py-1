@@ -31,6 +31,7 @@ def calculate_level(xp):
 
 async def get_xp_rate(msg, data, doublexp=False):
     doublexp = 2 if doublexp else 1 # double XP
+    print(data, "\n", doublexp)
     final = 0
 
     if msg.channel.id == ID.cafe.media.selfie:
