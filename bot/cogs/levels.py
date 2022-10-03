@@ -46,6 +46,7 @@ async def get_xp_rate(msg, data, doublexp=False):
     if msg.attachments:
         final += MSG_ATTACHMENT_XP_RATE
     
+    print(final)
     return final
     
 
@@ -75,10 +76,8 @@ class Levels(commands.Cog):
             await self.bot.config.upsert({"_id": 123, "doublexp": False})
 
         data = await self.bot.levels.find(msg.author.id)
-        print(data)
         xp_rate = await get_xp_rate(msg, data, xp["double"])
-        if xp_rate is None:
-          print("none")
+
         print(xp_rate)
 
         if not data:
