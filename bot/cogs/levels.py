@@ -79,6 +79,8 @@ class Levels(commands.Cog):
 
         xp_rate = await get_xp_rate(msg, data, xp["double"])
 
+        print(xp_rate)
+
         if not data:
             await self.bot.levels.upsert(
                 {
