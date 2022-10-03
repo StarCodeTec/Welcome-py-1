@@ -59,16 +59,16 @@ class Levels(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, msg):
         if msg.author.bot:
-            return 
+            return print("offf")
 
         if msg.guild.id != ID.server.cafe or msg.guild is None:
-            return print("off")
+              return print("off")
         
         bucket = self.cooldown.get_bucket(msg)
         retry_after = bucket.update_rate_limit()
 
         if retry_after:
-            return print("retry")# sending messages too quickly - likely spamming.
+            return # sending messages too quickly - likely spamming.
         
         xp = await self.bot.config.find(123)
 
