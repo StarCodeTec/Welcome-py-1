@@ -53,6 +53,7 @@ class Levels(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, msg):
+        print("on_message passed 1")
         if msg.author.bot:
             return
         
@@ -72,12 +73,18 @@ class Levels(commands.Cog):
 
         data = await self.bot.levels.find(msg.author.id)
 
+        print("on_message passed 2")
+
         if msg.channel.id == ID.cafe.media.selfie:
             if not data or data.get("level", 0) < 3:
                 await msg.delete()
                 return await msg.author.send("Sorry, you must reach level 3 by chatting before you can post selfies. Thanks for understanding! (Do `/rank` in <#889028781652705350> to see your rank)")
 
+        print("on_message passed 3")
         xp_rate = await get_xp_rate(msg, data, xp["doublexp"])
+
+
+        print("on_message passed 4")
 
         if not data:
             await self.bot.levels.upsert(
@@ -100,10 +107,12 @@ class Levels(commands.Cog):
                         "level": level_to_get
                     }
                 )
+                print("on_message passed 5")
                 
                 bot = msg.guild.get_channel(ID.cafe.chat.bot)
                 await bot.send(random.choice(levelup_msg(msg, level_to_get, data.get("ping", True))))
 
+                print("on_message passed 6")
             else:
                 await self.bot.levels.upsert(
                     {
@@ -211,11 +220,13 @@ class Levels(commands.Cog):
     @discord.app_commands.guilds(ID.server.fbc, ID.server.cafe)
     async def rank(self, ctx, member: discord.Member=None):
         """Shows a members XP and level from talking."""
+        print("rank passed 1")
         member = member if member else ctx.author
 
         data = await self.bot.levels.find(member.id)
         all_data = await self.bot.levels.get_all()
-
+        
+        print("rank passed 2")
         
         all_data.sort(key=lambda item: item.get("xp"), reverse=True) # sort ranks in descending order
 
@@ -224,6 +235,8 @@ class Levels(commands.Cog):
             if entry["_id"] == member.id:
                 break
             index += 1
+
+        print("rank passed 3")
 
         xp = data["xp"]
         level = data["level"]
@@ -239,6 +252,8 @@ class Levels(commands.Cog):
                 msg = None
         else:
             msg = None
+        
+        print("rank passed 4")
 
         card_data = {
             "bg_image": data.get("bg") if data.get("bg") else "https://media.discordapp.net/attachments/956915636582379560/995857644415889508/rank-card.png", # change to bg when fen gives it
@@ -258,7 +273,8 @@ class Levels(commands.Cog):
 
         file = discord.File(fp=img, filename="rank.png")
 
-        await ctx.send(content=msg, file=file)   
+        await ctx.send(content=msg, file=file)
+        print("rank passed 5")
     
     @commands.group(invoke_without_command=True)
     async def card(self, ctx):
