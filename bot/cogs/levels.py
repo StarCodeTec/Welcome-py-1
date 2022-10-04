@@ -236,7 +236,7 @@ class Levels(commands.Cog):
                 break
             index += 1
 
-        print("rank passed 3")
+        print("rank passed 3", "\n", data)
 
         xp = data["xp"]
         level = data["level"]
