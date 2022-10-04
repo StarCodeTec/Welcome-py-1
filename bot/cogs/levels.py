@@ -28,6 +28,20 @@ def levelup_msg(msg, lvl, ping=True):
 def calculate_level(xp):
     """Calculates a level based on the XP given."""
     return math.trunc(xp / XP_PER_LEVEL)
+
+async def get_xp_rate(msg, data, doublexp=False):
+    doublexp = 2 if doublexp else 1 # double XP
+    final = 0
+
+    if msg.channel.id in ID.roleplaying.channels or data.get("level", 0) >= 100:
+        final += random.randint(1,3) * doublexp # reduced for roleplay channels
+    else:
+        final += random.randint(2, 8) * doublexp
+
+    if msg.attachments:
+        final += MSG_ATTACHMENT_XP_RATE
+    
+    return final
     
 
 class Levels(commands.Cog):
@@ -39,28 +53,11 @@ class Levels(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, msg):
-        def get_xp_rate(msg, data, doublexp=False):
-            doublexp = 2 if doublexp else 1 # double XP
-            print(data, "\n", doublexp)
-            final = 0
-            if msg.channel.id == ID.cafe.media.selfie:
-                if not data or data.get("level", 0) < 3:
-                    return "selfies -3"
-            if msg.channel.id in ID.roleplaying.channels or data.get("level", 0) >= 100:
-                final += random.randint(1,3) * doublexp # reduced for roleplay channels
-            else:
-                final += random.randint(2, 8) * doublexp
-            if msg.attachments:
-                final += MSG_ATTACHMENT_XP_RATE
-    
-            print(final)
-            return final
-        
-        if msg.author.id == 966392608895152228:
+        if msg.author.bot:
             return
-
-        if msg.guild.id != ID.server.cafe or msg.guild is None:
-              return
+        
+        if msg.guild.id != ID.server.cafe or not msg.guild:
+            return
         
         bucket = self.cooldown.get_bucket(msg)
         retry_after = bucket.update_rate_limit()
@@ -69,15 +66,18 @@ class Levels(commands.Cog):
             return # sending messages too quickly - likely spamming.
         
         xp = await self.bot.config.find(123)
+
         if not xp:
             await self.bot.config.upsert({"_id": 123, "doublexp": False})
 
         data = await self.bot.levels.find(msg.author.id)
-        xp_rate = get_xp_rate(msg, data, xp["double"])
-        if xp_rate == "selfies -3":
-            await msg.delete()
-            return await msg.author.send("Sorry, you must reach level 3 by chatting before you can post selfies. Thanks for understanding! (Do `/rank` to see your rank)")
-        print(xp_rate, data)
+
+        if msg.channel.id == ID.cafe.media.selfie:
+            if not data or data.get("level", 0) < 3:
+                await msg.delete()
+                return await msg.author.send("Sorry, you must reach level 3 by chatting before you can post selfies. Thanks for understanding! (Do `/rank` in <#889028781652705350> to see your rank)")
+
+        xp_rate = await get_xp_rate(msg, data, xp["doublexp"])
 
         if not data:
             await self.bot.levels.upsert(
