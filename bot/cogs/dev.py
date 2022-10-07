@@ -1,8 +1,10 @@
 import sys
 sys.path.append('..')
-from imports.dev import *
-from imports.discord import *
+from imports.dev       import *
+from imports.discord   import *
 from imports.passcodes import *
+from databases         import Database
+
 sudoPassword=main.dbc
 
 
