@@ -1,4 +1,4 @@
-from imports.discord       import random, commands, discord, math
+from imports.discord       import random, commands, discord, math, Optional
 from imports.passcodes     import main
 from extras.buttons        import YesNo
 from extras.card_generator import Generator
@@ -261,9 +261,12 @@ class Levels(commands.Cog):
         await ctx.send("Do `.card bg` to change the background or `.card color` to change the color.")
     
     @card.command(aliases=["bg"])
-    async def background(self, ctx):
-        if not ctx.message.attachments:
-            return await ctx.send("Please add (attach) an image when using this command!")
+    async def background(self, ctx, reset: Optional[str]="False"):
+        if reset.lower() == "reset":
+            await self.bot.dpg.execute(query=f"UPDATE levels SET bg = https://media.discordapp.net/attachments/956915636582379560/995857644415889508/rank-card.png WHERE _id = {ctx.author.id}")
+            return await ctx.send(f"Reseted!")
+        if not ctx.message.attachments or reset != "False":
+            return await ctx.send("Please add (attach) an image when using this command! \nOr you can use ``.card background reset`` to reset your current background")
         
         attachment = ctx.message.attachments[0]
         extension  = attachment.filename.split(".")
@@ -281,13 +284,17 @@ class Levels(commands.Cog):
     @card.command(aliases=["colour"])
     async def color(self, ctx, hex=None):
         """Changes the colour of the text on the level card."""
+        if hex=="reset":
+            await self.bot.dpg.execute(query=f"UPDATE levels SET color = '#1b1b1b' WHERE _id = {ctx.author.id}")
+            await ctx.send(f"All done! Card **text** color reset")
+            return
         if not hex:
             return await ctx.send("To pick the text color, go to <https://rgbacolorpicker.com/hex-color-picker> and copy the hex code at the top.")
         
         if not hex.startswith("#"):
             hex = "#" + str(hex)
 
-        await self.bot.dpg.execute(query=f"UPDATE levels SET bg = {hex} WHERE _id = {ctx.author.id}")
+        await self.bot.dpg.execute(query=f"UPDATE levels SET color = '{hex}' WHERE _id = {ctx.author.id}")
         await ctx.send(f"All done! Card **text** color set to {hex}")
 
     @commands.hybrid_command(aliases=["lb"])
