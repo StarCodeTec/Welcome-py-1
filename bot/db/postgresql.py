@@ -22,8 +22,9 @@ class pg:
             final=[]
             for item in list:
                 upsert={
-                    '_id':   item._id,
-                    'xp':    item.xp,
+                    '_id':    item._id,
+                    'xp':     item.xp,
+                    'levels': item.level
                 }
                 final.append(upsert)
             return final
