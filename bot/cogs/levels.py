@@ -263,7 +263,7 @@ class Levels(commands.Cog):
     @card.command(aliases=["bg"])
     async def background(self, ctx, reset: Optional[str]="False"):
         if reset.lower() == "reset":
-            await self.bot.dpg.execute(query=f"UPDATE levels SET bg = https://media.discordapp.net/attachments/956915636582379560/995857644415889508/rank-card.png WHERE _id = {ctx.author.id}")
+            await self.bot.dpg.execute(query=f"UPDATE levels SET bg = 'https://media.discordapp.net/attachments/956915636582379560/995857644415889508/rank-card.png' WHERE _id = {ctx.author.id}")
             return await ctx.send(f"Reseted!")
         if not ctx.message.attachments or reset != "False":
             return await ctx.send("Please add (attach) an image when using this command! \nOr you can use ``.card background reset`` to reset your current background")
@@ -276,7 +276,7 @@ class Levels(commands.Cog):
         
         url = await self.wtp.upload_from_bytes(file, extension)
 
-        await self.bot.dpg.execute(query=f"UPDATE levels SET bg = {url} WHERE _id = {ctx.author.id}")
+        await self.bot.dpg.execute(query=f"UPDATE levels SET bg = '{url}' WHERE _id = {ctx.author.id}")
 
         await ctx.send(f"All done!")
 
