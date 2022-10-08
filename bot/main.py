@@ -59,6 +59,7 @@ async def on_guild_channel_create(cha):
 
 async def main_start(run):
   async with bot:
+    await bot.dpg.connect()
     purge.start()
 
     for gcogs in COGS: await bot.add_cog(gcogs(bot))

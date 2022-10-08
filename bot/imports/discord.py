@@ -1,8 +1,9 @@
 import discord
-from discord.ext import commands, tasks
-from discord import app_commands
-from typing import Optional
+from   discord.ext import commands, tasks
+from   discord     import app_commands
+from   typing      import Optional
 import random
+import math
 
 
 Fenne = 474984052017987604 

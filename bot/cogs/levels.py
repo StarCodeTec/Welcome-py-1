@@ -1,18 +1,18 @@
-import discord
-import random
-import math
-import extras.IDS as ID
-from extras.buttons import YesNo
+from imports.discord       import random, commands, discord, math
+from imports.passcodes     import main
+from extras.buttons        import YesNo
 from extras.card_generator import Generator
-from extras.pages import BaseButtonPaginator
-from passcodes import main
-from discord.ext import commands
-from wantstoparty._async import WantsToParty # made this myself :D
-from io import BytesIO
+from extras.pages          import BaseButtonPaginator
+from wantstoparty._async   import WantsToParty # made this myself(Acacia) :D
+from extras                import IDS as ID
+from io                    import BytesIO
 
-XP_PER_LEVEL = 350
+
+cafe                   = ID.cafe
+XP_PER_LEVEL           = 350
 MSG_ATTACHMENT_XP_RATE = 5
-EMBED_COLOR = 0xea69a5
+EMBED_COLOR            = 0xea69a5
+XP_RATE_DEFAULT        = 10
 
 def levelup_msg(msg, lvl, ping=True):
     user = msg.author.mention if ping else msg.author.display_name
@@ -31,95 +31,91 @@ def calculate_level(xp):
 
 async def get_xp_rate(msg, data, doublexp=False):
     doublexp = 2 if doublexp else 1 # double XP
-    final = 0
-
-    if msg.channel.id in ID.roleplaying.channels or data.get("level", 0) >= 100:
+    final    = 0
+    if msg.channel.id in cafe.roleplaying.channels or data.get("levels", 0) >= 100:
         final += random.randint(1,3) * doublexp # reduced for roleplay channels
     else:
         final += random.randint(2, 8) * doublexp
 
     if msg.attachments:
         final += MSG_ATTACHMENT_XP_RATE
-    
+
     return final
     
 
 class Levels(commands.Cog):
     def __init__(self, bot):
-        self.bot = bot
+        self.bot      = bot
         self.cooldown = commands.CooldownMapping.from_cooldown(1, 2, commands.BucketType.member)
-
-        self.wtp = WantsToParty(api_key=main.wtp_key, subdomain="femboy")
+        self.wtp      = WantsToParty(api_key=main.wtp_key, subdomain="femboy")
 
     @commands.Cog.listener()
     async def on_message(self, msg):
-        print("on_message passed 1")
+        pg=self.bot.pg
         if msg.author.bot:
             return
         
-        if msg.guild.id != ID.server.cafe or not msg.guild:
-            return
+        if msg.guild.id != ID.server.cafe or not msg.guild: return
         
-        bucket = self.cooldown.get_bucket(msg)
+        bucket      = self.cooldown.get_bucket(msg)
         retry_after = bucket.update_rate_limit()
 
         if retry_after:
             return # sending messages too quickly - likely spamming.
         
-        xp = await self.bot.config.find(123)
+        xp   = pg.RESULT(await self.bot.dpg.fetch_one(query=pg.find('config', '_id'), values={"x": 123}), "config")
+        if xp is None:
+            await self.bot.dpg.execute(query="INSERT INTO config(_id, xp_rate, doublexp) VALUES (:_id, :xp_rate, :doublexp)", values={"_id": 123, "xp_rate": XP_RATE_DEFAULT, "doublexp": False})
 
-        if not xp:
-            await self.bot.config.upsert({"_id": 123, "doublexp": False})
-
-        data = await self.bot.levels.find(msg.author.id)
-
-        print("on_message passed 2")
-
-        if msg.channel.id == ID.cafe.media.selfie:
-            if not data or data.get("level", 0) < 3:
+        data = pg.RESULT(await self.bot.dpg.fetch_one(query=pg.find('levels', '_id'), values={"x": msg.author.id}), "levels")
+        if msg.channel.id == cafe.media.selfie:
+            if not data or data.get("levels", 0) < 3:
                 await msg.delete()
                 return await msg.author.send("Sorry, you must reach level 3 by chatting before you can post selfies. Thanks for understanding! (Do `/rank` in <#889028781652705350> to see your rank)")
 
-        print("on_message passed 3")
-        xp_rate = await get_xp_rate(msg, data, xp["doublexp"])
-
-
-        print("on_message passed 4")
-
-        if not data:
-            await self.bot.levels.upsert(
-                {
-                    "_id": msg.author.id,
-                    "xp": xp_rate,
-                    "level": 0
+        if data is None:
+            upsert={
+                    "_id":   msg.author.id,
+                    "xp":    1,
+                    "level": 0,
+                    "ping":  True,
+                    "bg":    "https://media.discordapp.net/attachments/956915636582379560/995857644415889508/rank-card.png", 
+                    "color": "#1b1b1b"
                 }
-            )
+            await self.bot.dpg.execute(query="INSERT INTO levels(_id, xp, level, ping, bg, color) VALUES (:_id, :xp, :level, :ping, :bg, :color)", values=upsert)
         else:
-            current_xp = data["xp"]
-            level_to_get = data["level"] + 1
-            xp_required = level_to_get * XP_PER_LEVEL
-            
+            xp_rate = await get_xp_rate(msg, data, xp["doublexp"])
+        if data is None:
+            upsert={
+                    "_id":   msg.author.id,
+                    "xp":    xp_rate,
+                    "level": 0,
+                    "ping":  True,
+                    "bg":    "https://media.discordapp.net/attachments/956915636582379560/995857644415889508/rank-card.png", 
+                    "color": "#1b1b1b"
+                }
+            await self.bot.dpg.execute(query="INSERT INTO levels(_id, xp, level, ping, bg, color) VALUES (:_id, :xp, :level, :ping, :bg, :color)", values=upsert)
+        else:
+            current_xp   = data["xp"]
+            level_to_get = data["levels"] + 1
+            xp_required  = level_to_get * XP_PER_LEVEL
             if current_xp >= xp_required:
-                await self.bot.levels.upsert(
-                    {
-                        "_id": msg.author.id,
-                        "xp": data["xp"] + xp_rate,
+                upsert={
+                        "_id":   msg.author.id,
+                        "xp":    data["xp"] + xp_rate,
                         "level": level_to_get
                     }
-                )
-                print("on_message passed 5")
+                await self.bot.dpg.execute(query=f"UPDATE levels SET xp = {upsert['xp']}, level = {upsert['level']} WHERE _id = {upsert['_id']}")
                 
-                bot = msg.guild.get_channel(ID.cafe.chat.bot)
+                bot = msg.guild.get_channel(cafe.chat.bot)
                 await bot.send(random.choice(levelup_msg(msg, level_to_get, data.get("ping", True))))
 
-                print("on_message passed 6")
             else:
-                await self.bot.levels.upsert(
-                    {
-                        "_id": msg.author.id,
-                        "xp": data["xp"] + xp_rate
+                upsert={
+                        "_id":   msg.author.id,
+                        "xp":    data["xp"] + xp_rate,
                     }
-                )
+                await self.bot.dpg.execute(query=f"UPDATE levels SET xp = {upsert['xp']} WHERE _id = {upsert['_id']}")
 
     @commands.command(hidden=True)
     async def fixlevels(self, ctx):
@@ -130,20 +126,14 @@ class Levels(commands.Cog):
         if ctx.author.id != 599059234134687774:
             return
 
-        data = await self.bot.levels.get_all()
+        data = await self.bot.dpg.fetch_all(query= "SELECT * FROM levels")
+        msg  = await ctx.send("Working on it...")
 
-        msg = await ctx.send("Working on it...")
         for item in data:
             changed = 0
-            actual_level = calculate_level(item["xp"])
-            if item["level"] != actual_level:
-                await self.bot.levels.upsert(
-                    {
-                        "_id": item["_id"],
-                        "xp": item["xp"],
-                        "level": actual_level
-                    }
-                )
+            actual_level = calculate_level(item.xp)
+            if item.level != actual_level:
+                await self.bot.dpg.execute(query=f"UPDATE levels SET level = {actual_level} WHERE _id = {item._id})")
                 changed += 1
 
         await msg.edit(f"All done! Updated {changed} members' levels.")
@@ -152,82 +142,77 @@ class Levels(commands.Cog):
     @commands.is_owner()
     async def addxp(self, ctx, member: discord.Member, xp: int):
         """(Fenne only) Adds XP to a member."""
-        cur_xp = await self.bot.levels.find(member.id)
+        pg     = self.bot.pg
+        cur_xp = pg.RESULT(await self.bot.dpg.fetch_one(query=pg.find('levels', '_id'), values={"x": member.id}), "levels")
 
         if not cur_xp:
             return await ctx.send("I can't do that because they need some XP first.") 
 
-        new_xp = cur_xp["xp"] + xp
-        new_level = calculate_level(new_xp)
+        new_xp      = cur_xp["xp"] + xp
+        new_level   = calculate_level(new_xp)
 
-        confirm = YesNo()
+        confirm     = YesNo()
         confirm.ctx = ctx
 
-        msg = await ctx.send(f"Are you sure you want add to the XP? Their new XP will be **{new_xp}** and new level will be **{new_level}**.", view=confirm)
+        msg         = await ctx.send(f"Are you sure you want add to the XP? Their new XP will be **{new_xp}** and new level will be **{new_level}**.", view=confirm)
 
         await confirm.wait()
-        if not confirm.value:
-            return await msg.delete()
+        if not confirm.value: return await msg.delete()
         
         await msg.delete()
 
-        await self.bot.levels.upsert(
-            {
-                "_id": member.id,
-                "xp": new_xp,
-                "level": new_level
-            }
-        )
+        if new_level == cur_xp["levels"]:
+            await self.bot.dpg.execute(query=f"UPDATE levels SET xp = {new_xp} WHERE _id = {member.id}")
+
+        else:
+
+            await self.bot.dpg.execute(query=f"UPDATE levels SET xp = {new_xp}, level = {new_level} WHERE _id = {member.id}")
+        
         await ctx.send(f"Added {xp} XP to {member.display_name}! :tada:")
 
     @commands.command(hidden=True)
     @commands.is_owner()
     async def removexp(self, ctx, member: discord.Member, xp: int):
         """(Fenne only) Adds XP to a member."""
-        cur_xp = await self.bot.levels.find(member.id)
+        pg     = self.bot.pg
+        cur_xp = pg.RESULT(await self.bot.dpg.fetch_one(query=pg.find('levels', '_id'), values={"x": member.id}), "levels")
 
         if not cur_xp:
             return await ctx.send("I can't do that because they need some XP first.") 
 
-        new_xp = cur_xp["xp"] - xp
+        new_xp    = cur_xp["xp"] - xp
         new_level = calculate_level(new_xp)
 
         if new_xp < 0:
             return await ctx.send("That will make their XP negative and blow the bot up! >:o")
 
-        confirm = YesNo()
+        confirm     = YesNo()
         confirm.ctx = ctx
 
-        msg = await ctx.send(f"Are you sure you want to remove the XP? Their new XP will be **{new_xp}** and new level will be **{new_level}**.", view=confirm)
+        msg         = await ctx.send(f"Are you sure you want to remove the XP? Their new XP will be **{new_xp}** and new level will be **{new_level}**.", view=confirm)
 
         await confirm.wait()
-        if not confirm.value:
-            return await msg.delete()
+        if not confirm.value: return await msg.delete()
         
         await msg.delete()
+        if new_level == cur_xp["levels"]:
+            await self.bot.dpg.execute(query=f"UPDATE levels SET xp = {new_xp} WHERE _id = {member.id}")
+        else:
+            await self.bot.dpg.execute(query=f"UPDATE levels SET xp = {new_xp}, level = {new_level} WHERE _id = {member.id}")
 
-        await self.bot.levels.upsert(
-            {
-                "_id": member.id,
-                "xp": new_xp,
-                "level": new_level
-            }
-        )
         await ctx.send(f"Removed {xp} XP from {member.display_name}.")
 
 
     @commands.hybrid_command(aliases=["level"])
     @discord.app_commands.guilds(ID.server.fbc, ID.server.cafe)
-    async def rank(self, ctx, member: discord.Member=None):
+    async def rank(self, ctx:commands.Context, member: discord.Member=None):
         """Shows a members XP and level from talking."""
-        print("rank passed 1")
-        member = member if member else ctx.author
+        pg=self.bot.pg
+        member   = member if member else ctx.author
 
-        data = await self.bot.levels.find(member.id)
-        all_data = await self.bot.levels.get_all()
-        
-        print("rank passed 2")
-        
+        data     = pg.RESULT(await self.bot.dpg.fetch_one(query=pg.find('levels', '_id'), values={"x": member.id}), "levels")
+        all_data = pg.GET_ALL(await self.bot.dpg.fetch_all(query= "SELECT * FROM levels"), "levels")
+                
         all_data.sort(key=lambda item: item.get("xp"), reverse=True) # sort ranks in descending order
 
         index = 1
@@ -236,12 +221,10 @@ class Levels(commands.Cog):
                 break
             index += 1
 
-        print("rank passed 3", "\n", data)
-
-        xp = data["xp"]
-        level = data["level"]
-        lvl_xp = xp - (level * XP_PER_LEVEL)
-        rank = index
+        xp      = data["xp"]
+        level   = data["levels"]
+        lvl_xp  = xp - (level * XP_PER_LEVEL)
+        rank    = index
         next_xp = (level * XP_PER_LEVEL) - (level + 1 * XP_PER_LEVEL)
         xp_needed = ((level + 1) * XP_PER_LEVEL) - xp
 
@@ -252,11 +235,9 @@ class Levels(commands.Cog):
                 msg = None
         else:
             msg = None
-        
-        print("rank passed 4")
 
         card_data = {
-            "bg_image": data.get("bg") if data.get("bg") else "https://media.discordapp.net/attachments/956915636582379560/995857644415889508/rank-card.png", # change to bg when fen gives it
+            "bg_image": data.get("bg"),
             "profile_image": member.display_avatar.url,
             "level": level,
             "user_xp": lvl_xp,
@@ -265,7 +246,7 @@ class Levels(commands.Cog):
             "user_position": rank,
             "user_name": member.display_name,
             "user_status": member.raw_status,
-            "color": data.get("color") if data.get("color") else "#1b1b1b",
+            "color": data.get("color"),
             "total": xp
         }
 
@@ -274,7 +255,6 @@ class Levels(commands.Cog):
         file = discord.File(fp=img, filename="rank.png")
 
         await ctx.send(content=msg, file=file)
-        print("rank passed 5")
     
     @commands.group(invoke_without_command=True)
     async def card(self, ctx):
@@ -286,14 +266,14 @@ class Levels(commands.Cog):
             return await ctx.send("Please add (attach) an image when using this command!")
         
         attachment = ctx.message.attachments[0]
-        extension = attachment.filename.split(".")
-        extension = extension[len(extension)-1] 
+        extension  = attachment.filename.split(".")
+        extension  = extension[len(extension)-1] 
 
         file = BytesIO(await attachment.read())
         
         url = await self.wtp.upload_from_bytes(file, extension)
 
-        await self.bot.levels.upsert({"_id": ctx.author.id, "bg": str(url)})
+        await self.bot.dpg.execute(query=f"UPDATE levels SET bg = {url} WHERE _id = {ctx.author.id}")
 
         await ctx.send(f"All done!")
 
@@ -307,7 +287,7 @@ class Levels(commands.Cog):
         if not hex.startswith("#"):
             hex = "#" + str(hex)
 
-        await self.bot.levels.upsert({"_id": ctx.author.id, "color": hex})
+        await self.bot.dpg.execute(query=f"UPDATE levels SET bg = {hex} WHERE _id = {ctx.author.id}")
         await ctx.send(f"All done! Card **text** color set to {hex}")
 
     @commands.hybrid_command(aliases=["lb"])
@@ -316,15 +296,15 @@ class Levels(commands.Cog):
         """Shows the top 15 people on the leaderboard."""
         if ctx.guild.id != ID.server.cafe:
             return await ctx.send("that command doesnt work in this server rn sorry")
-
-        data = await self.bot.levels.get_all()
+        pg   = self.bot.pg
+        data = pg.GET_ALL(await self.bot.dpg.fetch_all(query= "SELECT * FROM levels"), "levels")
         data.sort(key=lambda item: item.get("xp"), reverse=True)
         
-        out = []
+        out   = []
         place = 1
         for item in data:
             member = ctx.guild.get_member(item["_id"])
-            xp = "{:,}".format(item['xp'])
+            xp     = "{:,}".format(item['xp'])
             if not member:
                 return await self.bot.levels.delete(item["_id"])
             if place == 1:
@@ -344,7 +324,7 @@ class Levels(commands.Cog):
                     title="Leaderboard",
                     color=EMBED_COLOR
                 )
-                embed.description = "\n".join(entries)
+                embed.description    ="\n".join(entries)
                 embed.set_author(name=f"Page {self.current_page}/{self.total_pages}")
                 embed.set_footer(text=f"{len(out)} members on the leaderboard.")
 
@@ -356,26 +336,27 @@ class Levels(commands.Cog):
     @commands.is_owner()
     async def doublexp(self, ctx):
         """(Fenne only) Enables double XP for everyone."""
-        data = await self.bot.config.find(123)
+        pg=self.bot.pg
+        data = pg.RESULT(await self.bot.dpg.fetch_one(query=pg.find('config', '_id'), values={"x": 123}), "config")
         if not data["doublexp"]:
-            confirm = YesNo()
+            confirm     = YesNo()
             confirm.ctx = ctx
             msg = await ctx.send("**Double XP is not enabled.**\n\nDo you want to enable it?", view=confirm)
 
             await confirm.wait()
             if confirm.value:
-                await self.bot.config.upsert({"_id": 123, "doublexp": True})
-                await msg.delete()
-                await msg.delete()
+                await self.bot.dpg.execute(query="UPDATE config SET doublexp = True WHERE _id = 123")
+                await ctx.send("Double XP has been enabled.")
+            await msg.delete()
         
         else:
-            confirm = YesNo()
+            confirm     = YesNo()
             confirm.ctx = ctx
-            msg = await ctx.send("**Double XP is enabled.**\n\nDo you want to disable it?", view=confirm)
+            msg         = await ctx.send("**Double XP is enabled.**\n\nDo you want to disable it?", view=confirm)
 
             await confirm.wait()
             if confirm.value:
-                await self.bot.config.upsert({"_id": 123, "doublexp": False})
+                await self.bot.dpg.execute(query="UPDATE config SET doublexp = False WHERE _id = 123")
                 await msg.delete()
                 await ctx.send("Double XP has been disabled.")
             else:
@@ -402,9 +383,10 @@ Spamming does not benefit you when it comes to gaining XP as there's a short coo
 
     @commands.hybrid_command()
     @discord.app_commands.guilds(ID.server.fbc, ID.server.cafe)
-    async def toggleping(self, ctx):
+    async def toggleping(self, ctx:commands.Context):
         """Enables/disables pings when you level up. This will still send the level up message."""
-        data = await self.bot.levels.find(ctx.author.id)
+        pg=self.bot.pg
+        data = pg.RESULT(await self.bot.dpg.fetch_one(query=pg.find('levels', '_id'), values={"x": ctx.author.id}), "levels")
 
         if data.get("ping", True) == True:
             to_send = "You are currently being pinged for level up messages.\n\n**Do you want to disable level-up pings?**"
@@ -422,21 +404,21 @@ Spamming does not benefit you when it comes to gaining XP as there's a short coo
         
         if confirm.value:
             if data.get("ping") == True:
-                await self.bot.levels.upsert({"_id": ctx.author.id, "ping": False})
+                await self.bot.dpg.execute(query=f"UPDATE levels SET ping = False WHERE _id = {ctx.author.id}")
             else:
-                await self.bot.levels.upsert({"_id": ctx.author.id, "ping": True})
+                await self.bot.dpg.execute(query=f"UPDATE levels SET ping = True WHERE _id = {ctx.author.id}")
 
-        await msg.edit(content="Your settings have been changed!", view=confirm)
+        await msg.edit(content="Your settings have been changed!", view=confirm.stop())
     
     @commands.hybrid_command(aliases=["levelstatus"])
     @discord.app_commands.guilds(ID.server.fbc, ID.server.cafe)
-    async def xpstatus(self, ctx):
+    async def xpstatus(self, ctx: commands.Context):
         """Shows the current status on the levelling system."""
-        data = await self.bot.config.find(123)
+        data = self.bot.pg.RESULT(await self.bot.dpg.fetch_one(query=self.bot.pg.find('config', '_id'), values={"x": 123}), "config")
         if data["doublexp"] == True:
             doublexp = "Enabled - chatting will give you double XP"
         else:
-            dobulexp = "Disabled - XP is not doubled."
+            doublexp = "Disabled - XP is not doubled."
         
         content = f"XP is random per-message. You get between 2 and 8 XP.\nSending media is a 5 XP bonus!\n\nDouble XP: {doublexp}"
 
@@ -451,6 +433,6 @@ Spamming does not benefit you when it comes to gaining XP as there's a short coo
         if member.id in ex:
             return
         try:
-            await self.bot.levels.delete(member.id)
+            await self.bot.dpg.execute(query=f"DELETE FROM levels WHERE _id = {member.id}")
         except:
             pass
