@@ -26,6 +26,7 @@ class mod(commands.Cog):
       member =  guild.get_member(ctx.message.author.id) or await guild.fetch_member(ctx.message.author.id)
       mod    =  member.get_role(928077514411233350)
       dev    =  member.get_role(961726803288928266)
+      print("here")
       if mod in member.roles or dev in member.roles: return True
       await ctx.send("You are not allowed to use that command")
       
