@@ -26,7 +26,6 @@ class mod(commands.Cog):
       member =  guild.get_member(ctx.message.author.id) or await guild.fetch_member(ctx.message.author.id)
       mod    =  member.get_role(928077514411233350)
       dev    =  member.get_role(961726803288928266)
-      print("here")
       if mod in member.roles or dev in member.roles: return True
       await ctx.send("You are not allowed to use that command")
       
@@ -92,12 +91,10 @@ class mod(commands.Cog):
   @commands.command()
   async def verify(self, ctx):
     """Reply this command to verify a member verification."""
-    print(ctx.author)
     msg        = ctx.message
     dpg        = self.bot.dpg
     pg         = self.bot.pg
     verify     = pg.RESULT(await dpg.fetch_one(query=pg.find('config', '_id'), values={"x": 123}), "config")["verify"]
-    print(verify)
     mod_channel= self.bot.get_channel(cafe.mod.chat) or await self.bot.fetch_channel(cafe.mod.chat)        
 
     if not verify:
