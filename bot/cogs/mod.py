@@ -300,8 +300,8 @@ class mod(commands.Cog):
   async def toggle(self, ctx):
     pass
   
-  @toggle.command()
-  async def verify(self, ctx):
+  @toggle.command(aliases=["verifys"])
+  async def verifications(self, ctx):
     dpg      = self.bot.dpg
     pg       = self.bot.pg
     verify   = pg.RESULT(await dpg.fetch_one(query=pg.find('config', '_id'), values={"x": 123}), "config")["verify"]
