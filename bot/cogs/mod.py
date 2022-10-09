@@ -252,7 +252,6 @@ class mod(commands.Cog):
     finally:await ctx.message.delete()
     embed=discord.Embed(
       color=0xff0000,
-      title="getroles"
     )
     embed.add_field(name="getroles", value=f"{ctx.author}(id: {ctx.author.id}) told {member}(id: {member.id}) to get roles.")
     logs   = self.bot.get_channel(ID.fbc.logs.gen) or await self.bot.fetch_channel(ID.fbc.logs.gen)
