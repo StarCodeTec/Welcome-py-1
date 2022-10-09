@@ -254,7 +254,7 @@ class mod(commands.Cog):
       color=0xff0000,
       title="getroles"
     )
-    embed.add_field(ctx.author, f"(id: {ctx.author.id}) told {member}(id: {member.id}) to get roles.")
+    embed.add_field(name=ctx.author, value=f"(id: {ctx.author.id}) told {member}(id: {member.id}) to get roles.")
     logs   = self.bot.get_channel(ID.fbc.logs.gen) or await self.bot.fetch_channel(ID.fbc.logs.gen)
     logs2  = self.bot.get_channel(cafe.mod.logger) or await self.bot.get_channel(cafe.mod.logger)
     await logs.send(embed=embed)
