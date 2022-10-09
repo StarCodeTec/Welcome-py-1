@@ -96,16 +96,18 @@ class mod(commands.Cog):
     dpg        = self.bot.dpg
     pg         = self.bot.pg
     verify     = pg.RESULT(await dpg.fetch_one(query=pg.find('config', '_id'), values={"x": 123}), "config")["verify"]
+    mod_channel= self.bot.get_channel(cafe.mod.chat) or await self.bot.fetch_channel(cafe.mod.chat)        
+
+    if not verify:
+      await msg.delete()
+      return await mod_channel.send(f"{ctx.author.mention} Verifications are currently disabled. Please try again once they are open.")
+
     gen        = self.bot.get_channel(cafe.chat.gen) or await self.bot.fetch_channel(cafe.chat.gen)
     admin      = discord.utils.get(msg.author.guild.roles, name="Server Staff")
-    mod_channel= self.bot.get_channel(cafe.mod.chat) or await self.bot.fetch_channel(cafe.mod.chat)        
     logs       = self.bot.get_channel(ID.fbc.logs.verify) or await self.bot.fetch_channel(ID.fbc.logs.verify)
     logs2      = self.bot.get_channel(cafe.mod.logger) or await self.bot.get_channel(cafe.mod.logger)
     welcomed   = discord.Object(id=889011345712894002)
     unwelcomed = discord.Object(id=889011029428801607)
-    if not verify:
-      await msg.delete()
-      return await mod_channel.send(f"{ctx.author.mention} Verifications are currently disabled. Please try again once they are open.")
 
     if msg.guild is None or msg.author.id == botuser or msg.reference == None or admin not in msg.author.roles:return
 
