@@ -91,10 +91,12 @@ class mod(commands.Cog):
   @commands.command()
   async def verify(self, ctx):
     """Reply this command to verify a member verification."""
+    print(ctx.author)
     msg        = ctx.message
     dpg        = self.bot.dpg
     pg         = self.bot.pg
     verify     = pg.RESULT(await dpg.fetch_one(query=pg.find('config', '_id'), values={"x": 123}), "config")["verify"]
+    print(verify)
     mod_channel= self.bot.get_channel(cafe.mod.chat) or await self.bot.fetch_channel(cafe.mod.chat)        
 
     if not verify:
