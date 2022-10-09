@@ -14,7 +14,6 @@ class mod(commands.Cog):
   def __init__(self, bot):self.bot=bot
 
   async def cog_check(self, ctx):
-    if ctx.author.id == Fenne or ctx.author.id == Luna: return True
     try:
       command_name = ctx.message.content.split(' ')
       command_name = command_name[0].lower()
