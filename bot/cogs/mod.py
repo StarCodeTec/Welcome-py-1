@@ -90,7 +90,7 @@ class mod(commands.Cog):
 
       
   @commands.command()
-  async def verify(self, ctx: commands.Context):
+  async def verify(self, ctx):
     """Reply this command to verify a member verification."""
     msg        = ctx.message
     dpg        = self.bot.dpg
@@ -104,7 +104,7 @@ class mod(commands.Cog):
     welcomed   = discord.Object(id=889011345712894002)
     unwelcomed = discord.Object(id=889011029428801607)
     if not verify:
-      await ctx.message.delete()
+      await msg.delete()
       return await mod_channel.send(f"{ctx.author.mention} Verifications are currently disabled. Please try again once they are open.")
 
     if msg.guild is None or msg.author.id == botuser or msg.reference == None or admin not in msg.author.roles:return
