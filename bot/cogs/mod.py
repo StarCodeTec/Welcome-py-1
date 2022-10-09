@@ -262,7 +262,7 @@ class mod(commands.Cog):
     logs2  = self.bot.get_channel(cafe.mod.logger) or await self.bot.get_channel(cafe.mod.logger)
     await logs.send(embed=embed)
     await logs2.send(embed=embed)
-    if zero == 0: await ctx.send(embed=embed)
+    if zero == 0: await ctx.send(f"{member.mention} has been told to get roles by a staff member")
   
   @commands.command()
   async def welcome(self, ctx, member: discord.Member=None):
