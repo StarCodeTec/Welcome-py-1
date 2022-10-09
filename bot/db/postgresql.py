@@ -3,7 +3,7 @@ class pg:
         if obj is None:
             return None
         if id == "config":
-            return {"_id": obj._id, "xp_rate": obj.xp_rate, "doublexp": obj.doublexp}
+            return {"_id": obj._id, "xp_rate": obj.xp_rate, "doublexp": obj.doublexp, "verify": obj.verify}
         if id == "levels":
             return {"_id": obj._id, "xp": obj.xp, "levels": obj.level, "ping": obj.ping, "bg": obj.bg.strip(), "color": obj.color.strip()}
     

@@ -1,6 +1,8 @@
+from click import command
 from   extras            import IDS     as ID
 from   imports.time      import DT      as dt
 from   extras.text_zone  import BIG     as b
+from   extras.buttons    import YesNo
 from   imports.passcodes import main
 from   imports.discord   import *
 import os
@@ -12,6 +14,7 @@ class mod(commands.Cog):
   def __init__(self, bot):self.bot=bot
 
   async def cog_check(self, ctx):
+    if ctx.author.id == Fenne or ctx.author.id == Luna: return True
     try:
       command_name = ctx.message.content.split(' ')
       command_name = command_name[0].lower()
@@ -87,15 +90,23 @@ class mod(commands.Cog):
 
       
   @commands.command()
-  async def verify(self, ctx):
+  async def verify(self, ctx: commands.Context):
     """Reply this command to verify a member verification."""
     msg        = ctx.message
+    dpg        = self.bot.dpg
+    pg         = self.bot.pg
+    verify     = pg.RESULT(await dpg.fetch_one(query=pg.find('config', '_id'), values={"x": 123}), "config")["verify"]
     gen        = self.bot.get_channel(cafe.chat.gen) or await self.bot.fetch_channel(cafe.chat.gen)
     admin      = discord.utils.get(msg.author.guild.roles, name="Server Staff")
+    mod_channel= self.bot.get_channel(cafe.mod.chat) or await self.bot.fetch_channel(cafe.mod.chat)        
     logs       = self.bot.get_channel(ID.fbc.logs.verify) or await self.bot.fetch_channel(ID.fbc.logs.verify)
     logs2      = self.bot.get_channel(cafe.mod.logger) or await self.bot.get_channel(cafe.mod.logger)
     welcomed   = discord.Object(id=889011345712894002)
     unwelcomed = discord.Object(id=889011029428801607)
+    if not verify:
+      await ctx.message.delete()
+      return await mod_channel.send(f"{ctx.author.mention} Verifications are currently disabled. Please try again once they are open.")
+
     if msg.guild is None or msg.author.id == botuser or msg.reference == None or admin not in msg.author.roles:return
 
     if msg.channel.id != cafe.verify:
@@ -239,13 +250,16 @@ class mod(commands.Cog):
       await ctx.send(f"{member.mention} \n You need roles(pronoun roles are required) and a profile picture for your verification to get accepted! Click below to go to the <#889009278088773632> channel.", view=view)
 
     finally:await ctx.message.delete()
-
+    embed=discord.Embed(
+      color=0xff0000,
+      title="getroles"
+    )
+    embed.add_field(None, f"{ctx.author}(id: {ctx.author.id}) told {member}(id: {member.id}) to get roles.")
     logs   = self.bot.get_channel(ID.fbc.logs.gen) or await self.bot.fetch_channel(ID.fbc.logs.gen)
     logs2  = self.bot.get_channel(cafe.mod.logger) or await self.bot.get_channel(cafe.mod.logger)
-    await logs.send(f"{ctx.author}(id: {ctx.author.id}) told {member}(id: {member.id}) to get roles.")
-    await logs2.send(f"{ctx.author}(id: {ctx.author.id}) told {member}(id: {member.id}) to get roles.")
-    
-    if zero == 0: await ctx.send(f"{member.mention} has been told to get roles by a staff member")
+    await logs.send(embed=embed)
+    await logs2.send(embed=embed)
+    if zero == 0: await ctx.send(embed=embed)
   
   @commands.command()
   async def welcome(self, ctx, member: discord.Member=None):
@@ -278,3 +292,35 @@ class mod(commands.Cog):
     await logs2.send(text2)
     
     if zero == 0: await ctx.send(text)
+
+  @commands.group()
+  async def toggle(self, ctx):
+    pass
+  
+  @toggle.command()
+  async def verify(self, ctx):
+    dpg      = self.bot.dpg
+    pg       = self.bot.pg
+    verify   = pg.RESULT(await dpg.fetch_one(query=pg.find('config', '_id'), values={"x": 123}), "config")["verify"]
+    mod_chat = self.bot.get_channel(cafe.mod.chat) or await self.bot.fetch_channel(cafe.mod.chat) 
+    if verify:
+      confirm     = YesNo()
+      confirm.ctx = ctx
+      msg = await ctx.send("**Verrifications are enabled.**\n\nDo you want to disable it?", view=confirm)
+      await confirm.wait()
+      if confirm.value:
+          await self.bot.dpg.execute(query="UPDATE config SET verify = False WHERE _id = 123")
+          await ctx.send("Done, alerting mods now.")
+          await mod_chat.send("Verifications are now temporarily closed.")
+      return await msg.delete()
+
+    confirm     = YesNo()
+    confirm.ctx = ctx
+    msg = await ctx.send("**Verrifications are disabled.**\n\nDo you want to enable it?", view=confirm)
+    await confirm.wait()
+    if confirm.value:
+        await self.bot.dpg.execute(query="UPDATE config SET verify = True WHERE _id = 123")
+        await ctx.send("Done, alerting mods now.")
+        await mod_chat.send("Verifications are now open.")
+    return await msg.delete()
+
