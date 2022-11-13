@@ -310,6 +310,7 @@ class Levels(commands.Cog):
         out   = []
         place = 1
         for item in data:
+            print(item)
             member = ctx.guild.get_member(item["_id"])
             xp     = "{:,}".format(item['xp'])
             if not member:
