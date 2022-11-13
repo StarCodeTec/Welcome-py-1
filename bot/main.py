@@ -56,6 +56,10 @@ async def on_guild_channel_create(cha):
     if cha.category_id != cafe.cats.verify:return
     await asyncio.sleep(2.5)
     await cha.send(b.vt())
+  
+  elif cha.category.id == cafe.cats.little and "ticket" in str(cha.name):
+    await asyncio.sleep(3)
+    await cha.send("Are you an age regressor? \nLittle age? \nFavorite little space activities?")
 
 async def main_start(run):
   async with bot:
