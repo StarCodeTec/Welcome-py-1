@@ -310,9 +310,8 @@ class Levels(commands.Cog):
         out   = []
         place = 1
         for item in data:
-            member = ctx.guild.get_member(item["_id"])
+            member = ctx.guild.get_member(item["_id"]) or  ctx.guild.fetch_member(item["_id"])
             xp     = "".format(item['xp'])
-            print(member)
             if not member:
                 return await self.bot.dpg.execute(query=f"DELETE FROM levels WHERE _id = {item['_id']}")
             if place == 1:
