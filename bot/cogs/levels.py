@@ -316,13 +316,13 @@ class Levels(commands.Cog):
             if not member:
                 return await self.bot.levels.delete(item["_id"])
             if place == 1:
-                out.append(f":first_place: {member.mention} {xp} XP (level {item['levels']})")
+                out.append(f":first_place: <@{member}> {xp} XP (level {item['levels']})")
             elif place == 2:
-                out.append(f":second_place: {member.mention} {xp} XP (level {item['levels']})")
+                out.append(f":second_place: <@{member}> {xp} XP (level {item['levels']})")
             elif place == 3:
-                out.append(f":third_place: {member.mention} {xp} XP (level {item['levels']})")
+                out.append(f":third_place: <@{member}> {xp} XP (level {item['levels']})")
             else:
-                out.append(f"**{place}.** {member.mention} {xp} XP (level {item['levels']})")
+                out.append(f"**{place}.** <@{member}> {xp} XP (level {item['levels']})")
 
             place += 1
         print(out)
