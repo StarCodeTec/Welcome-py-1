@@ -325,7 +325,7 @@ class Levels(commands.Cog):
                 out.append(f"**{place}.** {member.mention} {xp} XP (level {item['levels']})")
 
             place += 1
-
+        print(out)
         class Pages(BaseButtonPaginator):
             async def format_page(self, entries):
                 embed = discord.Embed(
