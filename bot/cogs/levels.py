@@ -314,7 +314,7 @@ class Levels(commands.Cog):
             member = ctx.guild.get_member(item["_id"])
             xp     = "{:,}".format(item['xp'])
             if not member:
-                return await self.bot.levels.delete(item["_id"])
+                return await self.bot.dpg.execute(query=f"DELETE FROM levels WHERE _id = {item['_id']}")
             if place == 1:
                 out.append(f":first_place: <@{member}> {xp} XP (level {item['levels']})")
             elif place == 2:
