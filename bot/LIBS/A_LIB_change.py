@@ -11,7 +11,7 @@ os.chdir(FILE_PATH)
 
 def push():
   repo = Repo("../../")
-  username = "jagg3127"
+  username = "StarCodeTec"
   password = token
   remote = f"https://{username}:{password}@github.com/{username}/Welcome-py-1.git"
   repo.git.add(f"{FILE_PATH}/JSON/")
