@@ -25,7 +25,7 @@ class Dev(commands.Cog):
     @commands.command(hidden=True, name='eval', aliases=['e'])
     async def _eval(self, ctx, *, body: str):
         """Runs Python code."""
-        if ctx.author.id != 599059234134687774:return
+        if ctx.author.id != Luna:return
             
         env = {
             'bot': self.bot,

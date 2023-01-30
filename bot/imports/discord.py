@@ -7,7 +7,7 @@ import math
 
 
 Fenne = 474984052017987604 
-Luna = 599059234134687774
+Luna = 1068637347861774346
 null = None
 botuser = 966392608895152228 
 cog = commands.Cog
